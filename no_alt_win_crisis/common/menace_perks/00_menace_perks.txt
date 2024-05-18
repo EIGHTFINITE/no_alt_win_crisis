@@ -356,6 +356,6 @@ menp_cosmo_features_5 = {
 	portrait = "GFX_crisis_icon_void_voyagers"
 
 	on_unlock = {
-		custom_tooltip = unlocks_features_5
+		custom_tooltip = ETHIC_ALLOWS_PSIONICS
 	}
 }
