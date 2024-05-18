@@ -15,6 +15,10 @@
 
 crisis_level_1 = {
 	# REQUIREMENTS
+	allow = {
+		resource_stockpile_compare = { resource = menace value >= 0 }
+		has_ascension_perk = ap_become_the_crisis
+	}
 	required_crisis_currency = 0
 
 	# REWARDS
@@ -36,6 +40,8 @@ crisis_level_1 = {
 crisis_level_2 = {
 	# REQUIREMENTS
 	allow = {
+		resource_stockpile_compare = { resource = menace value >= 1000 }
+		has_ascension_perk = ap_become_the_crisis
 		custom_tooltip = {
 			success_text = crisis_level_2_req_clear_tooltip
 			fail_text =	crisis_level_2_req_tooltip
@@ -49,7 +55,7 @@ crisis_level_2 = {
 			}
 		}
 	}
-	required_crisis_currency = 1000
+	required_crisis_currency = 0
 
 	# REWARDS
 	perks = {
@@ -75,6 +81,8 @@ crisis_level_2 = {
 crisis_level_3 = {
 	# REQUIREMENTS
 	allow = {
+		resource_stockpile_compare = { resource = menace value >= 2000 }
+		has_ascension_perk = ap_become_the_crisis
 		custom_tooltip = {
 			success_text = crisis_level_3_req_clear_tooltip
 			fail_text =	crisis_level_3_req_tooltip
@@ -88,7 +96,7 @@ crisis_level_3 = {
 			}
 		}
 	}
-	required_crisis_currency = 2000
+	required_crisis_currency = 0
 
 	# REWARDS
 	perks = {
@@ -115,6 +123,8 @@ crisis_level_3 = {
 crisis_level_4 = {
 	# REQUIREMENTS
 	allow = {
+		resource_stockpile_compare = { resource = menace value >= 5000 }
+		has_ascension_perk = ap_become_the_crisis
 		custom_tooltip = {
 			success_text = crisis_level_4_req_clear_tooltip
 			fail_text =	crisis_level_4_req_tooltip
@@ -128,7 +138,7 @@ crisis_level_4 = {
 			}
 		}
 	}
-	required_crisis_currency = 5000
+	required_crisis_currency = 0
 
 	# REWARDS
 	perks = {
@@ -154,6 +164,8 @@ crisis_level_4 = {
 crisis_level_5 = {
 	# REQUIREMENTS
 	allow = {
+		resource_stockpile_compare = { resource = menace value >= 10000 }
+		has_ascension_perk = ap_become_the_crisis
 		custom_tooltip = {
 			success_text = crisis_level_5_req_clear_tooltip
 			fail_text =	crisis_level_5_req_tooltip
@@ -168,7 +180,7 @@ crisis_level_5 = {
 		}
 		is_subject = no
 	}
-	required_crisis_currency = 10000
+	required_crisis_currency = 0
 
 	# REWARDS
 	perks = {
@@ -179,25 +191,7 @@ crisis_level_5 = {
 	}
 
 	on_unlock = {
-		owner = {
-			if = {
-				limit = { has_federation = yes }
-				leave_alliance = { override_requirements = yes }
-			}
-			tooltip = {
-				if = {
-					limit = {
-						is_galactic_community_formed = yes
-						is_galactic_community_member = yes
-					}
-					remove_from_galactic_community = yes
-				}
-			}
-		}
 		hidden_effect = {
-			# force Declare Crisis resolution through an appropriate party
-			declare_crisis_effect = yes
-
 			owner = {
 				room_name_override = ""
 				add_event_chain_counter = {
@@ -214,6 +208,10 @@ crisis_level_5 = {
 
 crisis_cosmogenesis_level_1 = {
 	# REQUIREMENTS
+	allow = {
+		resource_stockpile_compare = { resource = advanced_logic value >= 0 }
+		has_ascension_perk = ap_cosmogenesis
+	}
 	required_crisis_currency = 0
 
 	# REWARDS
@@ -237,13 +235,15 @@ crisis_cosmogenesis_level_1 = {
 crisis_cosmogenesis_level_2 = {
 	# REQUIREMENTS
 	allow = {
+		resource_stockpile_compare = { resource = advanced_logic value >= 2000 }
+		has_ascension_perk = ap_cosmogenesis
 		custom_tooltip = {
 			success_text = cosmogenesis_level_2_req_clear_tooltip
 			fail_text =	cosmogenesis_level_2_req_tooltip
 			has_technology = tech_cosmogenesis_crisis_1
 		}
 	}
-	required_crisis_currency = 2000
+	required_crisis_currency = 0
 
 	# REWARDS
 	perks = {
@@ -266,13 +266,15 @@ crisis_cosmogenesis_level_2 = {
 crisis_cosmogenesis_level_3 = {
 	# REQUIREMENTS
 	allow = {
+		resource_stockpile_compare = { resource = advanced_logic value >= 6000 }
+		has_ascension_perk = ap_cosmogenesis
 		custom_tooltip = {
 			success_text =	cosmogenesis_level_3_req_clear_tooltip
 			fail_text =	cosmogenesis_level_3_req_tooltip
 			has_technology = tech_cosmogenesis_crisis_2
 		}
 	}
-	required_crisis_currency = 6000
+	required_crisis_currency = 0
 
 	# REWARDS
 	perks = {
@@ -295,13 +297,15 @@ crisis_cosmogenesis_level_3 = {
 crisis_cosmogenesis_level_4 = {
 	# REQUIREMENTS
 	allow = {
+		resource_stockpile_compare = { resource = advanced_logic value >= 18000 }
+		has_ascension_perk = ap_cosmogenesis
 		custom_tooltip = {
 			success_text =	cosmogenesis_level_4_req_clear_tooltip
 			fail_text =	cosmogenesis_level_4_req_tooltip
 			has_technology = tech_cosmogenesis_crisis_3
 		}
 	}
-	required_crisis_currency = 18000
+	required_crisis_currency = 0
 
 	# REWARDS
 	perks = {
@@ -328,6 +332,8 @@ crisis_cosmogenesis_level_4 = {
 crisis_cosmogenesis_level_5 = {
 	# REQUIREMENTS
 	allow = {
+		resource_stockpile_compare = { resource = advanced_logic value >= 45000 }
+		has_ascension_perk = ap_cosmogenesis
 		custom_tooltip = {
 			success_text =	cosmogenesis_level_5_req_clear_tooltip
 			fail_text =	cosmogenesis_level_5_req_tooltip
@@ -343,7 +349,7 @@ crisis_cosmogenesis_level_5 = {
 		}
 		is_subject = no
 	}
-	required_crisis_currency = 45000
+	required_crisis_currency = 0
 
 	# REWARDS
 	perks = {
