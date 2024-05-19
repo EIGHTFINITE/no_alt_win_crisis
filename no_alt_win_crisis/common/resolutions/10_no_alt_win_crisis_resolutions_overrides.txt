@@ -1,0 +1,194 @@
+@resolution_weight_hated = 3
+@resolution_weight_disliked = 4
+@resolution_weight_unpopular = 5
+@resolution_weight_normal = 6
+@resolution_weight_popular = 6.5
+@resolution_weight_loved = 7
+
+@resolution_cost_t1 = 100
+@resolution_cost_t2 = 150
+@resolution_cost_t3 = 200
+@resolution_cost_t4 = 250
+@resolution_cost_t5 = 300
+@resolution_cost_denounce = 25
+
+@resolution_flag_timer = 360
+
+### GALACTIC CUSTODIANSHIP
+
+# Nominate Custodian
+resolution_galacticreforms_nominate_custodian = {
+	icon = "GFX_resolution_nominate_custodian"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t5
+		}
+	}
+
+	target = yes
+	harmful = no
+	valid_target = {
+		is_country_type = default
+		is_galactic_community_member = yes
+		is_part_of_galactic_council = yes
+		custom_tooltip = {
+			fail_text = "nominate_other_custodian_requires_independence"
+			is_subject = no
+		}
+		custom_tooltip = {
+			fail_text = "nominate_other_custodian_not_crisis"
+			NOR = {
+				has_ascension_perk = ap_become_the_crisis
+				has_ascension_perk = ap_cosmogenesis
+				has_valid_civic = civic_pompous_purists
+			}
+		}
+	}
+
+	effect = {
+		set_galactic_custodian = yes
+		hidden_effect = {
+			country_event = { id = custodian.1 }
+			if = {
+				limit = { has_global_flag = gdf_active }
+				country_event = { id = custodian.35 days = 10 }
+			}
+		}
+	}
+
+	potential = {
+		has_nemesis = yes
+		is_galactic_council_established = yes
+		has_galactic_custodian = no
+		has_galactic_emperor = no
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "nominate_custodian_requires_independence"
+			is_subject = no
+		}
+		custom_tooltip = {
+			fail_text = "nominate_custodian_not_crisis"
+			NOR = {
+				has_ascension_perk = ap_become_the_crisis
+				has_ascension_perk = ap_cosmogenesis
+			}
+		}
+	}
+
+	active = {
+		has_galactic_custodian = no
+	}
+
+	ai_weight = {
+		base = @resolution_weight_normal
+		
+		modifier = {
+			factor = 12
+			any_neighbor_country = { is_crisis_faction = yes }
+			desc = gal_com_neighboring_crisis_empire
+		}
+
+		modifier = {
+			factor = 4
+			has_crisis_stage_1 = yes
+			desc = gal_com_crisis_stage_1
+		}
+
+		modifier = {
+			factor = 6
+			has_crisis_stage_2 = yes
+			desc = gal_com_crisis_stage_2
+		}
+
+		modifier = {
+			factor = 8
+			has_crisis_stage_3 = yes
+			desc = gal_com_crisis_stage_3
+		}
+
+		modifier = {
+			factor = 20
+			has_crisis_stage_4 = yes
+			desc = gal_com_crisis_stage_4
+		}
+
+		modifier = {
+			factor = 20
+			is_same_value = from
+			desc = gal_com_target_is_me
+		}
+
+		modifier = {
+			factor = 20
+			any_playable_country = { has_country_flag = crisis_sphere_revealed }
+			desc = gal_com_someone_is_revealed_crisis
+		}
+
+		modifier = {
+			factor = 8
+			any_playable_country = { has_been_declared_crisis = yes }
+			desc = gal_com_someone_declared_crisis
+		}
+
+		modifier = {
+			factor = 8
+			has_global_flag = gray_goo_crisis_active
+			desc = gal_com_someone_is_revealed_crisis
+		}
+
+		modifier = {
+			factor = 8
+			has_global_flag = marauder_crisis_ongoing
+			desc = gal_com_someone_is_revealed_crisis
+		}
+
+		modifier = {
+			factor = 0.5
+			has_ai_personality = xenophobic_isolationists
+			desc = personality_xenophobic_isolationists
+		}
+
+		modifier = {
+			factor = 0
+			OR = {
+				has_ascension_perk = ap_become_the_crisis
+				has_ascension_perk = ap_cosmogenesis
+			}
+			desc = gal_com_we_have_crisis_perk
+		}
+
+		modifier = {
+			factor = 0
+			is_rival = from
+			desc = gal_com_target_is_rival
+		}
+
+		modifier = {
+			factor = 0
+			is_subject = yes
+			overlord = {
+				OR = {
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+				}
+			}
+			desc = gal_com_subject_of_fallen_empire
+		}
+
+		modifier = {
+			factor = 10
+			any_country = { is_country_type = awakened_fallen_empire }
+			desc = gal_com_exists_awakened_fallen_empire
+		}
+
+		modifier = {
+			factor = 20
+			has_global_flag = war_in_heaven_ongoing
+			desc = gal_com_ongoing_war_in_heaven
+		}
+	}
+}
