@@ -124,6 +124,13 @@ country_event = { # Reaching Level 5
 			counter = "cosmogenesis_level_reached"
 			amount = 1
 		}
+		end_event_chain = cosmogenesis_chain
+		add_research_option = tech_psionic_theory
+		add_research_option = tech_psi_jump_drive_1
+		add_research_option = tech_precognition_interface
+		add_research_option = tech_cloaking_psi
+		add_research_option = tech_psionic_barrier
+		add_research_option = tech_psionic_shield
 	}
 
 	option = {
@@ -134,22 +141,12 @@ country_event = { # Reaching Level 5
 
 country_event = { # Researching Horizon Needle
 	id = crisis.7125
-	title = "crisis.7125.name"
-	desc = crisis.7125.desc
-	picture = GFX_evt_horizon_needle
-	show_sound = event_death_cult
-	event_chain = cosmogenesis_chain
+	hide_window = yes
 
 	is_triggered_only = yes
 
 	trigger = {
-		last_increased_tech = tech_cosmogenesis_crisis_5
-		has_ascension_perk = ap_cosmogenesis
-	}
-
-	option = {
-		name = crisis.7125.a
-		custom_tooltip = needle_to_win_tt
+		always = no
 	}
 }
 
@@ -1742,10 +1739,12 @@ country_event = { # Thesis: Shroud Tear FROM = crisis country
 						}
 						last_created_country = {
 							save_global_event_target_as = shroud_country
-							add_modifier = {
-								modifier = supercharged_shroud_country
-								years = 3
-							}
+						}
+					}
+					event_target:shroud_country = {
+						add_modifier = {
+							modifier = supercharged_shroud_country
+							years = 3
 						}
 					}
 					create_fleet = {
@@ -2284,167 +2283,16 @@ country_event = { # Thesis: Filler Thesis - BAD FROM = crisis country
 
 country_event = { # Horizon Needle Built
 	id = crisis.7400
-	title = "crisis.7400.name"
-	desc = {
-		trigger = {
-			any_owned_planet = {
-				is_capital = no
-			 	has_planet_flag = cosmogenesis_pickup_planet
-			}
-		}
-		text = crisis.7400.desc
-	}
-	desc = {
-		trigger = {
-			any_owned_planet = {
-				is_capital = yes
-			 	has_planet_flag = cosmogenesis_pickup_planet
-			}
-		}
-		text = crisis.7400.desc.onlycapital
-	}
-	picture = GFX_evt_horizon_needle
-	show_sound = event_airlock
-	event_chain = cosmogenesis_planet_pickup_chain
+	hide_window = yes
 
 	is_triggered_only = yes
-
-	immediate = {
-		end_event_chain = cosmogenesis_chain
-		begin_event_chain = { event_chain = cosmogenesis_planet_pickup_chain target = root }
-		every_owned_planet = {
-			limit = {
-				is_capital = no
-				NOT = {
-					is_planet_class = pc_cosmogenesis_world
-				}
-			}
-			set_planet_flag = cosmogenesis_pickup_planet
-		}
-		if = {
-			limit = {
-				NOT = {
-					any_owned_planet = {
-					 	has_planet_flag = cosmogenesis_pickup_planet
-					}
-				}
-			}
-			capital_scope = {
-				set_planet_flag = cosmogenesis_pickup_planet
-			}
-		}
-	}
-
-	option = {
-		name = EXCELLENT
-	}
 }
 
 planet_event = { # Embarking Colony Pops - From on_cosmogenesis_pickup_planet_reached on_action
 	id = crisis.7500
-	title = "crisis.7500.name"
-	desc = {
-		trigger = {
-			is_capital = no
-		}
-		text = crisis.7500.desc
-	}
-	desc = {
-		trigger = {
-			is_capital = yes
-			owner = {
-				is_gestalt = no
-			}
-		}
-		text = crisis.7500.desc.capital
-	}
-	desc = {
-		trigger = {
-			is_capital = yes
-			owner = {
-				is_gestalt = yes
-			}
-		}
-		text = crisis.7500.desc.capital.gestalt
-	}
-	picture = GFX_evt_ship_offloading_cargo
-	show_sound = event_airlock
-	event_chain = cosmogenesis_planet_pickup_chain
+	hide_window = yes
 
 	is_triggered_only = yes
-
-	trigger = {
-		from.owner = {
-			NOT = {
-				has_country_flag = exodus_ready
-			}
-		}
-	}
-
-	immediate = {
-
-		if = {
-			limit = {
-				is_same_value = owner.capital_scope
-			}
-			owner = {
-				every_owned_planet = {
-					while = {
-						limit = {
-							num_pops > 20
-						}
-						random_owned_pop = {
-							kill_pop = yes
-						}
-						random_owned_pop = {
-							kill_pop = yes
-						}
-						random_owned_pop = {
-							kill_pop = yes
-						}
-						random_owned_pop = {
-							kill_pop = yes
-						}
-					}
-				}
-				country_event = { id = crisis.7510 days = 10 }
-			}
-			remove_planet_flag = cosmogenesis_pickup_planet
-			owner = { set_country_flag = exodus_ready }
-		}
-		else = {
-			if = {
-				limit = {
-					owner = {
-						has_origin = origin_toxic_knights
-					}
-					has_planet_flag = toxic_knights_habitat
-				}
-				set_planet_flag = keep_evacuated
-			}
-			every_owned_pop = {
-				kill_pop = yes
-			}
-			destroy_colony = yes
-			remove_planet_flag = cosmogenesis_pickup_planet
-			solar_system.owner = {
-				if = {
-					limit = {
-						NOT = {
-							any_owned_planet = {
-								has_planet_flag = cosmogenesis_pickup_planet
-							}
-						}
-					}
-					country_event = { id = crisis.7505 days = 10 }
-				}
-			}
-		}
-	}
-
-	option = {
-		name = EXCELLENT
-	}
 }
 
 planet_event = { # Handling capital move - From on_capital_changed on_action
@@ -2452,604 +2300,54 @@ planet_event = { # Handling capital move - From on_capital_changed on_action
 	hide_window = yes
 
 	is_triggered_only = yes
-
-	trigger = {
-		exists = owner
-		owner = {
-			has_event_chain = cosmogenesis_planet_pickup_chain
-		}
-	}
-
-	immediate = {
-		from = {
-			set_planet_flag = cosmogenesis_pickup_planet
-		}
-		remove_planet_flag = cosmogenesis_pickup_planet
-	}
 }
 
 country_event = { # Colonies Evacuated
 	id = crisis.7505
-	title = "crisis.7505.name"
-	desc = crisis.7505.desc
-	picture = GFX_evt_horizon_needle
-	show_sound = event_airlock
-	event_chain = cosmogenesis_planet_pickup_chain
+	hide_window = yes
 
 	is_triggered_only = yes
-
-	trigger = {
-		NOT = {
-			any_owned_planet = {
-				has_planet_flag = cosmogenesis_pickup_planet
-			}
-		}
-		capital_scope = {
-			NOT = { has_planet_flag = cosmogenesis_pickup_planet }
-		}
-		NOT = { has_country_flag = exodus_ready }
-	}
-
-	immediate = {
-		capital_scope = {
-			set_planet_flag = cosmogenesis_pickup_planet
-		}
-	}
-
-	option = {
-		name = EXCELLENT
-	}
 }
 
 country_event = { # Ready to dive - Country Event
 	id = crisis.7510
-	title = "crisis.7510.name"
-	desc = crisis.7510.desc
-	picture = GFX_evt_horizon_needle
-	show_sound = event_airlock
-	event_chain = cosmogenesis_planet_pickup_chain
+	hide_window = yes
 
 	is_triggered_only = yes
-
-	immediate = {
-		capital_scope.solar_system.star = {
-			save_event_target_as = supermassive_project_location
-		}
-	}
-
-	option = { # Any regular black hole will do
-		name = crisis.7510.a
-		hidden_effect = {
-			set_country_flag = cosmogenesis_any_black_hole
-		}
-	}
-
-	option = { # ONLY THE SUPERMASSIVE BH AT THE CENTER OF THE GALAXY WILL DO
-		name = crisis.7510.b
-		enable_special_project = {
-			name = COSMOGENESIS_VICTORY
-			location = event_target:supermassive_project_location
-		}
-		hidden_effect = {
-			set_country_flag = cosmogenesis_supermassive
-		}
-	}
 }
 
 planet_event = { # About to dive - Planet Action
 	id = crisis.7514
 	hide_window = yes
 	is_triggered_only = yes
-
-	trigger = {
-		from.owner = {
-			has_country_flag = exodus_ready
-			has_country_flag = cosmogenesis_any_black_hole
-		}
-	}
-
-	immediate = {
-		create_ambient_object = {
-			type = "horizon_needle_dive"
-			play_animation_once = yes
-			location = this
-		}
-		last_created_ambient_object = {
-			set_location = {
-				target = prev
-				distance = 0
-				angle = random
-			}
-		}
-		from.owner = { country_event = { id = crisis.7515 days = 7 } }
-	}
 }
 
 country_event = { # Diving in
 	id = crisis.7515
-	title = "crisis.7515.name"
-	desc = crisis.7515.desc
-	picture = GFX_evt_horizon_needle
-	show_sound = event_airlock
-	event_chain = cosmogenesis_planet_pickup_chain
+	hide_window = yes
 
 	is_triggered_only = yes
-
-	immediate = {
-		random_owned_fleet = {
-			limit = {
-				has_fleet_flag = cosmogenesis_needle
-			}
-			solar_system = {
-				save_event_target_as = cosmo_ending_system
-			}
-			delete_fleet = this
-		}
-		save_event_target_as = cosmogenesis_empire
-	}
-
-	option = {
-		name = crisis.7515.a
-	}
-
-	after = {
-		hidden_effect = {
-			country_event = { id = crisis.7516 days = 15 }
-			every_playable_country = {
-				limit = {
-					NOT = {
-						is_same_value = root
-					}
-				}
-				country_event = { id = crisis.7517 days = 1 }
-			}
-		}
-	}
 }
 
 country_event = { # To infinity and beyond the event horizon
 	id = crisis.7516
-	title = "crisis.7516.name"
-	desc = {
-		trigger = {
-			can_create_paperclip_universe = yes
-			NOT = {
-				event_target:cosmo_ending_system = {
-					is_capital_system = yes
-					has_star_flag = cosmogenesis_project
-				}
-			}
-		}
-		text = crisis.7516.desc.paperclips
-	}
-	desc = {
-		trigger = {
-			can_create_paperclip_universe = no
-			event_target:cosmo_ending_system = {
-				NOR = {
-					has_star_flag = great_wound
-					has_star_flag = guardians_technosphere_system
-					has_star_flag = terminal_egress
-					has_star_flag = guardians_horror_system
-					any_system_planet = {
-						has_planet_flag = black_hole_horror
-					}
-					is_capital_system = yes
-					has_star_flag = cosmogenesis_project
-				}
-			}
-		}
-		text = crisis.7516.desc
-	}
-	desc = {
-		trigger = {
-			can_create_paperclip_universe = no
-			event_target:cosmo_ending_system = {
-				has_star_flag = great_wound
-			}
-		}
-		text = crisis.7516.desc.greatwound
-	}
-	desc = {
-		trigger = {
-			can_create_paperclip_universe = no
-			event_target:cosmo_ending_system = {
-				has_star_flag = guardians_technosphere_system
-			}
-		}
-		text = crisis.7516.desc.technosphere
-	}
-	desc = {
-		trigger = {
-			can_create_paperclip_universe = no
-			event_target:cosmo_ending_system = {
-				has_star_flag = pantagruel
-			}
-		}
-		text = crisis.7516.desc.technosphere.pantagruel
-	}
-	desc = {
-		trigger = {
-			can_create_paperclip_universe = no
-			event_target:cosmo_ending_system = {
-				has_star_flag = terminal_egress
-			}
-		}
-		text = crisis.7516.desc.egress
-	}
-	desc = {
-		trigger = {
-			can_create_paperclip_universe = no
-			event_target:cosmo_ending_system = {
-				OR = {
-					has_star_flag = guardians_horror_system
-					any_system_planet = {
-						has_planet_flag = black_hole_horror
-					}
-				}
-			}
-		}
-		text = crisis.7516.desc.horror
-	}
-	desc = {
-		trigger = {
-			NOT = { has_origin = origin_toxic_knights }
-			NOT = { has_country_flag = has_shroud_patron }
-			event_target:cosmo_ending_system = {
-				is_capital_system = yes
-				has_star_flag = cosmogenesis_project
-			}
-		}
-		text = crisis.7516.desc.center
-	}
-	desc = {
-		trigger = {
-			NOT = { has_origin = origin_toxic_knights }
-			has_country_flag = has_shroud_patron
-			event_target:cosmo_ending_system = {
-				is_capital_system = yes
-				has_star_flag = cosmogenesis_project
-			}
-		}
-		text = crisis.7516.desc.center.patron
-	}
-	desc = {
-		trigger = {
-			has_origin = origin_toxic_knights
-			event_target:cosmo_ending_system = {
-				is_capital_system = yes
-				has_star_flag = cosmogenesis_project
-			}
-		}
-		text = crisis.7516.desc.centerknights
-	}
-	desc = {
-		trigger = {
-			can_create_paperclip_universe = no
-			event_target:cosmo_ending_system = {
-				OR = {
-					has_star_flag = horizonsignal_system
-					has_star_flag = worm_black_hole
-				}
-			}
-		}
-		text = crisis.7516.desc.worm
-	}
-	picture = GFX_evt_horizon_needle
-	show_sound = event_airlock
-	event_chain = cosmogenesis_planet_pickup_chain
+	hide_window = yes
 
 	is_triggered_only = yes
-
-	immediate = {
-		if = {
-			limit = {
-				can_create_paperclip_universe = yes
-			}
-			set_country_flag = a_universe_of_paperclips_achievement
-		}
-	}
-
-	option = {
-		name = crisis.7516.a
-		custom_tooltip = crisis.7516.tt
-	}
-
-	after = {
-		hidden_effect = {
-			if = {
-				limit = {
-					has_origin = origin_toxic_knights
-					event_target:cosmo_ending_system = {
-						is_capital_system = yes
-						has_star_flag = cosmogenesis_project
-					}
-				}
-				set_global_flag = no_end_of_cycle
-			}
-			save_event_target_as = cosmogenesis_empire
-			set_country_flag = cosmogenesis_empire_has_won
-			make_fallen_empire = yes
-			every_country = {
-				limit = {
-					is_country_type = default
-				}
-				country_event = { id = crisis.7518 days = 5 }
-			}
-			if = {
-				limit = {
-					galaxy_size = tiny
-				}
-				while = { #Destroy ~10% random stars, for good measure
-					count = 18
-					random_system = {
-						limit = {
-							NOT = {
-								is_star_class = sc_black_hole
-								any_system_planet = {
-									num_pops > 0
-								}
-							}
-						}
-						destroy_star_system = yes
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					galaxy_size = small
-				}
-				while = { #Destroy ~10% random stars, for good measure
-					count = 36
-					random_system = {
-						limit = {
-							NOT = {
-								is_star_class = sc_black_hole
-								any_system_planet = {
-									num_pops > 0
-								}
-							}
-						}
-						destroy_star_system = yes
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					galaxy_size = medium
-				}
-				while = { #Destroy ~10% random stars, for good measure
-					count = 52
-					random_system = {
-						limit = {
-							NOT = {
-								is_star_class = sc_black_hole
-								any_system_planet = {
-									num_pops > 0
-								}
-							}
-						}
-						destroy_star_system = yes
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					galaxy_size = large
-				}
-				while = { #Destroy ~10% random stars, for good measure
-					count = 70
-					random_system = {
-						limit = {
-							NOT = {
-								is_star_class = sc_black_hole
-								any_system_planet = {
-									num_pops > 0
-								}
-							}
-						}
-						destroy_star_system = yes
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					galaxy_size = huge
-				}
-				while = { #Destroy ~10% random stars, for good measure
-					count = 88
-					random_system = {
-						limit = {
-							NOT = {
-								is_star_class = sc_black_hole
-								any_system_planet = {
-									num_pops > 0
-								}
-							}
-						}
-						destroy_star_system = yes
-					}
-				}
-			}
-			date_distortion = yes
-			event_target:global_event_country = {
-				country_event = { id = crisis.7519 days = 30 }
-			}
-		}
-		win = yes
-	}
 }
 
 country_event = { # A cosmogenesis empire is about to win the game!
 	id = crisis.7517
-	title = "crisis.7517.name"
-	desc = crisis.7517.desc
-	picture = GFX_evt_black_hole
-	show_sound = event_death_cult
+	hide_window = yes
 
 	is_triggered_only = yes
-
-	immediate = { # Wreck the rest of the galaxy
-		every_owned_planet = {
-			limit = {
-				NOR = {
-					has_designation = col_capital
-					has_designation = col_capital_foundry
-					has_designation = col_capital_factory
-					has_designation = col_capital_trade
-					has_designation = col_capital_extraction
-					has_designation = col_capital_hive
-					has_designation = col_capital_machine
-				}
-			}
-			random_list = {
-				5 = {
-					every_owned_pop = {
-						kill_pop = yes
-					}
-					destroy_colony = yes
-					change_pc = pc_shattered
-				}
-				5 = {
-					every_owned_pop = {
-						kill_pop = yes
-					}
-					destroy_colony = yes
-					change_pc = pc_black_hole
-				}
-				70 = {
-					random_list = {
-						3 = {
-							add_modifier = {
-								modifier = devastated_colony
-								days = 3600
-							}
-							add_planet_devastation = 85
-						}
-						3 = {
-							while = {
-								count = 13
-								random_owned_pop = {
-									kill_pop = yes
-								}
-							}
-							while = {
-								count = 8
-								add_blocker = {
-									type = d_ruined_district
-									blocked_deposit = random
-								}
-							}
-						}
-						3 = {
-							while = {
-								count = 20
-								random_owned_pop = {
-									kill_pop = yes
-								}
-							}
-							while = {
-								count = 6
-								add_blocker = {
-									type = d_ruined_district
-									blocked_deposit = random
-								}
-							}
-
-						}
-						1 = {
-							add_modifier = {
-								modifier = blipped_colony
-								days = 3600
-							}
-						}
-					}
-				}
-				20 = {
-					every_owned_pop = {
-						kill_pop = yes
-					}
-					destroy_colony = yes
-					add_modifier = {
-						modifier = blipped_colony
-						days = 3600
-					}
-				}
-			}
-		}
-		every_system = {
-			limit = {
-				exists = owner
-				owner = {
-					is_same_value = root
-				}
-			}
-			random_list = {
-				20 = {}
-				30 = {
-					random_system_planet = {
-						add_deposit = random
-					}
-				}
-				50 = {
-					modifier = {
-						factor = 0
-						any_system_planet = {
-							has_building = yes
-						}
-					}
-					random_system_planet = {
-						add_deposit = random
-					}
-					random_system_planet = {
-						add_deposit = random
-					}
-					every_fleet_in_system = {
-						limit = {
-							is_mobile = no
-						}
-						destroy_fleet = this
-					}
-				}
-			}
-		}
-		every_owned_ship = {
-			limit = {
-				fleet = {
-					is_mobile = yes
-				}
-			}
-			random_list = {
-				70 = {
-				}
-				30 = {
-					destroy_ship = this
-				}
-			}
-		}
-		add_modifier = {
-			modifier = cosmogenesis_victim
-			days = 1800
-		}
-	}
-
-	option = {
-		name = crisis.7517.a
-	}
 }
 
 country_event = { # Cosmogenesis Remnant Fate
 	id = crisis.7518
-	title = "crisis.7518.name"
-	desc = crisis.7518.desc
-	picture = GFX_evt_fallen_empire_awakes
-	show_sound = event_criminal_activity
+	hide_window = yes
 
 	is_triggered_only = yes
-
-	option = {
-		name = crisis.7518.a
-	}
 }
 
 country_event = { # Remove Date Distortion
@@ -3066,93 +2364,13 @@ planet_event = { #pickup flag management on planet transfer or ownerless
 	id = crisis.7520
 	hide_window = yes
 	is_triggered_only = yes
-
-	trigger = {
-		OR = {
-			NOT = { exists = owner }
-			owner = {
-				has_event_chain = cosmogenesis_planet_pickup_chain
-			}
-			has_planet_flag = cosmogenesis_pickup_planet
-		}
-	}
-
-	immediate = {
-		if = {
-			limit = {
-				NOT = { exists = owner }
-				has_planet_flag = cosmogenesis_pickup_planet
-			}
-			remove_planet_flag = cosmogenesis_pickup_planet
-		}
-		if = {
-			limit = {
-				exists = owner
-				owner = {
-					NOT = { has_event_chain = cosmogenesis_planet_pickup_chain }
-				}
-				has_planet_flag = cosmogenesis_pickup_planet
-			}
-			remove_planet_flag = cosmogenesis_pickup_planet
-		}
-		if = {
-			limit = {
-				NOT = { is_planet_class = pc_cosmogenesis_world }
-				exists = owner
-				owner = {
-					has_event_chain = cosmogenesis_planet_pickup_chain
-				}
-				NOT = { has_planet_flag = cosmogenesis_pickup_planet }
-			}
-			set_planet_flag = cosmogenesis_pickup_planet
-		}
-		if = {
-			limit = {
-				exists = solar_system.owner
-				solar_system.owner = {
-					has_event_chain = cosmogenesis_planet_pickup_chain
-				}
-				NOT = {
-					solar_system.owner = {
-						any_owned_planet = {
-							has_planet_flag = cosmogenesis_pickup_planet
-						}
-
-						has_country_flag = exodus_ready
-					}
-				}
-			}
-			solar_system.owner = {
-				country_event = { id = crisis.7505 days = 1 random = 15 }
-			}
-		}
-	}
 }
 
-country_event = { # Horizon Needle Destroyed (╯‵□′)╯︵┻━┻
+country_event = { # Horizon Needle Destroyed
 	id = crisis.7525
-	title = "crisis.7525.name"
-	desc = crisis.7525.desc
-	picture = GFX_evt_debris
-	show_sound = event_ship_explosion
-	event_chain = cosmogenesis_planet_pickup_chain
+	hide_window = yes
 
 	is_triggered_only = yes
-
-	trigger = {
-		fromfrom = {
-			is_ship_size = monadic_qerr
-		}
-	}
-
-	option = {
-		name = crisis.7525.a
-		custom_tooltip = crisis.7525.tt
-	}
-
-	after = {
-		remove_country_flag = cosmogenesis_needle_built
-	}
 }
 
 # Synaptic Lathe Destruction
