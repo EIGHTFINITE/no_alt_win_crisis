@@ -7279,7 +7279,7 @@ country_event = {
 			limit = {
 				has_ascension_perk = ap_become_the_crisis
 			}
-			complete_crisis_objective = crisobj_destroy_worlds
+			add_resource = { menace = 100 }
 		}
 	}
 

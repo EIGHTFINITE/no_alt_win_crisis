@@ -20,7 +20,7 @@ country_event = {
 	}
 
 	immediate = {
-		complete_crisis_objective = crisobj_research_tech
+		add_resource = { advanced_logic = 25 }
 	}
 }
 
@@ -61,7 +61,7 @@ event = {
 						}
 					}
 					prev = {
-						complete_crisis_objective = crisobj_have_scholarium_vassals
+						add_resource = { advanced_logic = 50 }
 					}
 				}
 			}
@@ -98,7 +98,7 @@ event = {
 				limit = {
 					has_ascension_perk = ap_cosmogenesis
 				}
-				complete_crisis_objective = crisobj_galcom_science_resolution
+				add_resource = { advanced_logic = 50 }
 			}
 		}
 		if = {
@@ -109,8 +109,7 @@ event = {
 				limit = {
 					has_ascension_perk = ap_cosmogenesis
 				}
-				complete_crisis_objective = crisobj_galcom_science_resolution
-				complete_crisis_objective = crisobj_galcom_science_resolution
+				add_resource = { advanced_logic = 100 }
 			}
 		}
 		if = {
@@ -121,9 +120,7 @@ event = {
 				limit = {
 					has_ascension_perk = ap_cosmogenesis
 				}
-				complete_crisis_objective = crisobj_galcom_science_resolution
-				complete_crisis_objective = crisobj_galcom_science_resolution
-				complete_crisis_objective = crisobj_galcom_science_resolution
+				add_resource = { advanced_logic = 150 }
 			}
 		}
 		if = {
@@ -134,10 +131,7 @@ event = {
 				limit = {
 					has_ascension_perk = ap_cosmogenesis
 				}
-				complete_crisis_objective = crisobj_galcom_science_resolution
-				complete_crisis_objective = crisobj_galcom_science_resolution
-				complete_crisis_objective = crisobj_galcom_science_resolution
-				complete_crisis_objective = crisobj_galcom_science_resolution
+				add_resource = { advanced_logic = 200 }
 			}
 		}
 		if = {
@@ -148,11 +142,7 @@ event = {
 				limit = {
 					has_ascension_perk = ap_cosmogenesis
 				}
-				complete_crisis_objective = crisobj_galcom_science_resolution
-				complete_crisis_objective = crisobj_galcom_science_resolution
-				complete_crisis_objective = crisobj_galcom_science_resolution
-				complete_crisis_objective = crisobj_galcom_science_resolution
-				complete_crisis_objective = crisobj_galcom_science_resolution
+				add_resource = { advanced_logic = 250 }
 			}
 		}
 	}
@@ -192,7 +182,10 @@ event = {
 				resource = advanced_logic
 				variable = cosmogenesis_world_advanced_logic_produced
 			}
-			complete_crisis_objective = crisobj_neural_chips
+			add_resource = {
+				advanced_logic = 1
+				mult = cosmogenesis_world_advanced_logic_produced
+			}
 		}
 	}
 }
@@ -232,7 +225,7 @@ event = {
 						}
 					}
 					prev = {
-						complete_crisis_objective = crisobj_have_science_nexuses
+						add_resource = { advanced_logic = 200 }
 					}
 				}
 			}
