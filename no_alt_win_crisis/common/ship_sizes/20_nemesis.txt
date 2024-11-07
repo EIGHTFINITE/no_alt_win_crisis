@@ -21,6 +21,7 @@ crisis_corvette = {
 	can_have_federation_design = no
 	icon_frame = 2
 	base_buildtime = 30
+	components_add_to_cost = no
 	default_behavior = swarm
 
 	ship_roles = { gunship brawler }
@@ -42,14 +43,13 @@ crisis_corvette = {
 
 	resources = {
 		category = ships
+		cost = {
+			minerals = 300
+		}
 		upkeep = {
 			energy = @corvette_upkeep_energy
-			alloys = @corvette_upkeep_minerals
+			minerals = @corvette_upkeep_minerals
 		}
-	}
-
-	min_upgrade_cost = {
-		alloys = 1
 	}
 
 	ai_ship_data = {
@@ -78,6 +78,7 @@ crisis_destroyer = {
 	base_buildtime = 60
 	is_space_station = no
 	can_have_federation_design = no
+	components_add_to_cost = no
 	default_behavior = line
 	ship_roles = { gunship brawler artillery explosive energy_torpedoes }
 
@@ -98,14 +99,13 @@ crisis_destroyer = {
 
 	resources = {
 		category = ships
+		cost = {
+			minerals = 550
+		}
 		upkeep = {
 			energy = @destroyer_upkeep_energy
-			alloys = @destroyer_upkeep_minerals
+			minerals = @destroyer_upkeep_minerals
 		}
-	}
-
-	min_upgrade_cost = {
-		alloys = 2
 	}
 
 	ai_ship_data = {
@@ -134,6 +134,7 @@ crisis_cruiser = {
 	base_buildtime = 120
 	is_space_station = no
 	can_have_federation_design = no
+	components_add_to_cost = no
 	default_behavior = line
 	ship_roles = { gunship brawler artillery }
 
@@ -155,14 +156,13 @@ crisis_cruiser = {
 
 	resources = {
 		category = ships
+		cost = {
+			minerals = 900
+		}
 		upkeep = {
 			energy = @cruiser_upkeep_energy
-			alloys = @cruiser_upkeep_minerals
+			minerals = @cruiser_upkeep_minerals
 		}
-	}
-
-	min_upgrade_cost = {
-		alloys = 4
 	}
 
 	ai_ship_data = {
@@ -192,6 +192,7 @@ star_eater = {
 	construction_type = starbase_shipyard
 	base_buildtime = 6000
 	can_have_federation_design = no
+	components_add_to_cost = no
 
 	class = shipclass_military_special
 	enable_default_design = yes
@@ -262,14 +263,6 @@ star_eater = {
 		cost = {
 			sr_dark_matter = 10000
 		}
-		upkeep = {
-			energy = @colossus_upkeep_energy
-			alloys = @colossus_upkeep_alloys
-		}
-	}
-
-	min_upgrade_cost = {
-		alloys = 10
 	}
 
 	ai_ship_data = {
