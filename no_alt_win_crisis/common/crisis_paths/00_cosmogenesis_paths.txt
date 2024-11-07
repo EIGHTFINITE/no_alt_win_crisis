@@ -9,6 +9,11 @@ cosmogenesis_path = {
 		crisis_cosmogenesis_level_3
 		crisis_cosmogenesis_level_4
 		crisis_cosmogenesis_level_5
+		crisis_level_1
+		crisis_level_2
+		crisis_level_3
+		crisis_level_4
+		crisis_level_5
 	}
 
 	objectives = {
