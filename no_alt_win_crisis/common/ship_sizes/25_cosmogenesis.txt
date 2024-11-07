@@ -21,7 +21,7 @@ cosmo_crisis_destroyer = {
 	base_buildtime = 200
 	is_space_station = no
 	combat_disengage_chance = 1.5
-	can_have_federation_design = yes
+	can_have_federation_design = no
 	components_add_to_cost = yes
 	default_behavior = line
 	ship_roles = { artillery explosive }
@@ -74,10 +74,6 @@ cosmo_crisis_destroyer = {
 		}
 	}
 
-	min_upgrade_cost = {
-		alloys = 2
-	}
-
 	ai_ship_data = {
 		fraction = 33
 	}
@@ -102,7 +98,6 @@ cosmo_crisis_battlecruiser = {
 	section_slots = { "mid" = { locator = "part1" } }
 	num_target_locators = 0
 	is_space_station = no
-	can_have_federation_design = yes
 	components_add_to_cost = yes
 	icon = ship_size_military_8
 
@@ -125,10 +120,6 @@ cosmo_crisis_battlecruiser = {
 			energy = @battleship_upkeep_energy
 			alloys = @battleship_upkeep_alloys
 		}
-	}
-
-	min_upgrade_cost = {
-		alloys = 8
 	}
 
 	base_buildtime = 600
@@ -172,7 +163,6 @@ cosmo_crisis_titan = {
 	section_slots = { "mid" = { locator = "part1" } }
 	num_target_locators = 0
 	is_space_station = no
-	can_have_federation_design = yes
 	components_add_to_cost = yes
 	icon = ship_size_military_32
 
@@ -188,10 +178,6 @@ cosmo_crisis_titan = {
 			energy = @titan_upkeep_energy
 			alloys = @titan_upkeep_alloys
 		}
-	}
-
-	min_upgrade_cost = {
-		alloys = 16
 	}
 
 	base_buildtime = 1800
