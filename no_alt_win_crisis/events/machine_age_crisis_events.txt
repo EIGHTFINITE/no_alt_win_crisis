@@ -1786,10 +1786,12 @@ country_event = { # Thesis: Shroud Tear FROM = crisis country
 						}
 						last_created_country = {
 							save_global_event_target_as = shroud_country
-							add_modifier = {
-								modifier = supercharged_shroud_country
-								years = 3
-							}
+						}
+					}
+					event_target:shroud_country = {
+						add_modifier = {
+							modifier = supercharged_shroud_country
+							years = 3
 						}
 					}
 					create_fleet = {
@@ -3282,7 +3284,7 @@ planet_event = { #pickup flag management on planet transfer or ownerless
 	}
 }
 
-country_event = { # Horizon Needle Destroyed (╯‵□′)╯︵┻━┻
+country_event = { # Horizon Needle Destroyed
 	id = crisis.7525
 	title = "crisis.7525.name"
 	desc = crisis.7525.desc
