@@ -7,5 +7,5 @@ tags={
 	"Gameplay"
 	"Overhaul"
 }
-supported_version="3.12.*"
+supported_version="v3.14.*"
 path="mod/no_alt_win_crisis"
