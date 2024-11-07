@@ -6905,7 +6905,7 @@ country_event = {
 			limit = {
 				has_ascension_perk = ap_cosmogenesis
 			}
-			complete_crisis_objective = crisobj_research_thesis
+			add_resource = { advanced_logic = 1000 }
 		}
 	}
 
@@ -7158,7 +7158,7 @@ country_event = {
 			limit = {
 				has_ascension_perk = ap_cosmogenesis
 			}
-			complete_crisis_objective = crisobj_research_thesis
+			add_resource = { advanced_logic = 1000 }
 		}
 	}
 

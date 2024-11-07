@@ -973,7 +973,7 @@ planet_event = {
 			from.owner = {
 				if = {
 					limit = { has_ascension_perk = ap_become_the_crisis }
-					complete_crisis_objective = crisobj_purge_pops
+					add_resource = { menace = 3 }
 				}
 			}
 		}
@@ -1291,7 +1291,7 @@ planet_event = {
 			from.owner = {
 				if = {
 					limit = { has_ascension_perk = ap_become_the_crisis }
-					complete_crisis_objective = crisobj_purge_pops
+					add_resource = { menace = 3 }
 				}
 			}
 		}
@@ -2177,7 +2177,7 @@ planet_event = {
 			from.owner = {
 				if = {
 					limit = { has_ascension_perk = ap_become_the_crisis }
-					complete_crisis_objective = crisobj_purge_pops
+					add_resource = { menace = 3 }
 				}
 			}
 		}
@@ -2806,7 +2806,7 @@ planet_event = {
 			from.owner = {
 				if = {
 					limit = { has_ascension_perk = ap_become_the_crisis }
-					complete_crisis_objective = crisobj_purge_pops
+					add_resource = { menace = 3 }
 				}
 			}
 		}
