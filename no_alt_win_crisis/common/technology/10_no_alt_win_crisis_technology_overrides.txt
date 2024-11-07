@@ -1,31 +1,10 @@
-tech_cosmogenesis_crisis_5 = {
-    area = physics
-    cost = 300000
-    tier = 5
-    category = { computing }
-    ai_update_type = all
-    is_rare = yes
-    weight = 0
-
-    potential = {
-        always = no
-    }
-
-    prereqfor_desc = {
-        custom = {
-            title = cosmogenesis_level_5_tech_title
-            desc = cosmogenesis_level_5_tech_desc
-        }
-    }
-}
-
 tech_cosmogenesis_thesis = {
     area = physics
     cost = 75000
     cost_per_level = @fallentechcost
     tier = 4
     category = { computing }
-    levels = 2
+    levels = -1
     is_dangerous = yes
     weight = @repeatableTechWeight
 
