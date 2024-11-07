@@ -14,8 +14,13 @@ cosmogenesis_needle = {
 		}
 	}
 
+	custom_tooltip_requirements = "MEGASTRUCTURE_TOOLTIP_REQUIREMENTS_ONE_PER_COUNTRY"
+
 	potential = {
-		always = no
+		has_technology = tech_cosmogenesis_crisis_5
+		NOT = {
+			has_country_flag = cosmogenesis_needle_built
+		}
 	}
 
 	possible = {
@@ -42,6 +47,34 @@ cosmogenesis_needle = {
 	}
 
 	on_build_complete = {
+		remove_system_terraforming_candidates = yes
+		create_fleet = {
+			name = "NAME_Cosmogenesis_Sphere"
+			settings = {
+				can_disband = no
+			}
+			effect = {
+				set_owner = root
+				set_fleet_flag = cosmogenesis_needle
+				create_ship = {
+					name = "NAME_Lemniscate"
+					design = "NAME_Monadic_Qerr"
+				}
+				set_location = fromfrom
+				set_fleet_stance = evasive
+				save_global_event_target_as = cosmogenesis_needle
+				add_modifier = {
+					modifier = horizon_needle_mod
+					days = -1
+				}
+			}
+		}
+
 		remove_megastructure = fromfrom
+
+		from = {
+			country_event = { id = crisis.7400 }
+			set_country_flag = cosmogenesis_needle_built
+		}
 	}
 }
