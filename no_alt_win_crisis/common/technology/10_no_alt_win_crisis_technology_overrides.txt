@@ -4,7 +4,7 @@ tech_cosmogenesis_thesis = {
     cost_per_level = @fallentechcost
     tier = 4
     category = { computing }
-    levels = -1
+    levels = 2
     is_dangerous = yes
     weight = @repeatableTechWeight
 
