@@ -6,6 +6,7 @@ assimilation_effect = {
 				type = citizenship_assimilation
 				country = root.owner
 			}
+			NOT = { root = { is_planet_class = pc_cosmogenesis_world } }
 		}
 		if = { # Has Synth Assimilation
 			limit = {
@@ -20,7 +21,7 @@ assimilation_effect = {
 						}
 						OR = {
 							root.owner = {
-								has_authority = auth_machine_intelligence
+								is_machine_empire = yes
 							}
 							root.owner = { is_individual_machine = yes }
 						}
@@ -36,7 +37,7 @@ assimilation_effect = {
 				owner = {
 					if = {
 						limit = { has_ascension_perk = ap_become_the_crisis }
-						add_resource = { menace = 3 }
+						complete_crisis_objective = crisobj_purge_pops
 					}
 				}
 			}
@@ -60,7 +61,7 @@ assimilation_effect = {
 				owner = {
 					if = {
 						limit = { has_ascension_perk = ap_become_the_crisis }
-						add_resource = { menace = 3 }
+						complete_crisis_objective = crisobj_purge_pops
 					}
 				}
 				root = {
@@ -93,7 +94,7 @@ assimilation_effect = {
 						owner = {
 							if = {
 								limit = { has_ascension_perk = ap_become_the_crisis }
-								add_resource = { menace = 3 }
+								complete_crisis_objective = crisobj_purge_pops
 							}
 						}
 					}
