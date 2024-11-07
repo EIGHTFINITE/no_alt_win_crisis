@@ -114,13 +114,13 @@ espionage_operation_event = {
 		set_espionage_operation_progress_locked = yes
 		if = {
 			limit = {
-				target = { has_authority = auth_hive_mind }
+				target = { is_hive_empire = yes }
 			}
 			espionage_acquire_asset_hive = yes
 		}
 		else_if = {
 			limit = {
-				target = { has_authority = auth_machine_intelligence }
+				target = { is_machine_empire = yes }
 			}
 			espionage_acquire_asset_machine = yes
 		}
@@ -197,13 +197,13 @@ country_event = {
 	}
 	picture = {
 		trigger = {
-			from.target = { has_authority = auth_machine_intelligence }
+			from.target = { is_machine_empire = yes }
 		}
 		picture = GFX_evt_sapient_AI
 	}
 	picture = {
 		trigger = {
-			from.target = { has_authority = auth_hive_mind }
+			from.target = { is_hive_empire = yes }
 		}
 		picture = GFX_evt_hive_mind
 	}
@@ -692,7 +692,7 @@ country_event = {
 		owner = {
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 10 }
+				complete_crisis_objective = crisobj_perform_upsetting_operations
 			}
 		}
 	}
@@ -1218,7 +1218,8 @@ country_event = {
 					has_country_flag = nebula_refinery_sabotaged
 					has_country_flag = solar_panel_network_sabotaged
 					has_country_flag = astromining_bay_sabotaged
-					has_country_flag = astromining_hub_sabotaged 
+					has_country_flag = vivarium_tank_bay_sabotaged
+					has_country_flag = astromining_hub_sabotaged
 					has_country_flag = ice_mining_station_sabotaged
 					has_country_flag = salvager_workshop_sabotaged
 					has_country_flag = transit_hub_sabotaged
@@ -1324,7 +1325,7 @@ country_event = {
 		owner = {
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 10 }
+				complete_crisis_objective = crisobj_perform_upsetting_operations
 			}
 		}
 	}
@@ -1345,7 +1346,7 @@ country_event = {
 		owner = {
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 10 }
+				complete_crisis_objective = crisobj_perform_upsetting_operations
 			}
 		}
 	}
@@ -1390,7 +1391,7 @@ country_event = {
 		owner = {
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 10 }
+				complete_crisis_objective = crisobj_perform_upsetting_operations
 			}
 		}
 	}
@@ -1440,7 +1441,7 @@ country_event = {
 		owner = {
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 10 }
+				complete_crisis_objective = crisobj_perform_upsetting_operations
 			}
 		}
 	}
@@ -1969,7 +1970,7 @@ espionage_operation_event = {
 					1 = {
 						modifier = {
 							factor = 0
-							NOT = { has_authority = auth_corporate }
+							is_megacorp = no
 						}
 						espionage_smear_campaign_corporate = yes
 					}
@@ -1977,7 +1978,7 @@ espionage_operation_event = {
 			}
 			else = {
 				if = {
-					limit = { has_authority = auth_hive_mind }
+					limit = { is_hive_empire = yes }
 					espionage_smear_campaign_hive = yes
 				}
 				else = { espionage_smear_campaign_machine = yes }
@@ -2168,7 +2169,7 @@ country_event = {
 		owner = {
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 10 }
+				complete_crisis_objective = crisobj_perform_upsetting_operations
 			}
 		}
 	}
@@ -2877,7 +2878,7 @@ country_event = {
 		from.owner = {
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 10 }
+				complete_crisis_objective = crisobj_perform_upsetting_operations
 			}
 		}
 	}

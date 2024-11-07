@@ -52,7 +52,7 @@ planet_event = {
 			root.owner = {
 				if = {
 					limit = { has_ascension_perk = ap_become_the_crisis }
-					add_resource = { menace = 3 }
+					complete_crisis_objective = crisobj_purge_pops
 				}
 			}
 			root = {
@@ -820,7 +820,7 @@ planet_event = {
 					if = { # assimilator empire
 					limit = {
 						root.owner = {
-							has_authority = auth_machine_intelligence
+							is_machine_empire = yes
 							has_civic = civic_machine_assimilator
 						}
 					}

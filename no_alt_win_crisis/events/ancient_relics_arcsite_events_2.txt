@@ -560,6 +560,8 @@ fleet_event = {
 
 	is_triggered_only = yes
 
+	specimen = retarax_hunting_trophies
+
 	immediate = {
 		from = { set_site_progress_locked = yes }
 	}
@@ -1535,6 +1537,8 @@ fleet_event = {
 
 	is_triggered_only = yes
 
+	specimen = heart_of_the_pulsar
+
 	immediate = {
 		from = { set_site_progress_locked = yes }
 	}
@@ -2119,6 +2123,7 @@ fleet_event = {
 
 	archaeology = yes
 	is_triggered_only = yes
+	specimen = primitive_mega_electromagnet
 
 	immediate = {
 		fromfrom = { set_site_progress_locked = yes }
@@ -2335,6 +2340,8 @@ fleet_event = {
 	archaeology = yes
 	is_triggered_only = yes
 
+	specimen = programmable_puzzle_cube
+
 	immediate = {
 		fromfrom = { set_site_progress_locked = yes }
 	}
@@ -2411,6 +2418,8 @@ fleet_event = {
 	archaeology = yes
 	is_triggered_only = yes
 
+	specimen = programmable_puzzle_cube
+
 	immediate = {
 		fromfrom = { set_site_progress_locked = yes }
 	}
@@ -2458,6 +2467,8 @@ fleet_event = {
 
 	archaeology = yes
 	is_triggered_only = yes
+
+	specimen = programmable_puzzle_cube
 
 	immediate = {
 		fromfrom = { set_site_progress_locked = yes }
@@ -2692,6 +2703,8 @@ fleet_event = {
 	archaeology = yes
 	is_triggered_only = yes
 
+	specimen = giant_egg_shell
+
 	immediate = {
 		fromfrom = { set_site_progress_locked = yes }
 	}
@@ -2824,6 +2837,8 @@ fleet_event = {
 
 	archaeology = yes
 	is_triggered_only = yes
+
+	specimen = planetary_sculpture
 
 	immediate = {
 		fromfrom = { set_site_progress_locked = yes }
@@ -3547,6 +3562,8 @@ fleet_event = {
 	archaeology = yes
 	is_triggered_only = yes
 
+	specimen = doomsday_scrolls
+
 	immediate = {
 		fromfrom = { set_site_progress_locked = yes }
 	}
@@ -3560,7 +3577,7 @@ fleet_event = {
 		owner = {
 			if = {
 				limit = {
-					has_authority = auth_machine_intelligence
+					is_machine_empire = yes
 				}
 				add_modifier = {
 					modifier = debug_subroutine
@@ -3569,7 +3586,7 @@ fleet_event = {
 			}
 			else_if = {
 				limit = {
-					has_authority = auth_hive_mind
+					is_hive_empire = yes
 				}
 				add_modifier = {
 					modifier = glory_to_the_many
@@ -3639,7 +3656,7 @@ fleet_event = {
 		owner = {
 			if = {
 				limit = {
-					has_authority = auth_machine_intelligence
+					is_machine_empire = yes
 				}
 				add_modifier = {
 					modifier = debug_subroutine
@@ -3648,7 +3665,7 @@ fleet_event = {
 			}
 			else_if = {
 				limit = {
-					has_authority = auth_hive_mind
+					is_hive_empire = yes
 				}
 				add_modifier = {
 					modifier = glory_to_the_many
@@ -3755,6 +3772,8 @@ fleet_event = {
 	archaeology = yes
 	is_triggered_only = yes
 
+	specimen = localised_aurora_borealis
+
 	immediate = {
 		fromfrom = { set_site_progress_locked = yes }
 	}
@@ -3787,6 +3806,8 @@ fleet_event = {
 	archaeology = yes
 	is_triggered_only = yes
 
+	specimen = localised_aurora_borealis
+
 	immediate = {
 		fromfrom = { set_site_progress_locked = yes }
 	}
@@ -3818,6 +3839,8 @@ fleet_event = {
 
 	archaeology = yes
 	is_triggered_only = yes
+
+	specimen = localised_aurora_borealis
 
 	immediate = {
 		fromfrom = { set_site_progress_locked = yes }
@@ -4052,7 +4075,7 @@ fleet_event = {
 		owner = {
 			if = {
 				limit = {
-					has_authority = auth_machine_intelligence
+					is_machine_empire = yes
 				}
 				if = {
 					limit = {
@@ -4084,7 +4107,7 @@ fleet_event = {
 			}
 			else_if = {
 				limit = {
-					has_authority = auth_hive_mind
+					is_hive_empire = yes
 				}
 				if = {
 					limit = {
@@ -4547,6 +4570,8 @@ fleet_event = {
 
 	archaeology = yes
 	is_triggered_only = yes
+
+	specimen = pilgrimage_last_days
 
 	immediate = {
 		from = { set_site_progress_locked = yes }
@@ -5269,6 +5294,8 @@ fleet_event = {
 	archaeology = yes
 	is_triggered_only = yes
 
+	specimen = rock_jellies
+
 	immediate = {
 		fromfrom = { set_site_progress_locked = yes }
 	}
@@ -5295,6 +5322,8 @@ fleet_event = {
 
 	archaeology = yes
 	is_triggered_only = yes
+
+	specimen = rock_jellies
 
 	immediate = {
 		fromfrom = { set_site_progress_locked = yes }
@@ -5348,6 +5377,8 @@ fleet_event = {
 
 	archaeology = yes
 	is_triggered_only = yes
+
+	specimen = rock_jellies
 
 	immediate = {
 		fromfrom = { set_site_progress_locked = yes }
@@ -6395,7 +6426,7 @@ country_event = {
 			if = {
 				limit = {
 					OR = {
-						NOT = { has_authority = auth_machine_intelligence }
+						is_machine_empire = no
 						has_civic = civic_machine_assimilator
 						has_civic = civic_machine_servitor
 					}
@@ -6420,7 +6451,7 @@ country_event = {
 			else_if = {
 				limit = {
 					OR = {
-						NOT = { has_authority = auth_machine_intelligence }
+						is_machine_empire = no
 						has_civic = civic_machine_assimilator
 						has_civic = civic_machine_servitor
 					}
@@ -6874,7 +6905,7 @@ country_event = {
 			limit = {
 				has_ascension_perk = ap_cosmogenesis
 			}
-			add_resource = { advanced_logic = 1000 }
+			complete_crisis_objective = crisobj_research_thesis
 		}
 	}
 
@@ -7127,7 +7158,7 @@ country_event = {
 			limit = {
 				has_ascension_perk = ap_cosmogenesis
 			}
-			add_resource = { advanced_logic = 1000 }
+			complete_crisis_objective = crisobj_research_thesis
 		}
 	}
 
@@ -7606,6 +7637,25 @@ country_event = {
 
 	is_triggered_only = yes
 
+	immediate = {
+		event_target:eldritch_location = {
+			if = {
+				limit = {
+					any_system_planet = {
+						is_star_class = sc_black_hole
+					}
+				}
+				random_system_planet = {
+					limit = { is_planet_class = pc_black_hole }
+					save_event_target_as = cosmic_horror_location
+				}
+			}
+			else = {
+				save_event_target_as = cosmic_horror_location
+			}
+		}
+	}
+
 	option = {
 		name = ancrel.11020.a
 		add_monthly_resource_mult = {
@@ -7614,6 +7664,7 @@ country_event = {
 			min = @tier2researchmin
 			max = @tier2researchmax
 		}
+		give_specimen = { key = altar_to_the_elder_one }
 		ai_chance = {
 			factor = 3
 		}
@@ -8025,8 +8076,8 @@ fleet_event = {
 	location = from
 
 	archaeology = yes
-
 	is_triggered_only = yes
+	specimen = rudari_death_laser_prototype
 
 	immediate = {
 		from = { set_site_progress_locked = yes }
@@ -8215,6 +8266,8 @@ fleet_event = {
 	archaeology = yes
 
 	is_triggered_only = yes
+
+	specimen = illanii_archives
 
 	immediate = {
 		from = { set_site_progress_locked = yes }
@@ -8513,8 +8566,8 @@ fleet_event = {
 	location = from
 
 	archaeology = yes
-
 	is_triggered_only = yes
+	specimen = galactic_megadrive
 
 	immediate = {
 		from = { set_site_progress_locked = yes }
@@ -8526,6 +8579,7 @@ fleet_event = {
 				namelist = "MACHINE1"
 				portrait = random
 				traits = {
+					ideal_planet_class = pc_machine
 					trait = trait_machine_unit
 					trait = trait_robot_logic_engines
 					trait = trait_robot_double_jointed
@@ -8535,23 +8589,7 @@ fleet_event = {
 					trait = trait_robot_repurposed_hardware
 				}
 				effect = {
-					random_list = {
-						1 = {
-							change_species_characteristics = {
-								add_trait = trait_dry_planet_preference
-							}
-						}
-						1 = {
-							change_species_characteristics = {
-								add_trait = trait_wet_planet_preference
-							}
-						}
-						1 = {
-							change_species_characteristics = {
-								add_trait = trait_frozen_planet_preference
-							}
-						}
-					}
+					set_species_homeworld = from.planet
 					save_event_target_as = new_machines
 				}
 			}
@@ -8562,6 +8600,7 @@ fleet_event = {
 				namelist = "MACHINE1"
 				portrait = random
 				traits = {
+					ideal_planet_class = pc_machine
 					trait = trait_mechanical
 					trait = trait_robot_logic_engines
 					trait = trait_robot_double_jointed
@@ -8571,23 +8610,7 @@ fleet_event = {
 					trait = trait_robot_repurposed_hardware
 				}
 				effect = {
-					random_list = {
-						1 = {
-							change_species_characteristics = {
-								add_trait = trait_dry_planet_preference
-							}
-						}
-						1 = {
-							change_species_characteristics = {
-								add_trait = trait_wet_planet_preference
-							}
-						}
-						1 = {
-							change_species_characteristics = {
-								add_trait = trait_frozen_planet_preference
-							}
-						}
-					}
+					set_species_homeworld = from.planet
 					save_event_target_as = new_robots
 				}
 			}
@@ -8658,7 +8681,7 @@ fleet_event = {
 				}
 			}
 		}
-		custom_tooltip = ancrel.12090.C.tooltip
+		custom_tooltip = ancrel.12090.C.machine.tooltip
 		hidden_effect = {
 			owner = {
 				while = {
@@ -8703,7 +8726,7 @@ fleet_event = {
 		allow = {
 			owner = { has_policy_flag = robots_allowed }
 		}
-		custom_tooltip = ancrel.12090.C.tooltip
+		custom_tooltip = ancrel.12090.C.mechanical.tooltip
 		hidden_effect = {
 			owner = {
 				while = {
@@ -9066,6 +9089,8 @@ fleet_event = {
 	archaeology = yes
 
 	is_triggered_only = yes
+
+	specimen = vault_of_polaris
 
 	immediate = {
 		fromfrom = { set_site_progress_locked = yes }
@@ -10219,6 +10244,8 @@ fleet_event = {
 
 	is_triggered_only = yes
 
+	specimen = the_mask_of_transformation
+
 	immediate = {
 		fromfrom = { set_site_progress_locked = yes }
 	}
@@ -10349,6 +10376,8 @@ fleet_event = {
 	archaeology = yes
 
 	is_triggered_only = yes
+
+	specimen = fish_in_the_sea_sheet_music
 
 	immediate = {
 		from = { set_site_progress_locked = yes }

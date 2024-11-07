@@ -28,7 +28,7 @@ country_event = {
 	}
 
 	immediate = {
-		from = { add_resource = { menace = 100 } }
+		from = { complete_crisis_objective = crisobj_destroy_empires }
 	}
 }
 
@@ -63,7 +63,7 @@ country_event = {
 
 	immediate = {
 		owner = {
-			add_resource = { menace = 3 }
+			complete_crisis_objective = crisobj_destroy_enemy_ships
 		}
 	}
 }
@@ -91,7 +91,7 @@ starbase_event = {
 		from = {
 			owner = {
 				# Note: crisobj_destroy_enemy_ships would do the same thing, disabled for starbases in crisis.4025
-				add_resource = { menace = 3 }
+				complete_crisis_objective = crisobj_destroy_starbases
 			}
 		}
 	}
@@ -125,7 +125,7 @@ planet_event = {
 
 	immediate = {
 		from = {
-			add_resource = { menace = 3 }
+			complete_crisis_objective = crisobj_purge_pops
 		}
 	}
 }
@@ -147,7 +147,7 @@ planet_event = {
 	}
 
 	immediate = {
-		from.owner = { add_resource = { menace = 100 } }
+		from.owner = { complete_crisis_objective = crisobj_destroy_worlds }
 		# if no other colonies, give empire destruction menace reward
 		if = {
 			limit = {
@@ -161,7 +161,7 @@ planet_event = {
 				}
 			}
 			from.owner = {
-				add_resource = { menace = 100 }
+				complete_crisis_objective = crisobj_destroy_empires
 			}
 		}
 	}
@@ -194,7 +194,7 @@ planet_event = {
 
 	immediate = {
 		from = {
-			add_resource = { menace = 150 }
+			complete_crisis_objective = crisobj_conquer_worlds
 		}
 	}
 }
@@ -219,7 +219,7 @@ country_event = {
 
 	immediate = {
 		from = {
-			add_resource = { menace = 100 }
+			complete_crisis_objective = crisobj_vassalise_empires
 		}
 		set_country_flag = has_become_crisis_vassal
 	}
@@ -249,7 +249,7 @@ event = {
 				}
 				every_subject = {
 					prev = {
-						add_resource = { menace = 10 }
+						complete_crisis_objective = crisobj_have_vassals
 					}
 				}
 			}
@@ -283,7 +283,7 @@ event = {
 					has_country_flag = declared_crisis
 				}
 			}
-			add_resource = { menace = 50 }
+			complete_crisis_objective = crisobj_be_in_breach_of_galcom_law
 		}
 	}
 }

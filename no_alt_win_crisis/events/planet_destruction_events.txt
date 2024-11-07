@@ -973,7 +973,7 @@ planet_event = {
 			from.owner = {
 				if = {
 					limit = { has_ascension_perk = ap_become_the_crisis }
-					add_resource = { menace = 3 }
+					complete_crisis_objective = crisobj_purge_pops
 				}
 			}
 		}
@@ -1141,6 +1141,7 @@ planet_event = {
 			create_ambient_object = {
 				location = this
 				type = habitat_cracker_object
+				play_animation_once = yes
 				duration = 5
 
 				use_3d_location = yes
@@ -1168,6 +1169,7 @@ planet_event = {
 			create_ambient_object = {
 				location = this
 				type = habitat_cracker_object
+				play_animation_once = yes
 				duration = 5
 
 				use_3d_location = yes
@@ -1235,7 +1237,7 @@ planet_event = {
 							OR = {
 								is_materialist = yes
 								is_egalitarian = yes
-								has_authority = auth_machine_intelligence
+								is_machine_empire = yes
 							}
 						}
 					}
@@ -1289,7 +1291,7 @@ planet_event = {
 			from.owner = {
 				if = {
 					limit = { has_ascension_perk = ap_become_the_crisis }
-					add_resource = { menace = 3 }
+					complete_crisis_objective = crisobj_purge_pops
 				}
 			}
 		}
@@ -1948,6 +1950,7 @@ planet_event = {
 			create_ambient_object = {
 				location = this
 				type = habitat_cracker_object
+				play_animation_once = yes
 				duration = 5
 
 				use_3d_location = yes
@@ -1975,6 +1978,7 @@ planet_event = {
 			create_ambient_object = {
 				location = this
 				type = habitat_cracker_object
+				play_animation_once = yes
 				duration = 5
 
 				use_3d_location = yes
@@ -2164,7 +2168,7 @@ planet_event = {
 
 		every_owned_pop = {
 			limit = {
-				NOR = { 
+				NOR = {
 					has_trait = trait_aquatic
 					has_trait = trait_robot_aquatic
 				}
@@ -2173,7 +2177,7 @@ planet_event = {
 			from.owner = {
 				if = {
 					limit = { has_ascension_perk = ap_become_the_crisis }
-					add_resource = { menace = 3 }
+					complete_crisis_objective = crisobj_purge_pops
 				}
 			}
 		}
@@ -2649,6 +2653,7 @@ planet_event = {
 			create_ambient_object = {
 				location = this
 				type = habitat_cracker_object
+				play_animation_once = yes
 				duration = 5
 
 				use_3d_location = yes
@@ -2679,6 +2684,7 @@ planet_event = {
 			create_ambient_object = {
 				location = this
 				type = habitat_cracker_object
+				play_animation_once = yes
 				duration = 5
 
 				use_3d_location = yes
@@ -2746,7 +2752,7 @@ planet_event = {
 							OR = {
 								is_spiritualist = yes
 								is_xenophile = yes
-								has_authority = auth_hive_mind
+								is_hive_empire = yes
 							}
 						}
 					}
@@ -2800,7 +2806,7 @@ planet_event = {
 			from.owner = {
 				if = {
 					limit = { has_ascension_perk = ap_become_the_crisis }
-					add_resource = { menace = 3 }
+					complete_crisis_objective = crisobj_purge_pops
 				}
 			}
 		}

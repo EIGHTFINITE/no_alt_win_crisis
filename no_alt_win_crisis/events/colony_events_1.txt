@@ -31,7 +31,7 @@ planet_event = {
 
 	trigger = {
 		owner = {
-			NOT = { has_authority = auth_machine_intelligence }
+			is_machine_empire = no
 		}
 		num_pops > 0
 		OR = {
@@ -256,6 +256,8 @@ country_event = {
 	event_chain = migrating_forests_chain
 
 	is_triggered_only = yes
+
+	specimen = burnt_migratory_trees
 
 	trigger = {
 		has_country_flag = burned_forests_rampaged_country
@@ -2194,7 +2196,7 @@ planet_event = {
 			is_planet_class = pc_gaia
 			is_planet_class = pc_relic
 			owner = { has_country_flag = abandoned_terraforming_country }
-			owner = { has_authority = auth_machine_intelligence }
+			owner = { is_machine_empire = yes }
 			AND = {
 				owner = { ideal_planet_class = pc_arid }
 				is_planet_class = pc_arid
@@ -2278,6 +2280,8 @@ planet_event = {
 
 	is_triggered_only = yes
 
+	specimen = terraforming_machinery
+	
 	immediate = {
 		set_planet_flag = did_not_terraform
 	}
@@ -2971,6 +2975,9 @@ planet_event = {
 		name = MARVELOUS
 		remove_modifier = "mutant_stalker"
 		# Armies on planet should gain experience
+		owner = {
+			give_specimen = { key = head_of_the_beast origin = MUTANT_STALKER_PROJECT }
+		}
 	}
 }
 
@@ -3487,6 +3494,9 @@ planet_event = {
 
 	option = {
 		name = colony.156.a
+		owner = {
+			give_specimen = { key = ancient_nuclear_armament origin = NUCLEAR_BOMB_PROJECT }
+		}
 	}
 }
 
@@ -4041,11 +4051,11 @@ planet_event = {
 	id = colony.171
 	title = "colony.171.name"
 	desc = {
-		trigger = { owner = { NOT = { has_authority = auth_machine_intelligence } } }
+		trigger = { owner = { is_machine_empire = no } }
 		text = colony.171.desc
 	}
 	desc = {
-		trigger = { owner = { has_authority = auth_machine_intelligence } }
+		trigger = { owner = { is_machine_empire = yes } }
 		text = colony.171.desc.mach
 	}
 	picture = GFX_evt_atmospheric_entry
@@ -4127,6 +4137,9 @@ ship_event = {
 		fromfrom = {
 			remove_modifier = "wasteland_orbital_debris"
 		}
+		owner = {
+			give_specimen = { key = decayed_satellite origin = ORBITAL_DEBRIS_PROJECT }
+		}
 	}
 }
 
@@ -4152,6 +4165,7 @@ ship_event = {
 					min = @tier1materialmin
 					max = @tier1materialmax
 				}
+				give_specimen = { key = decayed_satellite origin = ORBITAL_DEBRIS_PROJECT }
 			}
 		}
 	}
@@ -4262,7 +4276,7 @@ planet_event = {
 
 	option = {
 		trigger = {
-			owner = { NOT = { has_authority = auth_machine_intelligence } }
+			owner = { is_machine_empire = no }
 		}
 		name = colony.180.a
 		begin_event_chain = {
@@ -4272,7 +4286,7 @@ planet_event = {
 	}
 
 	option = {
-		trigger = { owner = { has_authority = auth_machine_intelligence } }
+		trigger = { owner = { is_machine_empire = yes } }
 		name = colony.180.b
 		begin_event_chain = {
 			event_chain = "asteroid_sighted_chain"
@@ -4333,13 +4347,13 @@ planet_event = {
 	title = "colony.182.name"
 	desc = {
 		trigger = {
-			owner = { NOT = { has_authority = auth_machine_intelligence } }
+			owner = { is_machine_empire = no }
 		}
 		text = colony.182.desc
 	}
 	desc = {
 		trigger = {
-			owner = { has_authority = auth_machine_intelligence }
+			owner = { is_machine_empire = yes }
 		}
 		text = colony.182.desc.mach
 	}
@@ -4386,13 +4400,13 @@ planet_event = {
 	title = "colony.183.name"
 	desc = {
 		trigger = {
-			owner = { NOT = { has_authority = auth_machine_intelligence } }
+			owner = { is_machine_empire = no }
 		}
 		text = colony.183.desc
 	}
 	desc = {
 		trigger = {
-			owner = { has_authority = auth_machine_intelligence }
+			owner = { is_machine_empire = yes }
 		}
 		text = colony.183.desc.mach
 	}
@@ -4529,7 +4543,7 @@ situation_event = {
 				}
 			}
 			owner = {
-				add_resource = { menace = 100 }
+				complete_crisis_objective = crisobj_destroy_worlds
 			}
 		}
 	}
@@ -4586,6 +4600,7 @@ situation_event = { #You have slurped up everything you could from this world
 			slushify_world = yes
 			remove_modifier = being_devoured_modifier_nanotech
 			change_pc = pc_nanotech
+			planet_event = { id = action.68 }
 			owner = {
 				change_variable = {
 					which = nanotech_worlds_created
