@@ -102,7 +102,7 @@ behemoth_egg = {
 	on_build_complete = {
 		from = {
 			set_country_flag = behemoth_egg_built
-			complete_crisis_objective = crisobj_build_behemoth_egg
+			add_resource = { feral_insight = 250 }
 		}
 		fromfrom.planet = { set_planet_flag = has_megastructure }
 	}
