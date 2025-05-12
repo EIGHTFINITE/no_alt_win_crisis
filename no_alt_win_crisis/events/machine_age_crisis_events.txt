@@ -499,7 +499,7 @@ country_event = { # Thesis: Blackout FROM = crisis country
 		}
 		custom_tooltip = add_crisis_currency_tt
 		hidden_effect = {
-			complete_crisis_objective = crisobj_research_thesis
+			add_resource = { advanced_logic = 1000 }
 		}
 		if = {
 			limit = {
@@ -621,7 +621,7 @@ country_event = { # Thesis: Constant FROM = crisis country
 		}
 		custom_tooltip = add_crisis_currency_tt
 		hidden_effect = {
-			complete_crisis_objective = crisobj_research_thesis
+			add_resource = { advanced_logic = 1000 }
 		}
 		if = {
 			limit = {
@@ -743,7 +743,7 @@ country_event = { # Thesis: Superlight FROM = crisis country
 		}
 		custom_tooltip = add_crisis_currency_tt
 		hidden_effect = {
-			complete_crisis_objective = crisobj_research_thesis
+			add_resource = { advanced_logic = 1000 }
 		}
 		if = {
 			limit = {
@@ -1084,7 +1084,7 @@ country_event = { # Thesis: Alloy Ductility - Good FROM = crisis country
 		}
 		custom_tooltip = add_crisis_currency_tt
 		hidden_effect = {
-			complete_crisis_objective = crisobj_research_thesis
+			add_resource = { advanced_logic = 1000 }
 		}
 		if = {
 			limit = {
@@ -1206,7 +1206,7 @@ country_event = { # Thesis: Alloy Ductility - Bad FROM = crisis country
 		}
 		custom_tooltip = add_crisis_currency_tt
 		hidden_effect = {
-			complete_crisis_objective = crisobj_research_thesis
+			add_resource = { advanced_logic = 1000 }
 		}
 		if = {
 			limit = {
@@ -1328,7 +1328,7 @@ country_event = { # Thesis: Altered Nutrition - Good FROM = crisis country
 		}
 		custom_tooltip = add_crisis_currency_tt
 		hidden_effect = {
-			complete_crisis_objective = crisobj_research_thesis
+			add_resource = { advanced_logic = 1000 }
 		}
 		if = {
 			limit = {
@@ -1450,7 +1450,7 @@ country_event = { # Thesis: Altered Nutrition - Bad FROM = crisis country
 		}
 		custom_tooltip = add_crisis_currency_tt
 		hidden_effect = {
-			complete_crisis_objective = crisobj_research_thesis
+			add_resource = { advanced_logic = 1000 }
 		}
 		if = {
 			limit = {
@@ -1673,7 +1673,7 @@ country_event = { # Thesis: Mass Shift FROM = crisis country
 		}
 		custom_tooltip = add_crisis_currency_tt
 		hidden_effect = {
-			complete_crisis_objective = crisobj_research_thesis
+			add_resource = { advanced_logic = 1000 }
 		}
 		if = {
 			limit = {
@@ -1897,7 +1897,7 @@ country_event = { # Thesis: Shroud Tear FROM = crisis country
 		}
 		custom_tooltip = add_crisis_currency_tt
 		hidden_effect = {
-			complete_crisis_objective = crisobj_research_thesis
+			add_resource = { advanced_logic = 1000 }
 		}
 		if = {
 			limit = {
@@ -1980,7 +1980,7 @@ country_event = { # Thesis: Filler Thesis - GOOD FROM = crisis country
 				1 = { set_country_flag = thesis_filler_g } # Random free tech
 				1 = { set_country_flag = thesis_filler_h } # Planet gains district
 			}
-			complete_crisis_objective = crisobj_research_thesis
+			add_resource = { advanced_logic = 1000 }
 		}
 	}
 
@@ -2196,7 +2196,7 @@ country_event = { # Thesis: Filler Thesis - BAD FROM = crisis country
 			has_country_flag = thesis_filler_a
 		}
 		hidden_effect = {
-			complete_crisis_objective = crisobj_research_thesis
+			add_resource = { advanced_logic = 1000 }
 		}
 		custom_tooltip = add_crisis_currency_tt
 	}
@@ -2215,7 +2215,7 @@ country_event = { # Thesis: Filler Thesis - BAD FROM = crisis country
 			}
 		}
 		hidden_effect = {
-			complete_crisis_objective = crisobj_research_thesis
+			add_resource = { advanced_logic = 1000 }
 		}
 		custom_tooltip = add_crisis_currency_tt
 	}
@@ -2228,7 +2228,7 @@ country_event = { # Thesis: Filler Thesis - BAD FROM = crisis country
 			energy = -100000
 		}
 		hidden_effect = {
-			complete_crisis_objective = crisobj_research_thesis
+			add_resource = { advanced_logic = 1000 }
 		}
 		custom_tooltip = add_crisis_currency_tt
 	}
@@ -2258,7 +2258,7 @@ country_event = { # Thesis: Filler Thesis - BAD FROM = crisis country
 					1 = { reduce_hp_percent = 120 }
 				}
 			}
-			complete_crisis_objective = crisobj_research_thesis
+			add_resource = { advanced_logic = 1000 }
 		}
 		custom_tooltip = cosmogenesis_damage_ships_tt
 		custom_tooltip = add_crisis_currency_tt
@@ -2274,7 +2274,7 @@ country_event = { # Thesis: Filler Thesis - BAD FROM = crisis country
 			}
 		}
 		hidden_effect = {
-			complete_crisis_objective = crisobj_research_thesis
+			add_resource = { advanced_logic = 1000 }
 		}
 		custom_tooltip = add_crisis_currency_tt
 	}
@@ -2288,7 +2288,7 @@ country_event = { # Thesis: Filler Thesis - BAD FROM = crisis country
 			years = 3
 		}
 		hidden_effect = {
-			complete_crisis_objective = crisobj_research_thesis
+			add_resource = { advanced_logic = 1000 }
 		}
 		custom_tooltip = add_crisis_currency_tt
 	}
@@ -2307,7 +2307,7 @@ country_event = { # Thesis: Filler Thesis - BAD FROM = crisis country
 			}
 		}
 		hidden_effect = {
-			complete_crisis_objective = crisobj_research_thesis
+			add_resource = { advanced_logic = 1000 }
 		}
 		custom_tooltip = add_crisis_currency_tt
 	}
