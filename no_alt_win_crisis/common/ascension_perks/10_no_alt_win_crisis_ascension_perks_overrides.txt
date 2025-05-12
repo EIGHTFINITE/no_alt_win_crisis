@@ -69,12 +69,7 @@ ap_defender_of_the_galaxy = {
 	}
 
 	potential = {
-		NOR = {
-			has_ascension_perk = ap_defender_of_the_galaxy
-			has_ascension_perk = ap_become_the_crisis
-			has_ascension_perk = ap_cosmogenesis
-			has_ascension_perk = ap_behemoths
-		}
+		NOT = { has_ascension_perk = ap_defender_of_the_galaxy }
 	}
 
 	ai_weight = {
@@ -142,9 +137,6 @@ ap_become_the_crisis = {
 		has_nemesis = yes
 		NOR = {
 			has_ascension_perk = ap_become_the_crisis
-			has_ascension_perk = ap_cosmogenesis
-			has_ascension_perk = ap_behemoths
-			has_ascension_perk = ap_defender_of_the_galaxy
 			has_origin = origin_slavers
 		}
 		is_wilderness_empire = no
@@ -159,14 +151,6 @@ ap_become_the_crisis = {
 			fail_text = "requires_independence"
 			is_subject = no
 		}
-		custom_tooltip = {
-			fail_text = "must_not_be_custodian"
-			is_galactic_custodian = no
-		}
-		custom_tooltip = {
-			fail_text = "must_not_be_emperor"
-			is_galactic_emperor = no
-		}
 		NOR = {
 			has_ethic = ethic_xenophile
 			has_ethic = ethic_fanatic_xenophile
@@ -175,6 +159,16 @@ ap_become_the_crisis = {
 			has_civic = civic_machine_servitor
 			has_valid_civic = civic_hive_familiar_face
 		}
+		OR = {
+			NOR = {
+				has_ascension_perk = ap_cosmogenesis
+				has_ascension_perk = ap_behemoths
+			}
+			AND = {
+				has_ascension_perk = ap_behemoths
+				has_crisis_level = crisis_behemoth_level_5
+			}
+		}
 	}
 
 	on_enabled = {
@@ -182,7 +176,15 @@ ap_become_the_crisis = {
 			set_ai_personality = became_the_crisis
 			country_event = { id = timeline.69 } # Timeline Become the crisis
 		}
-		activate_crisis_progression = nemesis_path
+		if = {
+			limit = {
+				NOR = {
+					has_ascension_perk = ap_cosmogenesis
+					has_ascension_perk = ap_behemoths
+				}
+			}
+			activate_crisis_progression = nemesis_path
+		}
 	}
 
 	ai_weight = {
@@ -235,10 +237,7 @@ ap_cosmogenesis = {
 	potential = {
 		has_machine_age_dlc = yes
 		NOR = {
-			has_ascension_perk = ap_become_the_crisis
 			has_ascension_perk = ap_cosmogenesis
-			has_ascension_perk = ap_defender_of_the_galaxy
-			has_ascension_perk = ap_behemoths
 			has_origin = origin_slavers # No crisis for MSI
 		}
 		is_wilderness_empire = no
@@ -253,13 +252,15 @@ ap_cosmogenesis = {
 			fail_text = "requires_independence"
 			is_subject = no
 		}
-		custom_tooltip = {
-			fail_text = "must_not_be_custodian"
-			is_galactic_custodian = no
-		}
-		custom_tooltip = {
-			fail_text = "must_not_be_emperor"
-			is_galactic_emperor = no
+		OR = {
+			NOR = {
+				has_ascension_perk = ap_become_the_crisis
+				has_ascension_perk = ap_behemoths
+			}
+			AND = {
+				has_ascension_perk = ap_become_the_crisis
+				has_crisis_level = crisis_level_5
+			}
 		}
 	}
 
@@ -270,7 +271,15 @@ ap_cosmogenesis = {
 				value = 0
 			}
 		}
-		activate_crisis_progression = cosmogenesis_path
+		if = {
+			limit = {
+				NOR = {
+					has_ascension_perk = ap_become_the_crisis
+					has_ascension_perk = ap_behemoths
+				}
+			}
+			activate_crisis_progression = cosmogenesis_path
+		}
 	}
 
 	ai_weight = {
@@ -326,10 +335,7 @@ ap_behemoths = {
 	potential = {
 		has_biogenesis_dlc = yes
 		NOR = {
-			has_ascension_perk = ap_become_the_crisis
-			has_ascension_perk = ap_cosmogenesis
 			has_ascension_perk = ap_behemoths
-			has_ascension_perk = ap_defender_of_the_galaxy
 			has_origin = origin_slavers # No crisis for MSI
 			is_wilderness_empire = yes
 		}
@@ -345,14 +351,6 @@ ap_behemoths = {
 			is_subject = no
 		}
 		custom_tooltip = {
-			fail_text = "must_not_be_custodian"
-			is_galactic_custodian = no
-		}
-		custom_tooltip = {
-			fail_text = "must_not_be_emperor"
-			is_galactic_emperor = no
-		}
-		custom_tooltip = {
 			fail_text = "must_use_bioships"
 			country_uses_bio_ships = yes
 		}
@@ -362,10 +360,28 @@ ap_behemoths = {
 			has_ethic = ethic_pacifist
 			has_ethic = ethic_fanatic_pacifist
 		}
+		OR = {
+			NOR = {
+				has_ascension_perk = ap_become_the_crisis
+				has_ascension_perk = ap_cosmogenesis
+			}
+			AND = {
+				has_ascension_perk = ap_cosmogenesis
+				has_crisis_level = crisis_cosmogenesis_level_5
+			}
+		}
 	}
 
 	on_enabled = {
-		activate_crisis_progression = behemoth_path
+		if = {
+			limit = {
+				NOR = {
+					has_ascension_perk = ap_become_the_crisis
+					has_ascension_perk = ap_cosmogenesis
+				}
+			}
+			activate_crisis_progression = behemoth_path
+		}
 	}
 
 	ai_weight = {
