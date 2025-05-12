@@ -15,10 +15,6 @@
 
 crisis_level_1 = {
 	# REQUIREMENTS
-	allow = {
-		resource_stockpile_compare = { resource = menace value >= 0 }
-		has_ascension_perk = ap_become_the_crisis
-	}
 	required_crisis_currency = 0
 
 	# REWARDS
@@ -40,8 +36,6 @@ crisis_level_1 = {
 crisis_level_2 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = menace value >= 1000 }
-		has_ascension_perk = ap_become_the_crisis
 		custom_tooltip = {
 			success_text = crisis_level_2_req_clear_tooltip
 			fail_text =	crisis_level_2_req_tooltip
@@ -55,7 +49,7 @@ crisis_level_2 = {
 			}
 		}
 	}
-	required_crisis_currency = 0
+	required_crisis_currency = 1000
 
 	# REWARDS
 	perks = {
@@ -81,8 +75,6 @@ crisis_level_2 = {
 crisis_level_3 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = menace value >= 2000 }
-		has_ascension_perk = ap_become_the_crisis
 		custom_tooltip = {
 			success_text = crisis_level_3_req_clear_tooltip
 			fail_text =	crisis_level_3_req_tooltip
@@ -96,7 +88,7 @@ crisis_level_3 = {
 			}
 		}
 	}
-	required_crisis_currency = 0
+	required_crisis_currency = 2000
 
 	# REWARDS
 	perks = {
@@ -123,8 +115,6 @@ crisis_level_3 = {
 crisis_level_4 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = menace value >= 5000 }
-		has_ascension_perk = ap_become_the_crisis
 		custom_tooltip = {
 			success_text = crisis_level_4_req_clear_tooltip
 			fail_text =	crisis_level_4_req_tooltip
@@ -138,7 +128,7 @@ crisis_level_4 = {
 			}
 		}
 	}
-	required_crisis_currency = 0
+	required_crisis_currency = 5000
 
 	# REWARDS
 	perks = {
@@ -164,8 +154,6 @@ crisis_level_4 = {
 crisis_level_5 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = menace value >= 10000 }
-		has_ascension_perk = ap_become_the_crisis
 		custom_tooltip = {
 			success_text = crisis_level_5_req_clear_tooltip
 			fail_text =	crisis_level_5_req_tooltip
@@ -180,7 +168,7 @@ crisis_level_5 = {
 		}
 		is_subject = no
 	}
-	required_crisis_currency = 0
+	required_crisis_currency = 10000
 
 	# REWARDS
 	perks = {
@@ -191,7 +179,25 @@ crisis_level_5 = {
 	}
 
 	on_unlock = {
+		owner = {
+			if = {
+				limit = { has_federation = yes }
+				leave_alliance = { override_requirements = yes }
+			}
+			tooltip = {
+				if = {
+					limit = {
+						is_galactic_community_formed = yes
+						is_galactic_community_member = yes
+					}
+					remove_from_galactic_community = yes
+				}
+			}
+		}
 		hidden_effect = {
+			# force Declare Crisis resolution through an appropriate party
+			declare_crisis_effect = yes
+
 			owner = {
 				room_name_override = ""
 				add_event_chain_counter = {
@@ -208,10 +214,6 @@ crisis_level_5 = {
 
 crisis_cosmogenesis_level_1 = {
 	# REQUIREMENTS
-	allow = {
-		resource_stockpile_compare = { resource = advanced_logic value >= 0 }
-		has_ascension_perk = ap_cosmogenesis
-	}
 	required_crisis_currency = 0
 
 	# REWARDS
@@ -235,15 +237,13 @@ crisis_cosmogenesis_level_1 = {
 crisis_cosmogenesis_level_2 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = advanced_logic value >= 2000 }
-		has_ascension_perk = ap_cosmogenesis
 		custom_tooltip = {
 			success_text = cosmogenesis_level_2_req_clear_tooltip
 			fail_text =	cosmogenesis_level_2_req_tooltip
 			has_technology = tech_cosmogenesis_crisis_1
 		}
 	}
-	required_crisis_currency = 0
+	required_crisis_currency = 2000
 
 	# REWARDS
 	perks = {
@@ -266,15 +266,13 @@ crisis_cosmogenesis_level_2 = {
 crisis_cosmogenesis_level_3 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = advanced_logic value >= 6000 }
-		has_ascension_perk = ap_cosmogenesis
 		custom_tooltip = {
 			success_text =	cosmogenesis_level_3_req_clear_tooltip
 			fail_text =	cosmogenesis_level_3_req_tooltip
 			has_technology = tech_cosmogenesis_crisis_2
 		}
 	}
-	required_crisis_currency = 0
+	required_crisis_currency = 6000
 
 	# REWARDS
 	perks = {
@@ -297,15 +295,13 @@ crisis_cosmogenesis_level_3 = {
 crisis_cosmogenesis_level_4 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = advanced_logic value >= 18000 }
-		has_ascension_perk = ap_cosmogenesis
 		custom_tooltip = {
 			success_text =	cosmogenesis_level_4_req_clear_tooltip
 			fail_text =	cosmogenesis_level_4_req_tooltip
 			has_technology = tech_cosmogenesis_crisis_3
 		}
 	}
-	required_crisis_currency = 0
+	required_crisis_currency = 18000
 
 	# REWARDS
 	perks = {
@@ -332,8 +328,6 @@ crisis_cosmogenesis_level_4 = {
 crisis_cosmogenesis_level_5 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = advanced_logic value >= 45000 }
-		has_ascension_perk = ap_cosmogenesis
 		custom_tooltip = {
 			success_text =	cosmogenesis_level_5_req_clear_tooltip
 			fail_text =	cosmogenesis_level_5_req_tooltip
@@ -349,7 +343,7 @@ crisis_cosmogenesis_level_5 = {
 		}
 		is_subject = no
 	}
-	required_crisis_currency = 0
+	required_crisis_currency = 45000
 
 	# REWARDS
 	perks = {
@@ -363,6 +357,180 @@ crisis_cosmogenesis_level_5 = {
 		hidden_effect = {
 			owner = {
 				country_event = { id = crisis.7120 }
+			}
+		}
+	}
+}
+
+crisis_behemoth_level_1 = {
+	# REQUIREMENTS
+	required_crisis_currency = 0
+
+	# REWARDS
+	perks = {
+		menp_behemoth_objectives
+		menp_behemoth_egg
+		menp_behemoth_society_1
+		menp_behemoth_food_1
+	}
+
+	on_unlock = {
+		hidden_effect = {
+			owner = {
+				begin_event_chain = { event_chain = behemoth_crisis_chain target = this }
+				add_event_chain_counter = {
+					event_chain = "behemoth_crisis_chain"
+					counter = "crisis_level_reached"
+					amount = 1
+				}
+				country_event = { id = biocrisis.50 days = 3 }
+			}
+		}
+	}
+}
+
+crisis_behemoth_level_2 = {
+	# REQUIREMENTS
+	allow = {
+		custom_tooltip = {
+			success_text = crisis_egg_built
+			fail_text = crisis_egg_required
+			has_country_flag = behemoth_egg_built
+		}
+	}
+	required_crisis_currency = 2000
+
+	# REWARDS
+	perks = {
+		menp_behemoth_hatchling
+		menp_behemoth_bioship_2
+		menp_behemoth_society_2
+		menp_behemoth_food_2
+	}
+
+	on_unlock = {
+		hidden_effect = {
+			owner = {
+				add_event_chain_counter = {
+					event_chain = "behemoth_crisis_chain"
+					counter = "crisis_level_reached"
+					amount = 1
+				}
+			}
+		}
+		owner = {
+			country_event = { id = biocrisis.55 }
+		}
+	}
+}
+
+crisis_behemoth_level_3 = {
+	# REQUIREMENTS
+	allow = {
+		custom_tooltip = {
+			success_text = crisis_egg_hatched
+			fail_text = crisis_hatchling_required
+			has_country_flag = behemoth_egg_hatched
+		}
+	}
+	required_crisis_currency = 6000
+
+	# REWARDS
+	perks = {
+		menp_behemoth_bioship_1
+		menp_behemoth_bioships_3
+		menp_behemoth_society_3
+	}
+
+	on_unlock = {
+		hidden_effect = {
+			owner = {
+				add_event_chain_counter = {
+					event_chain = "behemoth_crisis_chain"
+					counter = "crisis_level_reached"
+					amount = 1
+				}
+			}
+		}
+		country_event = { id = biocrisis.60 }
+	}
+}
+
+crisis_behemoth_level_4 = {
+	# REQUIREMENTS
+	allow = {
+		custom_tooltip = {
+			success_text = crisis_level_2_req_clear_tooltip
+			fail_text =	crisis_level_2_req_tooltip
+			has_country_flag = crisis_special_project_3_complete
+		}
+	}
+	required_crisis_currency = 18000
+
+	# REWARDS
+	perks = {
+		menp_behemoth_hatchling_2
+		menp_behemoth_bioship_4
+		menp_behemoth_mutation_research
+	}
+
+	on_unlock = {
+		hidden_effect = {
+			owner = {
+				add_event_chain_counter = {
+					event_chain = "behemoth_crisis_chain"
+					counter = "crisis_level_reached"
+					amount = 1
+				}
+				country_event = { id = biocrisis.65 days = 3 }
+			}
+		}
+	}
+}
+
+crisis_behemoth_level_5 = {
+	# REQUIREMENTS
+	allow = {
+		is_subject = no
+		custom_tooltip = {
+			success_text = crisis_level_5_req_clear_tooltip
+			fail_text =	behemoth_crisis_level_5_req_tooltip
+			has_country_flag = crisis_special_project_4_complete
+		}
+	}
+	required_crisis_currency = 45000
+
+	# REWARDS
+	perks = {
+		menp_behemoth_mind_meld
+		menp_behemoth_primal_roar
+		menp_behemoth_ever_hungry
+		menp_behemoth_egg_2
+	}
+
+	on_unlock = {
+		hidden_effect = {
+			declare_crisis_effect = yes
+			every_playable_country = {
+				limit = {
+					is_galactic_community_member = no
+					NOT = {
+						is_same_value = owner
+						is_at_war_with = owner
+					}
+				}
+				join_war_on_side = {
+					war = event_target:crisis_war
+					side = event_target:community_war_leader
+				}
+			}
+			owner = {
+				add_event_chain_counter = {
+					event_chain = "behemoth_crisis_chain"
+					counter = "crisis_level_reached"
+					amount = 1
+				}
+				country_event = { id = biocrisis.70 days = 3 }
 			}
 		}
 	}
