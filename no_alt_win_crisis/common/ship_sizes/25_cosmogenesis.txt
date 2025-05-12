@@ -6,10 +6,10 @@ cosmo_crisis_destroyer = {
 	collision_radius = @destroyer_collision_radius
 	formation_priority = @destroyer_formation_priority
 	modifier = {
-		ship_evasion_add = 60
+		ship_evasion_add = 50
 		ship_hull_regen_add_perc = 0.1
 		ship_armor_regen_add_perc = 0.1
-		ship_piracy_suppression_add = 8
+		#ship_piracy_suppression_add = 8
 	}
 	max_hitpoints = @fe_destroyer_hp
 	size_multiplier = 2
@@ -21,7 +21,7 @@ cosmo_crisis_destroyer = {
 	base_buildtime = 200
 	is_space_station = no
 	combat_disengage_chance = 1.5
-	can_have_federation_design = yes
+	can_have_federation_design = no
 	components_add_to_cost = yes
 	default_behavior = line
 	ship_roles = { artillery explosive }
@@ -74,9 +74,7 @@ cosmo_crisis_destroyer = {
 		}
 	}
 
-	min_upgrade_cost = {
-		alloys = 2
-	}
+	available_to_everyone = yes
 
 	ai_ship_data = {
 		fraction = 33
@@ -94,7 +92,7 @@ cosmo_crisis_battlecruiser = {
 		ship_evasion_add = 10
 		ship_hull_regen_add_perc = 0.1
 		ship_armor_regen_add_perc = 0.1
-		ship_piracy_suppression_add = 4
+		#ship_piracy_suppression_add = 4
 	}
 	max_hitpoints = @fe_battleship_hp
 	size_multiplier = 8
@@ -102,7 +100,6 @@ cosmo_crisis_battlecruiser = {
 	section_slots = { "mid" = { locator = "part1" } }
 	num_target_locators = 0
 	is_space_station = no
-	can_have_federation_design = yes
 	components_add_to_cost = yes
 	icon = ship_size_military_8
 
@@ -127,10 +124,6 @@ cosmo_crisis_battlecruiser = {
 		}
 	}
 
-	min_upgrade_cost = {
-		alloys = 8
-	}
-
 	base_buildtime = 600
 
 	use_shipnames_from = battleship
@@ -148,6 +141,9 @@ cosmo_crisis_battlecruiser = {
 	potential_country = {
 		has_technology = tech_cosmogenesis_battlecruiser
 	}
+
+	available_to_everyone = yes
+
 	ai_ship_data = {
 		fraction = 33
 	}
@@ -172,7 +168,6 @@ cosmo_crisis_titan = {
 	section_slots = { "mid" = { locator = "part1" } }
 	num_target_locators = 0
 	is_space_station = no
-	can_have_federation_design = yes
 	components_add_to_cost = yes
 	icon = ship_size_military_32
 
@@ -188,10 +183,6 @@ cosmo_crisis_titan = {
 			energy = @titan_upkeep_energy
 			alloys = @titan_upkeep_alloys
 		}
-	}
-
-	min_upgrade_cost = {
-		alloys = 16
 	}
 
 	base_buildtime = 1800
@@ -268,6 +259,8 @@ cosmo_crisis_titan = {
 			}
 		}
 	}
+
+	available_to_everyone = yes
 }
 
 monadic_qerr = {
