@@ -24,7 +24,8 @@ resolution_galacticreforms_nominate_custodian = {
 		custom_tooltip = {
 			fail_text = "nominate_other_custodian_not_crisis"
 			NOR = {
-				has_been_declared_crisis = yes
+				has_ascension_perk = ap_become_the_crisis
+				has_ascension_perk = ap_cosmogenesis
 				has_valid_civic = civic_pompous_purists
 			}
 		}
@@ -54,9 +55,10 @@ resolution_galacticreforms_nominate_custodian = {
 			is_subject = no
 		}
 		custom_tooltip = {
-			fail_text = "nominate_other_custodian_not_crisis"
-			NOT = {
-				has_been_declared_crisis = yes
+			fail_text = "nominate_custodian_not_crisis"
+			NOR = {
+				has_ascension_perk = ap_become_the_crisis
+				has_ascension_perk = ap_cosmogenesis
 			}
 		}
 	}
@@ -171,6 +173,12 @@ resolution_galacticreforms_nominate_custodian = {
 			factor = 20
 			has_global_flag = war_in_heaven_ongoing
 			desc = gal_com_ongoing_war_in_heaven
+		}
+
+		modifier = {
+			factor = 0
+			has_country_flag = fallen_empire_hive_control
+			desc = gal_com_is_awakened_empire
 		}
 	}
 }
