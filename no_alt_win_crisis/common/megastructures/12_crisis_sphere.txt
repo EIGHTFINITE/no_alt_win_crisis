@@ -62,6 +62,7 @@ crisis_sphere_1 = {
 	construction_entity = "dyson_sphere_part_1_entity"
 	portrait = "GFX_megastructure_construction_background"
 	build_time = 3600
+	victory_score = 1000
 	resources = {
 		category = megastructures
 		cost = {
@@ -94,6 +95,7 @@ crisis_sphere_2 = {
 	construction_entity = "dyson_sphere_part_2_entity"
 	portrait = "GFX_megastructure_construction_background"
 	build_time = 3600
+	victory_score = 2500
 	resources = {
 		category = megastructures
 		cost = {
@@ -127,6 +129,7 @@ crisis_sphere_3 = {
 	construction_entity = "dyson_sphere_part_3_entity"
 	portrait = "GFX_megastructure_construction_background"
 	build_time = 3600
+	victory_score = 5000
 	resources = {
 		category = megastructures
 		cost = {
@@ -161,20 +164,12 @@ crisis_sphere_4 = {
 	construction_entity = "dyson_sphere_part_4_entity"
 	portrait = "GFX_megastructure_construction_background"
 	build_time = 3600
+	victory_score = 10000
 	resources = {
 		category = megastructures
 		cost = {
 			sr_dark_matter = 50000
 		}
-		produces = {
-			minerals = 2000
-			energy = 800
-			sr_dark_matter = 20
-		}
-	}
-
-	country_modifier = {
-		country_naval_cap_add = 250
 	}
 
 	upgrade_from = {
@@ -185,7 +180,6 @@ crisis_sphere_4 = {
 		fromfrom = { set_megastructure_flag = crisis_sphere }
 		from = {
 			country_event = { id = crisis.6050 }
-			country_event = { id = crisis.6150 days = 180 random = 480 }
 		}
 	}
 }

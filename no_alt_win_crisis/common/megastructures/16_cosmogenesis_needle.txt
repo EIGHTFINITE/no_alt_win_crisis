@@ -9,8 +9,27 @@ cosmogenesis_needle = {
 		category = megastructures
 		cost = {
 			advanced_logic = 17500
-			alloys = 50000
 			sr_dark_matter = 1000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = 50000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 50000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 50000
+			mult = @halved_alloy_to_food_cost_ratio
 		}
 	}
 
@@ -47,15 +66,34 @@ cosmogenesis_needle = {
 	}
 
 	on_build_complete = {
+		remove_system_terraforming_candidates = yes
+		create_fleet = {
+			name = "NAME_Cosmogenesis_Sphere"
+			settings = {
+				can_disband = no
+			}
+			effect = {
+				set_owner = root
+				set_fleet_flag = cosmogenesis_needle
+				create_ship = {
+					name = "NAME_Lemniscate"
+					design = "NAME_Monadic_Qerr"
+				}
+				set_location = fromfrom
+				set_fleet_stance = evasive
+				save_global_event_target_as = cosmogenesis_needle
+				add_modifier = {
+					modifier = horizon_needle_mod
+					days = -1
+				}
+			}
+		}
+
+		remove_megastructure = fromfrom
+
 		from = {
+			country_event = { id = crisis.7400 }
 			set_country_flag = cosmogenesis_needle_built
-			end_event_chain = cosmogenesis_chain
-			add_research_option = tech_psionic_theory
-			add_research_option = tech_psi_jump_drive_1
-			add_research_option = tech_precognition_interface
-			add_research_option = tech_cloaking_psi
-			add_research_option = tech_psionic_barrier
-			add_research_option = tech_psionic_shield
 		}
 	}
 }
