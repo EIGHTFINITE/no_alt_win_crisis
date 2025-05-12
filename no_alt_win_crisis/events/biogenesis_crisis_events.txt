@@ -26,7 +26,7 @@ planet_event = {
 	}
 
 	after = { # Crisis Objective: Birth Behemoth
-		event_target:behemoth_parent_country = { complete_crisis_objective = crisobj_birth_behemoth }
+		event_target:behemoth_parent_country = { add_resource = { feral_insight = 1000 } }
 	}
 }
 
@@ -835,7 +835,7 @@ ship_event = {
 	}
 
 	after = { # Crisis Objective: Behemoth Raging
-		event_target:behemoth_parent_country = { complete_crisis_objective = crisobj_behemoth_rage }
+		event_target:behemoth_parent_country = { add_resource = { feral_insight = 100 } }
 		fleet = {
 			if = {
 				limit = {
@@ -3001,7 +3001,7 @@ planet_event = {
 		set_planet_flag = has_megastructure
 		from.owner = {
 			save_event_target_as = behemoth_owner
-			complete_crisis_objective = crisobj_build_behemoth_egg
+			add_resource = { feral_insight = 250 }
 		}
 		solar_system = {
 			spawn_megastructure = {
@@ -3363,12 +3363,12 @@ ship_event = {
 					}
 				}
 				owner = {
-					complete_crisis_objective = crisobj_breed_fauna
+					add_resource = { feral_insight = 10 }
 				}
 			}
 			else = {
 				owner = {
-					complete_crisis_objective = crisobj_build_bioships
+					add_resource = { feral_insight = 10 }
 				}
 			}
 		}
@@ -3402,12 +3402,12 @@ country_event = {
 					fromfromfrom = { is_ship_category = bio_ship }
 				}
 				owner = {
-					complete_crisis_objective = crisobj_kill_bioships
+					add_resource = { feral_insight = 5 }
 				}
 			}
 			else = {
 				owner = {
-					complete_crisis_objective = crisobj_kill_space_fauna
+					add_resource = { feral_insight = 10 }
 				}
 			}
 		}
@@ -3434,7 +3434,7 @@ ship_event = {
 	immediate = {
 		while = {
 			count = trigger:ship_size_multiplier
-			from.owner = { complete_crisis_objective = crisobj_cap_fauna }
+			from.owner = { add_resource = { feral_insight = 10 } }
 		}
 	}
 }
