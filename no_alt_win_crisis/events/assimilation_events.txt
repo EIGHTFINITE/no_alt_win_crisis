@@ -336,7 +336,7 @@ planet_event = {
 		owner = { #Only doing it once since assimilating more than 100 pops a month is hard
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 3 }
+				complete_crisis_objective = crisobj_purge_pops
 			}
 		}
 
@@ -463,7 +463,7 @@ planet_event = {
 		owner = { #Only doing it once since assimilating more than 100 pops a month is hard
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 3 }
+				complete_crisis_objective = crisobj_purge_pops
 			}
 		}
 
@@ -593,7 +593,7 @@ planet_event = {
 		owner = { #Only doing it once since assimilating more than 100 pops a month is hard
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 3 }
+				complete_crisis_objective = crisobj_purge_pops
 			}
 		}
 
@@ -671,7 +671,7 @@ planet_event = {
 		owner = { #Only doing it once since assimilating more than 100 pops a month is hard
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 3 }
+				complete_crisis_objective = crisobj_purge_pops
 			}
 		}
 
@@ -793,7 +793,7 @@ planet_event = {
 		owner = { #Only doing it once since assimilating more than 100 pops a month is hard
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 3 }
+				complete_crisis_objective = crisobj_purge_pops
 			}
 		}
 
@@ -919,7 +919,7 @@ planet_event = {
 		owner = { #Only doing it once since assimilating more than 100 pops a month is hard
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 3 }
+				complete_crisis_objective = crisobj_purge_pops
 			}
 		}
 
@@ -997,6 +997,11 @@ planet_event = {
 								remove_trait = trait_self_modified
 								remove_trait = trait_latent_psionic
 								remove_trait = trait_psionic
+								remove_trait = trait_incubator
+								remove_trait = trait_nomadic
+								remove_trait = trait_sedentary
+								remove_trait = trait_vat_grown
+								remove_trait = trait_nascent_stage
 								change_scoped_species = no
 
 								effect = {
@@ -1051,7 +1056,7 @@ planet_event = {
 		owner = { #Only doing it once since assimilating more than 100 pops a month is hard
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 3 }
+				complete_crisis_objective = crisobj_purge_pops
 			}
 		}
 
