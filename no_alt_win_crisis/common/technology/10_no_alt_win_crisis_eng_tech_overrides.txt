@@ -7,7 +7,12 @@ tech_corvettes = {
 	tier = 0
 
 	potential = {
-		country_uses_bio_ships = no
+		OR = {
+			country_uses_bio_ships = no
+			has_tradition = tr_nanotech_4
+			has_crisis_level = crisis_level_2
+			has_technology = tech_cosmogenesis_escort
+		}
 	}
 
 	prereqfor_desc = {
@@ -42,7 +47,12 @@ tech_destroyers = {
 	gateway = ship
 
 	potential = {
-		country_uses_bio_ships = no
+		OR = {
+			country_uses_bio_ships = no
+			has_tradition = tr_nanotech_4
+			has_crisis_level = crisis_level_2
+			has_technology = tech_cosmogenesis_escort
+		}
 	}
 
 	## unlock destroyer
@@ -103,7 +113,12 @@ tech_cruisers = {
 	gateway = ship
 
 	potential = {
-		country_uses_bio_ships = no
+		OR = {
+			country_uses_bio_ships = no
+			has_tradition = tr_nanotech_4
+			has_crisis_level = crisis_level_2
+			has_technology = tech_cosmogenesis_escort
+		}
 	}
 
 	## unlock cruisers
@@ -162,7 +177,12 @@ tech_battleships = {
 	weight = @tier4weight1
 
 	potential = {
-		country_uses_bio_ships = no
+		OR = {
+			country_uses_bio_ships = no
+			has_tradition = tr_nanotech_4
+			has_crisis_level = crisis_level_2
+			has_technology = tech_cosmogenesis_escort
+		}
 	}
 
 	## unlock battleships
@@ -225,7 +245,12 @@ tech_corvette_build_speed = {
 	weight = @tier1weight2
 
 	potential = {
-		country_uses_bio_ships = no
+		OR = {
+			country_uses_bio_ships = no
+			has_tradition = tr_nanotech_4
+			has_crisis_level = crisis_level_2
+			has_technology = tech_cosmogenesis_escort
+		}
 	}
 
 	modifier = {
@@ -268,7 +293,12 @@ tech_corvette_hull_1 = {
 	weight = @tier1weight3
 
 	potential = {
-		country_uses_bio_ships = no
+		OR = {
+			country_uses_bio_ships = no
+			has_tradition = tr_nanotech_4
+			has_crisis_level = crisis_level_2
+			has_technology = tech_cosmogenesis_escort
+		}
 	}
 
 	modifier = {
@@ -310,7 +340,12 @@ tech_corvette_hull_2 = {
 	weight = @tier2weight3
 
 	potential = {
-		country_uses_bio_ships = no
+		OR = {
+			country_uses_bio_ships = no
+			has_tradition = tr_nanotech_4
+			has_crisis_level = crisis_level_2
+			has_technology = tech_cosmogenesis_escort
+		}
 	}
 
 	modifier = {
@@ -368,7 +403,12 @@ tech_destroyer_build_speed = {
 	weight = @tier2weight2
 
 	potential = {
-		country_uses_bio_ships = no
+		OR = {
+			country_uses_bio_ships = no
+			has_tradition = tr_nanotech_4
+			has_crisis_level = crisis_level_2
+			has_technology = tech_cosmogenesis_escort
+		}
 	}
 
 	modifier = {
@@ -410,7 +450,12 @@ tech_destroyer_hull_1 = {
 	weight = @tier2weight3
 
 	potential = {
-		country_uses_bio_ships = no
+		OR = {
+			country_uses_bio_ships = no
+			has_tradition = tr_nanotech_4
+			has_crisis_level = crisis_level_2
+			has_technology = tech_cosmogenesis_escort
+		}
 	}
 
 	modifier = {
@@ -455,7 +500,12 @@ tech_destroyer_hull_2 = {
 	weight = @tier3weight1
 
 	potential = {
-		country_uses_bio_ships = no
+		OR = {
+			country_uses_bio_ships = no
+			has_tradition = tr_nanotech_4
+			has_crisis_level = crisis_level_2
+			has_technology = tech_cosmogenesis_escort
+		}
 	}
 
 	modifier = {
@@ -517,7 +567,12 @@ tech_cruiser_build_speed = {
 	weight = @tier3weight2
 
 	potential = {
-		country_uses_bio_ships = no
+		OR = {
+			country_uses_bio_ships = no
+			has_tradition = tr_nanotech_4
+			has_crisis_level = crisis_level_2
+			has_technology = tech_cosmogenesis_escort
+		}
 	}
 
 	modifier = {
@@ -559,7 +614,12 @@ tech_cruiser_hull_1 = {
 	weight = @tier3weight3
 
 	potential = {
-		country_uses_bio_ships = no
+		OR = {
+			country_uses_bio_ships = no
+			has_tradition = tr_nanotech_4
+			has_crisis_level = crisis_level_2
+			has_technology = tech_cosmogenesis_escort
+		}
 	}
 
 	modifier = {
@@ -604,7 +664,12 @@ tech_cruiser_hull_2 = {
 	weight = @tier4weight1
 
 	potential = {
-		country_uses_bio_ships = no
+		OR = {
+			country_uses_bio_ships = no
+			has_tradition = tr_nanotech_4
+			has_crisis_level = crisis_level_2
+			has_technology = tech_cosmogenesis_escort
+		}
 	}
 
 	modifier = {
@@ -665,7 +730,12 @@ tech_battleship_build_speed = {
 	weight = @tier4weight2
 
 	potential = {
-		country_uses_bio_ships = no
+		OR = {
+			country_uses_bio_ships = no
+			has_tradition = tr_nanotech_4
+			has_crisis_level = crisis_level_2
+			has_technology = tech_cosmogenesis_escort
+		}
 	}
 
 	modifier = {
@@ -707,7 +777,12 @@ tech_battleship_hull_1 = {
 	weight = @tier4weight3
 
 	potential = {
-		country_uses_bio_ships = no
+		OR = {
+			country_uses_bio_ships = no
+			has_tradition = tr_nanotech_4
+			has_crisis_level = crisis_level_2
+			has_technology = tech_cosmogenesis_escort
+		}
 	}
 
 	modifier = {
@@ -752,7 +827,12 @@ tech_battleship_hull_2 = {
 	weight = @tier5weight1
 
 	potential = {
-		country_uses_bio_ships = no
+		OR = {
+			country_uses_bio_ships = no
+			has_tradition = tr_nanotech_4
+			has_crisis_level = crisis_level_2
+			has_technology = tech_cosmogenesis_escort
+		}
 	}
 
 	modifier = {
