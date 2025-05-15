@@ -6288,6 +6288,7 @@ country_event = {
 			}
 			from = {
 				save_global_event_target_as = destroyer_country
+				set_country_flag = has_won_war
 			}
 		}
 		# If the MSI got destroyed by someone else, payback empires will get a follow-up
@@ -6578,7 +6579,7 @@ planet_event = {
 						is_deposit_type = d_nanites_small			# Tranformation situation
 						is_deposit_type = d_nanites_tiny			# Tranformation situation
 						is_deposit_type = d_living_metal_medium		# Tranformation situation
-						is_deposit_type = d_living_metal_small		# Tranformation situation
+						is_deposit_type = d_living_metal_medium		# Tranformation situation
 						is_deposit_type = d_living_metal_tiny		# Tranformation situation
 						is_deposit_type = d_virtual_power_medium	# Tranformation situation
 						is_deposit_type = d_virtual_power_small		# Tranformation situation
@@ -7085,7 +7086,7 @@ country_event = {
 			limit = {
 				has_ascension_perk = ap_become_the_crisis
 			}
-			add_resource = { menace = 100 }
+			complete_crisis_objective = crisobj_destroy_worlds
 		}
 	}
 
