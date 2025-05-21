@@ -218,6 +218,19 @@ event = {
 	}
 }
 
+# Pops Similar Sub-Species merge on Montly Pulse
+event = {
+	id = assimilation.150
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_playable_country = {
+			merge_species = yes
+		}
+	}
+}
+
 # Cyborg Assimilation - Driven Assimilator or Regular Empire
 planet_event = {
 	id = assimilation.200
@@ -336,7 +349,7 @@ planet_event = {
 		owner = { #Only doing it once since assimilating more than 100 pops a month is hard
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 3 }
+				complete_crisis_objective = crisobj_purge_pops
 			}
 		}
 
@@ -463,7 +476,7 @@ planet_event = {
 		owner = { #Only doing it once since assimilating more than 100 pops a month is hard
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 3 }
+				complete_crisis_objective = crisobj_purge_pops
 			}
 		}
 
@@ -593,7 +606,7 @@ planet_event = {
 		owner = { #Only doing it once since assimilating more than 100 pops a month is hard
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 3 }
+				complete_crisis_objective = crisobj_purge_pops
 			}
 		}
 
@@ -671,7 +684,7 @@ planet_event = {
 		owner = { #Only doing it once since assimilating more than 100 pops a month is hard
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 3 }
+				complete_crisis_objective = crisobj_purge_pops
 			}
 		}
 
@@ -793,7 +806,7 @@ planet_event = {
 		owner = { #Only doing it once since assimilating more than 100 pops a month is hard
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 3 }
+				complete_crisis_objective = crisobj_purge_pops
 			}
 		}
 
@@ -919,7 +932,7 @@ planet_event = {
 		owner = { #Only doing it once since assimilating more than 100 pops a month is hard
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 3 }
+				complete_crisis_objective = crisobj_purge_pops
 			}
 		}
 
@@ -1056,7 +1069,7 @@ planet_event = {
 		owner = { #Only doing it once since assimilating more than 100 pops a month is hard
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 3 }
+				complete_crisis_objective = crisobj_purge_pops
 			}
 		}
 
