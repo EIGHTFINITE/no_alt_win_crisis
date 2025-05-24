@@ -189,10 +189,6 @@ country_event = {
 
 	immediate = {
 		remove_modifier = gal_custodian
-		if = {
-			limit = { has_federation = yes }
-			leave_alliance = { override_requirements = yes }
-		}
 		set_galactic_emperor = yes
 		save_global_event_target_as = gal_emperor
 		if = {
@@ -469,19 +465,6 @@ country_event = {
 
 	option = {
 		name = emperor.5.a
-		tooltip = {
-			leave_alliance = { override_requirements = yes }
-		}
-	}
-	after = {
-		hidden_effect = {
-			if = {
-				limit = {
-					exists = federation #last empire to leave is no longer in a federation
-				}
-				leave_alliance = { override_requirements = yes }
-			}
-		}
 	}
 }
 
