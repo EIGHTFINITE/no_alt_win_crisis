@@ -349,7 +349,19 @@ planet_event = {
 		owner = { #Only doing it once since assimilating more than 100 pops a month is hard
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 3 }
+				complete_crisis_objective = crisobj_purge_pops
+			}
+			assimilate_armies = {
+				SOURCE = event_target:old_species
+				TARGET = event_target:target_species
+			}
+			assimilate_colony_ships = {
+				SOURCE = event_target:old_species
+				TARGET = event_target:target_species
+			}
+			assimilate_leaders = {
+				SOURCE = event_target:old_species
+				TARGET = event_target:target_species
 			}
 		}
 
@@ -476,7 +488,19 @@ planet_event = {
 		owner = { #Only doing it once since assimilating more than 100 pops a month is hard
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 3 }
+				complete_crisis_objective = crisobj_purge_pops
+			}
+			assimilate_armies = {
+				SOURCE = event_target:old_species
+				TARGET = event_target:target_species
+			}
+			assimilate_colony_ships = {
+				SOURCE = event_target:old_species
+				TARGET = event_target:target_species
+			}
+			assimilate_leaders = {
+				SOURCE = event_target:old_species
+				TARGET = event_target:target_species
 			}
 		}
 
@@ -554,6 +578,7 @@ planet_event = {
 								remove_trait = trait_self_modified
 								remove_trait = trait_latent_psionic
 								remove_trait = trait_cybernetic
+								remove_trait = trait_limited_cybernetic
 								inline_script = {
 									script = traits/remove_all_cybernetic_traits
 								}
@@ -606,7 +631,19 @@ planet_event = {
 		owner = { #Only doing it once since assimilating more than 100 pops a month is hard
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 3 }
+				complete_crisis_objective = crisobj_purge_pops
+			}
+			assimilate_armies = {
+				SOURCE = event_target:old_species
+				TARGET = event_target:target_species
+			}
+			assimilate_colony_ships = {
+				SOURCE = event_target:old_species
+				TARGET = event_target:target_species
+			}
+			assimilate_leaders = {
+				SOURCE = event_target:old_species
+				TARGET = event_target:target_species
 			}
 		}
 
@@ -684,7 +721,19 @@ planet_event = {
 		owner = { #Only doing it once since assimilating more than 100 pops a month is hard
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 3 }
+				complete_crisis_objective = crisobj_purge_pops
+			}
+			assimilate_armies = {
+				SOURCE = event_target:old_species
+				TARGET = event_target:target_species
+			}
+			assimilate_colony_ships = {
+				SOURCE = event_target:old_species
+				TARGET = event_target:target_species
+			}
+			assimilate_leaders = {
+				SOURCE = event_target:old_species
+				TARGET = event_target:target_species
 			}
 		}
 
@@ -806,7 +855,19 @@ planet_event = {
 		owner = { #Only doing it once since assimilating more than 100 pops a month is hard
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 3 }
+				complete_crisis_objective = crisobj_purge_pops
+			}
+			assimilate_armies = {
+				SOURCE = event_target:old_species
+				TARGET = event_target:target_species
+			}
+			assimilate_colony_ships = {
+				SOURCE = event_target:old_species
+				TARGET = event_target:target_species
+			}
+			assimilate_leaders = {
+				SOURCE = event_target:old_species
+				TARGET = event_target:target_species
 			}
 		}
 
@@ -932,7 +993,19 @@ planet_event = {
 		owner = { #Only doing it once since assimilating more than 100 pops a month is hard
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 3 }
+				complete_crisis_objective = crisobj_purge_pops
+			}
+			assimilate_armies = {
+				SOURCE = event_target:old_species
+				TARGET = event_target:target_species
+			}
+			assimilate_colony_ships = {
+				SOURCE = event_target:old_species
+				TARGET = event_target:target_species
+			}
+			assimilate_leaders = {
+				SOURCE = event_target:old_species
+				TARGET = event_target:target_species
 			}
 		}
 
@@ -1069,7 +1142,19 @@ planet_event = {
 		owner = { #Only doing it once since assimilating more than 100 pops a month is hard
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 3 }
+				complete_crisis_objective = crisobj_purge_pops
+			}
+			assimilate_armies = {
+				SOURCE = event_target:old_species
+				TARGET = event_target:target_species
+			}
+			assimilate_colony_ships = {
+				SOURCE = event_target:old_species
+				TARGET = event_target:target_species
+			}
+			assimilate_leaders = {
+				SOURCE = event_target:old_species
+				TARGET = event_target:target_species
 			}
 		}
 
