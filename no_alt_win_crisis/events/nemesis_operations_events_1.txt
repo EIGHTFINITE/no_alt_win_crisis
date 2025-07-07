@@ -692,7 +692,7 @@ country_event = {
 		owner = {
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 10 }
+				complete_crisis_objective = crisobj_perform_upsetting_operations
 			}
 		}
 	}
@@ -1340,7 +1340,7 @@ country_event = {
 		owner = {
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 10 }
+				complete_crisis_objective = crisobj_perform_upsetting_operations
 			}
 		}
 	}
@@ -1361,7 +1361,7 @@ country_event = {
 		owner = {
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 10 }
+				complete_crisis_objective = crisobj_perform_upsetting_operations
 			}
 		}
 	}
@@ -1406,7 +1406,7 @@ country_event = {
 		owner = {
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 10 }
+				complete_crisis_objective = crisobj_perform_upsetting_operations
 			}
 		}
 	}
@@ -1456,7 +1456,7 @@ country_event = {
 		owner = {
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 10 }
+				complete_crisis_objective = crisobj_perform_upsetting_operations
 			}
 		}
 	}
@@ -2189,7 +2189,7 @@ country_event = {
 		owner = {
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 10 }
+				complete_crisis_objective = crisobj_perform_upsetting_operations
 			}
 		}
 	}
@@ -2898,7 +2898,7 @@ country_event = {
 		from.owner = {
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				add_resource = { menace = 10 }
+				complete_crisis_objective = crisobj_perform_upsetting_operations
 			}
 		}
 	}

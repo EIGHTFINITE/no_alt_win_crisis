@@ -3207,7 +3207,9 @@ fleet_event = {
 	option = {
 		name = INTENSIFIES
 		leader = {
-			add_trait = leader_trait_traumatized
+			add_trait = {
+				trait = leader_trait_traumatized
+			}
 		}
 		owner = {
 			add_monthly_resource_mult = {
@@ -7014,7 +7016,7 @@ country_event = {
 			limit = {
 				has_ascension_perk = ap_cosmogenesis
 			}
-			add_resource = { advanced_logic = 1000 }
+			complete_crisis_objective = crisobj_research_thesis
 		}
 	}
 
@@ -7267,7 +7269,7 @@ country_event = {
 			limit = {
 				has_ascension_perk = ap_cosmogenesis
 			}
-			add_resource = { advanced_logic = 1000 }
+			complete_crisis_objective = crisobj_research_thesis
 		}
 	}
 
@@ -7414,7 +7416,9 @@ country_event = {
 			add_or_level_up_veteran_trait_effect = {
 				TRAIT = leader_trait_maniacal
 			}
-			add_trait = leader_trait_substance_abuser
+			add_trait = {
+				trait = leader_trait_substance_abuser
+			}
 			add_experience = 200
 		}
 	}
@@ -8120,7 +8124,9 @@ fleet_event = {
 						has_trait = leader_trait_meticulous_2
 					}
 				}
-				add_trait = leader_trait_meticulous
+				add_trait = {
+					trait = leader_trait_meticulous
+				}
 			}
 		}
 		allow = {
@@ -8139,7 +8145,9 @@ fleet_event = {
 		leader = {
 			if = {
 				limit = { NOT = { has_trait = leader_trait_percussive_maintainer } }
-				add_trait = leader_trait_percussive_maintainer
+				add_trait = {
+					trait = leader_trait_percussive_maintainer
+				}
 			}
 		}
 		custom_tooltip = percussive_maintainer_tooltip
@@ -10198,7 +10206,9 @@ fleet_event = {
 		name = site_setback
 		fromfrom = { add_stage_clues = -1 }
 		leader = {
-			add_trait = leader_trait_paranoid
+			add_trait = {
+				trait = leader_trait_paranoid
+			}
 		}
 	}
 
@@ -10210,7 +10220,9 @@ fleet_event = {
 			give_evolutionary_predator_situation_progress_and_dna = { AMOUNT = small }
 		}
 		leader = {
-			add_trait = leader_trait_paranoid
+			add_trait = {
+				trait = leader_trait_paranoid
+			}
 		}
 	}
 }

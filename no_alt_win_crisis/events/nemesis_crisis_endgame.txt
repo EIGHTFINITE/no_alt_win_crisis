@@ -279,11 +279,35 @@ country_event = {
 				}
 			}
 		}
+		add_threat = { who = root amount = 1000 }
 		every_playable_country = {
 			limit = {
 				NOT = { is_same_value = root }
 			}
 			establish_communications_no_message = root
+			if = {
+				limit = {
+					has_opinion_modifier = {
+						who = root
+						modifier = opinion_destroying_systems
+					}
+				}
+				remove_opinion_modifier = {
+					who = root
+					modifier = opinion_destroying_systems
+				}
+			}
+			add_opinion_modifier = {
+				who = root
+				modifier = opinion_destroying_galaxy
+			}
+		}
+		every_country = {
+			limit = { is_fallen_empire = yes }
+			add_opinion_modifier = {
+				who = root
+				modifier = opinion_destroying_galaxy
+			}
 		}
 		every_playable_country = {
 			limit = {
@@ -442,6 +466,10 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
+		add_victory_score = {
+			source = destroyed_galaxy_score
+			score = 500000
+		}
 		hidden_effect = {
 			country_event = { id = timeline.34 } # Milestone Destroyed Galaxy
 		}
@@ -452,131 +480,54 @@ country_event = {
 		custom_tooltip = crisis.6050.a.tooltip
 		hidden_effect = {
 			set_country_flag = big_red_button_achievement
-			every_playable_country = {
-				limit = { is_ai = no }
-				country_event = { id = crisis.6052 } # win delay to get cheevo
-			}
-			every_system = {
-				random_list = {
-					92 = {}
-					8 = {
-						if = {
-							limit = { NOT = { exists = event_target:shroud_country } }
-							create_country = {
-								name = "NAME_Creatures_of_the_Shroud"
-								type = shroud_spirits
-								flag = {
-									icon = {
-										category = "special"
-										file = "the_shroud.dds"
-									}
-									background= {
-										category = "backgrounds"
-										file = "00_solid.dds"
-									}
-									colors = {
-										"dark_purple"
-										"black"
-										"null"
-										"null"
-									}
-								}
-							}
-							last_created_country = {
-								save_global_event_target_as = shroud_country
-							}
-						}
-						event_target:shroud_country = {
-							add_modifier = {
-								modifier = supercharged_shroud_country
-								years = 3
-							}
-						}
-						create_fleet = {
-							name = "NAME_Psionic_Entity"
-							settings = {
-								spawn_debris = no
-								is_boss = yes
-							}
-							effect = {
-								set_owner = event_target:shroud_country
-								set_fleet_flag = crisis_shroud_entity
-								create_ship = {
-									name = "NAME_Psionic_Entity"
-									design = "NAME_Corrupted_Avatar"
-								}
-								set_location = {
-									target = prev.star
-									distance = 100
-									angle = random
-								}
-								set_fleet_stance = aggressive
-								set_aggro_range_measure_from = return_point
-								set_aggro_range = 2000
-							}
-						}
-						star = {
-							create_ambient_object = {
-								type = "psi_storm_1"
-								location = this
-							}
-							last_created_ambient_object = {
-								set_ambient_object_flag = psi_storm_object
-								set_location = {
-									target = prev
-									distance = 0
-									angle = random
-								}
-							}
-						}
-					}
-				}
-			}
-			every_playable_country = {
-				establish_communications_no_message = event_target:shroud_country
-			}
+			country_event = { id = crisis.6052 days = 1 } # win delay to get cheevo
 		}
+		tooltip = { win = yes }
 	}
 }
 
 # Game Over
 country_event = {
 	id = crisis.6051
-	hide_window = yes
+	title = "crisis.6051.name"
+	desc = "crisis.6051.desc"
+	picture = GFX_evt_supernova
+	show_sound = event_default
 
 	is_triggered_only = yes
+
+	option = {
+		name = crisis.6051.a
+	}
 }
 
 # Crisis Wins
 country_event = {
 	id = crisis.6052
-	title = "crisis.7260.name"
-	desc = "crisis.7260.desc.both"
-	picture = GFX_evt_astral_scar
-	show_sound = event_worrying_signal
+	hide_window = yes
 
 	is_triggered_only = yes
 
-	option = { #Non-Crisis option
-		name = crisis.7260.a
-		trigger = {
-			NOT = { has_country_flag = big_red_button_achievement }
+	immediate = {
+		every_playable_country = {
+			limit = {
+				is_ai = no
+				NOT = { is_same_value = root }
+			}
+			country_event = { id = crisis.6051 }
 		}
-		add_modifier = {
-			modifier = cosmogenesis_shroud_tear
-			years = 7
+		set_update_modifiers_batch = begin
+		every_system = { destroy_star_system = yes }
+		set_update_modifiers_batch = end
+		every_country = {
+			limit = {
+				NOT = {
+					is_country_type = default
+				}
+			}
+			destroy_country = yes
 		}
-	}
-
-	option = { #Crisis option
-		name = crisis.7260.c
-		trigger = {
-			has_country_flag = big_red_button_achievement
-		}
-		add_modifier = {
-			modifier = cosmogenesis_shroud_tear
-			years = 7.3
-		}
+		win = yes
 	}
 }
 
@@ -992,7 +943,6 @@ country_event = {
 						}
 						effect = {
 							set_owner = event_target:shroud_country
-							set_fleet_flag = crisis_shroud_entity
 							create_ship = {
 								name = "NAME_Psionic_Entity"
 								design = "NAME_Corrupted_Avatar"
@@ -1005,20 +955,6 @@ country_event = {
 							set_fleet_stance = aggressive
 							set_aggro_range_measure_from = return_point
 							set_aggro_range = 2000
-						}
-					}
-					star = {
-						create_ambient_object = {
-							type = "psi_storm_1"
-							location = this
-						}
-						last_created_ambient_object = {
-							set_ambient_object_flag = psi_storm_object
-							set_location = {
-								target = prev
-								distance = 0
-								angle = random
-							}
 						}
 					}
 				}
