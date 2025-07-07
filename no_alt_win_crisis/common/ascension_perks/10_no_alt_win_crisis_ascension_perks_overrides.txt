@@ -337,7 +337,6 @@ ap_behemoths = {
 		NOR = {
 			has_ascension_perk = ap_behemoths
 			has_origin = origin_slavers # No crisis for MSI
-			is_wilderness_empire = yes
 		}
 	}
 
