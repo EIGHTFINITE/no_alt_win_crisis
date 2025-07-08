@@ -49,7 +49,6 @@ cosmo_crisis_destroyer = {
 
 	potential_country = {
 		has_technology = tech_cosmogenesis_escort
-		country_uses_bio_ships = no
 	}
 
 	class = shipclass_military
@@ -150,7 +149,6 @@ cosmo_crisis_battlecruiser = {
 
 	potential_country = {
 		has_technology = tech_cosmogenesis_battlecruiser
-		country_uses_bio_ships = no
 	}
 
 	available_to_everyone = yes

@@ -47,7 +47,6 @@ tech_cosmogenesis_escort = {
 
 	potential = {
 		has_machine_age_dlc = yes
-        country_uses_bio_ships = no
 	}
 
 	prereqfor_desc = {
@@ -70,7 +69,6 @@ tech_cosmogenesis_battlecruiser = {
 
 	potential = {
 		has_machine_age_dlc = yes
-        country_uses_bio_ships = no
 	}
 
 	prereqfor_desc = {
@@ -93,7 +91,6 @@ tech_cosmogenesis_FE_titan = {
 
 	potential = {
 		has_machine_age_dlc = yes
-        country_uses_bio_ships = no
 	}
 
 	prereqfor_desc = {

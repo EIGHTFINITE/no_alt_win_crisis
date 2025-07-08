@@ -256,6 +256,7 @@ crisis_cosmogenesis_level_2 = {
 	on_unlock = {
 		add_cosmogenesis_level_2_perks = yes
 		hidden_effect = {
+			add_research_option = tech_cosmogenesis_escort
 			owner = {
 				country_event = { id = crisis.7105 }
 			}
@@ -287,6 +288,7 @@ crisis_cosmogenesis_level_3 = {
 	on_unlock = {
 		add_cosmogenesis_level_3_perks = yes
 		hidden_effect = {
+			add_research_option = tech_cosmogenesis_battlecruiser
 			owner = {
 				country_event = { id = crisis.7110 }
 			}
@@ -318,6 +320,7 @@ crisis_cosmogenesis_level_4 = {
 	on_unlock = {
 		add_cosmogenesis_level_4_perks = yes
 		hidden_effect = {
+			add_research_option = tech_cosmogenesis_FE_titan
 			owner = {
 				country_event = { id = crisis.7115 }
 				set_variable = {
