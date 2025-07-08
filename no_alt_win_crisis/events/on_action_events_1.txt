@@ -4513,6 +4513,10 @@ country_event = {
 
 	immediate = {
 		event_target:conquered_primitive_world = {
+			set_timed_planet_flag = {
+				flag = ignore_ai_building_limitations
+				days = 1
+			}
 			# Add appropriate capital
 			if = {
 				limit = {
@@ -8071,6 +8075,10 @@ planet_event = {
 	}
 
 	immediate = {
+		set_timed_planet_flag = {
+			flag = ignore_ai_building_limitations
+			days = 1
+		}
 		if = {
 			limit = {
 				planet_is_ring_world_equivalent = yes
