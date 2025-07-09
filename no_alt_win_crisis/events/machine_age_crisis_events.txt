@@ -10886,93 +10886,31 @@ situation_event = { # Doomclock finished
 
 	immediate = {
 		every_playable_country = {
-			country_event = { id = crisis.8505 }
-			country_event = { id = crisis.8506 days = 13 }
+			country_event = { id = crisis.8515 days = 7 }
+		}
+		owner = {
+			synth_queen_debuff = yes
+		}
+		every_playable_country = {
+			limit = {
+				is_ai = yes
+			}
+			add_modifier = {
+				modifier = queenslayer
+				days = -1
+			}
 		}
 	}
 }
 
 country_event = { #Game over Transmission
 	id = crisis.8505
-	title = TRANSMISSION
-	diplomatic_title = BLANK_STRING
-	desc = "crisis.8505.desc"
-	show_sound = crisis_8505_desc
-	event_window_type = crisis_leader_conversation
-	situation = event_target:synth_queen_doomclock_situation
-
-	diplomatic = yes
-
-	picture_event_data = {
-		portrait = event_target:cetana_face
-		room = event_target:synth_queen_country_global.owner
-	}
-	picture = GFX_crisis_conversation_bg_synth_queen
-
-	is_triggered_only = yes
-
-	immediate = {
-		get_cetana_face = yes
-		every_owned_planet = {
-			limit = {
-				is_capital = no
-			}
-			every_owned_pop_group = {
-				kill_all_pop = yes
-			}
-		}
-	}
-
-	option = { # Yes
-		name = crisis.8505.a
-		custom_tooltip = crisis.8505.a.tt
-	}
-
-	after = {
-		hidden_effect = {
-			if = {
-				limit = {
-					is_ai = no
-				}
-				destroy_country = yes
-			}
-		}
-	}
+	hide_window = yes
 }
 
 country_event = { # Doomclock finished
 	id = crisis.8506
 	hide_window = yes
-
-	is_triggered_only = yes
-
-	immediate = {
-		if = {
-			limit = {
-				NOT = { has_global_flag = synth_queen_victorious }
-			}
-			set_global_flag = synth_queen_victorious
-			event_target:synth_queen_country_global = {
-				win = yes
-			}
-		}
-		every_country = {
-			limit = {
-				is_ai = yes
-				is_synth_queen_country_type = no
-			}
-			destroy_country = yes
-		}
-		every_owned_planet = {
-			destroy_colony = yes
-		}
-		if = {
-			limit = {
-				is_ai = no
-			}
-			destroy_country = yes
-		}
-	}
 }
 
 situation_event = { # Doomclock starts war
