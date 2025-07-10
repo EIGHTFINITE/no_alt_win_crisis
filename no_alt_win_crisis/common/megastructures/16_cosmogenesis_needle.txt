@@ -100,6 +100,13 @@ cosmogenesis_needle = {
 			add_research_option = tech_curator_lab
 			add_research_option = tech_archeology_lab
 			add_research_option = tech_archeology_lab_ancrel
+			add_research_option = tech_mining_drone_weapon_1
+			add_research_option = tech_space_cloud_weapon_1
+			add_research_option = null_void_beam
+			add_research_option = tech_amoeba_strike_craft_1
+			add_research_option = tech_space_whale_weapon_1
+			add_research_option = tech_crystal_armor_1
+			add_research_option = tech_crystal_armor_2
 		}
 	}
 }
