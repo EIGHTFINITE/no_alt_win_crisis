@@ -64,7 +64,7 @@ tech_destroyers = {
 	}
 
 	modifier = {
-		command_limit_add = 10
+		command_limit_add = 20
 	}
 
 	weight_modifier = {
@@ -130,7 +130,7 @@ tech_cruisers = {
 	}
 
 	modifier = {
-		command_limit_add = 10
+		command_limit_add = 20
 	}
 
 	weight_modifier = {
@@ -194,7 +194,7 @@ tech_battleships = {
 	}
 
 	modifier = {
-		command_limit_add = 10
+		command_limit_add = 20
 	}
 
 	weight_modifier = {
