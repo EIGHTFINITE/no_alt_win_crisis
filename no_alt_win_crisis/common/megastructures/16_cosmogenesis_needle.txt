@@ -99,6 +99,7 @@ cosmogenesis_needle = {
 			add_research_option = tech_nanite_transmutation
 			add_research_option = tech_curator_lab
 			add_research_option = tech_archeology_lab_ancrel
+			add_research_option = tech_containment_vessel
 			add_research_option = tech_mining_drone_weapon_1
 			add_research_option = tech_space_cloud_weapon_1
 			add_research_option = null_void_beam
@@ -106,6 +107,11 @@ cosmogenesis_needle = {
 			add_research_option = tech_space_whale_weapon_1
 			add_research_option = tech_crystal_armor_1
 			add_research_option = tech_crystal_armor_2
+			add_research_option = tech_scourge_missile_1
+			add_research_option = tech_swarm_strike_craft_1
+			add_research_option = tech_extradimensional_weapon_1
+			add_research_option = tech_synth_queen_knowledge
+			add_research_option = tech_nanite_repair_system_synth_queen
 		}
 	}
 }
