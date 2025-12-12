@@ -535,7 +535,7 @@ spriteTypes = {
 		name = "GFX_nemesis_path_progressbar"
 		color = { 1.0 1.0 1.0 }
 		colorTwo = { 1.0 1.0 1.0 }
-		textureFile1 = "gfx/interface/crisis/Crisis_progressBar_Filled.dds"
+		textureFile1 = "gfx/interface/crisis/Crisis_progressBar_BG.dds"
 		textureFile2 = "gfx/interface/crisis/Crisis_progressBar_BG.dds"
 		size = { x = 10 y = 432 }
 		effectFile = "gfx/FX/progress.shader"
@@ -546,7 +546,7 @@ spriteTypes = {
 		name = "GFX_cosmogenesis_path_progressbar"
 		color = { 1.0 1.0 1.0 }
 		colorTwo = { 1.0 1.0 1.0 }
-		textureFile1 = "gfx/interface/crisis/cosmogenesis_crisis_progress_bar.dds"
+		textureFile1 = "gfx/interface/crisis/Crisis_progressBar_BG.dds"
 		textureFile2 = "gfx/interface/crisis/Crisis_progressBar_BG.dds"
 		size = { x = 10 y = 432 }
 		effectFile = "gfx/FX/progress.shader"
@@ -557,7 +557,7 @@ spriteTypes = {
 		name = "GFX_behemoth_path_progressbar"
 		color = { 1.0 1.0 1.0 }
 		colorTwo = { 1.0 1.0 1.0 }
-		textureFile1 = "gfx/interface/crisis/behemoth_crisis_progress_bar.dds"
+		textureFile1 = "gfx/interface/crisis/Crisis_progressBar_BG.dds"
 		textureFile2 = "gfx/interface/crisis/Crisis_progressBar_BG.dds"
 		size = { x = 10 y = 432 }
 		effectFile = "gfx/FX/progress.shader"
@@ -568,7 +568,7 @@ spriteTypes = {
 		name = "GFX_hyperthermia_path_progressbar"
 		color = { 1.0 1.0 1.0 }
 		colorTwo = { 1.0 1.0 1.0 }
-		textureFile1 = "gfx/interface/crisis/hyperthermia_crisis_progress_bar.dds"
+		textureFile1 = "gfx/interface/crisis/Crisis_progressBar_BG.dds"
 		textureFile2 = "gfx/interface/crisis/Crisis_progressBar_BG.dds"
 		size = { x = 10 y = 432 }
 		effectFile = "gfx/FX/progress.shader"
