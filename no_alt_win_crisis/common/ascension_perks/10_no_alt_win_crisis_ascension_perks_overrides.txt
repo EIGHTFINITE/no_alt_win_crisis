@@ -73,7 +73,7 @@ ap_defender_of_the_galaxy = {
 	potential = {
 		NOR = {
 			has_ascension_perk = ap_defender_of_the_galaxy
-			is_player_crisis = yes
+			has_country_flag = is_player_crisis
 			has_origin = origin_endbringers # Endbringers are technically a crisis as well
 		}
 	}
@@ -137,8 +137,8 @@ ap_become_the_crisis = {
 	potential = {
 		has_nemesis = yes
 		NOR = {
-			is_player_crisis = yes
-			has_ascension_perk = ap_defender_of_the_galaxy
+			has_ascension_perk = ap_become_the_crisis
+			has_country_flag = is_player_crisis
 			has_origin = origin_slavers
 			has_origin = origin_endbringers # No additional crisis for Endbringers
 		}
@@ -150,13 +150,16 @@ ap_become_the_crisis = {
 			fail_text = "requires_independence"
 			is_subject = no
 		}
-		custom_tooltip = {
-			fail_text = "must_not_be_custodian"
-			is_galactic_custodian = no
-		}
-		custom_tooltip = {
-			fail_text = "must_not_be_emperor"
-			is_galactic_emperor = no
+		OR = {
+			NOR = {
+				has_ascension_perk = ap_cosmogenesis
+				has_ascension_perk = ap_behemoths
+				has_ascension_perk = ap_galactic_hyperthermia
+			}
+			AND = {
+				has_ascension_perk = ap_behemoths
+				has_crisis_level = crisis_behemoth_level_5
+			}
 		}
 		custom_tooltip = {
 			fail_text = "must_finish_shroud_forged_situation"
@@ -201,7 +204,16 @@ ap_become_the_crisis = {
 			set_ai_personality = became_the_crisis
 			country_event = { id = timeline.69 } # Timeline Become the crisis
 		}
-		activate_crisis_progression = nemesis_path
+		if = {
+			limit = {
+				NOR = {
+					has_ascension_perk = ap_cosmogenesis
+					has_ascension_perk = ap_behemoths
+					has_ascension_perk = ap_galactic_hyperthermia
+				}
+			}
+			activate_crisis_progression = nemesis_path
+		}
 	}
 
 	ai_weight = {
@@ -258,8 +270,8 @@ ap_cosmogenesis = {
 	potential = {
 		has_machine_age_dlc = yes
 		NOR = {
-			is_player_crisis = yes
-			has_ascension_perk = ap_defender_of_the_galaxy
+			has_ascension_perk = ap_cosmogenesis
+			has_country_flag = is_player_crisis
 			has_origin = origin_slavers # No crisis for MSI
 			has_origin = origin_endbringers # No additional crisis for Endbringers
 		}
@@ -275,13 +287,16 @@ ap_cosmogenesis = {
 			fail_text = "requires_independence"
 			is_subject = no
 		}
-		custom_tooltip = {
-			fail_text = "must_not_be_custodian"
-			is_galactic_custodian = no
-		}
-		custom_tooltip = {
-			fail_text = "must_not_be_emperor"
-			is_galactic_emperor = no
+		OR = {
+			NOR = {
+				has_ascension_perk = ap_become_the_crisis
+				has_ascension_perk = ap_behemoths
+				has_ascension_perk = ap_galactic_hyperthermia
+			}
+			AND = {
+				has_ascension_perk = ap_become_the_crisis
+				has_crisis_level = crisis_level_5
+			}
 		}
 	}
 
@@ -292,7 +307,16 @@ ap_cosmogenesis = {
 				value = 0
 			}
 		}
-		activate_crisis_progression = cosmogenesis_path
+		if = {
+			limit = {
+				NOR = {
+					has_ascension_perk = ap_become_the_crisis
+					has_ascension_perk = ap_behemoths
+					has_ascension_perk = ap_galactic_hyperthermia
+				}
+			}
+			activate_crisis_progression = cosmogenesis_path
+		}
 	}
 
 	ai_weight = {
@@ -348,8 +372,8 @@ ap_behemoths = {
 	potential = {
 		has_biogenesis_dlc = yes
 		NOR = {
-			is_player_crisis = yes
-			has_ascension_perk = ap_defender_of_the_galaxy
+			has_ascension_perk = ap_behemoths
+			has_country_flag = is_player_crisis
 			has_origin = origin_slavers # No crisis for MSI
 			has_origin = origin_endbringers # No additional crisis for Endbringers
 		}
@@ -364,13 +388,16 @@ ap_behemoths = {
 			fail_text = "requires_independence"
 			is_subject = no
 		}
-		custom_tooltip = {
-			fail_text = "must_not_be_custodian"
-			is_galactic_custodian = no
-		}
-		custom_tooltip = {
-			fail_text = "must_not_be_emperor"
-			is_galactic_emperor = no
+		OR = {
+			NOR = {
+				has_ascension_perk = ap_become_the_crisis
+				has_ascension_perk = ap_cosmogenesis
+				has_ascension_perk = ap_galactic_hyperthermia
+			}
+			AND = {
+				has_ascension_perk = ap_galactic_hyperthermia
+				has_crisis_level = crisis_hyperthermia_level_5
+			}
 		}
 		custom_tooltip = {
 			fail_text = "must_use_bioships"
@@ -381,7 +408,16 @@ ap_behemoths = {
 	}
 
 	on_enabled = {
-		activate_crisis_progression = behemoth_path
+		if = {
+			limit = {
+				NOR = {
+					has_ascension_perk = ap_become_the_crisis
+					has_ascension_perk = ap_cosmogenesis
+					has_ascension_perk = ap_galactic_hyperthermia
+				}
+			}
+			activate_crisis_progression = behemoth_path
+		}
 	}
 
 	ai_weight = {
@@ -442,8 +478,8 @@ ap_galactic_hyperthermia = {
 	potential = {
 		has_infernals = yes
 		NOR = {
-			is_player_crisis = yes
-			has_ascension_perk = ap_defender_of_the_galaxy
+			has_ascension_perk = ap_galactic_hyperthermia
+			has_country_flag = is_player_crisis
 			has_origin = origin_slavers
 			has_origin = origin_endbringers
 			is_wilderness_empire = yes
@@ -462,13 +498,16 @@ ap_galactic_hyperthermia = {
 			fail_text = "requires_independence"
 			is_subject = no
 		}
-		custom_tooltip = {
-			fail_text = "must_not_be_custodian"
-			is_galactic_custodian = no
-		}
-		custom_tooltip = {
-			fail_text = "must_not_be_emperor"
-			is_galactic_emperor = no
+		OR = {
+			NOR = {
+				has_ascension_perk = ap_become_the_crisis
+				has_ascension_perk = ap_cosmogenesis
+				has_ascension_perk = ap_behemoths
+			}
+			AND = {
+				has_ascension_perk = ap_cosmogenesis
+				has_crisis_level = crisis_cosmogenesis_level_5
+			}
 		}
 		NOR = {
 			is_xenophile = yes
@@ -482,7 +521,16 @@ ap_galactic_hyperthermia = {
 			set_ai_personality = hyperthermia_empire
 			country_event = { id = infernals.1000 }
 		}
-		activate_crisis_progression = hyperthermia_path
+		if = {
+			limit = {
+				NOR = {
+					has_ascension_perk = ap_become_the_crisis
+					has_ascension_perk = ap_cosmogenesis
+					has_ascension_perk = ap_behemoths
+				}
+			}
+			activate_crisis_progression = hyperthermia_path
+		}
 	}
 
 	ai_weight = {
