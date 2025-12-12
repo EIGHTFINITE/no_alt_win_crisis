@@ -1062,7 +1062,7 @@ country_event = {
 		owner = {
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				complete_crisis_objective = crisobj_perform_upsetting_operations
+				add_resource = { menace = 10 }
 			}
 		}
 	}
@@ -1271,7 +1271,7 @@ country_event = {
 		owner = {
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				complete_crisis_objective = crisobj_perform_upsetting_operations
+				add_resource = { menace = 10 }
 			}
 		}
 	}
@@ -2070,7 +2070,7 @@ espionage_operation_event = {
 		owner = {
 			if = {
 				limit = { has_ascension_perk = ap_become_the_crisis }
-				complete_crisis_objective = crisobj_perform_upsetting_operations
+				add_resource = { menace = 10 }
 			}
 		}
 	}

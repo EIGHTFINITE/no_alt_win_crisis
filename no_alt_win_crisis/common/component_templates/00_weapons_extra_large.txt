@@ -623,7 +623,7 @@ weapon_component_template = {
 					days = 7 # If this changes, adjust the tt
 				}
 			}
-			from.owner = { complete_crisis_objective = crisobj_lens_beam_impact }
+			from.owner = { add_resource = { entropy_crystals = 1 } }
 		}
 	}
 

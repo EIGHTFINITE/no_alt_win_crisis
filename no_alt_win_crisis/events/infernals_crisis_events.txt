@@ -1198,7 +1198,7 @@ country_event = {
                 limit = {
                     check_variable = { which = hyperthermia_red_var value > 0 }
                 }
-                complete_crisis_objective = crisobj_own_red_stars
+                add_resource = { entropy_crystals = 3 }
             }
         }
 
@@ -1212,7 +1212,7 @@ country_event = {
         }
         while = {
             count = hyperthermia_starbase_var
-            complete_crisis_objective = crisobj_entropy_starbase 
+            add_resource = { entropy_crystals = 10 }
         }
 
     # Situation Progress
@@ -1312,7 +1312,7 @@ planet_event = {
                 has_fleet_order = terraform_fleet_order
             }
             owner = {
-                complete_crisis_objective = crisobj_create_red_stars
+                add_resource = { entropy_crystals = 10 }
                 save_event_target_as = fire_crisis
                 # Blazing Domain achievement
                 change_variable = { which = hyperthermia_giant_var value = 1 }
@@ -1436,7 +1436,7 @@ planet_event = {
 
     immediate = {
         from = {
-            complete_crisis_objective = crisobj_planet_firestorm
+            add_resource = { entropy_crystals = 100 }
         }
         set_timed_planet_flag = { flag = crisobj_planet_firestorm days = 1080 }
     }
@@ -1531,7 +1531,10 @@ country_event = {
             parameters = { limit = { is_planet_class = pc_volcanic } }
             variable = hyperthermia_volcanic_var
         }
-        complete_crisis_objective = crisobj_own_volcanics
+        add_resource = {
+            advanced_logic = 15
+            mult = hyperthermia_volcanic_var
+        }
     }
 }
 
@@ -1551,7 +1554,7 @@ planet_event = {
 
     immediate = {
         from = {
-            complete_crisis_objective = crisobj_create_volcanics
+            add_resource = { entropy_crystals = 350 }
         }
     }
 }

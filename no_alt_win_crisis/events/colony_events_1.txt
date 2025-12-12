@@ -4589,7 +4589,7 @@ situation_event = {
 				}
 			}
 			owner = {
-				complete_crisis_objective = crisobj_destroy_worlds
+				add_resource = { menace = 100 }
 			}
 		}
 	}

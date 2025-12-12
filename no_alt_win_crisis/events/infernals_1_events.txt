@@ -380,7 +380,7 @@ planet_event = {
 		owner = {
 			if = {
 				limit = { has_ascension_perk = ap_galactic_hyperthermia }
-				complete_crisis_objective = crisobj_create_volcanics
+				add_resource = { entropy_crystals = 350 }
 			}
 		}
 	}
@@ -673,14 +673,14 @@ planet_event = {
 				from.owner = {
 					if = {
 						limit = { has_ascension_perk = ap_become_the_crisis }
-						complete_crisis_objective = crisobj_purge_pops
+						add_resource = { menace = 3 }
 					}
 				}
 			}
 			from.owner = {
 				if = {
 					limit = { has_ascension_perk = ap_galactic_hyperthermia }
-					complete_crisis_objective = crisobj_create_volcanics
+					add_resource = { entropy_crystals = 350 }
 				}
 			}
 		}
