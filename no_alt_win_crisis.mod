@@ -5,7 +5,6 @@ tags={
 	"Events"
 	"Fixes"
 	"Gameplay"
-	"Overhaul"
 }
-supported_version="v4.0.*"
+supported_version="v4.*.*"
 path="mod/no_alt_win_crisis"
