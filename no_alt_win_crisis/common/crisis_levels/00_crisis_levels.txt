@@ -361,6 +361,7 @@ crisis_cosmogenesis_level_5 = {
 	on_unlock = {
 		add_cosmogenesis_level_5_perks = yes
 		hidden_effect = {
+			add_research_option = tech_strike_craft_skrand
 			owner = {
 				country_event = { id = crisis.7120 }
 			}
