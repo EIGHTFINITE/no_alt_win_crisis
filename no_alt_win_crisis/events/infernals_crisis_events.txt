@@ -549,18 +549,6 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		# Kick the Crisis out of Alliances.
-		if = {
-			limit = { has_federation = yes }
-			leave_alliance = { override_requirements = yes }
-		}
-		if = {
-			limit = {
-				is_galactic_community_formed = yes
-				is_galactic_community_member = yes
-			}
-			remove_from_galactic_community = yes
-		}
 		awaken_guardians_of_the_galaxy = yes
 
 		every_playable_country = {
@@ -690,21 +678,6 @@ country_event = {
 				}
 			}
 			join_war = event_target:war_leader
-		}
-
-		# Subjects
-		every_subject = {
-			if = {
-				limit = { has_federation = yes }
-				leave_alliance = { override_requirements = yes }
-			}
-			if = {
-				limit = {
-					is_galactic_community_formed = yes
-					is_galactic_community_member = yes
-				}
-				remove_from_galactic_community = yes
-			}
 		}
 
 		# Notifications
