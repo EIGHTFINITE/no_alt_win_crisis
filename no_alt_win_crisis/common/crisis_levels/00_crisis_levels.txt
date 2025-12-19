@@ -235,7 +235,7 @@ crisis_cosmogenesis_level_1 = {
 crisis_cosmogenesis_level_2 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = advanced_logic value >= 2000 }
+		resource_stockpile_compare = { resource = advanced_logic value >= 4000 }
 		has_ascension_perk = ap_cosmogenesis
 		custom_tooltip = {
 			success_text = cosmogenesis_level_2_req_clear_tooltip
@@ -266,7 +266,7 @@ crisis_cosmogenesis_level_2 = {
 crisis_cosmogenesis_level_3 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = advanced_logic value >= 6000 }
+		resource_stockpile_compare = { resource = advanced_logic value >= 10000 }
 		has_ascension_perk = ap_cosmogenesis
 		custom_tooltip = {
 			success_text =	cosmogenesis_level_3_req_clear_tooltip
@@ -297,12 +297,16 @@ crisis_cosmogenesis_level_3 = {
 crisis_cosmogenesis_level_4 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = advanced_logic value >= 18000 }
+		resource_stockpile_compare = { resource = advanced_logic value >= 22000 }
 		has_ascension_perk = ap_cosmogenesis
 		custom_tooltip = {
 			success_text =	cosmogenesis_level_4_req_clear_tooltip
 			fail_text =	cosmogenesis_level_4_req_tooltip
 			has_technology = tech_cosmogenesis_crisis_3
+		}
+		custom_tooltip = {
+			fail_text = cosmogenesis_aborted_tt
+			NOT = { has_country_flag = cosmogenesis_aborted }
 		}
 	}
 	required_crisis_currency = 0
@@ -332,7 +336,7 @@ crisis_cosmogenesis_level_4 = {
 crisis_cosmogenesis_level_5 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = advanced_logic value >= 45000 }
+		resource_stockpile_compare = { resource = advanced_logic value >= 60000 }
 		has_ascension_perk = ap_cosmogenesis
 		custom_tooltip = {
 			success_text =	cosmogenesis_level_5_req_clear_tooltip
@@ -346,6 +350,10 @@ crisis_cosmogenesis_level_5 = {
 				which = applied_infinity_thesis
 				value >= 2
 			}
+		}
+		custom_tooltip = {
+			fail_text = cosmogenesis_aborted_tt
+			NOT = { has_country_flag = cosmogenesis_aborted }
 		}
 		is_subject = no
 	}
