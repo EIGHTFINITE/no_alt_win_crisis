@@ -204,6 +204,10 @@ ap_become_the_crisis = {
 		activate_crisis_progression = nemesis_path
 	}
 
+	modifier = {
+		refugee_attraction = -0.50
+	}
+
 	ai_weight = {
 		factor = 7.5
 		modifier = {
@@ -295,6 +299,10 @@ ap_cosmogenesis = {
 		activate_crisis_progression = cosmogenesis_path
 	}
 
+	modifier = {
+		refugee_attraction = -0.50
+	}
+
 	ai_weight = {
 		factor = 7.5
 		modifier = {
@@ -382,6 +390,10 @@ ap_behemoths = {
 
 	on_enabled = {
 		activate_crisis_progression = behemoth_path
+	}
+
+	modifier = {
+		refugee_attraction = -0.50
 	}
 
 	ai_weight = {
@@ -483,6 +495,10 @@ ap_galactic_hyperthermia = {
 			country_event = { id = infernals.1000 }
 		}
 		activate_crisis_progression = hyperthermia_path
+	}
+
+	modifier = {
+		refugee_attraction = -0.50
 	}
 
 	ai_weight = {
