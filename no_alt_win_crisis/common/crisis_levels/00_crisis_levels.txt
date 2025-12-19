@@ -243,7 +243,7 @@ crisis_cosmogenesis_level_2 = {
 			has_technology = tech_cosmogenesis_crisis_1
 		}
 	}
-	required_crisis_currency = 2000
+	required_crisis_currency = 4000
 
 	# REWARDS
 	perks = {
@@ -272,7 +272,7 @@ crisis_cosmogenesis_level_3 = {
 			has_technology = tech_cosmogenesis_crisis_2
 		}
 	}
-	required_crisis_currency = 6000
+	required_crisis_currency = 10000
 
 	# REWARDS
 	perks = {
@@ -300,8 +300,12 @@ crisis_cosmogenesis_level_4 = {
 			fail_text =	cosmogenesis_level_4_req_tooltip
 			has_technology = tech_cosmogenesis_crisis_3
 		}
+		custom_tooltip = {
+			fail_text = cosmogenesis_aborted_tt
+			NOT = { has_country_flag = cosmogenesis_aborted }
+		}
 	}
-	required_crisis_currency = 18000
+	required_crisis_currency = 22000
 
 	# REWARDS
 	perks = {
@@ -341,9 +345,13 @@ crisis_cosmogenesis_level_5 = {
 				value >= 2
 			}
 		}
+		custom_tooltip = {
+			fail_text = cosmogenesis_aborted_tt
+			NOT = { has_country_flag = cosmogenesis_aborted }
+		}
 		is_subject = no
 	}
-	required_crisis_currency = 45000
+	required_crisis_currency = 60000
 
 	# REWARDS
 	perks = {
