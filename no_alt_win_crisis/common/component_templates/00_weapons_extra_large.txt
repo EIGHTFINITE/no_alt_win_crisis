@@ -381,7 +381,7 @@ weapon_component_template = {
 	icon = "GFX_ship_part_perdition_beam"
 	icon_frame = 1
 
-	firing_arc = 10.0
+#	firing_arc = 10.0
 	use_ship_main_target = no
 
 	tags = { weapon_type_energy weapon_role_artillery t_slot }
@@ -417,14 +417,12 @@ weapon_component_template = {
 			food = @titanic_t6_upkeep_energy
 		}
 	}
-	
+
 	on_hit = {
-		hidden_effect = {
-			fleet = {
-				every_owned_ship = {
-					damage_ship = @perdition_beam_fleet_damage
-				}
-			}
+		inline_script = {
+			script = ship_components/collateral_damage
+			RANGE = @perdition_beam_collateral_range
+			DAMAGE = @perdition_beam_fleet_damage
 		}
 		custom_tooltip = "PERDITION_BEAM_FLEET_EFFECT"
 	}
@@ -456,7 +454,7 @@ weapon_component_template = {
 	icon = "GFX_ship_part_perdition_beam"
 	icon_frame = 1
 
-	firing_arc = 10.0
+#	firing_arc = 10.0
 	use_ship_main_target = no
 
 	tags = { weapon_type_energy weapon_role_artillery t_slot }
@@ -496,16 +494,14 @@ weapon_component_template = {
 			food = @titanic_t6_upkeep_energy
 		}
 	}
-	
+
 	on_hit = {
-		hidden_effect = {
-			fleet = {
-				every_owned_ship = {
-					damage_ship = @perdition_beam_fleet_damage
-				}
-			}
+		inline_script = {
+			script = ship_components/collateral_damage
+			RANGE = @ion_cannon_collateral_range
+			DAMAGE = @ion_cannon_collateral_range
 		}
-		custom_tooltip = "PERDITION_BEAM_FLEET_EFFECT"
+		custom_tooltip = "ION_CANNON_FLEET_EFFECT"
 	}
 
 	target_weights = {
@@ -537,7 +533,7 @@ weapon_component_template = {
 	icon = "GFX_ship_part_energy_lance_2"
 	icon_frame = 1
 
-	firing_arc = 25.0
+#	firing_arc = 25.0
 	use_ship_main_target = no
 
 	tags = { weapon_type_energy weapon_role_artillery t_slot }
@@ -555,14 +551,12 @@ weapon_component_template = {
 			alloys = @titanic_t6_upkeep_alloys
 		}
 	}
-	
+
 	on_hit = {
-		hidden_effect = {
-			fleet = {
-				every_owned_ship = {
-					damage_ship = @perdition_beam_fleet_damage
-				}
-			}
+		inline_script = {
+			script = ship_components/collateral_damage
+			RANGE = @perdition_beam_collateral_range
+			DAMAGE = @perdition_beam_fleet_damage
 		}
 		custom_tooltip = "PERDITION_BEAM_FLEET_EFFECT"
 	}
@@ -654,7 +648,7 @@ weapon_component_template = {
 	icon = "GFX_ship_part_energy_lens_beam"
 	icon_frame = 1
 
-	firing_arc = 10.0
+#	firing_arc = 10.0
 	use_ship_main_target = no
 
 	tags = { weapon_type_energy weapon_role_artillery x_slot }
@@ -679,6 +673,11 @@ weapon_component_template = {
 					days = 5 # If this changes, adjust the tt
 				}
 			}
+		}
+		inline_script = {
+			script = ship_components/collateral_damage
+			RANGE = @ion_cannon_collateral_range
+			DAMAGE = @ion_cannon_collateral_range
 		}
 	}
 
