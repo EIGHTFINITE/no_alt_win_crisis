@@ -147,7 +147,7 @@ planet_event = {
 	}
 
 	immediate = {
-		from.owner = { add_resource = { menace = 100 } }
+		from.owner = { add_resource = { menace = 150 } }
 		# if no other colonies, give empire destruction menace reward
 		if = {
 			limit = {
@@ -194,7 +194,7 @@ planet_event = {
 
 	immediate = {
 		from = {
-			add_resource = { menace = 150 }
+			add_resource = { menace = 100 }
 		}
 	}
 }

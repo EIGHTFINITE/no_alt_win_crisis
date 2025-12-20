@@ -7117,7 +7117,7 @@ country_event = {
 			limit = {
 				has_ascension_perk = ap_become_the_crisis
 			}
-			add_resource = { menace = 100 }
+			add_resource = { menace = 150 }
 		}
 	}
 

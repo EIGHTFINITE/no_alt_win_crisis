@@ -20,7 +20,7 @@ country_event = {
 	}
 
 	immediate = {
-		add_resource = { advanced_logic = 25 }
+		add_resource = { advanced_logic = 10 }
 	}
 }
 
@@ -61,7 +61,7 @@ event = {
 						}
 					}
 					prev = {
-						add_resource = { advanced_logic = 50 }
+						add_resource = { advanced_logic = 30 }
 					}
 				}
 			}

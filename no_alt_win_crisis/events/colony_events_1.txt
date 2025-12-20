@@ -4589,7 +4589,7 @@ situation_event = {
 				}
 			}
 			owner = {
-				add_resource = { menace = 100 }
+				add_resource = { menace = 150 }
 			}
 		}
 	}
