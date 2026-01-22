@@ -276,6 +276,10 @@ event = {
 					}
 					modifier = {
 						factor = 0
+						NOT = { allowed_crisis_type = synth_queen }
+					}
+					modifier = {
+						factor = 0
 						OR = {
 							allowed_crisis_type = prethoryn
 							allowed_crisis_type = unbidden
@@ -328,6 +332,97 @@ event = {
 					set_timed_global_flag = {
 						flag = galactic_crisis_recently_fired
 						years = 12
+					}
+				}
+
+				### Repeat Prethoryn Scourge
+				10 = {
+					modifier = {
+						factor = 3
+						allowed_crisis_type = all
+					}
+					modifier = {
+						factor = 0
+						NOT = { allowed_crisis_type = all }
+					}
+					modifier = { #anti-boring
+						factor = 2
+						OR = {
+							has_global_flag = no_war_in_heaven
+							NOT = {
+								any_country = {
+									OR = {
+										is_country_type = fallen_empire
+										is_country_type = awakened_fallen_empire
+									}
+								}
+							}
+						}
+					}
+					modifier = {
+						factor = 2
+						end_game_years_passed >= 35
+					}
+					modifier = {
+						factor = 2
+						end_game_years_passed >= 50
+					}
+					modifier = {
+						factor = 3
+						end_game_years_passed >= 70
+					}
+					modifier = {
+						factor = 3
+						end_game_years_passed >= 85
+					}
+					modifier = {
+						factor = 4
+						end_game_years_passed >= 100
+					}
+					modifier = {
+						factor = 0
+						NAND = {
+							has_global_flag = prethoryn_invasion_happened
+							has_global_flag = extradimensional_invasion_happened
+							has_global_flag = ai_invasion_happened
+						}
+					}
+					country_event = { id = crisis.10 days = 200 random = 800 }
+					set_global_flag = galactic_crisis_happened
+					set_timed_global_flag = {
+						flag = galactic_crisis_recently_fired
+						years = 12
+					}
+					remove_global_flag = prethoryn_transmission
+					remove_global_flag = prethoryn_subspace_echoes
+					remove_global_flag = prethoryn_approaching_rim
+					remove_global_flag = prethoryn_arrival
+					remove_global_flag = prethoryn_main_invasion
+					remove_global_flag = ongoing_prethoryn_invasion
+					remove_global_flag = prethoryn_invasion_defeated
+					every_system = {
+						limit = { has_star_flag = swarm_invasion_warning }
+						remove_star_flag = swarm_invasion_warning
+					}
+					every_system = {
+						limit = { has_star_flag = swarm_invasion_target_1 }
+						remove_star_flag = swarm_invasion_target_1
+					}
+					every_system = {
+						limit = { has_star_flag = swarm_invasion_target_2 }
+						remove_star_flag = swarm_invasion_target_2
+					}
+					every_system = {
+						limit = { has_star_flag = swarm_invasion_target_3 }
+						remove_star_flag = swarm_invasion_target_3
+					}
+					every_system = {
+						limit = { has_star_flag = swarm_invasion_target_4 }
+						remove_star_flag = swarm_invasion_target_4
+					}
+					every_country = {
+						limit = { is_country_type = default }
+						country_event = { id = crisis.11 }
 					}
 				}
 

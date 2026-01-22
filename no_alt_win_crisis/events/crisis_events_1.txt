@@ -48,7 +48,6 @@ country_event = {
 country_event = {
 	id = crisis.10
 	hide_window = yes
-	fire_only_once = yes
 	is_triggered_only = yes
 
 	immediate = {
@@ -87,7 +86,6 @@ country_event = {
 country_event = {
 	id = crisis.12
 	hide_window = yes
-	fire_only_once = yes
 
 	mean_time_to_happen = {
 		months = 600
@@ -263,7 +261,6 @@ country_event = {
 country_event = {
 	id = crisis.14
 	hide_window = yes
-	fire_only_once = yes
 
 	mean_time_to_happen = {
 		months = 120
@@ -354,7 +351,6 @@ country_event = {
 country_event = {
 	id = crisis.17
 	hide_window = yes
-	fire_only_once = yes
 
 	mean_time_to_happen = {
 		months = 30
@@ -365,6 +361,7 @@ country_event = {
 	}
 
 	immediate = {
+		remove_global_flag = prethoryn_transmission
 		set_crisis_sound = swarm_crisis_ambient_stage_1
 		set_crisis_stage_1 = yes
 		awaken_guardians_of_the_galaxy = yes
@@ -858,7 +855,6 @@ country_event = {
 country_event = {
 	id = crisis.19
 	hide_window = yes
-	fire_only_once = yes
 
 	is_triggered_only = yes
 
