@@ -38,36 +38,9 @@ triggered_infernals_opinion_of_infernals = {
 
 triggered_opinion_hyperthermia_empire = {
 	trigger = {
-		FROM = { has_crisis_level = crisis_hyperthermia_level_2 }
-		NOR = {
-			has_crisis_level = crisis_hyperthermia_level_1
-			is_infernal_empire = yes
-		}
-		OR = {
-			FROM = { has_crisis_level = crisis_hyperthermia_level_5 }
-			has_intel_level = {
-				who = from
-				category = government
-				level >= 2
-			}
-		}
+		always = no
 	}
 	opinion = {
-		base = -50
-		modifier = {
-			add = -50
-			FROM = {
-				has_crisis_level = crisis_hyperthermia_level_3
-				NOT = { has_country_flag = Hyperthermia_Lv4_denied }
-			}
-		}
-		modifier = {
-			add = -100
-			FROM = { has_crisis_level = crisis_hyperthermia_level_4 }
-		}
-		modifier = {
-			add = -150
-			FROM = { has_crisis_level = crisis_hyperthermia_level_5 }
-		}
+		base = 0
 	}
 }
