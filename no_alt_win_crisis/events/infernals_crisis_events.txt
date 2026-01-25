@@ -657,29 +657,6 @@ country_event = {
 			}
 		}
 
-		# WAR!
-		event_target:war_leader = {
-			declare_war = {
-				target = event_target:hyperthermia_empire
-				name = {
-					key = "NAME_Declared_Crisis_War"
-					variable_string = "[This.MainDefender.GetAdj]"
-				}
-				attacker_war_goal = "wg_declared_crisis"
-				effect = { save_event_target_as = hyperthermia_war }
-			}
-		}
-		every_country = {
-			limit = {
-				has_country_flag = anti_hyperthermia_coalition
-				NOR = {
-					is_same_value = event_target:war_leader
-					has_subject = root
-				}
-			}
-			join_war = event_target:war_leader
-		}
-
 		# Notifications
 		every_playable_country = {
 			limit = {
