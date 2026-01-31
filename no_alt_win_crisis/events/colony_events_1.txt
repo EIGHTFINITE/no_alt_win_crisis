@@ -269,7 +269,10 @@ country_event = {
 
 	immediate = {
 		remove_country_flag = burned_forests_rampaged_country
-		FROMFROM = { remove_planet_flag = burned_forests_rampaged_planet }
+		FROMFROM = {
+			remove_planet_flag = burned_forests_rampaged_planet
+			clear_planet_purge_type = yes
+		}
 	}
 
 	option = {
