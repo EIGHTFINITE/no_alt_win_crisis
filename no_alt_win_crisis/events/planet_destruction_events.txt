@@ -2148,7 +2148,8 @@ planet_event = {
 			limit = {
 				NOT = { is_planet_class = pc_broken }
 			}
-			change_pc = pc_ocean
+			start_terraform_process = pc_ocean
+			finish_terraformation = yes
 		}
 
 		# from = { #feedback suggests this isn't fun, but leaving it here in case we need it

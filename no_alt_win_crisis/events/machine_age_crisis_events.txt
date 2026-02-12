@@ -82,6 +82,62 @@ country_event = { # Reaching Level 3
 		name = crisis.7110.a
 		custom_tooltip = new_cosmogenesis_tech_tt
 	}
+
+	after = {
+		hidden_effect = {
+			random_country = {
+				limit = {
+					OR = {
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+					is_fanatic_materialist = yes
+				}
+				save_event_target_as = materialist_fe
+			}
+			country_event = { id = crisis.7111 days = 7 }
+		}
+	}
+}
+
+country_event = {
+	id = crisis.7111
+	title = TRANSMISSION
+	desc = crisis.7111.desc
+
+	picture_event_data = {
+		portrait = event_target:materialist_fe
+		planet_background = event_target:materialist_fe
+		graphical_culture = event_target:materialist_fe
+		city_level = event_target:materialist_fe
+		room = event_target:materialist_fe
+	}
+
+	diplomatic = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		exists = event_target:materialist_fe
+	}
+
+	option = {
+		name = fallen_empires_awakening.2.b
+		event_target:materialist_fe = {
+			add_opinion_modifier = {
+				modifier = opinion_cosmogenesis_thesis
+				who = root
+			}
+		}
+	}
+
+	option = {
+		name = crisis.7111.b
+		add_modifier = {
+			modifier = cosmogenesis_sorry
+			days = 1800
+		}
+	}
 }
 
 country_event = { # Reaching Level 4
@@ -129,6 +185,23 @@ country_event = { # Reaching Level 5
 	option = {
 		name = crisis.7120.a
 		custom_tooltip = new_cosmogenesis_tech_tt
+	}
+
+	after = {
+		# TOTAL WAR TIME
+		every_country = {
+			limit = {
+				is_country_type = fallen_empire
+				NOT = {
+					is_at_war_with = root
+				}
+			}
+			declare_war = {
+				target = root
+				name = cosmogenesis_materialist_war
+				attacker_war_goal = wg_end_threat
+			}
+		}
 	}
 }
 
@@ -2334,6 +2407,7 @@ country_event = {
 		just_researched_fe_tech = yes
 		NOT = {
 			has_origin = origin_scion
+			has_country_flag = cosmogenesis_aborted
 		}
 	}
 
@@ -2427,26 +2501,45 @@ country_event = {
 		exists = event_target:materialist_fe
 	}
 
-	immediate = {
-		set_country_flag = warned_by_materialist_fe
+	option = {
+		name = crisis.7285.a #Sorry for realsies
+		hidden_effect = {
+			set_country_flag = cosmogenesis_aborted #halt crisis progression. Keep some of the toys
+		}
+		every_owned_planet = { #destroy owned lathes
+			limit = {
+				is_planet_class = pc_cosmogenesis_world
+			}
+			spawn_lathe_cracker_effect = yes
+		}
+		custom_tooltip = crisis.7285.a.tt
 	}
 
 	option = {
 		name = crisis.8130.c #Sorry
+		trigger = {
+			NOT = { has_country_flag = warned_by_materialist_fe }
+		}
 		add_modifier = {
 			modifier = cosmogenesis_sorry
-			days = 7200
+			days = 10800
 		}
 	}
 
 	option = {
 		name = crisis.10100.b #Not Sorry
+		# TOTAL WAR TIME
 		event_target:materialist_fe = {
-			add_opinion_modifier = {
-				modifier = opinion_cosmogenesis_thesis
-				who = root
+			declare_war = {
+				target = root
+				name = cosmogenesis_materialist_war
+				attacker_war_goal = wg_end_threat
 			}
 		}
+	}
+
+	after = {
+		set_country_flag = warned_by_materialist_fe
 	}
 }
 
@@ -3548,8 +3641,6 @@ country_event = { # Last pop died - this should not happen - Cosmogen owners are
 		}
 	}
 }
-
-
 
 
 #########################
