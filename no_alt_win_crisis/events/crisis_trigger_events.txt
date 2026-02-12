@@ -387,12 +387,21 @@ event = {
 							has_global_flag = ai_invasion_happened
 						}
 					}
+					modifier = {
+						factor = 0
+						has_global_flag = crisis_events_prethoryn_invasion_begins_fire_only_once
+					}
 					country_event = { id = crisis.10 days = 200 random = 800 }
 					set_global_flag = galactic_crisis_happened
 					set_timed_global_flag = {
 						flag = galactic_crisis_recently_fired
 						years = 12
 					}
+					set_global_flag = crisis_events_prethoryn_invasion_begins_fire_only_once
+					remove_global_flag = crisis_events_approaching_the_outer_rim_fire_only_once
+					remove_global_flag = crisis_events_subspace_signal_fire_only_once
+					remove_global_flag = crisis_events_vanguard_arrives_fire_only_once
+					remove_global_flag = crisis_events_main_invasion_arrives_fire_only_once
 					remove_global_flag = prethoryn_transmission
 					remove_global_flag = prethoryn_subspace_echoes
 					remove_global_flag = prethoryn_approaching_rim
@@ -419,10 +428,6 @@ event = {
 					every_system = {
 						limit = { has_star_flag = swarm_invasion_target_4 }
 						remove_star_flag = swarm_invasion_target_4
-					}
-					every_country = {
-						limit = { is_country_type = default }
-						country_event = { id = crisis.11 }
 					}
 				}
 

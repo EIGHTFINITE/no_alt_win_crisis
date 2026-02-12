@@ -92,11 +92,13 @@ country_event = {
 	}
 
 	trigger = {
+		NOT = { has_global_flag = crisis_events_approaching_the_outer_rim_fire_only_once }
 		is_country_type = default
 		has_global_flag = prethoryn_subspace_echoes
 	}
 
 	immediate = {
+		set_global_flag = crisis_events_approaching_the_outer_rim_fire_only_once
 		remove_global_flag = prethoryn_subspace_echoes
 		set_global_flag = prethoryn_approaching_rim
 		random_rim_system = {
@@ -267,10 +269,12 @@ country_event = {
 	}
 
 	trigger = {
+		NOT = { has_global_flag = crisis_events_subspace_signal_fire_only_once }
 		has_global_flag = prethoryn_approaching_rim
 	}
 
 	immediate = {
+		set_global_flag = crisis_events_subspace_signal_fire_only_once
 		remove_global_flag = prethoryn_approaching_rim
 		set_global_flag = prethoryn_transmission
 		every_country = {
@@ -357,10 +361,12 @@ country_event = {
 	}
 
 	trigger = {
+		NOT = { has_global_flag = crisis_events_vanguard_arrives_fire_only_once }
 		has_global_flag = prethoryn_transmission
 	}
 
 	immediate = {
+		set_global_flag = crisis_events_vanguard_arrives_fire_only_once
 		remove_global_flag = prethoryn_transmission
 		set_crisis_sound = swarm_crisis_ambient_stage_1
 		set_crisis_stage_1 = yes
@@ -476,9 +482,15 @@ country_event = {
 					}
 					if = {
 						limit = { has_technology = tech_gravity_wells }
-						country_event = {
-							id = grand_archive.7220
-							days = 30
+						if = {
+							limit = {
+								NOT = { has_global_flag = crisis_events_prethoryn_beasts_fire_only_once }
+							}
+							set_global_flag = crisis_events_prethoryn_beasts_fire_only_once
+							country_event = {
+								id = grand_archive.7220
+								days = 30
+							}
 						}
 					}
 				}
@@ -635,7 +647,13 @@ country_event = {
 		}
 		random_country = {
 			limit = { is_country_type = global_event }
-			country_event = { id = crisis.19 days = 400 random = 200 }
+			if = {
+				limit = {
+					NOT = { has_global_flag = crisis_events_main_invasion_arrives_fire_only_once }
+				}
+				set_global_flag = crisis_events_main_invasion_arrives_fire_only_once
+				country_event = { id = crisis.19 days = 400 random = 200 }
+			}
 		}
 	}
 	after = {
@@ -954,9 +972,15 @@ country_event = {
 				}
 				if = {
 					limit = { has_technology = tech_gravity_wells }
-					country_event = {
-						id = grand_archive.7220
-						days = 30
+					if = {
+						limit = {
+							NOT = { has_global_flag = crisis_events_prethoryn_beasts_fire_only_once }
+						}
+						set_global_flag = crisis_events_prethoryn_beasts_fire_only_once
+						country_event = {
+							id = grand_archive.7220
+							days = 30
+						}
 					}
 				}
 			}
@@ -3389,6 +3413,12 @@ country_event = {
 				country_uses_bio_ships = yes
 			}
 			set_country_flag = flesh_adapts_achievement
+		}
+		if = {
+			limit = {
+				has_global_flag = crisis_events_prethoryn_invasion_begins_fire_only_once
+			}
+			remove_global_flag = crisis_events_prethoryn_invasion_begins_fire_only_once
 		}
 	}
 }
