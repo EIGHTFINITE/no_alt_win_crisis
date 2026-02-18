@@ -3070,7 +3070,10 @@ event = {
 				any_country = {
 					is_country_type = swarm
 					num_owned_planets > 0
-					num_ships < 2000
+					OR = {
+						has_global_flag = crisis_events_prethoryn_invasion_begins_fire_only_once
+						num_ships < 2000
+					}
 					any_system_within_border = { exists = starbase }
 				}
 			}
@@ -3079,6 +3082,12 @@ event = {
 					is_country_type = swarm
 				}
 				country_event = { id = crisis.207 }
+				if = {
+					limit = {
+						has_global_flag = crisis_events_prethoryn_invasion_begins_fire_only_once
+					}
+					country_event = { id = crisis.207 days = 360 }
+				}
 			}
 		}
 	}
@@ -3110,7 +3119,13 @@ country_event = {
 
 		if = {
 			limit = {
-				galaxy_percentage > 0.20
+				OR = {
+					AND = {
+						has_global_flag = crisis_events_prethoryn_invasion_begins_fire_only_once
+						galaxy_percentage > 0.02
+					}
+					galaxy_percentage > 0.20
+				}
 			}
 			random_system_within_border = {
 				limit = { exists = starbase }
@@ -3121,7 +3136,13 @@ country_event = {
 
 		if = {
 			limit = {
-				galaxy_percentage > 0.40
+				OR = {
+					AND = {
+						has_global_flag = crisis_events_prethoryn_invasion_begins_fire_only_once
+						galaxy_percentage > 0.04
+					}
+					galaxy_percentage > 0.40
+				}
 			}
 			random_system_within_border = {
 				limit = { exists = starbase }
@@ -3132,9 +3153,18 @@ country_event = {
 
 		if = {
 			limit = {
-				count_controlled_ship = {
-					limit = { is_ship_size = colony_ship_swarm }
-					count < 3
+				OR = {
+					AND = {
+						has_global_flag = crisis_events_prethoryn_invasion_begins_fire_only_once
+						count_controlled_ship = {
+							limit = { is_ship_size = colony_ship_swarm }
+							count < 6
+						}
+					}
+					count_controlled_ship = {
+						limit = { is_ship_size = colony_ship_swarm }
+						count < 3
+					}
 				}
 			}
 
@@ -3164,9 +3194,18 @@ country_event = {
 
 		if = {
 			limit = {
-				count_controlled_ship = {
-					limit = { is_ship_size = construction_ship_swarm }
-					count < 5
+				OR = {
+					AND = {
+						has_global_flag = crisis_events_prethoryn_invasion_begins_fire_only_once
+						count_controlled_ship = {
+							limit = { is_ship_size = construction_ship_swarm }
+							count < 10
+						}
+					}
+					count_controlled_ship = {
+						limit = { is_ship_size = construction_ship_swarm }
+						count < 5
+					}
 				}
 			}
 
@@ -3748,9 +3787,14 @@ event = {
 
 	trigger = {
 		any_country = {
-			has_global_flag = ongoing_prethoryn_invasion
 			is_country_type = swarm
-			num_armies < 140
+			OR = {
+				AND = {
+					has_global_flag = crisis_events_prethoryn_invasion_begins_fire_only_once
+					num_armies < 280
+				}
+				num_armies < 140
+			}
 		}
 	}
 
