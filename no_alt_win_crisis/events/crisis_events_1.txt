@@ -500,7 +500,25 @@ country_event = {
 
 					swarm_vanguard = yes
 					swarm_vanguard = yes
-					swarm_vanguard = yes
+					if = {
+						limit = {
+							is_difficulty = 3
+						}
+						swarm_vanguard = yes
+					}
+					if = {
+						limit = {
+							is_difficulty = 5
+						}
+						swarm_vanguard = yes
+					}
+					if = {
+						limit = {
+							is_difficulty = 6
+						}
+						swarm_vanguard = yes
+					}
+
 
 					# Constructor
 					create_fleet = {
@@ -537,7 +555,24 @@ country_event = {
 
 						swarm_vanguard = yes
 						swarm_vanguard = yes
-						swarm_vanguard = yes
+						if = {
+							limit = {
+								is_difficulty = 3
+							}
+							swarm_vanguard = yes
+						}
+						if = {
+							limit = {
+								is_difficulty = 5
+							}
+							swarm_vanguard = yes
+						}
+						if = {
+							limit = {
+								is_difficulty = 6
+							}
+							swarm_vanguard = yes
+						}
 
 						# Constructor
 						create_fleet = {
@@ -579,7 +614,24 @@ country_event = {
 
 						swarm_vanguard = yes
 						swarm_vanguard = yes
-						swarm_vanguard = yes
+						if = {
+							limit = {
+								is_difficulty = 3
+							}
+							swarm_vanguard = yes
+						}
+						if = {
+							limit = {
+								is_difficulty = 5
+							}
+							swarm_vanguard = yes
+						}
+						if = {
+							limit = {
+								is_difficulty = 6
+							}
+							swarm_vanguard = yes
+						}
 
 						# Constructor
 						create_fleet = {
@@ -622,7 +674,24 @@ country_event = {
 
 						swarm_vanguard = yes
 						swarm_vanguard = yes
-						swarm_vanguard = yes
+						if = {
+							limit = {
+								is_difficulty = 3
+							}
+							swarm_vanguard = yes
+						}
+						if = {
+							limit = {
+								is_difficulty = 5
+							}
+							swarm_vanguard = yes
+						}
+						if = {
+							limit = {
+								is_difficulty = 6
+							}
+							swarm_vanguard = yes
+						}
 
 						# Constructor
 						create_fleet = {
@@ -1017,7 +1086,24 @@ country_event = {
 					### FIRST SYSTEM
 					swarm_brood = yes
 					swarm_brood = yes
-					swarm_brood = yes
+					if = {
+						limit = {
+							is_difficulty = 3
+						}
+						swarm_brood = yes
+					}
+					if = {
+						limit = {
+							is_difficulty = 5
+						}
+						swarm_brood = yes
+					}
+					if = {
+						limit = {
+							is_difficulty = 6
+						}
+						swarm_brood = yes
+					}
 
 					# Infestors
 					while = {
@@ -1091,7 +1177,24 @@ country_event = {
 
 						swarm_brood = yes
 						swarm_brood = yes
-						swarm_brood = yes
+						if = {
+							limit = {
+								is_difficulty = 3
+							}
+							swarm_brood = yes
+						}
+						if = {
+							limit = {
+								is_difficulty = 5
+							}
+							swarm_brood = yes
+						}
+						if = {
+							limit = {
+								is_difficulty = 6
+							}
+							swarm_brood = yes
+						}
 
 						# Infestors
 						while = {
@@ -1166,7 +1269,24 @@ country_event = {
 
 						swarm_brood = yes
 						swarm_brood = yes
-						swarm_brood = yes
+						if = {
+							limit = {
+								is_difficulty = 3
+							}
+							swarm_brood = yes
+						}
+						if = {
+							limit = {
+								is_difficulty = 5
+							}
+							swarm_brood = yes
+						}
+						if = {
+							limit = {
+								is_difficulty = 6
+							}
+							swarm_brood = yes
+						}
 
 						# Infestors
 						while = {
@@ -1261,7 +1381,24 @@ country_event = {
 					event_target:prethoryn = {
 						swarm_brood = yes
 						swarm_brood = yes
-						swarm_brood = yes
+						if = {
+							limit = {
+								is_difficulty = 3
+							}
+							swarm_brood = yes
+						}
+						if = {
+							limit = {
+								is_difficulty = 5
+							}
+							swarm_brood = yes
+						}
+						if = {
+							limit = {
+								is_difficulty = 6
+							}
+							swarm_brood = yes
+						}
 
 						# Infestors
 						while = {
@@ -3064,17 +3201,58 @@ event = {
 
 	is_triggered_only = yes
 
+	trigger = {
+		any_country = {
+			is_country_type = swarm
+			num_owned_planets > 0
+			any_system_within_border = { exists = starbase }
+		}
+	}
+
 	immediate = {
 		if = {
 			limit = {
-				any_country = {
-					is_country_type = swarm
-					num_owned_planets > 0
-					OR = {
+				is_difficulty > 3
+				OR = {
+					AND = {
 						has_global_flag = crisis_events_prethoryn_invasion_begins_fire_only_once
+						any_country = {
+							is_country_type = swarm
+						}
+					}
+					any_country = {
+						is_country_type = swarm
 						num_ships < 2000
 					}
-					any_system_within_border = { exists = starbase }
+				}
+			}
+			random_country = {
+				limit = {
+					is_country_type = swarm
+				}
+				country_event = { id = crisis.207 }
+				if = {
+					limit = {
+						has_global_flag = crisis_events_prethoryn_invasion_begins_fire_only_once
+					}
+					country_event = { id = crisis.207 days = 360 }
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				is_difficulty < 3
+				OR = {
+					AND = {
+						has_global_flag = crisis_events_prethoryn_invasion_begins_fire_only_once
+						any_country = {
+							is_country_type = swarm
+						}
+					}
+					any_country = {
+						is_country_type = swarm
+						num_ships < 750
+					}
 				}
 			}
 			random_country = {
@@ -3116,6 +3294,28 @@ country_event = {
 			starbase = { save_event_target_as = spawn_location }
 		}
 		swarm_brood = yes
+
+		if = {
+			limit = {
+				is_difficulty <= 3
+			}
+			random_system_within_border = {
+				limit = { exists = starbase }
+				starbase = { save_event_target_as = spawn_location }
+			}
+			swarm_brood = yes
+		}
+
+		if = {
+			limit = {
+				is_difficulty <= 5
+			}
+			random_system_within_border = {
+				limit = { exists = starbase }
+				starbase = { save_event_target_as = spawn_location }
+			}
+			swarm_brood = yes
+		}
 
 		if = {
 			limit = {
@@ -3235,7 +3435,7 @@ country_event = {
 	}
 }
 
-# Destroy Swarm if no planets and only 5 or less ships remain
+# Destroy Swarm if no planets and fewer than 20 ships remain
 # On yearly pulse
 event = {
 	id = crisis.208
@@ -3254,7 +3454,7 @@ event = {
 			limit = {
 				any_country = {
 					is_country_type = swarm
-					num_ships < 2
+					num_ships < 20
 					NOT = {
 						any_system = {
 							any_system_planet = {
@@ -3301,6 +3501,27 @@ country_event = {
 		from = { set_country_flag = with_great_power_achievement }
 		remove_global_flag = ongoing_prethoryn_invasion
 		set_global_flag = prethoryn_invasion_defeated
+		if = {
+			limit = {
+				has_global_flag = crisis_events_prethoryn_invasion_begins_fire_only_once
+			}
+			remove_global_flag = crisis_events_prethoryn_invasion_begins_fire_only_once
+		}
+		remove_global_flag = galactic_crisis_recently_fired
+		if = {
+			limit = {
+				has_global_flag = galactic_crisis_early_defeat_tracker_1
+			}
+			remove_global_flag = galactic_crisis_early_defeat_tracker_1
+			multiply_crisis_strength = 1.5
+		}
+		else_if = {
+			limit = {
+				has_global_flag = galactic_crisis_early_defeat_tracker_2
+			}
+			remove_global_flag = galactic_crisis_early_defeat_tracker_2
+			multiply_crisis_strength = 1.25
+		}
 		observer_event = { id = observer.33 }
 
 		every_country = {
