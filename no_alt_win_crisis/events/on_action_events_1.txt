@@ -6727,6 +6727,9 @@ planet_event = {
 			remove_modifier = "terraforming_candidate"
 			remove_modifier = "frozen_terraforming_candidate"
 			remove_modifier = "toxic_terraforming_candidate"
+			remove_modifier = "pm_wenkwort_gardens"
+			remove_modifier = "pm_wenkwort_zen"
+			remove_modifier = "pm_wenkwort_custodian"
 			set_planet_flag = colony_event #Make it so that colony events don't fire on terraformed worlds
 		}
 
