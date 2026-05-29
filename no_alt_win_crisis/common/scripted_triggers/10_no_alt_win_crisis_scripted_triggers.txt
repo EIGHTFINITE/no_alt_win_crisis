@@ -1,3 +1,0 @@
-has_been_declared_crisis = {
-	has_country_flag = declared_crisis
-}
