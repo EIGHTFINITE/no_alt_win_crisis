@@ -1,0 +1,42 @@
+tech_archaeo_refinery = {
+	cost = @tier3cost3
+	area = society
+	category = { archaeostudies }
+	tier = 3
+	prerequisites = { "tech_archaeostudies" }
+	is_rare = yes
+	ai_update_type = all
+	weight = @tier4weight3
+
+	potential = {
+		has_ancrel = yes
+		is_wilderness_empire = no
+	}
+
+	weight_modifier = {
+		inline_script = {
+			script = technologies/rare_technologies_weight_modifiers
+			TECHNOLOGY = tech_archaeo_refinery
+		}
+		modifier = {
+			factor = 0.1
+			num_buildings = {
+				type = building_archaeostudies_faculty
+				value < 1
+				disabled = no
+				in_construction = no
+			}
+		}
+		modifier = {
+			factor = 0.1
+			NOT = {
+				has_ascension_perk = ap_archaeoengineers
+			}
+		}
+		modifier = {
+			factor = 0
+			has_ancrel = no
+		}
+		inline_script = "technology/archaeotech_weight"
+	}
+}
