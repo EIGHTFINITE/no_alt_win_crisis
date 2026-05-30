@@ -7,7 +7,10 @@ tech_hydroponics = {
 	start_tech = yes
 
 	potential = {
-		is_wilderness_empire = no
+		OR = {
+			is_wilderness_empire = no
+			has_ascension_perk = ap_cosmogenesis
+		}
 	}
 
 	# unlock hydroponics buildings
@@ -72,7 +75,6 @@ tech_tomb_world_adaption = {
 	is_rare = yes
 
 	potential = {
-		is_wilderness_empire = no
 	}
 
 	modifier = {
@@ -118,7 +120,10 @@ tech_bio_reactor = {
 	is_rare = yes
 
 	potential = {
-		is_wilderness_empire = no
+		OR = {
+			is_wilderness_empire = no
+			has_ascension_perk = ap_cosmogenesis
+		}
 	}
 
 	weight_modifier = {
@@ -153,7 +158,10 @@ tech_bio_reactor_2 = {
 	is_rare = yes
 
 	potential = {
-		is_wilderness_empire = no
+		OR = {
+			is_wilderness_empire = no
+			has_ascension_perk = ap_cosmogenesis
+		}
 	}
 
 	weight_modifier = {
