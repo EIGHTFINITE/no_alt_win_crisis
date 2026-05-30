@@ -277,6 +277,17 @@ event = {
 						factor = 0
 						has_country_flag = only_unbidden_this_time
 					}
+					modifier = {
+						factor = 0
+						AND = {
+							allowed_crisis_type = all
+							OR = {
+								NOT = { has_global_flag = prethoryn_invasion_happened }
+								NOT = { has_global_flag = extradimensional_invasion_happened }
+								NOT = { has_global_flag = ai_invasion_happened }
+							}
+						}
+					}
 					modifier = { # incentivize Cetana to show up last or she'll likely murder all the other crises
 						factor = 0.5
 							any_country = {
