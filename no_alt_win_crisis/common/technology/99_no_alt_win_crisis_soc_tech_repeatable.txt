@@ -7,9 +7,11 @@ tech_repeatable_improved_tile_food_output = {
 	levels = -1
 
 	potential = {
-		is_wilderness_empire = no
+		OR = {
+			has_technology = tech_gene_crops
+			is_wilderness_empire = yes
+		}
 	}
-	prerequisites = { "tech_gene_crops" }
 	
 	weight = @repeatableTechWeight
 

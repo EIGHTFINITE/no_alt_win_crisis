@@ -10,7 +10,10 @@ tech_archaeo_refinery = {
 
 	potential = {
 		has_ancrel = yes
-		is_wilderness_empire = no
+		OR = {
+			is_wilderness_empire = no
+			has_ascension_perk = ap_cosmogenesis
+		}
 	}
 
 	weight_modifier = {
