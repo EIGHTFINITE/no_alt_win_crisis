@@ -10,7 +10,6 @@ building_bio_reactor = {
 
 	potential = {
 		exists = owner
-		owner = { is_wilderness_empire = no }
 		NOR = {
 			is_planet_class = pc_machine
 			has_modifier = resort_colony
@@ -80,7 +79,6 @@ building_bio_reactor_2 = {
 
 	potential = {
 		exists = owner
-		owner = { is_wilderness_empire = no }
 		NOR = {
 			is_planet_class = pc_machine
 			has_modifier = resort_colony
