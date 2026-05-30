@@ -223,7 +223,18 @@ crisis_cosmogenesis_level_1 = {
 	}
 
 	on_unlock = {
-		add_cosmogenesis_level_1_perks = yes
+		if = {
+			limit = {
+				is_wilderness_empire = yes
+			}
+			add_research_option = tech_cosmogenesis_crisis_1
+			add_research_option = tech_dark_matter_power_core
+			add_research_option = tech_weaver_bio_healing_6
+			add_research_option = tech_weaver_bio_evasion_6
+		}
+		else = {
+			add_cosmogenesis_level_1_perks = yes
+		}
 		hidden_effect = {
 			owner = {
 				country_event = { id = crisis.7100 }
