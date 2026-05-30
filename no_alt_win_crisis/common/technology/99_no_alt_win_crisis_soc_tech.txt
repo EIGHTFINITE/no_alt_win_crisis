@@ -1,0 +1,179 @@
+#Hydroponics
+tech_hydroponics = {
+	cost = 0
+	area = society
+	tier = 0
+	category = { biology }
+	start_tech = yes
+
+	potential = {
+		is_wilderness_empire = no
+	}
+
+	# unlock hydroponics buildings
+
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 0.01
+			OR = {
+				is_machine_empire = yes
+				is_lithoid_empire = yes
+				is_individual_machine = yes
+				is_infernal_empire = yes
+				has_origin = origin_synthetic_fertility
+			}
+			NOR = {
+				has_country_flag = non_lithoid_subspecies
+				has_valid_civic = civic_machine_servitor
+				has_valid_civic = civic_machine_assimilator
+				any_owned_planet = {
+					OR = {
+						has_any_capped_planet_farming_district = yes
+						has_any_agriculture_zone = yes
+					}
+				}
+			}
+		}
+		modifier = {
+			factor = 0.5
+			OR = {
+				is_machine_empire = yes
+				is_lithoid_empire = yes
+				is_infernal_empire = yes
+				AND = {
+					is_individual_machine = yes
+					NOT = { has_country_flag = non_lithoid_subspecies }
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			has_relic = r_pox_sample
+		}
+		modifier = {
+			factor = 2
+			country_uses_bio_ships = yes
+		}
+	}
+
+	ai_weight = {
+	}
+}
+
+#Tomb World Adaptation
+tech_tomb_world_adaption = {
+	cost = @tier3cost1
+	area = society
+	tier = 3
+	category = { new_worlds }
+	prerequisites = { "tech_colonization_3" }
+	weight = @tier3weight1
+	is_rare = yes
+
+	potential = {
+		is_wilderness_empire = no
+	}
+
+	modifier = {
+		pc_nuked_habitability = 0.2
+	}
+
+	weight_modifier = {
+		factor = 0.5
+		modifier = {
+			factor = 0.20
+			NOR = {
+				has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+				has_trait_in_council = { TRAIT = leader_trait_curator }
+			}
+		}
+		inline_script = {
+			script = technologies/rare_technologies_weight_modifiers
+			TECHNOLOGY = tech_tomb_world_adaption
+		}
+		modifier = {
+			factor = 2
+			any_owned_planet = {
+				is_planet_class = pc_nuked
+			}
+		}
+	}
+
+	ai_weight = {
+
+	}
+}
+
+# ##################
+# Bio Reactor
+# ##################
+tech_bio_reactor = {
+	cost = @tier1cost1
+	area = society
+	tier = 1
+	category = { biology }
+	prerequisites = { "tech_industrial_farming" }
+	weight = @tier1weight1
+	is_rare = yes
+
+	potential = {
+		is_wilderness_empire = no
+	}
+
+	weight_modifier = {
+		factor = 0.1
+		modifier = {
+			factor = 20
+			OR = {
+				is_catalytic_empire = yes
+				is_machine_empire = yes
+				is_mechanical_empire = yes
+				is_lithoid_empire = yes
+			}
+		}
+		inline_script = {
+			script = technologies/rare_technologies_weight_modifiers
+			TECHNOLOGY = tech_bio_reactor
+		}
+	}
+
+	ai_weight = {
+
+	}
+}
+
+tech_bio_reactor_2 = {
+	cost = @tier2cost1
+	area = society
+	tier = 2
+	category = { biology }
+	prerequisites = { "tech_bio_reactor" }
+	weight = @tier2weight1
+	is_rare = yes
+
+	potential = {
+		is_wilderness_empire = no
+	}
+
+	weight_modifier = {
+		factor = 0.1
+		modifier = {
+			factor = 20
+			OR = {
+				is_catalytic_empire = yes
+				is_machine_empire = yes
+				is_mechanical_empire = yes
+				is_lithoid_empire = yes
+			}
+		}
+		inline_script = {
+			script = technologies/rare_technologies_weight_modifiers
+			TECHNOLOGY = tech_bio_reactor_2
+		}
+	}
+
+	ai_weight = {
+
+	}
+}
