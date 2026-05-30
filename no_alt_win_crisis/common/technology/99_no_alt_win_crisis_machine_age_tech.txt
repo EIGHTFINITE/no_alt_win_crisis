@@ -1,10 +1,32 @@
+tech_cosmogenesis_world = {
+    area = engineering
+    cost = @tier5cost1
+    tier = 5
+    category = { materials }
+    ai_update_type = all
+    is_rare = yes
+    weight = 0
+
+    potential = {
+        has_machine_age_dlc = yes
+        has_ascension_perk = ap_cosmogenesis
+    }
+
+    prereqfor_desc = {
+        custom = {
+            title = "TECH_UNLOCK_COSMOWORLD_CONSTRUCTION_TITLE"
+            desc = "TECH_UNLOCK_COSMOWORLD_CONSTRUCTION_DESC"
+        }
+    }
+}
+
 tech_cosmogenesis_thesis = {
     area = physics
     cost = 75000
     cost_per_level = @fallentechcost
     tier = 4
     category = { computing }
-    levels = 2
+    levels = -1
     is_dangerous = yes
     weight = @repeatableTechWeight
 
