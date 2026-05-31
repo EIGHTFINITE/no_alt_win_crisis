@@ -2387,10 +2387,7 @@ grant_random_fe_building = {
 		1 = {
 			modifier = {
 				factor = 0
-				OR = {
-					has_country_flag = fe_market_1_can_build
-					is_gestalt = yes
-				}
+				has_country_flag = fe_market_1_can_build
 			}
 			grant_fe_building = { BUILDING = fe_market_1 }
 		}

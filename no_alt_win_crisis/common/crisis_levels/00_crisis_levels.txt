@@ -296,6 +296,12 @@ crisis_cosmogenesis_level_3 = {
 	}
 
 	on_unlock = {
+		if = {
+			limit = {
+				is_gestalt = yes
+			}
+			add_research_option = tech_fe_market_1
+		}
 		add_cosmogenesis_level_3_perks = yes
 		hidden_effect = {
 			owner = {

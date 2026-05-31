@@ -40,12 +40,8 @@ tech_fe_market_1 = { # Not for gestalt
 			}
 		}
 		modifier = {
-			factor = @EnigmaticEngineeringDraw
+			factor = 0.025
 			NOT = { has_crisis_level = crisis_cosmogenesis_level_3 }
-		}
-		modifier = {
-			factor = 0
-			is_gestalt = yes
 		}
 		modifier = {
 			factor = 1.5
