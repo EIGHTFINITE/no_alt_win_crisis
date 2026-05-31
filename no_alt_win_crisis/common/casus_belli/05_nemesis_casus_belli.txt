@@ -83,7 +83,6 @@ cb_imposed_inclusion = {
 	show_notification = no
 	potential = {
 		has_ascension_perk = ap_become_the_crisis
-		is_homicidal = no
 	}
 	is_valid = {
 		always = yes

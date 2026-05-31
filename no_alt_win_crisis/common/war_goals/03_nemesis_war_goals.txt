@@ -15,38 +15,7 @@ wg_bring_into_the_fold = {
 	}
 
 	possible = {
-		custom_tooltip = {
-			fail_text = has_claimed_all_systems
-			from = {
-				is_country_type = default
-				any_owned_planet = {
-					is_colony = yes
-					root = {
-						NOT = { has_claim = prev.solar_system }
-					}
-				}
-			}
-		}
-		custom_tooltip = {
-			fail_text = cannot_subjugate_empire_member
-			NAND = {
-				has_galactic_emperor = yes
-				is_galactic_community_member = no
-				from = { is_galactic_community_member = yes }
-			}
-		}
-		custom_tooltip = {
-			fail_text = "cannot_use_against_custodian"
-			from = { is_galactic_custodian = no }
-		}
-		custom_tooltip = {
-			fail_text = "cannot_use_against_emperor"
-			from = { is_galactic_emperor = no }
-		}
-		custom_tooltip = {
-			fail_text = "cannot_use_against_btc"
-			from = { has_been_declared_crisis = no }
-		}
+		always = yes
 	}
 
 	on_accept = {
@@ -235,38 +204,7 @@ wg_bring_into_the_fold_corporate = {
 	}
 
 	possible = {
-		custom_tooltip = {
-			fail_text = has_claimed_all_systems
-			from = {
-				is_country_type = default
-				any_owned_planet = {
-					is_colony = yes
-					root = {
-						NOT = { has_claim = prev.solar_system }
-					}
-				}
-			}
-		}
-		custom_tooltip = {
-			fail_text = cannot_subjugate_empire_member
-			NAND = {
-				has_galactic_emperor = yes
-				is_galactic_community_member = no
-				from = { is_galactic_community_member = yes }
-			}
-		}
-		custom_tooltip = {
-			fail_text = "cannot_use_against_custodian"
-			from = { is_galactic_custodian = no }
-		}
-		custom_tooltip = {
-			fail_text = "cannot_use_against_emperor"
-			from = { is_galactic_emperor = no }
-		}
-		custom_tooltip = {
-			fail_text = "cannot_use_against_btc"
-			from = { has_been_declared_crisis = no }
-		}
+		always = yes
 	}
 
 	on_accept = {
