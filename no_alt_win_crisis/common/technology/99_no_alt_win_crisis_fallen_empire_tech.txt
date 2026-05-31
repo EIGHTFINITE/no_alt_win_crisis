@@ -1,0 +1,62 @@
+tech_fe_market_1 = { # Not for gestalt
+	area = society
+	cost = @fallentechcost
+	tier = @fallentechtier
+	category = { statecraft }
+	ai_update_type = all
+	weight = @tier5weight3
+	is_rare = yes
+	is_dangerous = yes
+
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOR = {
+				has_crisis_level = crisis_cosmogenesis_level_3
+				has_ascension_perk = ap_enigmatic_engineering
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = { has_ascension_perk = ap_cosmogenesis }
+			calc_true_if = {
+				amount >= 4
+				has_technology = tech_fe_affluence_1
+				has_technology = tech_fe_nourishment_1
+				has_technology = tech_fe_fabricator_1
+				has_technology = tech_fe_singularity_1
+				has_technology = tech_fe_forge_1
+				has_technology = tech_fe_dome_1
+				has_technology = tech_fe_fortress_1
+				has_technology = tech_fe_administration_1
+				has_technology = tech_fe_assembly_1
+				has_technology = tech_fe_clinic_1
+				has_technology = tech_fe_security_1
+				has_technology = tech_fe_market_1
+				has_technology = tech_fe_silo_1
+				has_technology = tech_fe_entertainment_1
+				has_technology = tech_fe_lab_1
+				has_technology = tech_fe_mine_1
+			}
+		}
+		modifier = {
+			factor = @EnigmaticEngineeringDraw
+			NOT = { has_crisis_level = crisis_cosmogenesis_level_3 }
+		}
+		modifier = {
+			factor = 0
+			is_gestalt = yes
+		}
+		modifier = {
+			factor = 1.5
+			has_ascension_perk = ap_enigmatic_engineering
+		}
+		modifier = {
+			factor = 2
+			any_owned_planet = {
+				is_planet_class = pc_cosmogenesis_world
+				pop_amount > 5000
+			}
+		}
+	}
+}
