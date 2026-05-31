@@ -1586,6 +1586,7 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
+		NOT = { has_country_flag = king_of_monsters_achievement }
 		has_menace_perk = menp_behemoth_ever_hungry
 		has_country_flag = finished_behemoth_situation
 		NOT = { has_country_flag = behemoth_victory }
@@ -1749,7 +1750,6 @@ country_event = {
 				delete_fleet = this
 			}
 		}
-		win = yes
 		hidden_effect = {
 			set_country_flag = behemoth_victory
 			every_owned_planet = {
