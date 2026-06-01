@@ -44,7 +44,13 @@ tech_missiles_2 = {
 		}
 	}
 	potential = {
-		country_uses_bio_ships = no
+		OR = {
+			country_uses_bio_ships = no
+			# Ascension / Crisis ships can equip missiles
+			has_tradition = tr_nanotech_4
+			has_crisis_level = crisis_level_2
+			has_technology = tech_cosmogenesis_escort
+		}
 	}
 }
 
@@ -90,7 +96,13 @@ tech_missiles_3 = {
 		}
 	}
 	potential = {
-		country_uses_bio_ships = no
+		OR = {
+			country_uses_bio_ships = no
+			# Ascension / Crisis ships can equip missiles
+			has_tradition = tr_nanotech_4
+			has_crisis_level = crisis_level_2
+			has_technology = tech_cosmogenesis_escort
+		}
 	}
 }
 
@@ -136,7 +148,13 @@ tech_missiles_4 = {
 		}
 	}
 	potential = {
-		country_uses_bio_ships = no
+		OR = {
+			country_uses_bio_ships = no
+			# Ascension / Crisis ships can equip missiles
+			has_tradition = tr_nanotech_4
+			has_crisis_level = crisis_level_2
+			has_technology = tech_cosmogenesis_escort
+		}
 	}
 }
 
@@ -182,7 +200,13 @@ tech_missiles_5 = {
 		}
 	}
 	potential = {
-		country_uses_bio_ships = no
+		OR = {
+			country_uses_bio_ships = no
+			# Ascension / Crisis ships can equip missiles
+			has_tradition = tr_nanotech_4
+			has_crisis_level = crisis_level_2
+			has_technology = tech_cosmogenesis_escort
+		}
 	}
 }
 
@@ -197,12 +221,14 @@ tech_torpedoes_1 = {
 	tier = 1
 	category = { propulsion }
 	ai_update_type = military
-	prerequisites = { "tech_corvettes" }
 	weight = @tier1weight2
 
 	potential = {
 		OR = {
-			country_uses_bio_ships = no
+			AND = {
+				has_technology = tech_corvettes
+				country_uses_bio_ships = no
+			}
 			# Ascension / Crisis ships can equip torpedoes
 			has_tradition = tr_nanotech_4
 			has_crisis_level = crisis_level_2
@@ -254,7 +280,13 @@ tech_torpedoes_2 = {
 	weight = @tier3weight2
 
 	potential = {
-		country_uses_bio_ships = no
+		OR = {
+			country_uses_bio_ships = no
+			# Ascension / Crisis ships can equip missiles
+			has_tradition = tr_nanotech_4
+			has_crisis_level = crisis_level_2
+			has_technology = tech_cosmogenesis_escort
+		}
 	}
 
 	weight_modifier = {
@@ -301,7 +333,13 @@ tech_torpedoes_3 = {
 	weight = @tier4weight2
 
 	potential = {
-		country_uses_bio_ships = no
+		OR = {
+			country_uses_bio_ships = no
+			# Ascension / Crisis ships can equip missiles
+			has_tradition = tr_nanotech_4
+			has_crisis_level = crisis_level_2
+			has_technology = tech_cosmogenesis_escort
+		}
 	}
 
 	weight_modifier = {
