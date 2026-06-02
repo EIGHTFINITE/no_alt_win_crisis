@@ -1066,14 +1066,12 @@ country_event = {
             limit = { owner_main_species = { has_trait = trait_organic } }
             species = {
                 change_species_characteristics = {
-                    remove_trait = trait_organic
-                    add_trait = trait_infernal
+                    add_trait = trait_crisis_infernal
                 }
             }
         }
         every_system = { hyperthermia_galaxy_effect = yes }
         set_update_modifiers_batch = end
-        win = yes
         add_timeline_event = {
             type = timeline_crisis
             override_id = timeline_galactic_hyperthermia_end

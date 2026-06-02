@@ -1,0 +1,38 @@
+trait_crisis_infernal = {
+	cost = 0
+	category = normal
+	opposites = { "trait_lithoid" "trait_organic" }
+	sorting_priority = 20
+	initial = no
+	randomized = no
+	species_potential_add = {
+		always = no
+	}
+	species_possible_remove = {
+		always = no
+	}
+	species_possible_merge_add = {
+		always = no
+	}
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT }
+	tags = { organic infernal habitability special }
+	species_class = { INF PRE_INF }
+	localized_tags = {
+		SPECIES_TRAIT_INFERNAL
+	}
+	ai_weight = {
+		weight = 0
+	}
+	icon = "gfx/interface/icons/traits/trait_infernal.dds"
+
+	custom_tooltip = TRAIT_CRISIS_INFERNAL_EFFECT
+	modifier = {
+		pc_volcanic_habitability = 0.2
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			is_planet_class = pc_volcanic
+		}
+		habitability_floor_add = 0.5
+	}
+}

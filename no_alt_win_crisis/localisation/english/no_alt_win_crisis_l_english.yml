@@ -1,0 +1,4 @@
+﻿l_english:
+trait_crisis_infernal: "$trait_infernal$"
+trait_crisis_infernal_desc: "This species evolved tissues of metallic alloys to grow and thrive on hot planets where traditional organics would cook."
+TRAIT_CRISIS_INFERNAL_EFFECT: "$pc_volcanic$ $HABITABILITY$: §G+20%§! $TABBED_NEW_LINE$- Minimum $HABITABILITY$ (§H$pc_volcanic$§!): §Y+50%§!"

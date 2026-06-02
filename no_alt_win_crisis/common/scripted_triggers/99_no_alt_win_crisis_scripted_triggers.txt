@@ -1,0 +1,8 @@
+is_infernal_empire = {
+	owner_species = {
+		OR = {
+			has_trait = trait_infernal
+			has_trait = trait_crisis_infernal
+		}
+	}
+}
