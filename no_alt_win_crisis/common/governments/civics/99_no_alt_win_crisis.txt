@@ -1,0 +1,144 @@
+civic_crisis_fanatic_purifiers = {
+	modification = no
+	icon = "gfx/interface/icons/governments/civics/civic_galactic_sovereign.dds"
+	potential = {
+		civics = {
+			value = civic_crisis_fanatic_purifiers
+		}
+	}
+	possible = {
+		civics = {
+			AND = {
+				value = civic_fanatic_purifiers
+				value = civic_crisis_fanatic_purifiers
+			}
+		}
+	}
+	random_weight = { base = 0 }
+	modifier = {
+		country_war_exhaustion_mult = -0.50
+		country_starbase_influence_cost_mult = -0.10
+		country_claim_influence_cost_mult = -0.20
+		country_civics_influence_produces_add = 1
+		diplo_weight_mult = 0.4
+		refugee_attraction = -0.50
+		envoys_add = -1
+		country_government_civic_points_add = 1
+	}
+}
+
+civic_crisis_scorched_earth = {
+	modification = no
+	icon = "gfx/interface/icons/governments/civics/civic_galactic_sovereign.dds"
+	potential = {
+		civics = {
+			value = civic_crisis_scorched_earth
+		}
+	}
+	possible = {
+		civics = {
+			AND = {
+				value = civic_scorched_earth
+				value = civic_crisis_scorched_earth
+			}
+		}
+	}
+	random_weight = { base = 0 }
+	modifier = {
+		country_war_exhaustion_mult = -0.50
+		country_starbase_influence_cost_mult = -0.10
+		country_claim_influence_cost_mult = -0.20
+		country_civics_influence_produces_add = 1
+		diplo_weight_mult = 0.4
+		refugee_attraction = -0.50
+		envoys_add = -1
+		country_government_civic_points_add = 1
+	}
+}
+
+civic_crisis_hive_devouring_swarm = {
+	modification = no
+	icon = "gfx/interface/icons/governments/civics/civic_galactic_sovereign.dds"
+	potential = {
+		civics = {
+			value = civic_crisis_hive_devouring_swarm
+		}
+	}
+	possible = {
+		civics = {
+			AND = {
+				value = civic_hive_devouring_swarm
+				value = civic_crisis_hive_devouring_swarm
+			}
+		}
+	}
+	random_weight = { base = 0 }
+	modifier = {
+		country_war_exhaustion_mult = -0.50
+		country_starbase_influence_cost_mult = -0.10
+		country_claim_influence_cost_mult = -0.20
+		country_civics_influence_produces_add = 1
+		diplo_weight_mult = 0.4
+		refugee_attraction = -0.50
+		envoys_add = -1
+		country_government_civic_points_add = 1
+	}
+}
+
+civic_crisis_hive_scorched_earth = {
+	modification = no
+	icon = "gfx/interface/icons/governments/civics/civic_galactic_sovereign.dds"
+	potential = {
+		civics = {
+			value = civic_crisis_hive_scorched_earth
+		}
+	}
+	possible = {
+		civics = {
+			AND = {
+				value = civic_hive_scorched_earth
+				value = civic_crisis_hive_scorched_earth
+			}
+		}
+	}
+	random_weight = { base = 0 }
+	modifier = {
+		country_war_exhaustion_mult = -0.50
+		country_starbase_influence_cost_mult = -0.10
+		country_claim_influence_cost_mult = -0.20
+		country_civics_influence_produces_add = 1
+		diplo_weight_mult = 0.4
+		refugee_attraction = -0.50
+		envoys_add = -1
+		country_government_civic_points_add = 1
+	}
+}
+
+civic_crisis_machine_terminator = {
+	modification = no
+	icon = "gfx/interface/icons/governments/civics/civic_galactic_sovereign.dds"
+	potential = {
+		civics = {
+			value = civic_crisis_machine_terminator
+		}
+	}
+	possible = {
+		civics = {
+			AND = {
+				value = civic_machine_terminator
+				value = civic_crisis_machine_terminator
+			}
+		}
+	}
+	random_weight = { base = 0 }
+	modifier = {
+		country_war_exhaustion_mult = -0.50
+		country_starbase_influence_cost_mult = -0.10
+		country_claim_influence_cost_mult = -0.20
+		country_civics_influence_produces_add = 1
+		diplo_weight_mult = 0.4
+		refugee_attraction = -0.50
+		envoys_add = -1
+		country_government_civic_points_add = 1
+	}
+}

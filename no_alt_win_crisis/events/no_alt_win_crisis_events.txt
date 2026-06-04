@@ -1,0 +1,443 @@
+namespace = no_alt_win_crisis
+
+#Turns you into a purifier
+country_event = {
+	id = no_alt_win_crisis.1
+	title = become_the_crisis_chain_title
+	desc = menace_crisis_description_intro
+
+	show_sound = event_screams
+	picture = GFX_evt_fear_of_the_dark
+	show_sound = evn_fc_disunity_origin
+
+	is_triggered_only = yes
+
+	location = fromfrom
+
+	option = {
+		trigger = {
+			is_hive_empire = no
+			is_machine_empire = no
+		}
+		name = origin.6165.a
+		icon = {
+			icon = GFX_fanatic_purifier
+			text = WILL_TURN_TO_PURIFIER
+		}
+
+		if = {
+			limit = {
+				NOT = { has_civic = civic_fanatic_purifiers }
+				NOT = { has_civic = civic_machine_terminator }
+				NOT = { has_civic = civic_hive_devouring_swarm }
+				NOT = { has_civic = civic_scorched_earth }
+				NOT = { has_civic = civic_hive_scorched_earth }
+			}
+			force_add_civic = civic_fanatic_purifiers
+			force_add_civic = civic_crisis_fanatic_purifiers
+			set_country_flag = crisis_civic_fanatic_purifiers
+			hidden_effect = {
+				country_event = { id = no_alt_win_crisis.3 }
+			}
+		}
+
+		add_resource = { unity = 5000 }
+
+		ai_chance = {
+			weight = 10
+			modifier = {
+				add = 5
+				owner = {
+					num_rivals >= 3
+				}
+			}
+			modifier = {
+				factor = 2
+				owner = {
+					OR = {
+						is_xenophobe = yes
+						is_gestalt = yes
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			is_hive_empire = no
+			is_machine_empire = no
+			owner_species = { has_trait = trait_infernal }
+		}
+		name = infernals.1025.a
+		icon = {
+			icon = GFX_scorched_earth
+			text = WILL_TURN_TO_SCORCHED_EARTH
+		}
+
+		if = {
+			limit = {
+				NOT = { has_civic = civic_fanatic_purifiers }
+				NOT = { has_civic = civic_machine_terminator }
+				NOT = { has_civic = civic_hive_devouring_swarm }
+				NOT = { has_civic = civic_scorched_earth }
+				NOT = { has_civic = civic_hive_scorched_earth }
+			}
+			force_add_civic = civic_scorched_earth
+			force_add_civic = civic_crisis_scorched_earth
+			set_country_flag = crisis_civic_scorched_earth
+			hidden_effect = {
+				country_event = { id = no_alt_win_crisis.3 }
+			}
+		}
+
+		add_resource = { unity = 5000 }
+
+		ai_chance = {
+			weight = 10
+			modifier = {
+				add = 5
+				owner = {
+					num_rivals >= 3
+				}
+			}
+			modifier = {
+				factor = 2
+				owner = {
+					OR = {
+						is_xenophobe = yes
+						is_gestalt = yes
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			is_hive_empire = yes
+		}
+		name = cstorms.1771.desc.swarm
+		icon = {
+			icon = GFX_hive_devouring_swarm
+			text = WILL_TURN_TO_HIVE_DEVOURING_SWARM
+		}
+
+		if = {
+			limit = {
+				NOT = { has_civic = civic_fanatic_purifiers }
+				NOT = { has_civic = civic_machine_terminator }
+				NOT = { has_civic = civic_hive_devouring_swarm }
+				NOT = { has_civic = civic_scorched_earth }
+				NOT = { has_civic = civic_hive_scorched_earth }
+			}
+			force_add_civic = civic_hive_devouring_swarm
+			force_add_civic = civic_crisis_hive_devouring_swarm
+			set_country_flag = crisis_civic_hive_devouring_swarm
+			hidden_effect = {
+				country_event = { id = no_alt_win_crisis.3 }
+			}
+		}
+
+		add_resource = { unity = 5000 }
+
+		ai_chance = {
+			weight = 10
+			modifier = {
+				add = 5
+				owner = {
+					num_rivals >= 3
+				}
+			}
+			modifier = {
+				factor = 2
+				owner = {
+					OR = {
+						is_xenophobe = yes
+						is_gestalt = yes
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			is_hive_empire = yes
+			owner_species = { has_trait = trait_infernal }
+		}
+		name = infernals.1025.b
+		icon = {
+			icon = GFX_hive_scorched_earth
+			text = WILL_TURN_TO_HIVE_SCORCHED_EARTH
+		}
+
+		if = {
+			limit = {
+				NOT = { has_civic = civic_fanatic_purifiers }
+				NOT = { has_civic = civic_machine_terminator }
+				NOT = { has_civic = civic_hive_devouring_swarm }
+				NOT = { has_civic = civic_scorched_earth }
+				NOT = { has_civic = civic_hive_scorched_earth }
+			}
+			force_add_civic = civic_hive_scorched_earth
+			force_add_civic = civic_crisis_hive_scorched_earth
+			set_country_flag = crisis_civic_hive_scorched_earth
+			hidden_effect = {
+				country_event = { id = no_alt_win_crisis.3 }
+			}
+		}
+
+		add_resource = { unity = 5000 }
+
+		ai_chance = {
+			weight = 10
+			modifier = {
+				add = 5
+				owner = {
+					num_rivals >= 3
+				}
+			}
+			modifier = {
+				factor = 2
+				owner = {
+					OR = {
+						is_xenophobe = yes
+						is_gestalt = yes
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			is_machine_empire = yes
+		}
+		name = MECH_E_WAR_ORG_GREETING_01
+		icon = {
+			icon = GFX_machine_terminator
+			text = WILL_TURN_TO_MACHINE_TERMINATOR
+		}
+
+		if = {
+			limit = {
+				NOT = { has_civic = civic_fanatic_purifiers }
+				NOT = { has_civic = civic_machine_terminator }
+				NOT = { has_civic = civic_hive_devouring_swarm }
+				NOT = { has_civic = civic_scorched_earth }
+				NOT = { has_civic = civic_hive_scorched_earth }
+			}
+			force_add_civic = civic_machine_terminator
+			force_add_civic = civic_crisis_machine_terminator
+			set_country_flag = crisis_civic_machine_terminator
+			hidden_effect = {
+				country_event = { id = no_alt_win_crisis.3 }
+			}
+		}
+
+		add_resource = { unity = 5000 }
+
+		ai_chance = {
+			weight = 10
+			modifier = {
+				add = 5
+				owner = {
+					num_rivals >= 3
+				}
+			}
+			modifier = {
+				factor = 2
+				owner = {
+					OR = {
+						is_xenophobe = yes
+						is_gestalt = yes
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = origin.6165.b
+		add_resource = { unity = 5000 }
+		ai_chance = {
+			weight = 10
+			modifier = {
+				add = 5
+				owner = {
+					OR = {
+						has_federation = yes
+						is_overlord = yes
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				owner = {
+					is_part_of_galactic_council = yes
+				}
+			}
+			modifier = {
+				factor = 2
+				owner = {
+					is_xenophile = yes
+				}
+			}
+		}
+	}
+}
+
+# Starts the crisis war (hidden)
+country_event = {
+	id = no_alt_win_crisis.2
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		# Kick the Crisis out of Alliances.
+		if = {
+			limit = { has_federation = yes }
+			leave_alliance = { override_requirements = yes }
+		}
+		if = {
+			limit = {
+				is_galactic_community_formed = yes
+				is_galactic_community_member = yes
+			}
+			remove_from_galactic_community = yes
+		}
+		awaken_guardians_of_the_galaxy = yes
+		set_country_flag = declared_crisis
+		save_event_target_as = new_crisis
+		country_event = { id = crisis.4105 }
+		every_playable_country = {
+			limit = {
+				is_ai = no
+				NOT = { is_same_value = prev }
+			}
+			country_event = { id = crisis.4100 }
+		}
+		if = {
+			limit = { has_galactic_custodian = yes }
+			random_playable_country = {
+				limit = { is_galactic_custodian = yes }
+				save_event_target_as = community_war_leader
+				declare_war = {
+					target = event_target:new_crisis
+					name = {
+						key = "NAME_Declared_Crisis_War"
+						variable_string = "[This.MainDefender.GetAdj]"
+					}
+					attacker_war_goal = "wg_declared_crisis"
+				}
+			}
+			every_playable_country = {
+				limit = {
+					is_galactic_custodian = no
+					is_galactic_community_member = yes
+				}
+				join_war = event_target:community_war_leader
+			}
+		}
+		else = {
+			random_playable_country = {
+				limit = {
+					is_galactic_community_member = yes
+					galactic_community_rank = 1
+				}
+				save_event_target_as = community_war_leader
+				declare_war = {
+					target = event_target:new_crisis
+					name = {
+						key = "NAME_Declared_Crisis_War"
+						variable_string = "[This.MainDefender.GetAdj]"
+					}
+					attacker_war_goal = "wg_declared_crisis"
+				}
+				every_playable_country = {
+					limit = {
+						is_galactic_community_member = yes
+						NOT = { is_same_value = event_target:community_war_leader }
+					}
+					join_war = event_target:community_war_leader
+				}
+			}
+		}
+		# Subjects
+		every_subject = {
+			if = {
+				limit = { has_federation = yes }
+				leave_alliance = { override_requirements = yes }
+			}
+			if = {
+				limit = {
+					is_galactic_community_formed = yes
+					is_galactic_community_member = yes
+				}
+				remove_from_galactic_community = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	id = no_alt_win_crisis.3
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		remove_xuracorp_trades = yes
+		remove_riggan_trades = yes
+		remove_muutagan_trades = yes
+		if = {
+			limit = {
+				has_modifier = enclave_artist_patron
+			}
+			remove_modifier = enclave_artist_patron
+		}
+		if = {
+			limit = {
+				has_modifier = curator_insight
+			}
+			remove_modifier = curator_insight
+		}
+		if = {
+			limit = {
+				has_modifier = salvager_insight
+			}
+			remove_modifier = salvager_insight
+		}
+		every_playable_country = {
+			limit = {
+				has_secret_fealty_with = root
+				NOT = {
+					species = {
+						is_same_species = root.species
+					}
+				}
+			}
+			remove_secret_fealty = root
+		}
+		every_envoy = {
+			limit = {
+				has_envoy_task = {
+					task = improve_relations
+				}
+			}
+			unassign_leader = this
+		}
+		every_playable_country = {
+			limit = {
+				NOT = {
+					species = {
+						is_same_species = root.species
+					}
+				}
+			}
+			end_all_treaties_with = root
+		}
+	}
+}

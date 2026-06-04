@@ -695,6 +695,8 @@ situation_galactic_hyperthermia_timer = {
 		custom_tooltip = situation_gh_timer_outcome
 		hidden_effect = {
 			owner = { country_event = { id = infernals.1041 } }
+			owner = { set_country_flag = declared_crisis }
+			owner = { country_event = { id = no_alt_win_crisis.1 days = 5 } }
 			destroy_situation = this
 			clear_variable = gh_crisis_difficulty_var
 			clear_variable = gh_crisis_opponent_var
