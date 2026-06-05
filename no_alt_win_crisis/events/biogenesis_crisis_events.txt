@@ -256,6 +256,102 @@ country_event = {
 				which = growth_factor_variable
 				value = 0
 			}
+			every_owned_planet = {
+				remove_planet_flag = wilderness_transference_valid
+			}
+			if = {
+				limit = {
+					is_wilderness_empire = yes
+				}
+				every_owned_planet = {
+					limit = {
+						NOR = {
+							is_planet_class = pc_city
+							is_planet_class = pc_machine
+							is_planet_class = pc_relic
+							is_planet_class = pc_hive
+							is_planet_class = pc_ringworld_habitable
+							is_planet_class = pc_shattered_ring_habitable
+							is_planet_class = pc_nanotech
+							is_planet_class = pc_habitat
+						}
+						pop_amount > 500
+					}
+					set_planet_flag = wilderness_transference_valid
+					random_list = {
+						20 = {}
+						20 = {
+							owner = {
+								random_owned_pop_group = {
+									limit = {
+										has_trait = trait_wilderness
+									}
+									kill_pop_group = {
+										pop_group = this
+										amount = 100
+									}
+								}
+								change_variable = {
+									which = pops_transferred
+									value = 100
+								}
+							}
+						}
+						20 = {
+							owner = {
+								random_owned_pop_group = {
+									limit = {
+										has_trait = trait_wilderness
+									}
+									kill_pop_group = {
+										pop_group = this
+										amount = 200
+									}
+								}
+								change_variable = {
+									which = pops_transferred
+									value = 200
+								}
+							}
+						}
+						20 = {
+							owner = {
+								random_owned_pop_group = {
+									limit = {
+										has_trait = trait_wilderness
+									}
+									kill_pop_group = {
+										pop_group = this
+										amount = 300
+									}
+								}
+								change_variable = {
+									which = pops_transferred
+									value = 300
+								}
+							}
+						}
+						20 = {
+							owner = {
+								random_owned_pop_group = {
+									limit = {
+										has_trait = trait_wilderness
+									}
+									kill_pop_group = {
+										pop_group = this
+										amount = 400
+									}
+								}
+								change_variable = {
+									which = pops_transferred
+									value = 400
+								}
+							}
+						}
+					}
+				}
+			}
+			else {
 			# Kill a few pops across country
 			every_owned_planet = {
 				limit = {
@@ -317,6 +413,7 @@ country_event = {
 						}
 					}
 				}
+			}
 			}
 			# Set up event to kill some transference workers every six months
 			country_event = { id = biocrisis.255 days = 180 }
@@ -2631,6 +2728,41 @@ country_event = {
 	hide_window = yes
 
 	immediate = {
+		if = {
+			limit = {
+				is_wilderness_empire = yes
+			}
+			set_variable = {
+				which = pops_transferred
+				value = 0
+			}
+			every_owned_planet = {
+				limit = {
+					NOR = {
+						is_planet_class = pc_city
+						is_planet_class = pc_machine
+						is_planet_class = pc_relic
+						is_planet_class = pc_hive
+						is_planet_class = pc_ringworld_habitable
+						is_planet_class = pc_shattered_ring_habitable
+						is_planet_class = pc_nanotech
+						is_planet_class = pc_habitat
+					}
+					OR = {
+						has_planet_flag = wilderness_transference_valid
+						pop_amount > 500
+					}
+				}
+				set_planet_flag = wilderness_transference_valid
+				owner = {
+					change_variable = {
+						which = pops_transferred
+						value = 400
+					}
+				}
+			}
+		}
+		else {
 		capital_scope = {
 			if = {
 				#check that someone is working a transference job and that there are more than 5 pops on the planet
@@ -2716,6 +2848,7 @@ country_event = {
 		change_variable = {
 			which = pops_transferred
 			value = num_transference_jobs_var
+		}
 		}
 		country_event = { id = biocrisis.255 days = 180 }
 	}
