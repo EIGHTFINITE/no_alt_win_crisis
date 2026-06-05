@@ -18,6 +18,9 @@ tb_others_group = {
 		resources = {
 			minor_artifacts
 			astral_threads
+			menace
+			advanced_logic
+			feral_insight
 			entropy_crystals
 		}
 		onclick = discoveries
