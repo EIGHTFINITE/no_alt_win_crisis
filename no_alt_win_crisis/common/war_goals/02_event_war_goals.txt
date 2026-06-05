@@ -351,6 +351,7 @@ wg_declared_crisis = {
 	casus_belli = cb_event
 
 	total_war = yes
+	destroy_starbases = yes
 
 	forbidden_peace_offers = {
 		demand_surrender = ""
