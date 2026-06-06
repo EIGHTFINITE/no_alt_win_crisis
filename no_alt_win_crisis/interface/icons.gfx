@@ -5322,6 +5322,26 @@ spriteTypes = {
 	}
 
 	spriteType = {
+		name = "GFX_scorched_earth"
+		texturefile = "gfx/interface/icons/governments/civics/civic_scorched_earth.dds"
+	}
+
+	spriteType = {
+		name = "GFX_hive_devouring_swarm"
+		texturefile = "gfx/interface/icons/governments/civics/civic_hive_devouring_swarm.dds"
+	}
+
+	spriteType = {
+		name = "GFX_hive_scorched_earth"
+		texturefile = "gfx/interface/icons/governments/civics/civic_hive_scorched_earth.dds"
+	}
+
+	spriteType = {
+		name = "GFX_machine_terminator"
+		texturefile = "gfx/interface/icons/governments/civics/civic_machine_terminator.dds"
+	}
+
+	spriteType = {
 		name = "GFX_terraforming_candidate"
 		texturefile = "gfx/interface/icons/terraforming_candidate.dds"
 		noOfFrames = 2
