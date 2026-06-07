@@ -1553,6 +1553,14 @@ situation_event = {
 						}
 						set_origin = origin_tree_of_life
 					}
+					else_if = {
+						limit = {
+							has_trait = trait_wilderness
+						}
+						set_origin = origin_wilderness
+						set_country_flag = uses_biomass
+						set_country_flag = virtual_jobs
+					}
 
 					if = {
 						limit = {
