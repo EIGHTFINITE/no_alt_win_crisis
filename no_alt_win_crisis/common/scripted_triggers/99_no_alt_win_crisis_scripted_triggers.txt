@@ -13,5 +13,6 @@ blocks_minister_of_state = {
 		has_valid_civic = civic_inwards_perfection
 		has_valid_civic = civic_fanatic_purifiers
 		has_valid_civic = civic_scorched_earth
+		has_valid_civic = civic_machine_terminator
 	}
 }

@@ -212,7 +212,7 @@ country_event = {
 
 	option = {
 		trigger = {
-			is_machine_empire = yes
+			is_synthetic_empire = yes
 		}
 		name = MECH_E_WAR_ORG_GREETING_01
 		icon = {

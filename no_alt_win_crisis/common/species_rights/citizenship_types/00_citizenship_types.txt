@@ -54,6 +54,19 @@ citizenship_full = {
 			}
 		}
 		custom_tooltip = {
+			fail_text = "MACHINE_SPECIES_NOT_MACHINE"
+			if = {
+				limit = { from = { AND = {
+					NOT = { has_ethic = ethic_gestalt_consciousness }
+					has_valid_civic = civic_machine_terminator
+				} } }
+				OR = {
+					has_trait = trait_machine_unit
+					has_trait = trait_mechanical
+				}
+			}
+		}
+		custom_tooltip = {
 			fail_text = "SCORCHED_HERALDS_ONLY_INF"
 			if = {
 				limit = { from = { is_genocidal_infernal = yes } }
@@ -623,6 +636,19 @@ citizenship_limited = {
 			}
 		}
 		custom_tooltip = {
+			fail_text = "MACHINE_SPECIES_NOT_MACHINE"
+			if = {
+				limit = { from = { AND = {
+					NOT = { has_ethic = ethic_gestalt_consciousness }
+					has_valid_civic = civic_machine_terminator
+				} } }
+				OR = {
+					has_trait = trait_machine_unit
+					has_trait = trait_mechanical
+				}
+			}
+		}
+		custom_tooltip = {
 			fail_text = "SCORCHED_HERALDS_ONLY_INF"
 			if = {
 				limit = { from = { is_genocidal_infernal = yes } }
@@ -763,7 +789,23 @@ citizenship_slavery = {
 		custom_tooltip = {
 			fail_text = TERMINATORS_CANNOT_ENSLAVE
 			from = {
-				NOT = { has_valid_civic = civic_machine_terminator }
+				NAND = {
+					has_ethic = ethic_gestalt_consciousness
+					has_valid_civic = civic_machine_terminator
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "MACHINE_SPECIES_NOT_MACHINE"
+			if = {
+				limit = { from = { AND = {
+					NOT = { has_ethic = ethic_gestalt_consciousness }
+					has_valid_civic = civic_machine_terminator
+				} } }
+				OR = {
+					has_trait = trait_machine_unit
+					has_trait = trait_mechanical
+				}
 			}
 		}
 		custom_tooltip = {

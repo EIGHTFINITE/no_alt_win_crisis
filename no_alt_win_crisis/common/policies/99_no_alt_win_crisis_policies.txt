@@ -737,7 +737,10 @@ diplomatic_stance = {
 		icon = "GFX_diplomatic_stance_recompiling"
 
 		potential = {
-			is_machine_empire = yes
+			OR = {
+				is_machine_empire = yes
+				has_valid_civic = civic_machine_terminator
+			}
 		}
 
 		valid = {
@@ -1006,11 +1009,15 @@ war_philosophy = {
 		}
 
 		valid = {
-			NOR = {
-				has_ethic = "ethic_pacifist"
-				has_ethic = "ethic_fanatic_pacifist"
-				has_valid_civic = "civic_inwards_perfection"
-				has_civic = "civic_crusader_spirit"
+			OR = {
+				NOR = {
+					has_ethic = "ethic_pacifist"
+					has_ethic = "ethic_fanatic_pacifist"
+					has_valid_civic = "civic_inwards_perfection"
+					has_civic = "civic_crusader_spirit"
+				}
+				has_valid_civic = "civic_fanatic_purifiers"
+				has_valid_civic = "civic_machine_terminator"
 			}
 		}
 
@@ -1075,6 +1082,7 @@ war_philosophy = {
 			NOR = {
 				has_ethic = "ethic_fanatic_pacifist"
 				has_valid_civic = "civic_fanatic_purifiers"
+				has_valid_civic = "civic_machine_terminator"
 			}
 		}
 
@@ -1200,9 +1208,14 @@ orbital_bombardment = {
 		modifier = {}
 
 		valid = {
-			NOR = {
-				has_ethic = "ethic_pacifist"
-				has_ethic = "ethic_fanatic_pacifist"
+			OR = {
+				NOR = {
+					has_ethic = "ethic_pacifist"
+					has_ethic = "ethic_fanatic_pacifist"
+				}
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
+				has_valid_civic = civic_scorched_earth
 			}
 		}
 		AI_weight = {
@@ -1438,6 +1451,7 @@ interference = {
 				}
 				has_valid_civic = "civic_fanatic_purifiers"
 				has_valid_civic = "civic_hive_devouring_swarm"
+				has_valid_civic = "civic_machine_terminator"
 			}
 		}
 
@@ -1488,12 +1502,17 @@ interference = {
 				fail_text = is_not_a_signatory_vassal_fail
 				NOT = { any_agreement = { agreement_preset = preset_signatory } }
 			}
-			NOR = {
-				has_ethic = "ethic_pacifist"
-				has_ethic = "ethic_fanatic_pacifist"
-				has_ethic = "ethic_xenophile"
-				has_ethic = "ethic_fanatic_xenophile"
-				has_valid_civic = civic_machine_exploration_protocol
+			OR = {
+				NOR = {
+					has_ethic = "ethic_pacifist"
+					has_ethic = "ethic_fanatic_pacifist"
+					has_ethic = "ethic_xenophile"
+					has_ethic = "ethic_fanatic_xenophile"
+					has_valid_civic = civic_machine_exploration_protocol
+				}
+				has_valid_civic = "civic_fanatic_purifiers"
+				has_valid_civic = "civic_hive_devouring_swarm"
+				has_valid_civic = "civic_machine_terminator"
 			}
 		}
 		on_enabled = {
@@ -1624,9 +1643,12 @@ pre_sapients = {
 		}
 
 		valid = {
-			NOR = {
-				has_ethic = "ethic_xenophile"
-				has_ethic = "ethic_fanatic_xenophile"
+			OR = {
+				NOR = {
+					has_ethic = "ethic_xenophile"
+					has_ethic = "ethic_fanatic_xenophile"
+				}
+				has_valid_civic = civic_fanatic_purifiers
 			}
 		}
 
@@ -1650,10 +1672,14 @@ pre_sapients = {
 		pre_sapient_purge = purge_normal
 
 		valid = {
-			NOR = {
-				has_ethic = "ethic_xenophile"
-				has_ethic = "ethic_fanatic_xenophile"
-				is_guided_sapience_empire = yes
+			OR = {
+				NOR = {
+					has_ethic = "ethic_xenophile"
+					has_ethic = "ethic_fanatic_xenophile"
+					is_guided_sapience_empire = yes
+				}
+				has_valid_civic = civic_machine_terminator
+				has_valid_civic = civic_fanatic_purifiers
 			}
 		}
 
@@ -1704,8 +1730,9 @@ disconnected_drones = {
 		name = "disconnected_drones_sustain"
 
 		potential = {
-			NOT = {
+			NOR = {
 				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
 			}
 		}
 
@@ -1749,7 +1776,11 @@ disconnected_drones = {
 		name = "disconnected_drones_purge"
 
 		valid = {
-			is_xenophile = no
+			OR = {
+				is_xenophile = no
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
+			}
 		}
 
 		on_enabled = {
@@ -1807,9 +1838,13 @@ refugees = {
 		name = "refugees_not_allowed"
 
 		valid = {
-			NOR = {
-				has_ethic = "ethic_xenophile"
-				has_ethic = "ethic_fanatic_xenophile"
+			OR = {
+				NOR = {
+					has_ethic = "ethic_xenophile"
+					has_ethic = "ethic_fanatic_xenophile"
+				}
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
 			}
 		}
 
@@ -1830,8 +1865,10 @@ refugees = {
 		}
 
 		valid = {
-			NOT = {
+			NOR = {
 				is_hive_empire = yes
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
 			}
 		}
 
@@ -1848,7 +1885,12 @@ refugees = {
 		}
 
 		valid = {
-			is_xenophobe = no
+			NOR = {
+				has_ethic = "ethic_xenophobe"
+				has_ethic = "ethic_fanatic_xenophobe"
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_machine_terminator
+			}
 		}
 
 		AI_weight = {
@@ -1877,6 +1919,7 @@ purge = {
 			NOR = {
 				has_valid_civic = "civic_fanatic_purifiers"
 				has_valid_civic = "civic_scorched_earth"
+				has_valid_civic = "civic_machine_terminator"
 		}
 		}
 
@@ -1957,6 +2000,9 @@ purge = {
 					}
 					has_purity_imperfection_remediation_tradition = yes
 				}
+				has_valid_civic = "civic_fanatic_purifiers"
+				has_valid_civic = "civic_scorched_earth"
+				has_valid_civic = "civic_machine_terminator"
 			}
 		}
 

@@ -232,7 +232,12 @@ civic_hive_scorched_earth = {
 ##################
 
 civic_machine_terminator = {
-	potential = { authority = { value = auth_machine_intelligence } }
+	potential = {
+		OR = {
+			authority = { value = auth_machine_intelligence }
+			civics = { value = civic_crisis_machine_terminator }
+		}
+	}
 	possible = {
 		OR = {
 			AND = {

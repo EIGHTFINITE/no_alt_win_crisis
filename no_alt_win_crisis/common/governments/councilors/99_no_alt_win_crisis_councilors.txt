@@ -1,0 +1,20 @@
+councilor_machine_terminator = {
+	leader_class = { commander official }
+	possible = {
+		is_gestalt = no
+		has_valid_civic = civic_machine_terminator
+	}
+	is_leader_possible = {
+		OR = {
+			leader_class = commander
+			leader_class = official
+		}
+	}
+	modifier = {
+		country_alloys_produces_mult = 0.02
+	}
+	icon = "GFX_machine_terminator"
+	ai_hiring_weight = {
+		inline_script = councilor_leader_weights
+	}
+}
