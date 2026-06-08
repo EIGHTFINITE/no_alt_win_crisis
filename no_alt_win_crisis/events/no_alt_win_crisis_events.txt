@@ -67,7 +67,10 @@ country_event = {
 		trigger = {
 			is_hive_empire = no
 			is_machine_empire = no
-			owner_species = { has_trait = trait_infernal }
+			OR = {
+				is_infernal_empire = yes
+				has_ascension_perk = ap_galactic_hyperthermia
+			}
 		}
 		name = infernals.1025.a
 		icon = {
@@ -164,7 +167,10 @@ country_event = {
 	option = {
 		trigger = {
 			is_hive_empire = yes
-			owner_species = { has_trait = trait_infernal }
+			OR = {
+				is_infernal_empire = yes
+				has_ascension_perk = ap_galactic_hyperthermia
+			}
 		}
 		name = infernals.1025.b
 		icon = {
