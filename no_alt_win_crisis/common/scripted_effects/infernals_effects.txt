@@ -205,6 +205,9 @@ hyperthermia_galaxy_effect = {
 				NOR = {
 					is_infernal_empire = yes
 					has_ascension_perk = ap_galactic_hyperthermia
+					species = {
+						is_same_species = root.species
+					}
 				}
 			}
 			OR = {
@@ -226,6 +229,9 @@ hyperthermia_galaxy_effect = {
 				OR = {
 					is_infernal_empire = yes
 					has_ascension_perk = ap_galactic_hyperthermia
+					species = {
+						is_same_species = root.species
+					}
 				}
 				NAND = {
 					has_ascension_perk = ap_hydrocentric
@@ -269,6 +275,9 @@ hyperthermia_galaxy_effect = {
 				NOR = {
 					is_infernal_empire = yes
 					has_ascension_perk = ap_galactic_hyperthermia
+					species = {
+						is_same_species = root.species
+					}
 				}
 			}
 		}

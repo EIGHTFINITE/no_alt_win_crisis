@@ -38,6 +38,10 @@ country_event = {
 			set_country_flag = crisis_civic_fanatic_purifiers
 			hidden_effect = {
 				country_event = { id = no_alt_win_crisis.3 }
+				set_policy = {
+					policy = diplomatic_stance
+					option = diplo_stance_purification
+				}
 			}
 		}
 
@@ -91,6 +95,10 @@ country_event = {
 			set_country_flag = crisis_civic_scorched_earth
 			hidden_effect = {
 				country_event = { id = no_alt_win_crisis.3 }
+				set_policy = {
+					policy = diplomatic_stance
+					option = diplo_stance_devastators
+				}
 			}
 		}
 
@@ -138,6 +146,10 @@ country_event = {
 			force_add_civic = civic_crisis_hive_devouring_swarm
 			set_country_flag = crisis_civic_hive_devouring_swarm
 			hidden_effect = {
+				set_policy = {
+					policy = diplomatic_stance
+					option = diplo_stance_hunger
+				}
 				country_event = { id = no_alt_win_crisis.3 }
 			}
 		}
@@ -191,6 +203,10 @@ country_event = {
 			set_country_flag = crisis_civic_hive_scorched_earth
 			hidden_effect = {
 				country_event = { id = no_alt_win_crisis.3 }
+				set_policy = {
+					policy = diplomatic_stance
+					option = diplo_stance_devastators
+				}
 			}
 		}
 
@@ -239,6 +255,10 @@ country_event = {
 			set_country_flag = crisis_civic_machine_terminator
 			hidden_effect = {
 				country_event = { id = no_alt_win_crisis.3 }
+				set_policy = {
+					policy = diplomatic_stance
+					option = diplo_stance_extermination
+				}
 			}
 		}
 
@@ -305,7 +325,17 @@ country_event = {
 		# Kick the Crisis out of Alliances.
 		if = {
 			limit = { has_federation = yes }
-			leave_alliance = { override_requirements = yes }
+			every_federation_ally = {
+				limit = {
+					NOT = {
+						species = {
+							is_same_species = root.species
+						}
+					}
+					has_federation = yes
+				}
+				leave_alliance = { override_requirements = yes }
+			}
 		}
 		if = {
 			limit = {
@@ -313,6 +343,27 @@ country_event = {
 				is_galactic_community_member = yes
 			}
 			remove_from_galactic_community = yes
+		}
+		# Subjects
+		every_subject = {
+			if = {
+				limit = {
+					NOT = {
+						species = {
+							is_same_species = root.species
+						}
+					}
+					has_federation = yes
+				}
+				leave_alliance = { override_requirements = yes }
+			}
+			if = {
+				limit = {
+					is_galactic_community_formed = yes
+					is_galactic_community_member = yes
+				}
+				remove_from_galactic_community = yes
+			}
 		}
 		awaken_guardians_of_the_galaxy = yes
 		set_country_flag = declared_crisis
@@ -369,20 +420,6 @@ country_event = {
 					}
 					join_war = event_target:community_war_leader
 				}
-			}
-		}
-		# Subjects
-		every_subject = {
-			if = {
-				limit = { has_federation = yes }
-				leave_alliance = { override_requirements = yes }
-			}
-			if = {
-				limit = {
-					is_galactic_community_formed = yes
-					is_galactic_community_member = yes
-				}
-				remove_from_galactic_community = yes
 			}
 		}
 	}
