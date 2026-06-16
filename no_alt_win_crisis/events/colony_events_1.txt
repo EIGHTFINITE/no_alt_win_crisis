@@ -9,7 +9,7 @@
 namespace = colony
 
 ### Migrating Forests
-planet_event = {
+carrier_event = {
 	id = colony.1
 	title = "colony.1.name"
 	desc = "colony.1.desc"
@@ -45,7 +45,7 @@ planet_event = {
 		}
 		NOR = {
 			has_global_flag = migrating_forests_global
-			has_planet_flag = colony_event
+			has_carrier_flag = colony_event
 		}
 	}
 
@@ -53,7 +53,7 @@ planet_event = {
 
 	immediate = {
 		set_global_flag = migrating_forests_global
-		set_planet_flag = colony_event
+		set_carrier_flag = colony_event
 		add_deposit = d_migrating_forests
 		add_modifier = {
 			modifier = "migrating_forests"
@@ -92,12 +92,12 @@ planet_event = {
 	}
 
 	after = {
-		planet_event = { id = colony.12 days = 180 random = 2400 }
+		carrier_event = { id = colony.12 days = 180 random = 2400 }
 	}
 }
 
 # Special Project Completed 1
-planet_event = {
+carrier_event = {
 	id = colony.2
 	title = "PROJECT_COMPLETE"
 	desc = "colony.2.desc"
@@ -128,7 +128,7 @@ planet_event = {
 			}
 		}
 		hidden_effect = {
-			set_planet_flag = forest_pheremones
+			set_carrier_flag = forest_pheremones
 			add_modifier = {
 				modifier = "migrating_forests_2"
 				days = -1
@@ -138,16 +138,16 @@ planet_event = {
 
 	after = {
 		hidden_effect = {
-			planet_event = { id = colony.9 days = 1800 random = 5400 } # previously MTTH 240 months (20 years)
-			planet_event = { id = colony.10 days = 1800 random = 5400 } # previously MTTH 240 months (20 years)
-			planet_event = { id = colony.11 days = 1800 random = 5400 } # previously MTTH 240 months (20 years)
+			carrier_event = { id = colony.9 days = 1800 random = 5400 } # previously MTTH 240 months (20 years)
+			carrier_event = { id = colony.10 days = 1800 random = 5400 } # previously MTTH 240 months (20 years)
+			carrier_event = { id = colony.11 days = 1800 random = 5400 } # previously MTTH 240 months (20 years)
 
 		}
 	}
 }
 
 # Special Project Completed 2
-planet_event = {
+carrier_event = {
 	id = colony.3
 	title = "PROJECT_COMPLETE"
 	desc = "colony.3.desc"
@@ -160,7 +160,7 @@ planet_event = {
 
 	option = {
 		name = EXCELLENT
-		set_planet_flag = burned_forests
+		set_carrier_flag = burned_forests
 		remove_modifier = "migrating_forests"
 		hidden_effect = {
 			remove_deposit = d_migrating_forests
@@ -169,16 +169,16 @@ planet_event = {
 
 	after = {
 		hidden_effect = {
-			planet_event = { id = colony.4 days = 1800 random = 5400 } # previously MTTH 240 months (20 years)
-			planet_event = { id = colony.6 days = 1800 random = 5400 } # previously MTTH 240 months (20 years)
-			planet_event = { id = colony.7 days = 1800 random = 5400 } # previously MTTH 240 months (20 years)
-			planet_event = { id = colony.8 days = 1800 random = 5400 } # previously MTTH 240 months (20 years)
+			carrier_event = { id = colony.4 days = 1800 random = 5400 } # previously MTTH 240 months (20 years)
+			carrier_event = { id = colony.6 days = 1800 random = 5400 } # previously MTTH 240 months (20 years)
+			carrier_event = { id = colony.7 days = 1800 random = 5400 } # previously MTTH 240 months (20 years)
+			carrier_event = { id = colony.8 days = 1800 random = 5400 } # previously MTTH 240 months (20 years)
 		}
 	}
 }
 
 # Rise of the Trees
-planet_event = {
+carrier_event = {
 	id = colony.4
 	title = "colony.4.name"
 	desc = "colony.4.desc"
@@ -198,14 +198,14 @@ planet_event = {
 	}
 
 	trigger = {
-		NOT = { has_planet_flag = burned_forests_rampage }
-		has_planet_flag = burned_forests
+		NOT = { has_carrier_flag = burned_forests_rampage }
+		has_carrier_flag = burned_forests
 		pop_amount > 0
 	}
 
 	immediate = {
-		set_planet_flag = burned_forests_rampage
-		set_planet_flag = burned_forests_rampaged_planet
+		set_carrier_flag = burned_forests_rampage
+		set_carrier_flag = burned_forests_rampaged_planet
 		owner = { set_country_flag = burned_forests_rampaged_country }
 		create_country = {
 			name = "NAME_Rampaging_Forests"
@@ -264,13 +264,13 @@ country_event = {
 
 	trigger = {
 		has_country_flag = burned_forests_rampaged_country
-		FROMFROM = { has_planet_flag = burned_forests_rampaged_planet }
+		FROMFROM = { planet = { has_carrier_flag = burned_forests_rampaged_planet } }
 	}
 
 	immediate = {
 		remove_country_flag = burned_forests_rampaged_country
 		FROMFROM = {
-			remove_planet_flag = burned_forests_rampaged_planet
+			remove_carrier_flag = burned_forests_rampaged_planet
 			clear_planet_purge_type = yes
 		}
 	}
@@ -281,7 +281,7 @@ country_event = {
 }
 
 # Mineral Deposits
-planet_event = {
+carrier_event = {
 	id = colony.6
 	title = "colony.6.name"
 	desc = "colony.6.desc"
@@ -299,16 +299,16 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = burned_forests
+		has_carrier_flag = burned_forests
 		NOR = {
-			has_planet_flag = burned_forest_precious
-			has_planet_flag = burned_forest_minerals
+			has_carrier_flag = burned_forest_precious
+			has_carrier_flag = burned_forest_minerals
 		}
 		pop_amount > 0
 	}
 
 	immediate = {
-		set_planet_flag = burned_forest_minerals
+		set_carrier_flag = burned_forest_minerals
 	}
 
 	option = {
@@ -325,7 +325,7 @@ planet_event = {
 }
 
 # Precious Metal Deposit
-planet_event = {
+carrier_event = {
 	id = colony.7
 	title = "colony.7.name"
 	desc = "colony.7.desc"
@@ -343,17 +343,17 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = burned_forests
+		has_carrier_flag = burned_forests
 		NOR = {
-			has_planet_flag = burned_forest_precious
-			has_planet_flag = burned_forest_minerals
+			has_carrier_flag = burned_forest_precious
+			has_carrier_flag = burned_forest_minerals
 		}
 		has_any_strategic_resource = no
 		pop_amount > 0
 	}
 
 	immediate = {
-		set_planet_flag = burned_forest_precious
+		set_carrier_flag = burned_forest_precious
 	}
 
 	option = {
@@ -370,7 +370,7 @@ planet_event = {
 }
 
 # Ecological Damage
-planet_event = {
+carrier_event = {
 	id = colony.8
 	title = "colony.8.name"
 	desc = "colony.8.desc"
@@ -388,13 +388,13 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = burned_forests
-		NOT = { has_planet_flag = burned_forest_damage }
+		has_carrier_flag = burned_forests
+		NOT = { has_carrier_flag = burned_forest_damage }
 		pop_amount > 0
 	}
 
 	immediate = {
-		set_planet_flag = burned_forest_damage
+		set_carrier_flag = burned_forest_damage
 	}
 
 	option = {
@@ -407,7 +407,7 @@ planet_event = {
 }
 
 # Forest Adaptation
-planet_event = {
+carrier_event = {
 	id = colony.9
 	title = "colony.9.name"
 	desc = "colony.9.desc"
@@ -425,13 +425,13 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = forest_pheremones
-		NOT = { has_planet_flag = forest_pheremones_adaptation }
+		has_carrier_flag = forest_pheremones
+		NOT = { has_carrier_flag = forest_pheremones_adaptation }
 		pop_amount > 0
 	}
 
 	immediate = {
-		set_planet_flag = forest_pheremones_adaptation
+		set_carrier_flag = forest_pheremones_adaptation
 	}
 
 	option = {
@@ -444,7 +444,7 @@ planet_event = {
 }
 
 # Forest Research
-planet_event = {
+carrier_event = {
 	id = colony.10
 	title = "colony.10.name"
 	desc = "colony.10.desc"
@@ -462,13 +462,13 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = forest_pheremones
-		NOT = { has_planet_flag = forest_pheremones_studies }
+		has_carrier_flag = forest_pheremones
+		NOT = { has_carrier_flag = forest_pheremones_studies }
 		pop_amount > 0
 	}
 
 	immediate = {
-		set_planet_flag = forest_pheremones_studies
+		set_carrier_flag = forest_pheremones_studies
 	}
 
 	option = {
@@ -485,7 +485,7 @@ planet_event = {
 }
 
 # Forest Fire
-planet_event = {
+carrier_event = {
 	id = colony.11
 	title = "colony.11.name"
 	desc = "colony.11.desc"
@@ -503,13 +503,13 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = forest_pheremones
-		NOT = { has_planet_flag = forest_pheremones_fire }
+		has_carrier_flag = forest_pheremones
+		NOT = { has_carrier_flag = forest_pheremones_fire }
 		pop_amount > 0
 	}
 
 	immediate = {
-		set_planet_flag = forest_pheremones_fire
+		set_carrier_flag = forest_pheremones_fire
 	}
 
 	option = {
@@ -522,7 +522,7 @@ planet_event = {
 }
 
 # Forests Move
-planet_event = {
+carrier_event = {
 	id = colony.12
 	title = "colony.12.name"
 	desc = "colony.12.desc"
@@ -534,11 +534,11 @@ planet_event = {
 
 	trigger = {
 		has_modifier = "migrating_forests"
-		NOT = { has_planet_flag = recent_migrating_forests_movement }
+		NOT = { has_carrier_flag = recent_migrating_forests_movement }
 	}
 
 	immediate = {
-		set_timed_planet_flag = {
+		set_timed_carrier_flag = {
 			flag = recent_migrating_forests_movement
 			days = 360
 		}
@@ -551,12 +551,12 @@ planet_event = {
 
 	after = {
 		# recursively firing itself until the player finishes one of the special projects
-		planet_event = { id = colony.12 days = 720 random = 1680 }
+		carrier_event = { id = colony.12 days = 720 random = 1680 }
 	}
 }
 
 ### Seismic Disturbances
-planet_event = {
+carrier_event = {
 	id = colony.50
 	title = "colony.50.name"
 	desc = {
@@ -597,7 +597,7 @@ planet_event = {
 		pop_amount > 0
 		NOR = {
 			has_global_flag = seismic_disturbance_global
-			has_planet_flag = colony_event
+			has_carrier_flag = colony_event
 			is_planet_class = pc_nuked
 			is_planet_class = pc_ringworld_habitable
 			is_planet_class = pc_shattered_ring_habitable
@@ -613,8 +613,8 @@ planet_event = {
 	immediate = {
 		owner = { save_event_target_as = subterranean_planet_owner }
 		set_global_flag = seismic_disturbance_global
-		set_planet_flag = seismic_disturbance
-		set_planet_flag = colony_event
+		set_carrier_flag = seismic_disturbance
+		set_carrier_flag = colony_event
 		add_deposit = d_underground_farm_blocked
 		add_deposit = d_underground_mine_blocked
 		add_deposit = d_underground_generator_blocked
@@ -664,7 +664,7 @@ planet_event = {
 }
 
 # Special Project Completed 1
-planet_event = {
+carrier_event = {
 	id = colony.51
 	title = "PROJECT_COMPLETE"
 	desc = "colony.51.desc"
@@ -677,7 +677,7 @@ planet_event = {
 
 	immediate = {
 		owner = { save_event_target_as = subterranean_planet_owner }
-		set_planet_flag = seismic_disturbance_friendly
+		set_carrier_flag = seismic_disturbance_friendly
 		create_subterranean_nation = { FLAG = subterranean_nation }
 	}
 
@@ -690,7 +690,7 @@ planet_event = {
 }
 
 # Special Project Completed 2 or 3
-planet_event = {
+carrier_event = {
 	id = colony.52
 	title = "PROJECT_COMPLETE"
 	desc = "colony.52.desc"
@@ -702,8 +702,8 @@ planet_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		set_planet_flag = seismic_disturbance_destroyed
-		remove_planet_flag = seismic_disturbance_war
+		set_carrier_flag = seismic_disturbance_destroyed
+		remove_carrier_flag = seismic_disturbance_war
 
 		remove_deposit = d_underground_farm_blocked
 		remove_deposit = d_underground_mine_blocked
@@ -760,7 +760,7 @@ country_event = {
 		response_text = "colony.53.b.response"
 		hidden_effect = {
 			FROM = {
-				set_planet_flag = seismic_disturbance_friendly
+				set_carrier_flag = seismic_disturbance_friendly
 				create_subterranean_nation = { FLAG = subterranean_nation }
 			}
 		}
@@ -770,7 +770,7 @@ country_event = {
 				days = -1
 			}
 			add_deposit = d_underground_contact_zone
-			#set_planet_flag = trade_size_increase
+			#set_carrier_flag = trade_size_increase
 		}
 	}
 	option = {
@@ -781,7 +781,7 @@ country_event = {
 		response_text = "colony.53.b.response.subterranean"
 		hidden_effect = {
 			FROM = {
-				set_planet_flag = seismic_disturbance_friendly
+				set_carrier_flag = seismic_disturbance_friendly
 				create_subterranean_nation = { FLAG = subterranean_nation }
 			}
 		}
@@ -791,7 +791,7 @@ country_event = {
 				days = -1
 			}
 			add_deposit = d_underground_contact_zone
-			#set_planet_flag = trade_size_increase
+			#set_carrier_flag = trade_size_increase
 		}
 	}
 	option = {
@@ -799,14 +799,14 @@ country_event = {
 		response_text = colony.53.c.response
 		hidden_effect = {
 			FROM = {
-				planet_event = { id = colony.54 days = 35 random = 40 }
+				carrier_event = { id = colony.54 days = 35 random = 40 }
 			}
 		}
 	}
 }
 
 # Subterranean Invasion!
-planet_event = {
+carrier_event = {
 	id = colony.54
 	title = "colony.54.name"
 	desc = {
@@ -838,7 +838,7 @@ planet_event = {
 			set_country_flag = has_fought_subterraneans
 			set_country_flag = subterranean_invasion_country
 		}
-		set_planet_flag = subterranean_invasion_planet
+		set_carrier_flag = subterranean_invasion_planet
 		event_target:subterranean_nation = {
 			create_leader = {
 				class = commander
@@ -918,15 +918,15 @@ country_event = {
 	trigger = {
 		has_country_flag = subterranean_invasion_country
 		NOT = { has_country_flag = subterraneans_defeated_once }
-		FROMFROM = { has_planet_flag = subterranean_invasion_planet }
+		FROMFROM = { planet = { has_carrier_flag = subterranean_invasion_planet } }
 	}
 
 	immediate = {
 		remove_country_flag = subterranean_invasion_country
 		set_country_flag = subterraneans_defeated_once
 		FROMFROM = {
-			set_planet_flag = seismic_disturbance_war
-			remove_planet_flag = subterranean_invasion_planet
+			set_carrier_flag = seismic_disturbance_war
+			remove_carrier_flag = subterranean_invasion_planet
 		}
 	}
 
@@ -954,7 +954,7 @@ country_event = {
 
 	trigger = {
 		has_country_flag = subterranean_invasion_country
-		FROMFROM = { has_planet_flag = subterranean_invasion_planet }
+		FROMFROM = { planet = { has_carrier_flag = subterranean_invasion_planet } }
 		from = { is_country_type = adversary }
 	}
 
@@ -1008,7 +1008,7 @@ country_event = {
 		}
 		from = { destroy_country = yes }
 		FROMFROM = {
-			remove_planet_flag = subterranean_invasion_planet
+			remove_carrier_flag = subterranean_invasion_planet
 			save_event_target_as = conquered_planet
 			set_owner = event_target:subterranean_empire
 			if = {
@@ -1090,7 +1090,7 @@ country_event = {
 }
 
 # Aliens Surface
-planet_event = {
+carrier_event = {
 	id = colony.59
 	title = "colony.59.name"
 	desc = {
@@ -1129,7 +1129,7 @@ planet_event = {
 }
 
 # Another Invasion
-planet_event = {
+carrier_event = {
 	id = colony.60
 	title = "colony.54.name"
 	desc = "colony.60.desc"
@@ -1146,7 +1146,7 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = seismic_disturbance_war
+		has_carrier_flag = seismic_disturbance_war
 		pop_amount > 0
 	}
 
@@ -1156,7 +1156,7 @@ planet_event = {
 
 	immediate = {
 		owner = { set_country_flag = subterranean_invasion_country }
-		set_planet_flag = subterranean_invasion_planet
+		set_carrier_flag = subterranean_invasion_planet
 		random_country = {
 			limit = {
 				is_country_type = adversary
@@ -1306,7 +1306,7 @@ planet_event = {
 }
 
 # Collapse
-planet_event = {
+carrier_event = {
 	id = colony.61
 	title = "colony.61.name"
 	desc = "colony.61.desc"
@@ -1323,8 +1323,8 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = seismic_disturbance_war
-		NOT = { has_planet_flag = seismic_disturbance_collapse }
+		has_carrier_flag = seismic_disturbance_war
+		NOT = { has_carrier_flag = seismic_disturbance_collapse }
 		has_army = yes
 		pop_amount > 0
 	}
@@ -1334,7 +1334,7 @@ planet_event = {
 	}
 
 	immediate = {
-		set_planet_flag = seismic_disturbance_collapse
+		set_carrier_flag = seismic_disturbance_collapse
 	}
 
 	option = {
@@ -1350,7 +1350,7 @@ planet_event = {
 }
 
 # Raiding Parties
-planet_event = {
+carrier_event = {
 	id = colony.62
 	title = "colony.62.name"
 	desc = "colony.62.desc"
@@ -1367,8 +1367,8 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = seismic_disturbance_war
-		NOT = { has_planet_flag = seismic_disturbance_raid }
+		has_carrier_flag = seismic_disturbance_war
+		NOT = { has_carrier_flag = seismic_disturbance_raid }
 		pop_amount > 0
 	}
 
@@ -1377,7 +1377,7 @@ planet_event = {
 	}
 
 	immediate = {
-		set_planet_flag = seismic_disturbance_raid
+		set_carrier_flag = seismic_disturbance_raid
 		add_planet_devastation = 10
 	}
 
@@ -1390,7 +1390,7 @@ planet_event = {
 }
 
 # Surface Attack
-planet_event = {
+carrier_event = {
 	id = colony.63
 	title = "colony.63.name"
 	desc = "colony.63.desc"
@@ -1407,8 +1407,8 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = seismic_disturbance_war
-		NOT = { has_planet_flag = seismic_disturbance_attack }
+		has_carrier_flag = seismic_disturbance_war
+		NOT = { has_carrier_flag = seismic_disturbance_attack }
 		pop_amount > 100
 	}
 
@@ -1417,7 +1417,7 @@ planet_event = {
 	}
 
 	immediate = {
-		set_planet_flag = seismic_disturbance_attack
+		set_carrier_flag = seismic_disturbance_attack
 	}
 
 	option = {
@@ -1431,7 +1431,7 @@ planet_event = {
 }
 
 # Survivor Pocket
-planet_event = {
+carrier_event = {
 	id = colony.64
 	title = "colony.64.name"
 	desc = "colony.64.desc"
@@ -1447,8 +1447,8 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = seismic_disturbance_destroyed
-		NOT = { has_planet_flag = seismic_disturbance_pocket }
+		has_carrier_flag = seismic_disturbance_destroyed
+		NOT = { has_carrier_flag = seismic_disturbance_pocket }
 		has_ground_combat = no
 		pop_amount > 0
 	}
@@ -1458,7 +1458,7 @@ planet_event = {
 	}
 
 	immediate = {
-		set_planet_flag = seismic_disturbance_pocket
+		set_carrier_flag = seismic_disturbance_pocket
 		create_species = {
 			name = random
 			class = random_non_machine
@@ -1517,7 +1517,7 @@ planet_event = {
 }
 
 # Subterranean Expansion
-planet_event = {
+carrier_event = {
 	id = colony.65
 	title = "colony.57.name"
 	desc = "colony.65.desc"
@@ -1534,8 +1534,8 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = seismic_disturbance_destroyed
-		NOT = { has_planet_flag = seismic_disturbance_expansion }
+		has_carrier_flag = seismic_disturbance_destroyed
+		NOT = { has_carrier_flag = seismic_disturbance_expansion }
 		#has_any_strategic_resource = no
 		pop_amount > 0
 		#planet_size < 25
@@ -1546,7 +1546,7 @@ planet_event = {
 	}
 
 	immediate = {
-		set_planet_flag = seismic_disturbance_expansion
+		set_carrier_flag = seismic_disturbance_expansion
 	}
 
 	option = {
@@ -1560,7 +1560,7 @@ planet_event = {
 }
 
 # Gold!
-planet_event = {
+carrier_event = {
 	id = colony.66
 	title = "colony.66.name"
 	desc = {
@@ -1592,8 +1592,8 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = seismic_disturbance_destroyed
-		NOT = { has_planet_flag = seismic_disturbance_gold }
+		has_carrier_flag = seismic_disturbance_destroyed
+		NOT = { has_carrier_flag = seismic_disturbance_gold }
 		pop_amount > 0
 	}
 
@@ -1603,7 +1603,7 @@ planet_event = {
 
 	immediate = {
 		hidden_effect = {
-			set_planet_flag = seismic_disturbance_gold
+			set_carrier_flag = seismic_disturbance_gold
 		}
 	}
 
@@ -1621,7 +1621,7 @@ planet_event = {
 }
 
 # Treasury
-planet_event = {
+carrier_event = {
 	id = colony.67
 	title = "colony.67.name"
 	desc = "colony.67.desc"
@@ -1638,8 +1638,8 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = seismic_disturbance_destroyed
-		NOT = { has_planet_flag = seismic_disturbance_treasury }
+		has_carrier_flag = seismic_disturbance_destroyed
+		NOT = { has_carrier_flag = seismic_disturbance_treasury }
 		pop_amount > 0
 	}
 
@@ -1648,7 +1648,7 @@ planet_event = {
 	}
 
 	immediate = {
-		set_planet_flag = seismic_disturbance_treasury
+		set_carrier_flag = seismic_disturbance_treasury
 	}
 
 	option = {
@@ -1665,7 +1665,7 @@ planet_event = {
 }
 
 # Earthquakes 1
-planet_event = {
+carrier_event = {
 	id = colony.68
 	title = "colony.68.name"
 	desc = "colony.68.desc"
@@ -1682,8 +1682,8 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = seismic_disturbance_destroyed
-		NOT = { has_planet_flag = seismic_disturbance_quake }
+		has_carrier_flag = seismic_disturbance_destroyed
+		NOT = { has_carrier_flag = seismic_disturbance_quake }
 		pop_amount > 0
 	}
 
@@ -1692,7 +1692,7 @@ planet_event = {
 	}
 
 	immediate = {
-		set_planet_flag = seismic_disturbance_quake
+		set_carrier_flag = seismic_disturbance_quake
 		add_planet_devastation = 10
 
 	}
@@ -1706,7 +1706,7 @@ planet_event = {
 }
 
 # Famine
-planet_event = {
+carrier_event = {
 	id = colony.69
 	title = "colony.69.name"
 	desc = "colony.69.desc"
@@ -1723,8 +1723,8 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = seismic_disturbance_friendly
-		NOT = { has_planet_flag = seismic_disturbance_famine }
+		has_carrier_flag = seismic_disturbance_friendly
+		NOT = { has_carrier_flag = seismic_disturbance_famine }
 		pop_amount > 0
 	}
 
@@ -1733,7 +1733,7 @@ planet_event = {
 	}
 
 	immediate = {
-		set_planet_flag = seismic_disturbance_famine
+		set_carrier_flag = seismic_disturbance_famine
 	}
 
 	option = {
@@ -1767,7 +1767,7 @@ planet_event = {
 }
 
 # Gift
-planet_event = {
+carrier_event = {
 	id = colony.70
 	title = "colony.70.name"
 	desc = {
@@ -1799,8 +1799,8 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = seismic_disturbance_friendly
-		NOT = { has_planet_flag = seismic_disturbance_gift }
+		has_carrier_flag = seismic_disturbance_friendly
+		NOT = { has_carrier_flag = seismic_disturbance_gift }
 		pop_amount > 0
 		check_variable = {
 			which = "angry_subterraneans"
@@ -1813,7 +1813,7 @@ planet_event = {
 	}
 
 	immediate = {
-		set_planet_flag = seismic_disturbance_gift
+		set_carrier_flag = seismic_disturbance_gift
 	}
 
 	option = {
@@ -1830,7 +1830,7 @@ planet_event = {
 }
 
 # Subterranean Refugees
-planet_event = {
+carrier_event = {
 	id = colony.71
 	title = "colony.71.name"
 	desc = {
@@ -1862,8 +1862,8 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = seismic_disturbance_friendly
-		NOT = { has_planet_flag = seismic_disturbance_refugees }
+		has_carrier_flag = seismic_disturbance_friendly
+		NOT = { has_carrier_flag = seismic_disturbance_refugees }
 		pop_amount > 0
 		#free_housing > 0
 	}
@@ -1873,7 +1873,7 @@ planet_event = {
 	}
 
 	immediate = {
-		set_planet_flag = seismic_disturbance_refugees
+		set_carrier_flag = seismic_disturbance_refugees
 		random_country = {
 			limit = {
 				is_country_type = adversary
@@ -1915,7 +1915,7 @@ planet_event = {
 }
 
 # Xeno Anthropologists
-planet_event = {
+carrier_event = {
 	id = colony.72
 	title = "colony.72.name"
 	desc = "colony.72.desc"
@@ -1932,8 +1932,8 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = seismic_disturbance_friendly
-		NOT = { has_planet_flag = seismic_disturbance_anthropologists }
+		has_carrier_flag = seismic_disturbance_friendly
+		NOT = { has_carrier_flag = seismic_disturbance_anthropologists }
 		pop_amount > 0
 		check_variable = {
 			which = "angry_subterraneans"
@@ -1946,7 +1946,7 @@ planet_event = {
 	}
 
 	immediate = {
-		set_planet_flag = seismic_disturbance_anthropologists
+		set_carrier_flag = seismic_disturbance_anthropologists
 	}
 
 	option = {
@@ -1963,7 +1963,7 @@ planet_event = {
 }
 
 # Earthquakes 2
-planet_event = {
+carrier_event = {
 	id = colony.73
 	title = "colony.68.name"
 	desc = "colony.73.desc"
@@ -1980,8 +1980,8 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = seismic_disturbance_friendly
-		NOT = { has_planet_flag = seismic_disturbance_quake2 }
+		has_carrier_flag = seismic_disturbance_friendly
+		NOT = { has_carrier_flag = seismic_disturbance_quake2 }
 		pop_amount > 0
 	}
 
@@ -1990,7 +1990,7 @@ planet_event = {
 	}
 
 	immediate = {
-		set_planet_flag = seismic_disturbance_quake2
+		set_carrier_flag = seismic_disturbance_quake2
 		add_planet_devastation = 10
 	}
 
@@ -2022,7 +2022,7 @@ planet_event = {
 }
 
 # Request for Technology
-planet_event = {
+carrier_event = {
 	id = colony.74
 	title = "colony.74.name"
 	desc = "colony.74.desc"
@@ -2039,8 +2039,8 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = seismic_disturbance_friendly
-		NOT = { has_planet_flag = seismic_disturbance_tech }
+		has_carrier_flag = seismic_disturbance_friendly
+		NOT = { has_carrier_flag = seismic_disturbance_tech }
 		pop_amount > 0
 	}
 
@@ -2049,7 +2049,7 @@ planet_event = {
 	}
 
 	immediate = {
-		set_planet_flag = seismic_disturbance_tech
+		set_carrier_flag = seismic_disturbance_tech
 	}
 
 	option = {
@@ -2088,7 +2088,7 @@ planet_event = {
 }
 
 # Message Delivered
-planet_event = {
+carrier_event = {
 	id = colony.75
 	title = "colony.75.name"
 	desc = "colony.75.desc"
@@ -2104,7 +2104,7 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = seismic_disturbance_friendly
+		has_carrier_flag = seismic_disturbance_friendly
 		check_variable = {
 			which = "angry_subterraneans"
 			value > 2
@@ -2117,7 +2117,7 @@ planet_event = {
 
 	immediate = {
 		hidden_effect = {
-			remove_planet_flag = seismic_disturbance_friendly
+			remove_carrier_flag = seismic_disturbance_friendly
 		}
 	}
 
@@ -2175,14 +2175,14 @@ country_event = {
 		}
 		hidden_effect = {
 			FROM = {
-				planet_event = { id = colony.54 days = 35 random = 40 }
+				carrier_event = { id = colony.54 days = 35 random = 40 }
 			}
 		}
 	}
 }
 
 ### Abandoned Terraforming Equipment
-planet_event = {
+carrier_event = {
 	id = colony.100
 	title = "colony.100.name"
 	desc = "colony.100.desc"
@@ -2206,8 +2206,8 @@ planet_event = {
 		habitable_planet = yes
 		uses_district_set = standard
 		NOR = {
-			has_planet_flag = abandoned_terraforming_planet
-			has_planet_flag = colony_event
+			has_carrier_flag = abandoned_terraforming_planet
+			has_carrier_flag = colony_event
 			is_planet_class = pc_nuked
 			is_planet_class = pc_gaia
 			is_planet_class = pc_relic
@@ -2264,8 +2264,8 @@ planet_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		set_planet_flag = abandoned_terraforming_planet
-		set_planet_flag = colony_event
+		set_carrier_flag = abandoned_terraforming_planet
+		set_carrier_flag = colony_event
 		owner = { set_country_flag = abandoned_terraforming_country }
 	}
 
@@ -2295,7 +2295,7 @@ planet_event = {
 }
 
 # Terraforming Complex Dismantled
-planet_event = {
+carrier_event = {
 	id = colony.101
 	title = "colony.101.name"
 	desc = "colony.101.desc"
@@ -2308,7 +2308,7 @@ planet_event = {
 	specimen = terraforming_machinery
 
 	immediate = {
-		set_planet_flag = did_not_terraform
+		set_carrier_flag = did_not_terraform
 	}
 
 	option = {
@@ -2340,7 +2340,7 @@ planet_event = {
 }
 
 # Unstable Weather
-planet_event = {
+carrier_event = {
 	id = colony.102
 	title = "colony.102.name"
 	desc = "colony.102.desc"
@@ -2356,8 +2356,8 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = did_not_terraform
-		NOT = { has_planet_flag = terraforming_unstable_weather }
+		has_carrier_flag = did_not_terraform
+		NOT = { has_carrier_flag = terraforming_unstable_weather }
 		pop_amount > 0
 	}
 
@@ -2366,7 +2366,7 @@ planet_event = {
 	}
 
 	immediate = {
-		set_planet_flag = terraforming_unstable_weather
+		set_carrier_flag = terraforming_unstable_weather
 		add_planet_devastation = 10
 	}
 
@@ -2379,7 +2379,7 @@ planet_event = {
 }
 
 # Drought
-planet_event = {
+carrier_event = {
 	id = colony.103
 	title = "colony.103.name"
 	desc = "colony.103.desc"
@@ -2395,8 +2395,8 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = did_not_terraform
-		NOT = { has_planet_flag = terraforming_drought }
+		has_carrier_flag = did_not_terraform
+		NOT = { has_carrier_flag = terraforming_drought }
 		pop_amount > 0
 	}
 
@@ -2405,7 +2405,7 @@ planet_event = {
 	}
 
 	immediate = {
-		set_planet_flag = terraforming_drought
+		set_carrier_flag = terraforming_drought
 	}
 
 	option = {
@@ -2465,7 +2465,7 @@ planet_event = {
 }
 
 # Special Project Completed 1
-planet_event = {
+carrier_event = {
 	id = colony.104
 	title = "PROJECT_COMPLETE"
 	desc = "colony.104.desc"
@@ -2609,7 +2609,7 @@ planet_event = {
 }
 
 # Special Project Completed 2 (Mutated Creatures)
-planet_event = {
+carrier_event = {
 	id = colony.105
 	title = "PROJECT_COMPLETE"
 	desc = "colony.105.desc"
@@ -2747,7 +2747,7 @@ planet_event = {
 			}
 			remove_modifier = "abandoned_terraforming"
 			owner = { set_country_flag = terraforming_mutants_invade_country }
-			set_planet_flag = terraforming_mutants_invade_planet
+			set_carrier_flag = terraforming_mutants_invade_planet
 			create_country = {
 				name = "NAME_Deformed_Creatures"
 				type = faction
@@ -2781,7 +2781,7 @@ planet_event = {
 }
 
 # Special Project Completed 3 (Gaia World)
-planet_event = {
+carrier_event = {
 	id = colony.106
 	title = "PROJECT_COMPLETE"
 	desc = "colony.106.desc"
@@ -2805,7 +2805,7 @@ planet_event = {
 }
 
 # Special Project Completed 4 (Tomb World)
-planet_event = {
+carrier_event = {
 	id = colony.107
 	title = "PROJECT_COMPLETE"
 	desc = {
@@ -2841,7 +2841,7 @@ planet_event = {
 		}
 		name = colony.107.a
 		change_pc = pc_nuked
-		hidden_effect = { set_planet_flag = nuked_planet_anomalies_disabled }
+		hidden_effect = { set_carrier_flag = nuked_planet_anomalies_disabled }
 		if = { #Destroys colony if no planet pops can live on Tomb Worlds
 			limit = {
 				NOT = {
@@ -2892,7 +2892,7 @@ planet_event = {
 		}
 		name = EXCELLENT
 		hidden_effect = { change_pc = pc_nuked }
-		set_planet_flag = nuked_planet_anomalies_disabled
+		set_carrier_flag = nuked_planet_anomalies_disabled
 		hidden_effect = {
 			remove_modifier = "abandoned_terraforming"
 		}
@@ -2912,14 +2912,14 @@ country_event = {
 
 	trigger = {
 		has_country_flag = terraforming_mutants_invade_country
-		FROMFROM = { has_planet_flag = terraforming_mutants_invade_planet }
+		FROMFROM = { planet = { has_carrier_flag = terraforming_mutants_invade_planet } }
 	}
 
 	immediate = {
 		remove_country_flag = terraforming_mutants_invade_country
 		FROMFROM = {
-			set_planet_flag = terraforming_mutants_defeated
-			remove_planet_flag = terraforming_mutants_invade_planet
+			set_carrier_flag = terraforming_mutants_defeated
+			remove_carrier_flag = terraforming_mutants_invade_planet
 		}
 	}
 
@@ -2932,7 +2932,7 @@ country_event = {
 }
 
 # Mutant Stalker
-planet_event = {
+carrier_event = {
 	id = colony.109
 	title = "colony.109.name"
 	desc = "colony.109.desc"
@@ -2949,8 +2949,8 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = terraforming_mutants_defeated
-		NOT = { has_planet_flag = terraforming_mutant_stalker }
+		has_carrier_flag = terraforming_mutants_defeated
+		NOT = { has_carrier_flag = terraforming_mutant_stalker }
 		pop_amount > 0
 	}
 
@@ -2959,7 +2959,7 @@ planet_event = {
 	}
 
 	immediate = {
-		set_planet_flag = terraforming_mutant_stalker
+		set_carrier_flag = terraforming_mutant_stalker
 		add_modifier = {
 			modifier = "mutant_stalker"
 			days = -1
@@ -2983,7 +2983,7 @@ planet_event = {
 }
 
 # Special Project Completed
-planet_event = {
+carrier_event = {
 	id = colony.110
 	title = "PROJECT_COMPLETE"
 	desc = "colony.110.desc"
@@ -2998,13 +2998,17 @@ planet_event = {
 		remove_modifier = "mutant_stalker"
 		# Armies on planet should gain experience
 		owner = {
-			give_specimen = { key = head_of_the_beast origin = MUTANT_STALKER_PROJECT }
+			give_specimen = {
+				key = head_of_the_beast
+				origin = MUTANT_STALKER_PROJECT
+				targets = { root }
+			}
 		}
 	}
 }
 
 # Stalker Died of Old Age
-planet_event = {
+carrier_event = {
 	id = colony.111
 	title = "colony.111.name"
 	desc = "colony.111.desc"
@@ -3027,7 +3031,7 @@ planet_event = {
 }
 
 # Stalker Multiplied
-planet_event = {
+carrier_event = {
 	id = colony.112
 	title = "colony.112.name"
 	desc = "colony.112.desc"
@@ -3078,13 +3082,13 @@ country_event = {
 
 	trigger = {
 		has_country_flag = terraforming_mutants_invade_country
-		FROMFROM = { has_planet_flag = terraforming_mutants_invade_planet }
+		FROMFROM = { planet = { has_carrier_flag = terraforming_mutants_invade_planet } }
 	}
 
 	immediate = {
 		FROMFROM = {
-			set_planet_flag = terraforming_mutants_won
-			remove_planet_flag = terraforming_mutants_invade_planet
+			set_carrier_flag = terraforming_mutants_won
+			remove_carrier_flag = terraforming_mutants_invade_planet
 			create_pop_group = {
 				species = owner.species
 				category = purge
@@ -3124,14 +3128,14 @@ country_event = {
 
 	trigger = {
 		has_country_flag = terraforming_mutants_invade_country
-		FROMFROM = { has_planet_flag = terraforming_mutants_won }
+		FROMFROM = { planet = { has_carrier_flag = terraforming_mutants_won } }
 	}
 
 	immediate = {
 		remove_country_flag = terraforming_mutants_invade_country
 		FROMFROM = {
-			set_planet_flag = terraforming_mutants_defeated
-			remove_planet_flag = terraforming_mutants_won
+			set_carrier_flag = terraforming_mutants_defeated
+			remove_carrier_flag = terraforming_mutants_won
 			set_owner = ROOT
 			clear_planet_purge_type = yes
 			create_pop_group = {
@@ -3169,7 +3173,7 @@ country_event = {
 }
 
 ### Underground Vault
-planet_event = {
+carrier_event = {
 	id = colony.150
 	title = "colony.150.name"
 	desc = "colony.150.desc"
@@ -3191,13 +3195,13 @@ planet_event = {
 	trigger = {
 		NOT = { has_global_flag = underground_vault_global }
 		NOR = {
-			has_planet_flag = armageddon_nuked
-			has_planet_flag = colony_event
+			has_carrier_flag = armageddon_nuked
+			has_carrier_flag = colony_event
 		}
 		is_planet_class = pc_nuked
-		NOT = { has_planet_flag = nuked_planet_anomalies_disabled }
+		NOT = { has_carrier_flag = nuked_planet_anomalies_disabled }
 		NOR = {
-			has_planet_flag = pre_ftls_nuked_themselves
+			has_carrier_flag = pre_ftls_nuked_themselves
 			solar_system = {
 				any_system_planet = {
 					is_capital = yes
@@ -3213,7 +3217,7 @@ planet_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		set_planet_flag = underground_vault_planet
+		set_carrier_flag = underground_vault_planet
 		set_global_flag = underground_vault_global
 	}
 
@@ -3231,7 +3235,7 @@ planet_event = {
 }
 
 # Special Project Completed (Skeletal Remains)
-planet_event = {
+carrier_event = {
 	id = colony.151
 	title = "PROJECT_COMPLETE"
 	desc = "colony.151.desc"
@@ -3255,7 +3259,7 @@ planet_event = {
 }
 
 # Special Project Completed (Survivors)
-planet_event = {
+carrier_event = {
 	id = colony.152
 	title = "PROJECT_COMPLETE"
 	desc = "colony.152.desc"
@@ -3268,7 +3272,7 @@ planet_event = {
 	immediate = {
 		if = {
 			limit = {
-				has_planet_flag = nuked_earth
+				has_carrier_flag = nuked_earth
 				NOT = {
 					any_galaxy_species = {
 						is_human_species = yes
@@ -3354,7 +3358,7 @@ planet_event = {
 }
 
 # Special Project Completed (Mutant Horrors)
-planet_event = {
+carrier_event = {
 	id = colony.153
 	title = "PROJECT_COMPLETE"
 	desc = "colony.153.desc"
@@ -3366,7 +3370,7 @@ planet_event = {
 
 	immediate = {
 		owner = { set_country_flag = vault_mutants_invade_country }
-		set_planet_flag = vault_mutants_invade_planet
+		set_carrier_flag = vault_mutants_invade_planet
 		create_country = {
 			name = "NAME_Mutant_Horrors"
 			type = faction
@@ -3415,13 +3419,13 @@ country_event = {
 
 	trigger = {
 		has_country_flag = vault_mutants_invade_country
-		FROMFROM = { has_planet_flag = vault_mutants_invade_planet }
+		FROMFROM = { planet = { has_carrier_flag = vault_mutants_invade_planet } }
 	}
 
 	immediate = {
 		FROMFROM = {
-			remove_planet_flag = vault_mutants_invade_planet
-			set_planet_flag = vault_mutants_won
+			remove_carrier_flag = vault_mutants_invade_planet
+			set_carrier_flag = vault_mutants_won
 			create_pop_group = {
 				species = owner.species
 				category = purge
@@ -3461,13 +3465,13 @@ country_event = {
 
 	trigger = {
 		has_country_flag = vault_mutants_invade_country
-		FROMFROM = { has_planet_flag = vault_mutants_won }
+		FROMFROM = { planet = { has_carrier_flag = vault_mutants_won } }
 	}
 
 	immediate = {
 		remove_country_flag = vault_mutants_invade_country
 		FROMFROM = {
-			remove_planet_flag = vault_mutants_won
+			remove_carrier_flag = vault_mutants_won
 			set_owner = ROOT
 			clear_planet_purge_type = yes
 			create_pop_group = {
@@ -3504,7 +3508,7 @@ country_event = {
 }
 
 # Nuclear Bomb
-planet_event = {
+carrier_event = {
 	id = colony.155
 	title = "colony.155.name"
 	desc = "colony.155.desc"
@@ -3525,16 +3529,16 @@ planet_event = {
 
 	trigger = {
 		NOR = {
-			has_planet_flag = armageddon_nuked
-			has_planet_flag = colony_event
+			has_carrier_flag = armageddon_nuked
+			has_carrier_flag = colony_event
 		}
 		is_planet_class = pc_nuked
 		OR = {
-			has_planet_flag = pre_ftls_nuked_themselves
-			NOT = { has_planet_flag = nuked_planet_anomalies_disabled }
+			has_carrier_flag = pre_ftls_nuked_themselves
+			NOT = { has_carrier_flag = nuked_planet_anomalies_disabled }
 		}
 		NOR = {
-			has_planet_flag = wasteland_nuclear_bomb
+			has_carrier_flag = wasteland_nuclear_bomb
 			solar_system = {
 				any_system_planet = {
 					is_capital = yes
@@ -3553,7 +3557,7 @@ planet_event = {
 
 	immediate = {
 		hidden_effect = {
-			set_planet_flag = wasteland_nuclear_bomb
+			set_carrier_flag = wasteland_nuclear_bomb
 			owner = {
 				set_country_flag = had_colony_155
 			}
@@ -3571,7 +3575,7 @@ planet_event = {
 }
 
 # Special Project Completed
-planet_event = {
+carrier_event = {
 	id = colony.156
 	title = "PROJECT_COMPLETE"
 	desc = "colony.156.desc"
@@ -3584,13 +3588,17 @@ planet_event = {
 	option = {
 		name = colony.156.a
 		owner = {
-			give_specimen = { key = ancient_nuclear_armament origin = NUCLEAR_BOMB_PROJECT }
+			give_specimen = {
+				key = ancient_nuclear_armament
+				origin = NUCLEAR_BOMB_PROJECT
+				targets = { root }
+			}
 		}
 	}
 }
 
 # Special Project Failed
-planet_event = {
+carrier_event = {
 	id = colony.157
 	title = "PROJECT_FAILURE"
 	desc = "colony.157.desc"
@@ -3610,7 +3618,7 @@ planet_event = {
 }
 
 # Particle Accelerator
-planet_event = {
+carrier_event = {
 	id = colony.160
 	title = "colony.160.name"
 	desc = "colony.160.desc"
@@ -3630,16 +3638,16 @@ planet_event = {
 
 	trigger = {
 		NOR = {
-			has_planet_flag = armageddon_nuked
-			has_planet_flag = colony_event
+			has_carrier_flag = armageddon_nuked
+			has_carrier_flag = colony_event
 		}
 		is_planet_class = pc_nuked
 		OR = {
-			has_planet_flag = pre_ftls_nuked_themselves
-			NOT = { has_planet_flag = nuked_planet_anomalies_disabled }
+			has_carrier_flag = pre_ftls_nuked_themselves
+			NOT = { has_carrier_flag = nuked_planet_anomalies_disabled }
 		}
 		NOR = {
-			has_planet_flag = wasteland_particle_accelerator
+			has_carrier_flag = wasteland_particle_accelerator
 			solar_system = {
 				any_system_planet = {
 					is_capital = yes
@@ -3657,7 +3665,7 @@ planet_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		set_planet_flag = wasteland_particle_accelerator
+		set_carrier_flag = wasteland_particle_accelerator
 		owner = {
 			set_country_flag = had_colony_160
 		}
@@ -3670,7 +3678,7 @@ planet_event = {
 }
 
 # Surviving Infrastructure
-planet_event = {
+carrier_event = {
 	id = colony.161
 	title = "colony.161.name"
 	desc = "colony.161.desc"
@@ -3690,16 +3698,16 @@ planet_event = {
 
 	trigger = {
 		NOR = {
-			has_planet_flag = armageddon_nuked
-			has_planet_flag = colony_event
+			has_carrier_flag = armageddon_nuked
+			has_carrier_flag = colony_event
 		}
 		is_planet_class = pc_nuked
 		OR = {
-			has_planet_flag = pre_ftls_nuked_themselves
-			NOT = { has_planet_flag = nuked_planet_anomalies_disabled }
+			has_carrier_flag = pre_ftls_nuked_themselves
+			NOT = { has_carrier_flag = nuked_planet_anomalies_disabled }
 		}
 		NOR = {
-			has_planet_flag = wasteland_infrastructure
+			has_carrier_flag = wasteland_infrastructure
 			solar_system = {
 				any_system_planet = {
 					is_capital = yes
@@ -3718,7 +3726,7 @@ planet_event = {
 
 	immediate = {
 		hidden_effect = {
-			set_planet_flag = wasteland_infrastructure
+			set_carrier_flag = wasteland_infrastructure
 			owner = {
 				set_country_flag = had_colony_161
 			}
@@ -3735,7 +3743,7 @@ planet_event = {
 }
 
 # Space Station
-planet_event = {
+carrier_event = {
 	id = colony.162
 	title = "colony.162.name"
 	desc = "colony.162.desc"
@@ -3755,14 +3763,14 @@ planet_event = {
 
 	trigger = {
 		NOR = {
-			has_planet_flag = armageddon_nuked
-			has_planet_flag = colony_event
+			has_carrier_flag = armageddon_nuked
+			has_carrier_flag = colony_event
 		}
 		is_planet_class = pc_nuked
 		NOR = {
-			has_planet_flag = wasteland_space_station
-			has_planet_flag = pre_ftls_nuked_themselves
-			has_planet_flag = nuked_planet_anomalies_disabled
+			has_carrier_flag = wasteland_space_station
+			has_carrier_flag = pre_ftls_nuked_themselves
+			has_carrier_flag = nuked_planet_anomalies_disabled
 			solar_system = {
 				any_system_planet = {
 					is_capital = yes
@@ -3781,7 +3789,7 @@ planet_event = {
 
 	immediate = {
 		hidden_effect = {
-			set_planet_flag = wasteland_space_station
+			set_carrier_flag = wasteland_space_station
 			owner = {
 				set_country_flag = had_colony_162
 			}
@@ -3817,7 +3825,7 @@ planet_event = {
 }
 
 # Wasteland Radiation
-planet_event = {
+carrier_event = {
 	id = colony.163
 	title = "colony.163.name"
 	desc = "colony.163.desc"
@@ -3837,16 +3845,16 @@ planet_event = {
 
 	trigger = {
 		NOR = {
-			has_planet_flag = armageddon_nuked
-			has_planet_flag = colony_event
+			has_carrier_flag = armageddon_nuked
+			has_carrier_flag = colony_event
 		}
 		is_planet_class = pc_nuked
 		OR = {
-			has_planet_flag = pre_ftls_nuked_themselves
-			NOT = { has_planet_flag = nuked_planet_anomalies_disabled }
+			has_carrier_flag = pre_ftls_nuked_themselves
+			NOT = { has_carrier_flag = nuked_planet_anomalies_disabled }
 		}
 		NOR = {
-			has_planet_flag = wasteland_radiation
+			has_carrier_flag = wasteland_radiation
 			solar_system = {
 				any_system_planet = {
 					is_capital = yes
@@ -3869,7 +3877,7 @@ planet_event = {
 
 	immediate = {
 		hidden_effect = {
-			set_planet_flag = wasteland_radiation
+			set_carrier_flag = wasteland_radiation
 			owner = {
 				set_country_flag = had_colony_163
 			}
@@ -3886,7 +3894,7 @@ planet_event = {
 }
 
 # Pacifist Movement
-planet_event = {
+carrier_event = {
 	id = colony.164
 	title = "colony.164.name"
 	desc = "colony.164.desc"
@@ -3905,16 +3913,16 @@ planet_event = {
 
 	trigger = {
 		NOR = {
-			has_planet_flag = armageddon_nuked
-			has_planet_flag = colony_event
+			has_carrier_flag = armageddon_nuked
+			has_carrier_flag = colony_event
 		}
 		is_planet_class = pc_nuked
 		OR = {
-			has_planet_flag = pre_ftls_nuked_themselves
-			NOT = { has_planet_flag = nuked_planet_anomalies_disabled }
+			has_carrier_flag = pre_ftls_nuked_themselves
+			NOT = { has_carrier_flag = nuked_planet_anomalies_disabled }
 		}
 		NOR = {
-			has_planet_flag = wasteland_pacifist_movement
+			has_carrier_flag = wasteland_pacifist_movement
 			solar_system = {
 				any_system_planet = {
 					is_capital = yes
@@ -3948,7 +3956,7 @@ planet_event = {
 
 	immediate = {
 		hidden_effect = {
-			set_planet_flag = wasteland_pacifist_movement
+			set_carrier_flag = wasteland_pacifist_movement
 			owner = {
 				set_country_flag = had_colony_164
 			}
@@ -4002,7 +4010,7 @@ planet_event = {
 }
 
 # Orbital Debris
-planet_event = {
+carrier_event = {
 	id = colony.170
 	title = "colony.170.name"
 	desc = "colony.170.desc"
@@ -4023,14 +4031,14 @@ planet_event = {
 
 	trigger = {
 		NOR = {
-			has_planet_flag = armageddon_nuked
-			has_planet_flag = colony_event
+			has_carrier_flag = armageddon_nuked
+			has_carrier_flag = colony_event
 		}
 		is_planet_class = pc_nuked
 		NOR = {
-			has_planet_flag = wasteland_orbital_debris
-			has_planet_flag = pre_ftls_nuked_themselves
-			has_planet_flag = nuked_planet_anomalies_disabled
+			has_carrier_flag = wasteland_orbital_debris
+			has_carrier_flag = pre_ftls_nuked_themselves
+			has_carrier_flag = nuked_planet_anomalies_disabled
 			solar_system = {
 				any_system_planet = {
 					is_capital = yes
@@ -4049,7 +4057,7 @@ planet_event = {
 
 	immediate = {
 		hidden_effect = {
-			set_planet_flag = wasteland_orbital_debris
+			set_carrier_flag = wasteland_orbital_debris
 			owner = {
 				set_country_flag = had_colony_170
 			}
@@ -4071,14 +4079,14 @@ planet_event = {
 
 	after = {
 		hidden_effect = {
-			planet_event = { id = colony.171 days = 200 random = 7000 } # previously MTTH 240 months (20 years)
-			planet_event = { id = colony.172 days = 200 random = 7000 } # previously MTTH 240 months (20 years)
+			carrier_event = { id = colony.171 days = 200 random = 7000 } # previously MTTH 240 months (20 years)
+			carrier_event = { id = colony.172 days = 200 random = 7000 } # previously MTTH 240 months (20 years)
 		}
 	}
 }
 
 # Freighter Crash
-planet_event = {
+carrier_event = {
 	id = colony.171
 	title = "colony.171.name"
 	desc = {
@@ -4101,13 +4109,13 @@ planet_event = {
 	}
 
 	trigger = {
-		has_planet_flag = wasteland_orbital_debris
+		has_carrier_flag = wasteland_orbital_debris
 		has_modifier = wasteland_orbital_debris
-		NOT = { has_planet_flag = wasteland_freighter_crash }
+		NOT = { has_carrier_flag = wasteland_freighter_crash }
 	}
 
 	immediate = {
-		set_planet_flag = wasteland_freighter_crash
+		set_carrier_flag = wasteland_freighter_crash
 	}
 
 	option = {
@@ -4117,7 +4125,7 @@ planet_event = {
 }
 
 # Debris Impact
-planet_event = {
+carrier_event = {
 	id = colony.172
 	title = "colony.172.name"
 	desc = "colony.172.desc"
@@ -4134,13 +4142,13 @@ planet_event = {
 
 	trigger = {
 		has_modifier = wasteland_orbital_debris
-		has_planet_flag = wasteland_orbital_debris
-		NOT = { has_planet_flag = wasteland_debris_impact }
+		has_carrier_flag = wasteland_orbital_debris
+		NOT = { has_carrier_flag = wasteland_debris_impact }
 	}
 
 	immediate = {
 		hidden_effect = {
-			set_planet_flag = wasteland_debris_impact
+			set_carrier_flag = wasteland_debris_impact
 		}
 	}
 
@@ -4174,7 +4182,11 @@ ship_event = {
 			remove_modifier = "wasteland_orbital_debris"
 		}
 		owner = {
-			give_specimen = { key = decayed_satellite origin = ORBITAL_DEBRIS_PROJECT }
+			give_specimen = {
+				key = decayed_satellite
+				origin = ORBITAL_DEBRIS_PROJECT
+				targets = { root.fromfrom }
+			}
 		}
 	}
 }
@@ -4206,14 +4218,18 @@ ship_event = {
 					min = @tier1materialmin
 					max = @tier1materialmax
 				}
-				give_specimen = { key = decayed_satellite origin = ORBITAL_DEBRIS_PROJECT }
+				give_specimen = {
+					key = decayed_satellite
+					origin = ORBITAL_DEBRIS_PROJECT
+					targets = { root.fromfrom }
+				}
 			}
 		}
 	}
 }
 
 ### Asteroid Sighted
-planet_event = {
+carrier_event = {
 	id = colony.180
 	title = "colony.180.name"
 	desc = "colony.180.desc"
@@ -4238,8 +4254,8 @@ planet_event = {
 			is_planet_class = pc_habitat
 			is_planet_class = pc_ringworld_habitable
 			is_planet_class = pc_shattered_ring_habitable
-			has_planet_flag = asteroid_sighted
-			has_planet_flag = asteroid_collision
+			has_carrier_flag = asteroid_sighted
+			has_carrier_flag = asteroid_collision
 			has_global_flag = asteroid_sighted_global
 			owner = { has_country_flag = asteroid_sighted_country }
 			owner = { is_wilderness_empire = yes }
@@ -4253,7 +4269,7 @@ planet_event = {
 			set_country_flag = asteroid_sighted_country
 		}
 		set_global_flag = asteroid_sighted_global
-		set_planet_flag = asteroid_sighted
+		set_carrier_flag = asteroid_sighted
 		create_country = {
 			name = "NAME_Incoming_Asteroid"
 			type = faction
@@ -4303,7 +4319,7 @@ planet_event = {
 						effect = {
 							id = "colony.180.effect.1"
 							ROOT = {
-								planet_event = { id = colony.183 }
+								carrier_event = { id = colony.183 }
 							}
 						}
 					}
@@ -4361,8 +4377,8 @@ country_event = {
 				}
 			}
 			random_owned_planet = {
-				limit = { has_planet_flag = asteroid_sighted }
-				planet_event = { id = colony.182 }
+				limit = { has_carrier_flag = asteroid_sighted }
+				carrier_event = { id = colony.182 }
 			}
 		}
 		else = {
@@ -4375,8 +4391,8 @@ country_event = {
 					has_country_flag = asteroid_sighted_country
 				}
 				random_owned_planet = {
-					limit = { has_planet_flag = asteroid_sighted }
-					planet_event = { id = colony.182 }
+					limit = { has_carrier_flag = asteroid_sighted }
+					carrier_event = { id = colony.182 }
 				}
 			}
 		}
@@ -4384,7 +4400,7 @@ country_event = {
 }
 
 # Asteroid Destroyed
-planet_event = {
+carrier_event = {
 	id = colony.182
 	title = "colony.182.name"
 	desc = {
@@ -4411,8 +4427,8 @@ planet_event = {
 			destroy_country = yes
 		}
 		remove_global_flag = asteroid_sighted_global
-		remove_planet_flag = asteroid_sighted
-		set_planet_flag = asteroid_collision
+		remove_carrier_flag = asteroid_sighted
+		set_carrier_flag = asteroid_collision
 		owner = {
 			add_event_chain_counter = {
 				event_chain = "asteroid_sighted_chain"
@@ -4437,7 +4453,7 @@ planet_event = {
 }
 
 # Asteroid Impacts Planet
-planet_event = {
+carrier_event = {
 	id = colony.183
 	title = "colony.183.name"
 	desc = {
@@ -4463,8 +4479,8 @@ planet_event = {
 			country_event = { id = colony.184 days = 1 }
 		}
 		remove_global_flag = asteroid_sighted_global
-		remove_planet_flag = asteroid_sighted
-		set_planet_flag = asteroid_collision
+		remove_carrier_flag = asteroid_sighted
+		set_carrier_flag = asteroid_collision
 		add_deposit = d_crater
 		owner = { end_event_chain = "asteroid_sighted_chain" }
 	}
@@ -4553,7 +4569,7 @@ situation_event = {
 			limit = {
 				target = {
 					is_planet_class = pc_desert # You can't eat your desert if it isn't a desert!
-					has_planet_flag = tasty_desert
+					has_carrier_flag = tasty_desert
 				}
 			}
 			owner = {
@@ -4565,7 +4581,7 @@ situation_event = {
 				limit = {
 					has_modifier = holy_planet
 				}
-				planet_event = { id = planet_destruction.605 }
+				carrier_event = { id = planet_destruction.605 }
 			}
 			while = {
 				count = value:terravore_renaming_districts
@@ -4606,7 +4622,7 @@ situation_event = { #Every 6 months event terravoring a planet
 	is_triggered_only = yes
 
 	trigger = {
-		target = { NOT = { has_planet_flag = recently_eaten_planet } }
+		target = { NOT = { has_carrier_flag = recently_eaten_planet } }
 	}
 
 	immediate = {
@@ -4622,7 +4638,7 @@ situation_event = { #Every 6 months event slushifying a planet
 	is_triggered_only = yes
 
 	trigger = {
-		target = { NOT = { has_planet_flag = recently_eaten_planet } }
+		target = { NOT = { has_carrier_flag = recently_eaten_planet } }
 	}
 
 	immediate = {
@@ -4641,7 +4657,7 @@ situation_event = { #You have slurped up everything you could from this world
 		target = {
 			if = {
 				limit = {
-					has_planet_flag = fallen_empire_capital
+					has_carrier_flag = fallen_empire_capital
 				}
 				owner = {
 					set_country_flag = past_the_expiration_date_achievement
@@ -4651,7 +4667,7 @@ situation_event = { #You have slurped up everything you could from this world
 			slushify_world = yes
 			remove_modifier = being_devoured_modifier_nanotech
 			change_pc = pc_nanotech
-			planet_event = { id = action.68 }
+			carrier_event = { id = action.68 }
 			owner = {
 				change_variable = {
 					which = nanotech_worlds_created

@@ -963,6 +963,33 @@ country_event = {
 						}
 					}
 				}
+				else_if = {
+					limit = {
+						any_owned_starbase = { is_waystation_starbase = yes }
+					}
+					random_owned_starbase = {
+						limit = { is_waystation_starbase = yes }
+						solar_system = {
+							save_event_target_as = privateer_system
+							create_privateer_country = yes
+							create_privateer_fleet = yes
+						}
+					}
+				}
+				else_if = {
+					limit = { is_nomadic = yes }
+					random_owned_fleet = {
+						limit = {
+							is_arkship_fleet = yes
+							exists = solar_system
+						}
+						solar_system = {
+							save_event_target_as = privateer_system
+							create_privateer_country = yes
+							create_privateer_fleet = yes
+						}
+					}
+				}
 				else = {
 					random_system_within_border = {
 						save_event_target_as = privateer_system

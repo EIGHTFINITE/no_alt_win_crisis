@@ -21,9 +21,21 @@ country_event = {
 		set_variable = { which = hyperthermia_volcanic_var value = 0 }
 		set_variable = { which = hyperthermia_systems_var value = value:gh_critical_mass_value }
 		set_variable = { which = hyperthermia_giant_var value = 0 }
-		export_trigger_value_to_variable = { # Used for the UI to show the current progress
-			trigger = controlled_systems
-			variable = hyperthermia_own_systems_var
+		if = {
+			limit = { is_nomadic = yes }
+			export_trigger_value_to_variable = {
+				trigger = count_owned_nonprimary_starbase
+				parameters = {
+					limit = { has_starbase_size >= starbase_waystation_2 }
+				}
+				variable = hyperthermia_own_systems_var
+			}
+		}
+		else = {
+			export_trigger_value_to_variable = { # Used for the UI to show the current progress
+				trigger = controlled_systems
+				variable = hyperthermia_own_systems_var
+			}
 		}
 		add_timeline_event = {
 			type = timeline_crisis
@@ -85,13 +97,13 @@ country_event = {
 country_event = {
 	id = infernals.1005
 	title = infernals.1005.name
-	
+
 	desc = {
 		trigger = {
 			owner = { NOT = { has_country_flag = red_giant_discovered_crystallized_entropy } }
 		}
 		text = infernals.1005.desc1
-		
+
 	}
 	desc = {
 		trigger = {
@@ -216,7 +228,7 @@ country_event = {
 	option = {
 		name = infernals.1015.b # Back to Level 3
         custom_tooltip = infernals.1015.b.desc
-        hidden_effect = { 
+        hidden_effect = {
             enable_special_project = {
                 name = INF_CRISIS_ENTROPY_GOOD
                 location = this
@@ -306,10 +318,26 @@ country_event = {
     is_triggered_only = yes
 
     immediate = {
-        every_system_within_border = {
-            limit = { has_star_flag = gh_crisis_star }
-            star = {
-                set_planet_entity = { entity = infernal_system_crisis_star_entity }
+        if = {
+            limit = { is_nomadic = yes }
+            every_owned_nonprimary_starbase = {
+                limit = {
+                    has_starbase_size >= starbase_waystation_2
+                    solar_system = { has_star_flag = gh_crisis_star }
+                }
+                solar_system = {
+                    star = {
+                        set_planet_entity = { entity = infernal_system_crisis_star_entity }
+                    }
+                }
+            }
+        }
+        else = {
+            every_system_within_border = {
+                limit = { has_star_flag = gh_crisis_star }
+                star = {
+                    set_planet_entity = { entity = infernal_system_crisis_star_entity }
+                }
             }
         }
         random_owned_megastructure = {
@@ -819,7 +847,7 @@ country_event = {
 
 	is_triggered_only = yes
 	trigger = {
-		from = {
+		from? = {
 			any_war = {
 				any_war_participant = { has_ascension_perk = ap_galactic_hyperthermia }
 			}
@@ -1103,8 +1131,8 @@ country_event = {
     }
 	option = { # Other Infernals only
         name = infernals.1055.e
-        trigger = { 
-            is_infernal_empire = yes 
+        trigger = {
+            is_infernal_empire = yes
             NOR = {
                 has_valid_civic = civic_pyrolatry
                 is_genocidal_infernal = yes
@@ -1112,10 +1140,10 @@ country_event = {
         }
     }
 	option = { #Generic Genocidal response
-        name = infernals.1055.f 
-        trigger = { 
+        name = infernals.1055.f
+        trigger = {
 			OR = {
-				has_valid_civic = civic_fanatic_purifiers 
+				has_valid_civic = civic_fanatic_purifiers
 				has_valid_civic = civic_hive_devouring_swarm
 				has_valid_civic = civic_machine_terminator
 			}
@@ -1168,9 +1196,21 @@ country_event = {
 	immediate = {
 
 	# Shows progress for "Critical Mass"
-	export_trigger_value_to_variable = {
-		trigger = controlled_systems
-		variable = hyperthermia_own_systems_var
+	if = {
+		limit = { is_nomadic = yes }
+		export_trigger_value_to_variable = {
+			trigger = count_owned_nonprimary_starbase
+			parameters = {
+				limit = { has_starbase_size >= starbase_waystation_2 }
+			}
+			variable = hyperthermia_own_systems_var
+		}
+	}
+	else = {
+		export_trigger_value_to_variable = {
+			trigger = controlled_systems
+			variable = hyperthermia_own_systems_var
+		}
 	}
 
 	# Cycle interval
@@ -1200,6 +1240,35 @@ country_event = {
 
     # Red Star objective - reward scales by system count
         if = {
+            limit = {
+                has_crisis_level = crisis_hyperthermia_level_1
+                is_nomadic = yes
+            }
+            set_variable = { which = hyperthermia_red_var value = 0 }
+            every_owned_nonprimary_starbase = {
+                limit = { has_starbase_size >= starbase_waystation_2 }
+                solar_system = {
+                    every_system_planet = {
+                        limit = {
+                            OR = {
+                                is_planet_class = pc_m_star
+                                is_planet_class = pc_m_giant_star
+                            }
+                        }
+                        root = {
+                            change_variable = { which = hyperthermia_red_var value = 1 }
+                        }
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    check_variable = { which = hyperthermia_red_var value > 0 }
+                }
+                complete_crisis_objective = crisobj_own_red_stars
+            }
+        }
+        else_if = {
             limit = { has_crisis_level = crisis_hyperthermia_level_1 }
             export_trigger_value_to_variable = {
                 trigger = count_planet_within_border
@@ -1222,16 +1291,31 @@ country_event = {
         }
 
     # Centrifuges objective
-        export_trigger_value_to_variable = {
-            trigger = count_owned_starbase
-            parameters = {
-                limit = { has_starbase_building = gravitational_centrifuge }
+        if = {
+            limit = { is_nomadic = yes }
+            export_trigger_value_to_variable = {
+                trigger = count_owned_nonprimary_starbase
+                parameters = {
+                    limit = {
+                        has_starbase_size >= starbase_waystation_2
+                        has_starbase_module = waystation_gravitational_centrifuge
+                    }
+                }
+                variable = hyperthermia_starbase_var
             }
-            variable = hyperthermia_starbase_var
+        }
+        else = {
+            export_trigger_value_to_variable = {
+                trigger = count_owned_starbase
+                parameters = {
+                    limit = { has_starbase_building = gravitational_centrifuge }
+                }
+                variable = hyperthermia_starbase_var
+            }
         }
         while = {
             count = hyperthermia_starbase_var
-            complete_crisis_objective = crisobj_entropy_starbase 
+            complete_crisis_objective = crisobj_entropy_starbase
         }
 
     # Situation Progress
@@ -1239,15 +1323,33 @@ country_event = {
             limit = {
                 has_crisis_level = crisis_hyperthermia_level_5
             }
-            export_trigger_value_to_variable = {
-                trigger = count_system_within_border
-                parameters = {
-                    limit = {
-                        has_star_flag = hyperthermia_system
-                        any_ship_in_system = { has_ship_flag = entropy_conduit }
+            if = {
+                limit = { is_nomadic = yes }
+                export_trigger_value_to_variable = {
+                    trigger = count_owned_ship
+                    parameters = {
+                        limit = {
+                            is_waystation_ship = yes
+                            solar_system = {
+                                has_star_flag = hyperthermia_system
+                                any_ship_in_system = { has_ship_flag = entropy_conduit }
+                            }
+                        }
                     }
+                    variable = gh_crisis_core_var
                 }
-                variable = gh_crisis_core_var
+            }
+            else = {
+                export_trigger_value_to_variable = {
+                    trigger = count_system_within_border
+                    parameters = {
+                        limit = {
+                            has_star_flag = hyperthermia_system
+                            any_ship_in_system = { has_ship_flag = entropy_conduit }
+                        }
+                    }
+                    variable = gh_crisis_core_var
+                }
             }
             if = {
                 limit = { check_variable = { which = gh_crisis_core_var value > 3 } }
@@ -1277,7 +1379,7 @@ country_event = {
                     variable = gh_crisis_progress_var
                 }
                 owner = {
-                    set_variable = { which = gh_crisis_progress_var value = prev.gh_crisis_progress_var } 
+                    set_variable = { which = gh_crisis_progress_var value = prev.gh_crisis_progress_var }
                 }
             }
             # Security mechanism in case anything (lag/monthly tick) goes wrong
@@ -1293,9 +1395,9 @@ country_event = {
         }
 
     # Conduits buff owned colonies
-        every_owned_planet = {
+        every_owned_colony = {
             limit = {
-                solar_system = {
+                solar_system? = {
                     any_ship_in_system = { has_ship_flag = entropy_conduit }
                 }
             }
@@ -1308,7 +1410,7 @@ country_event = {
 }
 
 # Conduits turn into a station
-planet_event = {
+carrier_event = {
     id = infernals.2001
     hide_window = yes
     is_triggered_only = yes
@@ -1342,12 +1444,12 @@ planet_event = {
             }
         }
         # Needs a delay to set the correct entity
-        planet_event = { id = infernals.2002 days = 1 }
+        carrier_event = { id = infernals.2002 days = 1 }
     }
 }
 
 # Fired by infernals.2001
-planet_event = {
+carrier_event = {
     id = infernals.2002
     hide_window = yes
     is_triggered_only = yes
@@ -1441,14 +1543,14 @@ country_event = {
 
 # Destroying a planet with Firestorm rewards Entropy Crystals
 # on_planet_bombarded, daily
-planet_event = {
+carrier_event = {
     id = infernals.2005
     hide_window = yes
 
     is_triggered_only = yes
     trigger = {
         has_orbital_bombardment_stance = firestorm
-        NOT = { has_planet_flag = crisobj_planet_firestorm }
+        NOT = { has_carrier_flag = crisobj_planet_firestorm }
         from = { has_menace_perk = menp_hyperthermia_flames }
         planet_devastation >= 100
     }
@@ -1457,7 +1559,7 @@ planet_event = {
         from = {
             complete_crisis_objective = crisobj_planet_firestorm
         }
-        set_timed_planet_flag = { flag = crisobj_planet_firestorm days = 1080 }
+        set_timed_carrier_flag = { flag = crisobj_planet_firestorm days = 1080 }
     }
 }
 
@@ -1555,7 +1657,7 @@ country_event = {
 }
 
 # Crisis objective - terraform into a Volcanic World
-planet_event = {
+carrier_event = {
     id = infernals.2015
     hide_window = yes
     is_triggered_only = yes
@@ -1587,23 +1689,61 @@ country_event = {
 
 	immediate = {
 		every_owned_fleet = {
-			limit = { is_ship_size = conduit_station }
+			limit = {
+				is_ship_size = conduit_station
+			}
+			random_owned_ship = {
+				save_event_target_as = conduit_attacker_ship
+			}
 			solar_system = {
 				every_ship_in_system = {
 					limit = {
-						owner = { is_hostile = root }
+						owner = {
+							is_hostile = root
+						}
 					}
-					damage_ship = @inf_conduit_ship_damage # armor
+					damage_ship = {
+						amount = @inf_conduit_ship_damage # armor
+						attacker = event_target:conduit_attacker_ship
+					}
 					reduce_shield = @inf_conduit_ship_damage
 				}
 				if = {
 					limit = {
 						root = {
 							has_menace_perk = menp_hyperthermia_critical_mass
-							controlled_systems >= value:gh_critical_mass_value
+							OR = {
+								controlled_systems >= value:gh_critical_mass_value
+								AND = {
+									is_nomadic = yes
+									count_owned_nonprimary_starbase = {
+										count >= value:gh_critical_mass_value
+										limit = {
+											is_waystation_starbase = yes
+										}
+									}
+								}
+							}
 						}
 					}
-					every_system_colony = {
+					every_system_planet_colony = {
+						limit = {
+							owner = {
+								NOR = {
+									is_infernal_empire = yes
+									has_ascension_perk = ap_galactic_hyperthermia
+								}
+							}
+						}
+						add_planet_devastation = @inf_conduit_col_damage
+						random_owned_pop_group = {
+							kill_pop_group = {
+								pop_group = this
+								amount = 100
+							}
+						}
+					}
+					every_system_ship_colony = {
 						limit = {
 							owner = {
 								NOR = {

@@ -1,6 +1,6 @@
 namespace = planet_destruction
 
-#planet_event = {
+#carrier_event = {
 #	id = planet_destruction.1
 #	is_triggered_only = yes
 #	hide_window = yes
@@ -18,23 +18,32 @@ namespace = planet_destruction
 #			}
 
 # Cracked
-planet_event = {
+carrier_event = {
 	id = planet_destruction.100
 	is_triggered_only = yes
 	hide_window = yes
 
 	immediate = {
+		# Don't fire the colossus narrative events if the planet is destroyed by an arkship.
+		# However we still use this event as it handles all of the relations and flags we need.
 		if = {
 			limit = {
-				is_planet_class = pc_frozen
+				from = {
+					is_arkship_ship = no
+				}
 			}
-			from.owner = { country_event = { id = planet_destruction.102 } }
-		}
-		else_if = {
-			limit = {
-				NOT = { is_planet_class = pc_ai }
+			if = {
+				limit = {
+					is_planet_class = pc_frozen
+				}
+				from.owner = { country_event = { id = planet_destruction.102 } }
 			}
-			from.owner = { country_event = { id = planet_destruction.101 } }
+			else_if = {
+				limit = {
+					NOT = { is_planet_class = pc_ai }
+				}
+				from.owner = { country_event = { id = planet_destruction.101 } }
+			}
 		}
 
 		#Dismantle observation post
@@ -51,24 +60,24 @@ planet_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				NOT = { has_planet_flag = machine_lair }
+				NOT = { has_carrier_flag = machine_lair }
 			}
-			set_planet_flag = destroyed_by_colossus
-			set_planet_flag = planet_cracked
-			planet_event = { id = crisis.2040 }
+			set_carrier_flag = destroyed_by_colossus
+			set_carrier_flag = planet_cracked
+			carrier_event = { id = crisis.2040 }
 		}
 
 		# Contingency Final Machine World
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				has_planet_flag = machine_lair
+				has_carrier_flag = machine_lair
 			}
-			set_planet_flag = destroyed_by_colossus
-			set_planet_flag = planet_cracked
+			set_carrier_flag = destroyed_by_colossus
+			set_carrier_flag = planet_cracked
 			from.owner = { save_event_target_as = final_machine_world_destroyer }
 			stop_crisis_sound = yes
-			planet_event = { id = crisis.2046 }
+			carrier_event = { id = crisis.2046 }
 		}
 
 		# Swarm Situation Log counter
@@ -430,7 +439,7 @@ country_event = {
 
 
 # Hyperspace Bypass
-planet_event = {
+carrier_event = {
 	id = planet_destruction.110
 	hide_window = yes
 
@@ -440,8 +449,8 @@ planet_event = {
 			is_human_species = no
 		}
 		OR = {
-			has_planet_flag = planet_earth
-			has_planet_flag = nuked_earth
+			has_carrier_flag = planet_earth
+			has_carrier_flag = nuked_earth
 			AND = {
 				exists = owner
 				owner = {
@@ -510,7 +519,7 @@ country_event = {
 }
 
 # Pacifier
-planet_event = {
+carrier_event = {
 	id = planet_destruction.200
 	hide_window = yes
 
@@ -542,24 +551,24 @@ planet_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				NOT = { has_planet_flag = machine_lair }
+				NOT = { has_carrier_flag = machine_lair }
 			}
-			set_planet_flag = destroyed_by_colossus
-			set_planet_flag = planet_shielded
-			planet_event = { id = crisis.2040 }
+			set_carrier_flag = destroyed_by_colossus
+			set_carrier_flag = planet_shielded
+			carrier_event = { id = crisis.2040 }
 		}
 
 		# Contingency Final Machine World
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				has_planet_flag = machine_lair
+				has_carrier_flag = machine_lair
 			}
-			set_planet_flag = destroyed_by_colossus
-			set_planet_flag = planet_shielded
+			set_carrier_flag = destroyed_by_colossus
+			set_carrier_flag = planet_shielded
 			stop_crisis_sound = yes
 			from.owner = { save_event_target_as = final_machine_world_destroyer }
-			planet_event = { id = crisis.2046 }
+			carrier_event = { id = crisis.2046 }
 		}
 
 		# Swarm Situation Log counter
@@ -772,7 +781,7 @@ country_event = {
 }
 
 # Neutron Beam
-planet_event = {
+carrier_event = {
 	id = planet_destruction.300
 	hide_window = yes
 
@@ -1100,7 +1109,7 @@ country_event = {
 }
 
 # God Ray
-planet_event = {
+carrier_event = {
 	id = planet_destruction.400
 	hide_window = yes
 
@@ -1122,11 +1131,11 @@ planet_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				NOT = { has_planet_flag = machine_lair }
+				NOT = { has_carrier_flag = machine_lair }
 			}
-			set_planet_flag = destroyed_by_colossus
-			set_planet_flag = planet_godrayed
-			planet_event = { id = crisis.2040 }
+			set_carrier_flag = destroyed_by_colossus
+			set_carrier_flag = planet_godrayed
+			carrier_event = { id = crisis.2040 }
 			create_ambient_object = {
 				location = this
 				type = habitat_cracker_object
@@ -1148,13 +1157,13 @@ planet_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				has_planet_flag = machine_lair
+				has_carrier_flag = machine_lair
 			}
-			set_planet_flag = destroyed_by_colossus
-			set_planet_flag = planet_godrayed
+			set_carrier_flag = destroyed_by_colossus
+			set_carrier_flag = planet_godrayed
 			from.owner = { save_event_target_as = final_machine_world_destroyer }
 			stop_crisis_sound = yes
-			planet_event = { id = crisis.2046 }
+			carrier_event = { id = crisis.2046 }
 			create_ambient_object = {
 				location = this
 				type = habitat_cracker_object
@@ -1366,7 +1375,7 @@ country_event = {
 }
 
 # Nanobot Assimilation
-planet_event = {
+carrier_event = {
 	id = planet_destruction.500
 	hide_window = yes
 
@@ -1622,7 +1631,7 @@ country_event = {
 }
 
 # Fragged/shielded a holy world
-planet_event = {
+carrier_event = {
 	id = planet_destruction.600
 	hide_window = yes
 
@@ -1651,7 +1660,7 @@ planet_event = {
 	}
 }
 
-planet_event = {
+carrier_event = {
 	id = planet_destruction.605
 	hide_window = yes
 
@@ -1681,7 +1690,7 @@ planet_event = {
 }
 
 # Deluged a holy world
-planet_event = {
+carrier_event = {
 	id = planet_destruction.607
 	hide_window = yes
 
@@ -1864,7 +1873,7 @@ country_event = {
 
 
 # Deluge
-planet_event = {
+carrier_event = {
 	id = planet_destruction.700
 	hide_window = yes
 
@@ -1890,11 +1899,11 @@ planet_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				NOT = { has_planet_flag = machine_lair }
+				NOT = { has_carrier_flag = machine_lair }
 			}
-			#set_planet_flag = destroyed_by_colossus
-			set_planet_flag = planet_drenched
-			planet_event = { id = crisis.2040 }
+			#set_carrier_flag = destroyed_by_colossus
+			set_carrier_flag = planet_drenched
+			carrier_event = { id = crisis.2040 }
 			create_ambient_object = {
 				location = this
 				type = habitat_cracker_object
@@ -1916,13 +1925,13 @@ planet_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				has_planet_flag = machine_lair
+				has_carrier_flag = machine_lair
 			}
-			#set_planet_flag = destroyed_by_colossus
-			set_planet_flag = planet_drenched
+			#set_carrier_flag = destroyed_by_colossus
+			set_carrier_flag = planet_drenched
 			from.owner = { save_event_target_as = final_machine_world_destroyer }
 			stop_crisis_sound = yes
-			planet_event = { id = crisis.2046 }
+			carrier_event = { id = crisis.2046 }
 			create_ambient_object = {
 				location = this
 				type = habitat_cracker_object
@@ -2157,7 +2166,7 @@ planet_event = {
 
 		# 	if = {
 		# 		limit = {
-		# 			root = { has_planet_flag = temp_ice_mine_exhausted_flag }
+		# 			root = { has_carrier_flag = temp_ice_mine_exhausted_flag }
 		# 		}
 		# 		event_target:mined_system.starbase = {
 		# 			remove_starbase_building = {
@@ -2207,7 +2216,7 @@ country_event = {
 }
 
 # # Deluge Queued
-# planet_event = {
+# carrier_event = {
 # 	id = planet_destruction.705
 # 	hide_window = yes
 
@@ -2232,7 +2241,7 @@ country_event = {
 # }
 
 # # Deluge Unqueued or Cancelled
-# planet_event = {
+# carrier_event = {
 # 	id = planet_destruction.710
 # 	hide_window = yes
 
@@ -2257,7 +2266,7 @@ country_event = {
 
 
 # Toxified
-planet_event = {
+carrier_event = {
 	id = planet_destruction.800
 	is_triggered_only = yes
 	hide_window = yes
@@ -2268,7 +2277,7 @@ planet_event = {
 				colonizable_planet = yes
 				is_artificial = no
 			}
-			set_planet_flag = toxic_candidate
+			set_carrier_flag = toxic_candidate
 		}
 		if = {
 			limit = {
@@ -2291,24 +2300,24 @@ planet_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				NOT = { has_planet_flag = machine_lair }
+				NOT = { has_carrier_flag = machine_lair }
 			}
-			set_planet_flag = destroyed_by_colossus
-			set_planet_flag = planet_cracked #doesn't matter
-			planet_event = { id = crisis.2040 }
+			set_carrier_flag = destroyed_by_colossus
+			set_carrier_flag = planet_cracked #doesn't matter
+			carrier_event = { id = crisis.2040 }
 		}
 
 		# Contingency Final Machine World
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				has_planet_flag = machine_lair
+				has_carrier_flag = machine_lair
 			}
-			set_planet_flag = destroyed_by_colossus
-			set_planet_flag = planet_cracked
+			set_carrier_flag = destroyed_by_colossus
+			set_carrier_flag = planet_cracked
 			from.owner = { save_event_target_as = final_machine_world_destroyer }
 			stop_crisis_sound = yes
-			planet_event = { id = crisis.2046 }
+			carrier_event = { id = crisis.2046 }
 		}
 
 		# Swarm Situation Log counter
@@ -2510,10 +2519,10 @@ planet_event = {
 
 		if = {
 			limit = {
-				has_planet_flag = toxic_candidate
+				has_carrier_flag = toxic_candidate
 			}
 			add_modifier = { modifier = toxic_terraforming_candidate }
-			remove_planet_flag = toxic_candidate
+			remove_carrier_flag = toxic_candidate
 		}
 	}
 }
@@ -2570,7 +2579,7 @@ country_event = {
 }
 
 # Devolving Beam
-planet_event = {
+carrier_event = {
 	id = planet_destruction.900
 	hide_window = yes
 
@@ -2592,14 +2601,14 @@ planet_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				NOT = { has_planet_flag = machine_lair }
+				NOT = { has_carrier_flag = machine_lair }
 				from.owner = {
 					has_ascension_perk = ap_archaeoengineers
 				}
 			}
-			set_planet_flag = destroyed_by_colossus
-			set_planet_flag = planet_devolved
-			planet_event = { id = crisis.2040 }
+			set_carrier_flag = destroyed_by_colossus
+			set_carrier_flag = planet_devolved
+			carrier_event = { id = crisis.2040 }
 			create_ambient_object = {
 				location = this
 				type = habitat_cracker_object
@@ -2621,16 +2630,16 @@ planet_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				has_planet_flag = machine_lair
+				has_carrier_flag = machine_lair
 				from.owner = {
 					has_ascension_perk = ap_archaeoengineers
 				}
 			}
-			set_planet_flag = destroyed_by_colossus
-			set_planet_flag = planet_devolved
+			set_carrier_flag = destroyed_by_colossus
+			set_carrier_flag = planet_devolved
 			from.owner = { save_event_target_as = final_machine_world_destroyer }
 			stop_crisis_sound = yes
-			planet_event = { id = crisis.2046 }
+			carrier_event = { id = crisis.2046 }
 			create_ambient_object = {
 				location = this
 				type = habitat_cracker_object
@@ -2926,7 +2935,7 @@ planet_event = {
 		else = {
 			change_pc = this
 		}
-		set_timed_planet_flag = {
+		set_timed_carrier_flag = {
 			flag = devolved_planet
 			days = 360
 		}
@@ -3085,7 +3094,7 @@ country_event = {
 }
 
 # Eaten
-planet_event = {
+carrier_event = {
 	id = planet_destruction.1005
 	is_triggered_only = yes
 	hide_window = yes
@@ -3105,24 +3114,24 @@ planet_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				NOT = { has_planet_flag = machine_lair }
+				NOT = { has_carrier_flag = machine_lair }
 			}
-			set_planet_flag = destroyed_by_colossus
-			set_planet_flag = planet_cracked
-			planet_event = { id = crisis.2040 }
+			set_carrier_flag = destroyed_by_colossus
+			set_carrier_flag = planet_cracked
+			carrier_event = { id = crisis.2040 }
 		}
 
 		# Contingency Final Machine World
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				has_planet_flag = machine_lair
+				has_carrier_flag = machine_lair
 			}
-			set_planet_flag = destroyed_by_colossus
-			set_planet_flag = planet_cracked
+			set_carrier_flag = destroyed_by_colossus
+			set_carrier_flag = planet_cracked
 			from.owner = { save_event_target_as = final_machine_world_destroyer }
 			stop_crisis_sound = yes
-			planet_event = { id = crisis.2046 }
+			carrier_event = { id = crisis.2046 }
 		}
 
 		# Swarm Situation Log counter

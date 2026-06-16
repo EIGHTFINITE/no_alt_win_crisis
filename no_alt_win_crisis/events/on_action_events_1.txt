@@ -488,14 +488,15 @@ country_event = {
 
 
 	### Normal (Not Xenophobe or Xenophile)
-	# Militarist Autocrat
+	# Militarist Autocrat (Nomadic)
 	desc = {
-		text = action.1.desc_01
+		text = action.1.desc_01_nomadic
 		trigger = {
 			first_contact_custom_greeting = no
 			NOT = { is_same_species = event_target:contact_empire }
 			event_target:contact_empire = {
 				is_country_type = default
+				is_nomadic = yes
 				NOR = {
 					has_country_flag = special_intro_for@root
 					is_xenophobe = yes
@@ -511,6 +512,55 @@ country_event = {
 			}
 		}
 	}
+	# Militarist Autocrat
+	desc = {
+		text = action.1.desc_01
+		trigger = {
+			first_contact_custom_greeting = no
+			NOT = { is_same_species = event_target:contact_empire }
+			event_target:contact_empire = {
+				is_country_type = default
+				is_nomadic = no
+				NOR = {
+					has_country_flag = special_intro_for@root
+					is_xenophobe = yes
+					is_xenophile = yes
+				}
+				OR = {
+					has_government = gov_star_empire
+					has_government = gov_military_dictatorship
+					has_government = gov_martial_empire
+					has_government = gov_martial_dictatorship
+					has_government = gov_band_blood
+				}
+			}
+		}
+	}
+	# Spiritualist Autocrat (Nomadic)
+	desc = {
+		text = action.1.desc_02_nomadic
+		trigger = {
+			first_contact_custom_greeting = no
+			NOT = { is_same_species = event_target:contact_empire }
+			is_individual_machine = no
+			event_target:contact_empire = {
+				is_country_type = default
+				is_nomadic = yes
+				NOR = {
+					has_country_flag = special_intro_for@root
+					is_xenophobe = yes
+					is_xenophile = yes
+				}
+				OR = {
+					has_government = gov_theocratic_monarchy
+					has_government = gov_theocratic_dictatorship
+					has_government = gov_divine_empire
+					has_government = gov_sacrificial_megachurch
+					has_government = gov_mortal_empire
+				}
+			}
+		}
+	}
 	# Spiritualist Autocrat
 	desc = {
 		text = action.1.desc_02
@@ -520,6 +570,7 @@ country_event = {
 			is_individual_machine = no
 			event_target:contact_empire = {
 				is_country_type = default
+				is_nomadic = no
 				NOR = {
 					has_country_flag = special_intro_for@root
 					is_xenophobe = yes
@@ -800,14 +851,15 @@ country_event = {
 	}
 
 	### Xenophobe
-	# Militarist Autocrat
+	# Militarist Autocrat (Nomadic)
 	desc = {
-		text = action.1.desc_16
+		text = action.1.desc_16_nomadic
 		trigger = {
 			first_contact_custom_greeting = no
 			NOT = { is_same_species = event_target:contact_empire }
 			event_target:contact_empire = {
 				is_country_type = default
+				is_nomadic = yes
 				is_xenophobe = yes
 				OR = {
 					has_government = gov_star_empire
@@ -824,6 +876,57 @@ country_event = {
 			}
 		}
 	}
+	# Militarist Autocrat
+	desc = {
+		text = action.1.desc_16
+		trigger = {
+			first_contact_custom_greeting = no
+			NOT = { is_same_species = event_target:contact_empire }
+			event_target:contact_empire = {
+				is_country_type = default
+				is_nomadic = no
+				is_xenophobe = yes
+				OR = {
+					has_government = gov_star_empire
+					has_government = gov_military_dictatorship
+					has_government = gov_martial_empire
+					has_government = gov_martial_dictatorship
+					has_government = gov_band_blood
+				}
+				NOR = {
+					has_country_flag = special_intro_for@root
+					has_valid_civic = civic_fanatic_purifiers
+					has_valid_civic = civic_hive_devouring_swarm
+				}
+			}
+		}
+	}
+	# Spiritualist Autocrat (Nomadic)
+	desc = {
+		text = action.1.desc_17_nomadic
+		trigger = {
+			first_contact_custom_greeting = no
+			NOT = { is_same_species = event_target:contact_empire }
+			is_individual_machine = no
+			event_target:contact_empire = {
+				is_country_type = default
+				is_nomadic = yes
+				is_xenophobe = yes
+				OR = {
+					has_government = gov_theocratic_monarchy
+					has_government = gov_theocratic_dictatorship
+					has_government = gov_divine_empire
+					has_government = gov_sacrificial_megachurch
+					has_government = gov_mortal_empire
+				}
+				NOR = {
+					has_valid_civic = civic_fanatic_purifiers
+					has_valid_civic = civic_hive_devouring_swarm
+					has_country_flag = special_intro_for@root
+				}
+			}
+		}
+	}
 	# Spiritualist Autocrat
 	desc = {
 		text = action.1.desc_17
@@ -833,6 +936,7 @@ country_event = {
 			is_individual_machine = no
 			event_target:contact_empire = {
 				is_country_type = default
+				is_nomadic = no
 				is_xenophobe = yes
 				OR = {
 					has_government = gov_theocratic_monarchy
@@ -1061,6 +1165,25 @@ country_event = {
 			}
 		}
 	}
+	# Pacifist Democrat (Nomadic)
+	desc = {
+		text = action.1.desc_29_nomadic
+		trigger = {
+			first_contact_custom_greeting = no
+			NOT = { is_same_species = event_target:contact_empire }
+			event_target:contact_empire = {
+				is_country_type = default
+				is_nomadic = yes
+				is_xenophobe = yes
+				has_government = gov_moral_democracy
+				NOR = {
+					has_valid_civic = civic_fanatic_purifiers
+					has_valid_civic = civic_hive_devouring_swarm
+					has_country_flag = special_intro_for@root
+				}
+			}
+		}
+	}
 	# Pacifist Democrat
 	desc = {
 		text = action.1.desc_29
@@ -1069,6 +1192,7 @@ country_event = {
 			NOT = { is_same_species = event_target:contact_empire }
 			event_target:contact_empire = {
 				is_country_type = default
+				is_nomadic = no
 				is_xenophobe = yes
 				has_government = gov_moral_democracy
 				NOT = { has_valid_civic = civic_fanatic_purifiers }
@@ -1114,6 +1238,28 @@ country_event = {
 			}
 		}
 	}
+	# Spiritualist Autocrat (Nomadic)
+	desc = {
+		text = action.1.desc_32_nomadic
+		trigger = {
+			first_contact_custom_greeting = no
+			NOT = { is_same_species = event_target:contact_empire }
+			is_individual_machine = no
+			event_target:contact_empire = {
+				is_country_type = default
+				is_nomadic = yes
+				is_xenophile = yes
+				OR = {
+					has_government = gov_theocratic_monarchy
+					has_government = gov_theocratic_dictatorship
+					has_government = gov_divine_empire
+					has_government = gov_sacrificial_megachurch
+					has_government = gov_mortal_empire
+				}
+				NOT = { has_country_flag = special_intro_for@root }
+			}
+		}
+	}
 	# Spiritualist Autocrat
 	desc = {
 		text = action.1.desc_32
@@ -1123,6 +1269,7 @@ country_event = {
 			is_individual_machine = no
 			event_target:contact_empire = {
 				is_country_type = default
+				is_nomadic = no
 				is_xenophile = yes
 				OR = {
 					has_government = gov_theocratic_monarchy
@@ -1844,10 +1991,7 @@ country_event = {
 				has_country_flag = special_intro_for@root
 				has_country_flag = lost_colony_parent_of@root
 				has_generic_government = yes
-				NOR = {
-					has_country_flag = human_1
-					has_country_flag = human_2
-				}
+				is_human_prescripted_empire = no
 			}
 			has_origin = origin_lost_colony
 			is_individual_machine = no
@@ -1863,10 +2007,7 @@ country_event = {
 				has_country_flag = special_intro_for@root
 				has_country_flag = lost_colony_parent_of@root
 				has_spiritualist_government = yes
-				NOR = {
-					has_country_flag = human_1
-					has_country_flag = human_2
-				}
+				is_human_prescripted_empire = no
 			}
 			has_origin = origin_lost_colony
 			is_individual_machine = no
@@ -1882,10 +2023,7 @@ country_event = {
 				has_country_flag = special_intro_for@root
 				has_country_flag = lost_colony_parent_of@root
 				has_militarist_government = yes
-				NOR = {
-					has_country_flag = human_1
-					has_country_flag = human_2
-				}
+				is_human_prescripted_empire = no
 			}
 			has_origin = origin_lost_colony
 			is_individual_machine = no
@@ -1901,10 +2039,7 @@ country_event = {
 				has_country_flag = special_intro_for@root
 				has_country_flag = lost_colony_parent_of@root
 				has_pacifist_government = yes
-				NOR = {
-					has_country_flag = human_1
-					has_country_flag = human_2
-				}
+				is_human_prescripted_empire = no
 			}
 			has_origin = origin_lost_colony
 			is_individual_machine = no
@@ -1920,10 +2055,7 @@ country_event = {
 				has_country_flag = special_intro_for@root
 				has_country_flag = lost_colony_parent_of@root
 				has_materialist_government = yes
-				NOR = {
-					has_country_flag = human_1
-					has_country_flag = human_2
-				}
+				is_human_prescripted_empire = no
 			}
 			has_origin = origin_lost_colony
 			is_individual_machine = no
@@ -1939,10 +2071,7 @@ country_event = {
 				has_country_flag = special_intro_for@root
 				has_country_flag = lost_colony_parent_of@root
 				is_megacorp = yes
-				NOR = {
-					has_country_flag = human_1
-					has_country_flag = human_2
-				}
+				is_human_prescripted_empire = no
 			}
 			has_origin = origin_lost_colony
 			is_individual_machine = no
@@ -1958,10 +2087,7 @@ country_event = {
 				has_country_flag = special_intro_for@root
 				has_country_flag = lost_colony_parent_of@root
 				has_valid_civic = civic_fanatic_purifiers
-				NOR = {
-					has_country_flag = human_1
-					has_country_flag = human_2
-				}
+				is_human_prescripted_empire = no
 			}
 			has_origin = origin_lost_colony
 		}
@@ -1990,6 +2116,33 @@ country_event = {
 			event_target:contact_empire = {
 				has_country_flag = special_intro_for@root
 				has_country_flag = human_2
+			}
+			has_country_flag = human_1
+		}
+	}
+
+	# UNE to GRS
+	desc = {
+		text = "action.1.desc_112"
+		trigger = {
+			first_contact_custom_greeting = no
+			event_target:contact_empire = {
+				has_country_flag = special_intro_for@root
+				has_country_flag = human_1
+			}
+			has_country_flag = human_3
+			has_origin = origin_lost_colony
+		}
+	}
+
+	# GRS to UNE
+	desc = {
+		text = "action.1.desc_113"
+		trigger = {
+			first_contact_custom_greeting = no
+			event_target:contact_empire = {
+				has_country_flag = special_intro_for@root
+				has_country_flag = human_3
 			}
 			has_country_flag = human_1
 		}
@@ -2087,10 +2240,7 @@ country_event = {
 				NOT = { has_valid_civic = civic_machine_terminator }
 				has_country_flag = special_intro_for@root
 				has_country_flag = lost_colony_parent_of@root
-				NOR = {
-					has_country_flag = human_1
-					has_country_flag = human_2
-				}
+				is_human_prescripted_empire = no
 			}
 			has_origin = origin_lost_colony
 			is_machine_empire = yes
@@ -2108,10 +2258,7 @@ country_event = {
 				has_valid_civic = civic_machine_terminator
 				has_country_flag = special_intro_for@root
 				has_country_flag = lost_colony_parent_of@root
-				NOR = {
-					has_country_flag = human_1
-					has_country_flag = human_2
-				}
+				is_human_prescripted_empire = no
 			}
 			has_origin = origin_lost_colony
 			is_machine_empire = yes
@@ -2129,10 +2276,7 @@ country_event = {
 				has_valid_civic = civic_machine_assimilator
 				has_country_flag = special_intro_for@root
 				has_country_flag = lost_colony_parent_of@root
-				NOR = {
-					has_country_flag = human_1
-					has_country_flag = human_2
-				}
+				is_human_prescripted_empire = no
 			}
 			has_origin = origin_lost_colony
 			is_machine_empire = yes
@@ -2149,10 +2293,7 @@ country_event = {
 				is_individual_machine = yes
 				has_country_flag = special_intro_for@root
 				has_country_flag = lost_colony_parent_of@root
-				NOR = {
-					has_country_flag = human_1
-					has_country_flag = human_2
-				}
+				is_human_prescripted_empire = no
 			}
 			has_origin = origin_lost_colony
 			is_individual_machine = yes
@@ -3260,11 +3401,20 @@ country_event = {
 				}
 			}
 			hidden_effect = {
-				country_event = { id = progress.4 }
-				country_event = { id = progress.5 }
-				country_event = { id = progress.6 }
-				country_event = { id = progress.9 } # special event for Payback origin
-				#country_event = { id = story.7 days = 30 } REMOVED DUE TO ON_ACTIONS ALSO TRIGGERING THIS, CAUSING SCOPING ISSUES
+				if = {
+					limit = {
+						NOT = {
+							event_target:contact_empire = {
+								is_same_species = root
+							}
+						}
+					}
+					country_event = { id = progress.4 }
+					country_event = { id = progress.5 }
+					country_event = { id = progress.6 }
+					country_event = { id = progress.9 } # special event for Payback origin
+					#country_event = { id = story.7 days = 30 } REMOVED DUE TO ON_ACTIONS ALSO TRIGGERING THIS, CAUSING SCOPING ISSUES
+				}
 				if = {
 					limit = {
 						event_target:contact_empire = {
@@ -3894,6 +4044,7 @@ country_event = {
 						salvager_enclave_country = { country_event = { id = enclave.304 } }
 						shroudwalker_enclave_country = { country_event = { id = enclave.404 } }
 						mindwarden_enclave_country = { country_event = { id = shroud.4199 } }
+						champions_forge_enclave_country = { country_event = { id = nomads.155 } }
 						default = { log_error = "Unexpected enclave type or missing script flag" }
 					}
 				}
@@ -4001,7 +4152,7 @@ ship_event = {
 				has_owner = yes
 				owner = { is_country_type = primitive }
 			}
-			NOT = { has_planet_flag = fotd_hunter@root.owner }
+			NOT = { has_carrier_flag = fotd_hunter@root.owner }
 		}
 	}
 
@@ -4352,7 +4503,7 @@ country_event = {
 
 	immediate = {
 		event_target:conquered_primitive_world = {
-			set_timed_planet_flag = {
+			set_timed_carrier_flag = {
 				flag = ignore_ai_building_limitations
 				days = 1
 			}
@@ -4585,7 +4736,7 @@ country_event = {
 }
 
 # Other Empires react to a Pop dying in a purge
-planet_event = {
+carrier_event = {
 	id = action.21
 
 	hide_window = yes
@@ -4634,9 +4785,23 @@ planet_event = {
 					level >= 1
 				}
 			}
-			while = {
-				count = root.local_pop_amount
-				add_opinion_modifier = { who = FROM modifier = opinion_genocidal }
+			if = {
+				limit = {
+					from = {
+						has_origin = origin_nomadic_purger
+						exists = overlord
+					}
+				}
+				while = {
+					count = root.local_pop_amount
+					add_opinion_modifier = { who = FROM.overlord modifier = opinion_genocidal }
+				}
+			}
+			else = {
+				while = {
+					count = root.local_pop_amount
+					add_opinion_modifier = { who = FROM modifier = opinion_genocidal }
+				}
 			}
 		}
 		every_country = {
@@ -4650,16 +4815,30 @@ planet_event = {
 					level >= 1
 				}
 			}
-			while = {
-				count = root.local_pop_amount
-				add_opinion_modifier = { who = FROM modifier = opinion_genocidal_our_species }
+			if = {
+				limit = {
+					from = {
+						has_origin = origin_nomadic_purger
+						exists = overlord
+					}
+				}
+				while = {
+					count = root.local_pop_amount
+					add_opinion_modifier = { who = FROM.overlord modifier = opinion_genocidal_our_species }
+				}
+			}
+			else = {
+				while = {
+					count = root.local_pop_amount
+					add_opinion_modifier = { who = FROM modifier = opinion_genocidal_our_species }
+				}
 			}
 		}
 	}
 }
 
 # Purging: Gain resources from forced labor etc
-planet_event = {
+carrier_event = {
 	id = action.22
 	hide_window = yes
 	is_triggered_only = yes
@@ -4865,9 +5044,23 @@ planet_event = {
 						}
 					}
 					from = {
-						add_resource = {
-							food = 0.24
-							mult = local_pop_amount
+						if = {
+							limit = {
+								has_origin = origin_nomadic_purger
+								exists = overlord
+							}
+							overlord = {
+								add_resource = {
+									food = 0.24
+									mult = local_pop_amount
+								}
+							}
+						}
+						else = {
+							add_resource = {
+								food = 0.24
+								mult = local_pop_amount
+							}
 						}
 					}
 				}
@@ -4876,9 +5069,23 @@ planet_event = {
 						fromfrom = { is_lithoid = yes }
 					}
 					from = {
-						add_resource = {
-							minerals = 0.16
-							mult = local_pop_amount
+						if = {
+							limit = {
+								has_origin = origin_nomadic_purger
+								exists = overlord
+							}
+							overlord = {
+								add_resource = {
+									minerals = 0.16
+									mult = local_pop_amount
+								}
+							}
+						}
+						else = {
+							add_resource = {
+								minerals = 0.16
+								mult = local_pop_amount
+							}
 						}
 					}
 				}
@@ -4898,9 +5105,23 @@ planet_event = {
 						fromfrom = { is_robotic_species = yes }
 					}
 					from = {
-						add_resource = {
-							alloys = 0.12
-							mult = local_pop_amount
+						if = {
+							limit = {
+								has_origin = origin_nomadic_purger
+								exists = overlord
+							}
+							overlord = {
+								add_resource = {
+									alloys = 0.12
+									mult = local_pop_amount
+								}
+							}
+						}
+						else = {
+							add_resource = {
+								alloys = 0.12
+								mult = local_pop_amount
+							}
 						}
 					}
 				}
@@ -4910,9 +5131,23 @@ planet_event = {
 					fromfrom = { has_purge_type = { country = from type = purge_matrix } }
 				}
 				from = {
-					add_resource = {
-						energy = 0.24
-						mult = local_pop_amount
+					if = {
+						limit = {
+							has_origin = origin_nomadic_purger
+							exists = overlord
+						}
+						overlord = {
+							add_resource = {
+								energy = 0.24
+								mult = local_pop_amount
+							}
+						}
+					}
+					else = {
+						add_resource = {
+							energy = 0.24
+							mult = local_pop_amount
+						}
 					}
 				}
 			}
@@ -4921,10 +5156,25 @@ planet_event = {
 					fromfrom = { has_purge_type = { country = from type = purge_processing } }
 				}
 				from = {
-					add_resource = {
-						food = 0.12
-						minerals = 0.12
-						mult = local_pop_amount
+					if = {
+						limit = {
+							has_origin = origin_nomadic_purger
+							exists = overlord
+						}
+						overlord = {
+							add_resource = {
+								food = 0.12
+								minerals = 0.12
+								mult = local_pop_amount
+							}
+						}
+					}
+					else = {
+						add_resource = {
+							food = 0.12
+							minerals = 0.12
+							mult = local_pop_amount
+						}
 					}
 				}
 			}
@@ -5040,6 +5290,7 @@ country_event = {
 		set_country_flag = has_won_war
 	}
 }
+
 
 # Observation Posts set to Passive study when policy is downgraded to Passive
 country_event = {
@@ -5589,7 +5840,7 @@ country_event = {
 
 
 # Land appropriation
-planet_event = {
+carrier_event = {
 	id = action.42
 	hide_window = yes
 	is_triggered_only = yes
@@ -5924,7 +6175,7 @@ country_event = {
 }
 
 # Star Charts have been traded
-planet_event = {
+carrier_event = {
 	id = action.46
 	hide_window = yes
 	is_triggered_only = yes
@@ -6298,7 +6549,10 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		NOT = { has_global_flag = synth_queen_victorious }
+		NOR = {
+			has_global_flag = synth_queen_victorious
+			has_country_flag = supress_country_destroyed_message
+		}
 	}
 
 	immediate = {
@@ -6309,6 +6563,20 @@ country_event = {
 			from = {
 				save_global_event_target_as = destroyer_country
 				set_country_flag = has_won_war
+			}
+		}
+		if = {
+			limit = {
+				is_nomadic = yes
+				any_subject = {
+					has_origin = origin_nomadic_purger
+				}
+			}
+			every_subject = {
+				limit = {
+					has_origin = origin_nomadic_purger
+				}
+				destroy_country = yes
 			}
 		}
 		# If the MSI got destroyed by someone else, payback empires will get a follow-up
@@ -6572,7 +6840,7 @@ country_event = {
 }
 
 # Clear deposits after some terraforming actions
-planet_event = {
+carrier_event = {
 	id = action.68
 	is_triggered_only = yes
 	hide_window = yes
@@ -6730,7 +6998,7 @@ planet_event = {
 			remove_modifier = "pm_wenkwort_gardens"
 			remove_modifier = "pm_wenkwort_zen"
 			remove_modifier = "pm_wenkwort_custodian"
-			set_planet_flag = colony_event #Make it so that colony events don't fire on terraformed worlds
+			set_carrier_flag = colony_event #Make it so that colony events don't fire on terraformed worlds
 		}
 
 		if = {
@@ -7028,7 +7296,7 @@ country_event = {
 }
 
 # Planet is turned into tomb world by special bombing stance
-planet_event = {
+carrier_event = {
 	id = action.81
 	hide_window = yes
 
@@ -7079,11 +7347,11 @@ planet_event = {
 		}
 		from = { country_event = { id = action.83 } }
 		change_pc = pc_nuked
-		set_planet_flag = nuked_planet_anomalies_disabled
+		set_carrier_flag = nuked_planet_anomalies_disabled
 		remove_all_buildings = yes
 		reroll_deposits = yes
 		tomb_world_modifier_cleanup = yes
-		set_planet_flag = armageddon_nuked
+		set_carrier_flag = armageddon_nuked
 	}
 }
 
@@ -7131,7 +7399,7 @@ country_event = {
 }
 
 # Planet conquered
-planet_event = {
+carrier_event = {
 	id = action.84
 	hide_window = yes
 	is_triggered_only = yes
@@ -7198,12 +7466,12 @@ event = {
 					}
 				}
 			}
-			planet_event = { id = action.86 } # planet flips to starbase owner
+			carrier_event = { id = action.86 } # planet flips to starbase owner
 		}
 	}
 }
 
-planet_event = {
+carrier_event = {
 	id = action.86
 	hide_window = yes
 	is_triggered_only = yes
@@ -7271,8 +7539,8 @@ country_event = {
 					has_origin = origin_mindwardens
 					from = {
 						OR = {
-							has_planet_flag = exiled_planet_1
-							has_planet_flag = exiled_planet_2
+							has_carrier_flag = exiled_planet_1
+							has_carrier_flag = exiled_planet_2
 						}
 					}
 				}
@@ -7295,7 +7563,7 @@ country_event = {
 }
 
 # Remove modifiers on owner change
-planet_event = {
+carrier_event = {
 	id = action.89
 	hide_window = yes
 	is_triggered_only = yes
@@ -7352,6 +7620,7 @@ event = {
 	is_triggered_only = yes
 	trigger = {
 		any_country = {
+			is_nomadic = no
 			OR = {
 				is_country_type = default
 				is_fallen_empire = yes
@@ -7370,7 +7639,8 @@ event = {
 		every_system = {
 			limit = {
 				NOT = { exists = starbase }
-				any_system_colony = {
+				any_system_planet_colony = {
+					carrier_is_type = planet
 					exists = owner
 					has_ground_combat = no
 					OR = {
@@ -7378,13 +7648,16 @@ event = {
 						AND = {
 							has_shroud_dlc = yes
 							NOT = {
-								has_planet_flag = exile_planet
+								has_carrier_flag = exile_planet
 							}
 						}
 					}
 					owner = {
 						OR = {
-							is_country_type = default
+							AND = {
+								is_country_type = default
+								is_nomadic = no
+							}
 							is_country_type = fallen_empire
 							is_country_type = awakened_fallen_empire
 						}
@@ -7413,7 +7686,7 @@ event = {
 								}
 								is_cloaked = no
 							}
-							any_system_colony = {
+							any_system_planet_colony = {
 								exists = owner
 								NOT = { is_same_value = prevprev }
 								owner = {
@@ -7439,7 +7712,7 @@ event = {
 						AND = {
 							has_shroud_dlc = yes
 							NOT = {
-								has_planet_flag = exile_planet
+								has_carrier_flag = exile_planet
 							}
 						}
 					}
@@ -7474,7 +7747,7 @@ event = {
 								}
 								is_cloaked = no
 							}
-							any_system_colony = {
+							any_system_planet_colony = {
 								exists = owner
 								owner = {
 									NOT = { is_same_value = prevprevprev.owner }
@@ -7491,20 +7764,20 @@ event = {
 				# Fruitful Origin - the outpost is being created for the first time
 				if = {
 					limit = {
-						has_planet_flag = seed_pods_colonization
+						has_carrier_flag = seed_pods_colonization
 					}
-					planet_event = { id = origin.7400 }
+					carrier_event = { id = origin.7400 }
 				}
 				# else, fire the normal "Outpost Rebuilt!" event
 				else = {
-					planet_event = { id = action.91 }
+					carrier_event = { id = action.91 }
 				}
 			}
 		}
 	}
 }
 
-planet_event = {
+carrier_event = {
 	id = action.91
 	title = action.91.name
 	desc = action.91.desc
@@ -7673,6 +7946,7 @@ ship_event = {
 		owner = {
 			OR = {
 				AND = {
+					is_nomadic = no
 					root.from = {
 						has_resource = {
 							amount > 0
@@ -7684,6 +7958,7 @@ ship_event = {
 					}
 				}
 				AND = {
+					is_nomadic = no
 					root.from = {
 						has_resource = {
 							amount > 0
@@ -7695,6 +7970,7 @@ ship_event = {
 					}
 				}
 				AND = {
+					is_nomadic = no
 					root.from = {
 						has_resource = {
 							amount > 0
@@ -8111,7 +8387,7 @@ ship_event = {
 	}
 }
 
-planet_event = {
+carrier_event = {
 	id = action.95
 	hide_window = yes
 
@@ -8139,7 +8415,7 @@ planet_event = {
 # Other Empires react to a Pop dying due to massive orbital bombardment
 # This = Planet where the pop was bombed to death
 # From = Country which is raining down fire and brimstone
-planet_event = {
+carrier_event = {
 	id = action.100
 	hide_window = yes
 
@@ -8184,14 +8460,14 @@ planet_event = {
 }
 
 # Remove ascension tier on owner change
-planet_event = {
+carrier_event = {
 	id = action.350
 	hide_window = yes
 	is_triggered_only = yes
 
 	immediate = {
 		set_planetary_ascension_tier = 0
-		set_timed_planet_flag = {
+		set_timed_carrier_flag = {
 			flag = 3_year_owner_change_flag
 			days = 1080
 		}
@@ -8199,7 +8475,7 @@ planet_event = {
 }
 
 # Add urban districts on planet colonized
-planet_event = {
+carrier_event = {
 	id = action.360
 	hide_window = yes
 	is_triggered_only = yes
@@ -8215,13 +8491,15 @@ planet_event = {
 	}
 
 	immediate = {
-		planet_event = {
-			id = action.361
-			days = 1
+		colony = {
+			colony_event = {
+				id = action.361
+				days = 1
+			}
 		}
 	}
 }
-planet_event = {
+colony_event = {
 	id = action.361
 	hide_window = yes
 	is_triggered_only = yes
@@ -8237,7 +8515,7 @@ planet_event = {
 	}
 
 	immediate = {
-		set_timed_planet_flag = {
+		set_timed_carrier_flag = {
 			flag = ignore_ai_building_limitations
 			days = 1
 		}
@@ -8322,6 +8600,60 @@ planet_event = {
 					}
 				}
 				add_building = building_colony_shelter_wilderness
+			}
+		}
+	}
+}
+
+# An ally leaves a war early - force a truce with the opposing side so they cannot immediately rejoin the war.
+# Root = Main Ally, From = Actor (leaver), FromFrom = War
+country_event = {
+	id = action.43
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		from = {
+			save_event_target_as = leaving_ally
+		}
+		if = {
+			limit = {
+				event_target:leaving_ally = {
+					is_war_participant = {
+						war = fromfrom
+						side = attackers
+					}
+				}
+			}
+			fromfrom = {
+				every_defender = {
+					event_target:leaving_ally = {
+						set_truce = {
+							target = prev
+							type = war
+						}
+					}
+					set_truce = {
+						target = event_target:leaving_ally
+						type = war
+					}
+				}
+			}
+		}
+		else = {
+			fromfrom = {
+				every_attacker = {
+					event_target:leaving_ally = {
+						set_truce = {
+							target = prev
+							type = war
+						}
+					}
+					set_truce = {
+						target = event_target:leaving_ally
+						type = war
+					}
+				}
 			}
 		}
 	}

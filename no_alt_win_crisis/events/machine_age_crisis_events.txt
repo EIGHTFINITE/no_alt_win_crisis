@@ -846,8 +846,16 @@ country_event = { # Tyranny of the suns - Planets start burning down
 	is_triggered_only = yes
 
 	option = {
+		trigger = {
+			is_nomadic = no
+		}
 		name = crisis.7220.a
 		every_owned_planet = {
+			limit = {
+				solar_system.star = {
+					NOT = { is_star_class = sc_black_hole }
+				}
+			}
 			add_modifier = {
 				modifier = cosmogenesis_superlight_planet_1
 				days = 360
@@ -877,6 +885,9 @@ country_event = { # Tyranny of the suns - Planets start burning down
 		hidden_effect = {
 			every_planet_within_border = {
 				limit = {
+					solar_system.star = {
+						NOT = { is_star_class = sc_black_hole }
+					}
 					OR = {
 						is_pre_ftl_colony_type = yes
 						AND = {
@@ -892,6 +903,46 @@ country_event = { # Tyranny of the suns - Planets start burning down
 			}
 		}
 	}
+
+	option = {
+		trigger = {
+			is_nomadic = yes
+		}
+		name = crisis.7220.b
+		every_owned_colony = {
+			limit = {
+				solar_system.star = {
+					NOT = { is_star_class = sc_black_hole }
+				}
+			}
+			add_modifier = {
+				modifier = cosmogenesis_superlight_planet_1
+				days = 360
+			}
+			add_planet_devastation = 20
+		}
+		if = {
+			limit = {
+				NOT = {
+					root = {
+						is_same_value = FROMFROM
+					}
+				}
+				has_communications = FROMFROM
+			}
+			add_opinion_modifier = {
+				modifier = opinion_cosmogenesis_thesis
+				who = FROMFROM
+			}
+		}
+		else_if = {
+			limit = {
+				is_same_value = FROMFROM
+			}
+			custom_tooltip = cosmogenesis_negative_opinion_tt
+		}
+	}
+
 
 	after = {
 		hidden_effect = {
@@ -910,8 +961,16 @@ country_event = { # Tyranny of the suns - it gets worse
 	is_triggered_only = yes
 
 	option = {
+		trigger = {
+			is_nomadic = no
+		}
 		name = crisis.7225.a
 		every_owned_planet = {
+			limit = {
+				solar_system.star = {
+					NOT = { is_star_class = sc_black_hole }
+				}
+			}
 			add_modifier = {
 				modifier = cosmogenesis_superlight_planet_2
 				days = 330
@@ -968,6 +1027,9 @@ country_event = { # Tyranny of the suns - it gets worse
 		hidden_effect = {
 			every_planet_within_border = {
 				limit = {
+					solar_system.star = {
+						NOT = { is_star_class = sc_black_hole }
+					}
 					OR = {
 						is_pre_ftl_colony_type = yes
 						AND = {
@@ -981,6 +1043,45 @@ country_event = { # Tyranny of the suns - it gets worse
 					days = 360
 				}
 			}
+		}
+	}
+
+	option = {
+		trigger = {
+			is_nomadic = yes
+		}
+		name = crisis.7225.b
+		every_owned_colony = {
+			limit = {
+				solar_system.star = {
+					NOT = { is_star_class = sc_black_hole }
+				}
+			}
+			add_modifier = {
+				modifier = cosmogenesis_superlight_planet_2
+				days = 330
+			}
+			add_planet_devastation = 50
+		}
+		if = {
+			limit = {
+				NOT = {
+					root = {
+						is_same_value = FROMFROMFROM
+					}
+				}
+				has_communications = FROMFROMFROM
+			}
+			add_opinion_modifier = {
+				modifier = opinion_cosmogenesis_thesis
+				who = FROMFROMFROM
+			}
+		}
+		else_if = {
+			limit = {
+				is_same_value = FROMFROMFROM
+			}
+			custom_tooltip = cosmogenesis_negative_opinion_tt
 		}
 	}
 
@@ -1001,8 +1102,16 @@ country_event = { # Tyranny of the suns - it subsides
 	is_triggered_only = yes
 
 	option = {
+		trigger = {
+			is_nomadic = no
+		}
 		name = crisis.7230.a
 		every_owned_planet = {
+			limit = {
+				solar_system.star = {
+					NOT = { is_star_class = sc_black_hole }
+				}
+			}
 			add_modifier = {
 				modifier = cosmogenesis_superlight_planet_1
 				days = 250
@@ -1032,6 +1141,9 @@ country_event = { # Tyranny of the suns - it subsides
 		hidden_effect = {
 			every_planet_within_border = {
 				limit = {
+					solar_system.star = {
+						NOT = { is_star_class = sc_black_hole }
+					}
 					OR = {
 						is_pre_ftl_colony_type = yes
 						AND = {
@@ -1045,6 +1157,45 @@ country_event = { # Tyranny of the suns - it subsides
 					days = 360
 				}
 			}
+		}
+	}
+
+	option = {
+		trigger = {
+			is_nomadic = yes
+		}
+		name = crisis.7230.b
+		every_owned_colony = {
+			limit = {
+				solar_system.star = {
+					NOT = { is_star_class = sc_black_hole }
+				}
+			}
+			add_modifier = {
+				modifier = cosmogenesis_superlight_planet_1
+				days = 250
+			}
+			add_planet_devastation = 20
+		}
+		if = {
+			limit = {
+				NOT = {
+					root = {
+						is_same_value = FROMFROMFROMFROM
+					}
+				}
+				has_communications = FROMFROMFROMFROM
+			}
+			add_opinion_modifier = {
+				modifier = opinion_cosmogenesis_thesis
+				who = FROMFROMFROMFROM
+			}
+		}
+		else_if = {
+			limit = {
+				is_same_value = FROMFROMFROMFROM
+			}
+			custom_tooltip = cosmogenesis_negative_opinion_tt
 		}
 	}
 }
@@ -1617,7 +1768,7 @@ country_event = { # Thesis: Mass Shift FROM = crisis country
 					enable_special_project = {
 						name = COSMOGENESIS_LEAKING_ATMOSPHERE
 					}
-					set_planet_flag = mass_shift_affected
+					set_carrier_flag = mass_shift_affected
 				}
 			}
 		}
@@ -1652,7 +1803,7 @@ country_event = { # Thesis: Mass Shift FROM = crisis country
 						modifier = low_gravity
 						days = -1
 					}
-					set_planet_flag = mass_shift_affected
+					set_carrier_flag = mass_shift_affected
 				}
 			}
 		}
@@ -1665,7 +1816,7 @@ country_event = { # Thesis: Mass Shift FROM = crisis country
 				40 = {}
 				60 = {
 					remove_modifier = high_gravity
-					set_planet_flag = mass_shift_affected
+					set_carrier_flag = mass_shift_affected
 				}
 			}
 		}
@@ -1681,13 +1832,13 @@ country_event = { # Thesis: Mass Shift FROM = crisis country
 		if = {
 			limit = {
 				any_owned_planet = {
-					has_planet_flag = mass_shift_affected
+					has_carrier_flag = mass_shift_affected
 				}
 			}
 			custom_tooltip = mass_shift_tooltip
 			owned_planet_list_tooltip = {
 				limit = {
-					has_planet_flag = mass_shift_affected
+					has_carrier_flag = mass_shift_affected
 				}
 			}
 		}
@@ -1712,13 +1863,13 @@ country_event = { # Thesis: Mass Shift FROM = crisis country
 		if = {
 			limit = {
 				any_owned_planet = {
-					has_planet_flag = mass_shift_affected
+					has_carrier_flag = mass_shift_affected
 				}
 			}
 			custom_tooltip = mass_shift_tooltip
 			owned_planet_list_tooltip = {
 				limit = {
-					has_planet_flag = mass_shift_affected
+					has_carrier_flag = mass_shift_affected
 				}
 			}
 		}
@@ -1751,13 +1902,13 @@ country_event = { # Thesis: Mass Shift FROM = crisis country
 		if = {
 			limit = {
 				any_owned_planet = {
-					has_planet_flag = mass_shift_affected
+					has_carrier_flag = mass_shift_affected
 				}
 			}
 			custom_tooltip = mass_shift_tooltip
 			owned_planet_list_tooltip = {
 				limit = {
-					has_planet_flag = mass_shift_affected
+					has_carrier_flag = mass_shift_affected
 				}
 			}
 		}
@@ -1775,9 +1926,9 @@ country_event = { # Thesis: Mass Shift FROM = crisis country
 	after = {
 		every_owned_planet = {
 			limit = {
-				has_planet_flag = mass_shift_affected
+				has_carrier_flag = mass_shift_affected
 			}
-			remove_planet_flag = mass_shift_affected
+			remove_carrier_flag = mass_shift_affected
 		}
 	}
 }
@@ -1831,74 +1982,39 @@ country_event = { # Thesis: Shroud Tear FROM = crisis country
 	is_triggered_only = yes
 
 	immediate = {
-		every_system_within_border = {
-			random_list = {
-				92 = {}
-				8 = {
-					if = {
-						limit = { NOT = { exists = event_target:shroud_country } }
-						create_country = {
-							name = "NAME_Creatures_of_the_Shroud"
-							type = shroud_spirits
-							flag = {
-								icon = {
-									category = "special"
-									file = "the_shroud.dds"
-								}
-								background= {
-									category = "backgrounds"
-									file = "00_solid.dds"
-								}
-								colors = {
-									"dark_purple"
-									"black"
-									"null"
-									"null"
-								}
-							}
-						}
-						last_created_country = {
-							save_global_event_target_as = shroud_country
-							add_modifier = {
-								modifier = supercharged_shroud_country
-								years = 3
+		if = {
+			limit = { is_nomadic = no }
+			every_system_within_border = {
+				random_list = {
+					92 = {}
+					8 = { crisis_cosmogenesis_shroud_spawn_effect = yes }
+				}
+			}
+		}
+		else = {
+			every_owned_nonprimary_starbase = {
+				limit = { is_waystation_starbase = yes }
+				solar_system? = {
+					random_list = {
+						92 = {}
+						8 = {
+							if = {
+								limit = { NOT = { any_fleet_in_system = { has_fleet_flag = crisis_shroud_entity } } }
+								crisis_cosmogenesis_shroud_spawn_effect = yes
 							}
 						}
 					}
-					create_fleet = {
-						name = "NAME_Psionic_Entity"
-						settings = {
-							spawn_debris = no
-							is_boss = yes
-						}
-						effect = {
-							set_owner = event_target:shroud_country
-							set_fleet_flag = crisis_shroud_entity
-							create_ship = {
-								name = "NAME_Psionic_Entity"
-								design = "NAME_Corrupted_Avatar"
-							}
-							set_location = {
-								target = prev.star
-								distance = 100
-								angle = random
-							}
-							set_fleet_stance = aggressive
-							set_aggro_range_measure_from = return_point
-							set_aggro_range = 2000
-						}
-					}
-					star = {
-						create_ambient_object = {
-							type = "psi_storm_1"
-							location = this
-						}
-						last_created_ambient_object = {
-							set_ambient_object_flag = psi_storm_object
-							set_location = {
-								target = prev
-								distance = 0
-								angle = random
+				}
+			}
+			every_owned_starbase = {
+				limit = { is_arkship_starbase = yes }
+				solar_system? = {
+					random_list = {
+						92 = {}
+						8 = {
+							if = {
+								limit = { NOT = { any_fleet_in_system = { has_fleet_flag = crisis_shroud_entity } } }
+								crisis_cosmogenesis_shroud_spawn_effect = yes
 							}
 						}
 					}
@@ -2553,7 +2669,7 @@ country_event = { # Horizon Needle Built
 		trigger = {
 			any_owned_planet = {
 				is_capital = no
-			 	has_planet_flag = cosmogenesis_pickup_planet
+			 	has_carrier_flag = cosmogenesis_pickup_planet
 			}
 		}
 		text = crisis.7400.desc
@@ -2562,7 +2678,7 @@ country_event = { # Horizon Needle Built
 		trigger = {
 			any_owned_planet = {
 				is_capital = yes
-			 	has_planet_flag = cosmogenesis_pickup_planet
+			 	has_carrier_flag = cosmogenesis_pickup_planet
 			}
 		}
 		text = crisis.7400.desc.onlycapital
@@ -2583,18 +2699,20 @@ country_event = { # Horizon Needle Built
 					is_planet_class = pc_cosmogenesis_world
 				}
 			}
-			set_planet_flag = cosmogenesis_pickup_planet
+			set_carrier_flag = cosmogenesis_pickup_planet
 		}
 		if = {
 			limit = {
 				NOT = {
 					any_owned_planet = {
-					 	has_planet_flag = cosmogenesis_pickup_planet
+					 	has_carrier_flag = cosmogenesis_pickup_planet
 					}
 				}
 			}
 			capital_scope = {
-				set_planet_flag = cosmogenesis_pickup_planet
+				carrier = {
+					set_carrier_flag = cosmogenesis_pickup_planet
+				}
 			}
 		}
 	}
@@ -2604,7 +2722,7 @@ country_event = { # Horizon Needle Built
 	}
 }
 
-planet_event = { # Embarking Colony Pops - From on_cosmogenesis_pickup_planet_reached on_action
+carrier_event = { # Embarking Colony Pops - From on_cosmogenesis_pickup_planet_reached on_action
 	id = crisis.7500
 	title = "crisis.7500.name"
 	desc = {
@@ -2649,7 +2767,7 @@ planet_event = { # Embarking Colony Pops - From on_cosmogenesis_pickup_planet_re
 
 		if = {
 			limit = {
-				is_same_value = owner.capital_scope
+				is_same_value = owner.capital_scope.carrier
 			}
 			owner = {
 				every_owned_planet = {
@@ -2667,7 +2785,7 @@ planet_event = { # Embarking Colony Pops - From on_cosmogenesis_pickup_planet_re
 				}
 				country_event = { id = crisis.7510 days = 10 }
 			}
-			remove_planet_flag = cosmogenesis_pickup_planet
+			remove_carrier_flag = cosmogenesis_pickup_planet
 			owner = { set_country_flag = exodus_ready }
 		}
 		else = {
@@ -2676,18 +2794,18 @@ planet_event = { # Embarking Colony Pops - From on_cosmogenesis_pickup_planet_re
 					owner = {
 						has_origin = origin_toxic_knights
 					}
-					has_planet_flag = toxic_knights_habitat
+					has_carrier_flag = toxic_knights_habitat
 				}
-				set_planet_flag = keep_evacuated
+				set_carrier_flag = keep_evacuated
 			}
 			destroy_colony = yes
-			remove_planet_flag = cosmogenesis_pickup_planet
+			remove_carrier_flag = cosmogenesis_pickup_planet
 			solar_system.owner = {
 				if = {
 					limit = {
 						NOT = {
 							any_owned_planet = {
-								has_planet_flag = cosmogenesis_pickup_planet
+								has_carrier_flag = cosmogenesis_pickup_planet
 							}
 						}
 					}
@@ -2702,7 +2820,7 @@ planet_event = { # Embarking Colony Pops - From on_cosmogenesis_pickup_planet_re
 	}
 }
 
-planet_event = { # Handling capital move - From on_capital_changed on_action
+carrier_event = { # Handling capital move - From on_capital_changed on_action
 	id = crisis.7502
 	hide_window = yes
 
@@ -2717,9 +2835,9 @@ planet_event = { # Handling capital move - From on_capital_changed on_action
 
 	immediate = {
 		from = {
-			set_planet_flag = cosmogenesis_pickup_planet
+			set_carrier_flag = cosmogenesis_pickup_planet
 		}
-		remove_planet_flag = cosmogenesis_pickup_planet
+		remove_carrier_flag = cosmogenesis_pickup_planet
 	}
 }
 
@@ -2736,18 +2854,22 @@ country_event = { # Colonies Evacuated
 	trigger = {
 		NOT = {
 			any_owned_planet = {
-				has_planet_flag = cosmogenesis_pickup_planet
+				has_carrier_flag = cosmogenesis_pickup_planet
 			}
 		}
 		capital_scope = {
-			NOT = { has_planet_flag = cosmogenesis_pickup_planet }
+			carrier = {
+				NOT = { has_carrier_flag = cosmogenesis_pickup_planet }
+			}
 		}
 		NOT = { has_country_flag = exodus_ready }
 	}
 
 	immediate = {
 		capital_scope = {
-			set_planet_flag = cosmogenesis_pickup_planet
+			carrier = {
+				set_carrier_flag = cosmogenesis_pickup_planet
+			}
 		}
 	}
 
@@ -2791,7 +2913,7 @@ country_event = { # Ready to dive - Country Event
 	}
 }
 
-planet_event = { # About to dive - Planet Action
+carrier_event = { # About to dive - Planet Action
 	id = crisis.7514
 	hide_window = yes
 	is_triggered_only = yes
@@ -2887,7 +3009,7 @@ country_event = { # To infinity and beyond the event horizon
 					has_star_flag = terminal_egress
 					has_star_flag = guardians_horror_system
 					any_system_planet = {
-						has_planet_flag = black_hole_horror
+						has_carrier_flag = black_hole_horror
 					}
 					is_capital_system = yes
 					has_star_flag = cosmogenesis_project
@@ -2939,7 +3061,7 @@ country_event = { # To infinity and beyond the event horizon
 				OR = {
 					has_star_flag = guardians_horror_system
 					any_system_planet = {
-						has_planet_flag = black_hole_horror
+						has_carrier_flag = black_hole_horror
 					}
 				}
 			}
@@ -3321,7 +3443,7 @@ country_event = { # Remove Date Distortion
 	}
 }
 
-planet_event = { #pickup flag management on planet transfer or ownerless
+carrier_event = { #pickup flag management on planet transfer or ownerless
 	id = crisis.7520
 	hide_window = yes
 	is_triggered_only = yes
@@ -3332,7 +3454,7 @@ planet_event = { #pickup flag management on planet transfer or ownerless
 			owner = {
 				has_event_chain = cosmogenesis_planet_pickup_chain
 			}
-			has_planet_flag = cosmogenesis_pickup_planet
+			has_carrier_flag = cosmogenesis_pickup_planet
 		}
 	}
 
@@ -3340,9 +3462,9 @@ planet_event = { #pickup flag management on planet transfer or ownerless
 		if = {
 			limit = {
 				NOT = { exists = owner }
-				has_planet_flag = cosmogenesis_pickup_planet
+				has_carrier_flag = cosmogenesis_pickup_planet
 			}
-			remove_planet_flag = cosmogenesis_pickup_planet
+			remove_carrier_flag = cosmogenesis_pickup_planet
 		}
 		if = {
 			limit = {
@@ -3350,9 +3472,9 @@ planet_event = { #pickup flag management on planet transfer or ownerless
 				owner = {
 					NOT = { has_event_chain = cosmogenesis_planet_pickup_chain }
 				}
-				has_planet_flag = cosmogenesis_pickup_planet
+				has_carrier_flag = cosmogenesis_pickup_planet
 			}
-			remove_planet_flag = cosmogenesis_pickup_planet
+			remove_carrier_flag = cosmogenesis_pickup_planet
 		}
 		if = {
 			limit = {
@@ -3361,9 +3483,9 @@ planet_event = { #pickup flag management on planet transfer or ownerless
 				owner = {
 					has_event_chain = cosmogenesis_planet_pickup_chain
 				}
-				NOT = { has_planet_flag = cosmogenesis_pickup_planet }
+				NOT = { has_carrier_flag = cosmogenesis_pickup_planet }
 			}
-			set_planet_flag = cosmogenesis_pickup_planet
+			set_carrier_flag = cosmogenesis_pickup_planet
 		}
 		if = {
 			limit = {
@@ -3374,7 +3496,7 @@ planet_event = { #pickup flag management on planet transfer or ownerless
 				NOT = {
 					solar_system.owner = {
 						any_owned_planet = {
-							has_planet_flag = cosmogenesis_pickup_planet
+							has_carrier_flag = cosmogenesis_pickup_planet
 						}
 
 						has_country_flag = exodus_ready
@@ -3461,7 +3583,9 @@ pop_group_event = {
 	}
 
 	immediate = {
+		save_event_target_as = change_group
 		pop_percentage_change_category = {
+			POP_GROUP = event_target:change_group
 			CATEGORY = chip_slave
 			PERCENTAGE = 1
 		}
@@ -4102,7 +4226,7 @@ country_event = {
 					}
 					random_system_planet = {
 						limit = {
-							has_planet_flag = synth_queen_bastille
+							has_carrier_flag = synth_queen_bastille
 						}
 						set_owner = event_target:synth_queen_country_global
 					}
@@ -4282,7 +4406,7 @@ country_event = {
 					}
 					random_system_planet = {
 						limit = {
-							has_planet_flag = synth_queen_bastille
+							has_carrier_flag = synth_queen_bastille
 						}
 						set_owner = event_target:synth_queen_country_global
 					}
@@ -4482,7 +4606,7 @@ event = {
 				}
 				random_system_planet = {
 					limit = {
-						has_planet_flag = synth_queen_bastille
+						has_carrier_flag = synth_queen_bastille
 					}
 					save_global_event_target_as = synth_queen_capital
 				}
@@ -6713,7 +6837,7 @@ country_event = {
 							is_planet_class = pc_habitat
 						}
 					}
-					set_planet_flag = synth_queen_databank_location@root
+					set_carrier_flag = synth_queen_databank_location@root
 					save_event_target_as = synth_queen_databank_location
 				}
 			}
@@ -6751,7 +6875,7 @@ country_event = {
 								is_planet_class = pc_gas_giant
 							}
 						}
-						set_planet_flag = synth_queen_databank_location@root
+						set_carrier_flag = synth_queen_databank_location@root
 						save_event_target_as = synth_queen_databank_location
 					}
 				}
@@ -7756,6 +7880,7 @@ event = {
 	is_triggered_only = yes
 
 	trigger = {
+		has_global_flag = synth_queen_happened
 		any_country = {
 			is_country_type = synth_queen_outposts
 		}
@@ -7961,6 +8086,7 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = { #Make sure belligerants were a convoy v playable country
+		has_global_flag = synth_queen_happened
 		AND = {
 			OR = {
 				is_country_type = synth_queen_convoys
@@ -8067,6 +8193,7 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = { #Make sure belligerants are SQ v playable country
+		has_global_flag = synth_queen_happened
 		is_country_type = default
 		from = {
 			OR = {
@@ -8160,6 +8287,7 @@ fleet_event = {
 	is_triggered_only = yes
 
 	trigger = { #check for fight
+		has_global_flag = synth_queen_happened
 		from = {
 			any_fleet_in_system = {
 				NOT = { is_same_value = root }
@@ -8616,18 +8744,6 @@ country_event = {
 				is_country_type = default
 				from = {
 					is_country_type = default
-				}
-			}
-		}
-		NOT = {
-			fromfrom = {
-				solar_system = {
-					any_fleet_in_system = {
-						is_mobile = yes
-						owner = {
-							is_hostile = root
-						}
-					}
 				}
 			}
 		}
@@ -12087,7 +12203,7 @@ country_event = {
 }
 
 # Synth Queen Digitizes Colony
-planet_event = {
+carrier_event = {
 	id = crisis.10010
 	title = "crisis.10010.name"
 	desc = "crisis.10010.desc"
@@ -12210,7 +12326,7 @@ country_event = {
 					}
 					position = 0
 					order_by = trigger:free_housing
-					set_planet_flag = received_synth_queen_pops
+					set_carrier_flag = received_synth_queen_pops
 					while = {
 						limit = {
 							free_housing > 0
@@ -12242,7 +12358,7 @@ country_event = {
 					}
 				}
 				capital_scope = {
-					set_planet_flag = received_synth_queen_pops
+					set_carrier_flag = received_synth_queen_pops
 					while = {
 						limit = {
 							owner = {
@@ -12299,7 +12415,7 @@ country_event = {
 		name = EXCELLENT
 		custom_tooltip = crisis.10020.tt
 		owned_planet_list_tooltip = {
-			limit = { has_planet_flag = received_synth_queen_pops }
+			limit = { has_carrier_flag = received_synth_queen_pops }
 		}
 	}
 
@@ -12307,9 +12423,9 @@ country_event = {
 		hidden_effect = {
 			every_owned_planet = {
 				limit = {
-					has_planet_flag = received_synth_queen_pops
+					has_carrier_flag = received_synth_queen_pops
 				}
-				remove_planet_flag = received_synth_queen_pops
+				remove_carrier_flag = received_synth_queen_pops
 			}
 			clear_variable = synth_queen_freed_pops
 		}
@@ -13523,13 +13639,31 @@ ship_event = {
 					}
 				}
 			}
-			# Spawn arc site on the capital by default
-			else = {
+			# Spawn arc site on the capital by default for non nomads
+			else_if = {
+				limit = {
+					is_nomadic = no
+				}
 				capital_scope = {
 					create_archaeological_site = synth_queen_history_site_2
 				}
 				owner = {
-					set_country_flag = synth_queen_history_site_2_arcsite_owner_@capital_scope
+					set_country_flag = synth_queen_history_site_2_arcsite_owner_@capital_scope.planet
+				}
+			}
+			else = {
+				capital_scope = {
+					solar_system = {
+						random_system_planet = {
+							limit = {
+								NOT = { is_planet_class = pc_ark }
+							}
+							create_archaeological_site = synth_queen_history_site_2
+							root.owner? = {
+								set_country_flag = synth_queen_history_site_2_arcsite_owner_@prev
+							}
+						}
+					}
 				}
 			}
 			synth_queen_progress_situation = { SCORE = 1 }
@@ -14561,7 +14695,7 @@ country_event = {
 		hidden_effect = {
 			every_galaxy_planet = {
 				limit = {
-					has_planet_flag = synth_queen_bastille
+					has_carrier_flag = synth_queen_bastille
 				}
 				change_pc = pc_shattered
 				clear_deposits = yes
@@ -14625,8 +14759,8 @@ event = {
 		random_system = {
 			limit = {
 				NOT = { exists = starbase }
-				any_system_colony = {
-					has_planet_flag = synth_queen_bastille
+				any_system_planet = {
+					has_carrier_flag = synth_queen_bastille
 					solar_system = {
 						NOR = {
 							any_fleet_in_system = {
@@ -15061,7 +15195,7 @@ country_event = {
 			}
 			every_galaxy_planet = {
 				limit = {
-					has_planet_flag = synth_queen_bastille
+					has_carrier_flag = synth_queen_bastille
 				}
 				change_pc = pc_shattered
 				clear_deposits = yes
