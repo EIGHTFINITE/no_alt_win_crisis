@@ -2,50 +2,61 @@ civic_fanatic_purifiers = {
 	modification = no
 	potential = {
 		ethics = { NOT = { value = ethic_gestalt_consciousness } }
-		authority = { NOT = { value = auth_corporate } }
+		OR = {
+			authority = { NOT = { value = auth_corporate } }
+			civics = { value = civic_crisis_fanatic_purifiers }
+		}
 	}
 	possible = {
-		ethics = {
-			value = ethic_fanatic_xenophobe
-			OR = {
-				value = ethic_militarist
-				value = ethic_spiritualist
+		OR = {
+			AND = {
+				ethics = {
+					value = ethic_fanatic_xenophobe
+					OR = {
+						value = ethic_militarist
+						value = ethic_spiritualist
+					}
+				}
+				civics = {
+					NOR = {
+						value = civic_barbaric_despoilers
+						value = civic_pompous_purists
+						value = civic_crusader_spirit
+						value = civic_selective_kinship
+					}
+					NOR = {
+						text = civic_tooltip_not_guardian
+						value = civic_sovereign_guardianship
+						value = civic_corporate_sovereign_guardianship
+						value = civic_hive_sovereign_guardianship
+						value = civic_machine_sovereign_guardianship
+					}
+					NOR = {
+						text = civic_tooltip_not_guided
+						value = civic_guided_sapience
+						value = civic_corporate_guided_sapience
+						value = civic_hive_guided_sapience
+						value = civic_machine_guided_sapience
+					}
+					NOR = {
+						text = civic_tooltip_not_scorched_earth
+						value = civic_scorched_earth
+						value = civic_hive_scorched_earth
+					}
+				}
+				origin = {
+					NOR = {
+						value = origin_syncretic_evolution
+						value = origin_common_ground
+						value = origin_hegemon
+						value = origin_toxic_knights
+						value = origin_broken_shackles
+					}
+				}
 			}
-		}
-		civics = {
-			NOR = {
-				value = civic_barbaric_despoilers
-				value = civic_pompous_purists
-				value = civic_crusader_spirit
-				value = civic_selective_kinship
-			}
-			NOR = {
-				text = civic_tooltip_not_guardian
-				value = civic_sovereign_guardianship
-				value = civic_corporate_sovereign_guardianship
-				value = civic_hive_sovereign_guardianship
-				value = civic_machine_sovereign_guardianship
-			}
-			NOR = {
-				text = civic_tooltip_not_guided
-				value = civic_guided_sapience
-				value = civic_corporate_guided_sapience
-				value = civic_hive_guided_sapience
-				value = civic_machine_guided_sapience
-			}
-			NOR = {
-				text = civic_tooltip_not_scorched_earth
-				value = civic_scorched_earth
-				value = civic_hive_scorched_earth
-			}
-		}
-		origin = {
-			NOR = {
-				value = origin_syncretic_evolution
-				value = origin_common_ground
-				value = origin_hegemon
-				value = origin_toxic_knights
-				value = origin_broken_shackles
+			AND = {
+				civics = { value = civic_fanatic_purifiers }
+				civics = { value = civic_crisis_fanatic_purifiers }
 			}
 		}
 	}
@@ -71,7 +82,10 @@ civic_fanatic_purifiers = {
 	swap_type = {
 		trigger = {
 			is_scope_valid = yes
-			has_country_flag = dark_forest_achievement
+			OR = {
+				has_country_flag = dark_forest_achievement
+				has_country_flag = crisis_civic_fanatic_purifiers
+			}
 		}
 		description = "civic_tooltip_fanatic_purifiers_effects"
 		modifier = {
@@ -90,63 +104,74 @@ civic_scorched_earth = {
 	description = "civic_scorched_earth_effects"
 	potential = {
 		ethics = { NOT = { value = ethic_gestalt_consciousness } }
-		authority = { NOT = { value = auth_corporate } }
+		OR = {
+			authority = { NOT = { value = auth_corporate } }
+			civics = { value = civic_crisis_scorched_earth }
+		}
 	}
 	possible = {
-		species_class = { value = INF }
-		ethics = {
-			OR = {
-				text = civic_tooltip_xenophobe
-				value = ethic_xenophobe
-				value = ethic_fanatic_xenophobe
+		OR = {
+			AND = {
+				species_class = { value = INF }
+				ethics = {
+					OR = {
+						text = civic_tooltip_xenophobe
+						value = ethic_xenophobe
+						value = ethic_fanatic_xenophobe
+					}
+					NOR = {
+						text = civic_tooltip_not_pacifist
+						value = ethic_pacifist
+						value = ethic_fanatic_pacifist
+					}
+				}
+				civics = {
+					NOR = {
+						value = civic_barbaric_despoilers
+						value = civic_pompous_purists
+						value = civic_crusader_spirit
+						value = civic_selective_kinship
+						value = civic_fanatic_purifiers
+						value = civic_death_cult
+						value = civic_secret_societies
+						value = civic_diplomatic_corps
+						value = civic_memorialist
+						value = civic_void_reavers
+					}
+					NOR = {
+						text = civic_tooltip_not_guardian
+						value = civic_sovereign_guardianship
+						value = civic_corporate_sovereign_guardianship
+						value = civic_hive_sovereign_guardianship
+						value = civic_machine_sovereign_guardianship
+					}
+					NOR = {
+						text = civic_tooltip_not_guided
+						value = civic_guided_sapience
+						value = civic_corporate_guided_sapience
+						value = civic_hive_guided_sapience
+						value = civic_machine_guided_sapience
+					}
+				}
+				origin = {
+					NOR = {
+						value = origin_syncretic_evolution
+						value = origin_common_ground
+						value = origin_hegemon
+						value = origin_tree_of_life
+						value = origin_toxic_knights
+						value = origin_broken_shackles
+						value = origin_here_be_dragons
+						value = origin_ocean_paradise
+						value = origin_wilderness
+						value = origin_fear_of_the_dark
+						value = origin_scion
+					}
+				}
 			}
-			NOR = {
-				text = civic_tooltip_not_pacifist
-				value = ethic_pacifist
-				value = ethic_fanatic_pacifist
-			}
-		}
-		civics = {
-			NOR = {
-				value = civic_barbaric_despoilers
-				value = civic_pompous_purists
-				value = civic_crusader_spirit
-				value = civic_selective_kinship
-				value = civic_fanatic_purifiers
-				value = civic_death_cult
-				value = civic_secret_societies
-				value = civic_diplomatic_corps
-				value = civic_memorialist
-				value = civic_void_reavers
-			}
-			NOR = {
-				text = civic_tooltip_not_guardian
-				value = civic_sovereign_guardianship
-				value = civic_corporate_sovereign_guardianship
-				value = civic_hive_sovereign_guardianship
-				value = civic_machine_sovereign_guardianship
-			}
-			NOR = {
-				text = civic_tooltip_not_guided
-				value = civic_guided_sapience
-				value = civic_corporate_guided_sapience
-				value = civic_hive_guided_sapience
-				value = civic_machine_guided_sapience
-			}
-		}
-		origin = {
-			NOR = {
-				value = origin_syncretic_evolution
-				value = origin_common_ground
-				value = origin_hegemon
-				value = origin_tree_of_life
-				value = origin_toxic_knights
-				value = origin_broken_shackles
-				value = origin_here_be_dragons
-				value = origin_ocean_paradise
-				value = origin_wilderness
-				value = origin_fear_of_the_dark
-				value = origin_scion
+			AND = {
+				civics = { value = civic_scorched_earth }
+				civics = { value = civic_crisis_scorched_earth }
 			}
 		}
 	}
@@ -174,4 +199,15 @@ civic_scorched_earth = {
 	added_climate_labels = { TYPE_HEADER_04 }
 	removed_planet_types = { pc_arctic pc_alpine pc_tundra }
 	added_planet_types = { pc_volcanic }
+
+	swap_type = {
+		trigger = {
+			is_scope_valid = yes
+			has_country_flag = crisis_civic_scorched_earth
+		}
+		description = "civic_scorched_earth_effects"
+		modifier = {
+			country_government_civic_points_add = 1
+		}
+	}
 }
