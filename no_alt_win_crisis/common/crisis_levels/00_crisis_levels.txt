@@ -167,6 +167,16 @@ crisis_level_5 = {
 			}
 		}
 		is_subject = no
+		custom_tooltip = {
+			fail_text = requires_waystation_aetherophasic_anchor
+			OR = {
+				is_nomadic = no
+				any_owned_nonprimary_starbase = {
+					is_waystation_starbase = yes
+					has_starbase_module = waystation_aetherophasic_anchor
+				}
+			}
+		}
 	}
 	required_crisis_currency = 10000
 
@@ -211,6 +221,156 @@ crisis_level_5 = {
 		}
 	}
 }
+
+crisis_defender_level_1 = {
+	# REQUIREMENTS
+	required_crisis_currency = 0
+
+	# REWARDS
+	perks = {
+		menp_defender_objectives
+		menp_defender_opinion_1
+		menp_defender_galcom_1
+		menp_defender_federation_1
+	}
+
+	on_unlock = {
+		hidden_effect = {
+			owner = {
+				country_event = { id = ambition.100 }
+			}
+		}
+	}
+}
+
+crisis_defender_level_2 = {
+	# REQUIREMENTS
+	allow = {
+		custom_tooltip = {
+			success_text = defender_level_2_req_clear_tooltip
+			fail_text =	defender_level_2_req_tooltip
+			has_country_flag = crisis_special_project_1_complete
+		}
+		is_galactic_community_member = yes
+	}
+	required_crisis_currency = 2000
+
+	# REWARDS
+	perks = {
+		menp_defender_crisis_damage_1
+		menp_defender_galcom_3
+		menp_defender_galcom_2
+		menp_defender_federation_2
+	}
+
+	on_unlock = {
+		hidden_effect = {
+			owner = {
+				country_event = { id = ambition.105 days = 3 }
+			}
+		}
+	}
+}
+
+crisis_defender_level_3 = {
+	# REQUIREMENTS
+	allow = {
+		custom_tooltip = {
+			success_text = defender_level_3_req_clear_tooltip
+			fail_text =	defender_level_3_req_tooltip
+			has_country_flag = crisis_special_project_2_complete
+		}
+		is_part_of_galactic_council = yes
+		hidden_trigger = {
+			has_global_flag = galacic_council_announced
+		}
+	}
+	required_crisis_currency = 6000
+
+	# REWARDS
+	perks = {
+		menp_defender_crisis_damage_2
+
+		menp_defender_research_1
+		menp_defender_defense_1
+	}
+
+	on_unlock = {
+		hidden_effect = {
+			owner = {
+				country_event = { id = ambition.110 days = 3 }
+			}
+		}
+	}
+}
+
+crisis_defender_level_4 = {
+	# REQUIREMENTS
+	allow = {
+		custom_tooltip = {
+			success_text = defender_level_4_req_clear_tooltip
+			fail_text =	defender_level_4_req_tooltip
+			is_galactic_custodian = yes
+		}
+	}
+	required_crisis_currency = 18000
+
+	# REWARDS
+	perks = {
+		menp_defender_crisis_damage_3
+		menp_defender_opinion_2
+
+		menp_defender_custodian
+		menp_defender_defense_2
+	}
+
+	on_unlock = {
+		hidden_effect = {
+			owner = {
+				country_event = { id = ambition.115 days = 3 }
+			}
+		}
+	}
+}
+
+crisis_defender_level_5 = {
+	# REQUIREMENTS
+	allow = {
+		custom_tooltip = {
+			success_text = defender_level_5_req_clear_tooltip
+			fail_text =	defender_level_5_req_tooltip
+			OR = {
+				has_crisis = yes
+				any_country = {
+					is_level_5_player_crisis = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			success_text = defender_level_4_req_clear_tooltip
+			fail_text =	defender_level_4_req_tooltip
+			is_galactic_custodian = yes
+		}
+	}
+	required_crisis_currency = 45000
+
+	# REWARDS
+	perks = {
+		menp_defender_crisis_damage_4
+		menp_defender_opinion_3
+		menp_defender_research_2
+		menp_defender_defense_3
+	}
+
+	on_unlock = {
+		hidden_effect = {
+			owner = {
+				country_event = { id = ambition.120 days = 3 }
+			}
+		}
+	}
+}
+
 
 crisis_cosmogenesis_level_1 = {
 	# REQUIREMENTS
