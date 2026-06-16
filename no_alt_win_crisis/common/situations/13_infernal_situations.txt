@@ -10,6 +10,7 @@ situation_red_giant_expansion = {
 	picture = GFX_evt_star_yellow
 	category = neutral
 	initial_progress = 10
+	situation_log_category = empire_concerns
 
 	stages = {
 		stage_1 = {
@@ -19,7 +20,7 @@ situation_red_giant_expansion = {
 			end = 300
 			on_enter = {
 				target.solar_system = {
-					every_system_colony = {
+					every_system_planet_colony = {
 						remove_modifier = red_giant_stage_2
 						add_modifier = {
 							modifier = "red_giant_stage_1"
@@ -44,7 +45,7 @@ situation_red_giant_expansion = {
 			}
 			on_enter = {
 				target.solar_system = {
-					every_system_colony = {
+					every_system_planet_colony = {
 						remove_modifier = red_giant_stage_1
 						remove_modifier = red_giant_stage_3
 						add_modifier = {
@@ -70,7 +71,7 @@ situation_red_giant_expansion = {
 			}
 			on_enter = {
 				target.solar_system = {
-					every_system_colony = {
+					every_system_planet_colony = {
 						remove_modifier = red_giant_stage_2
 						remove_modifier = red_giant_stage_4
 						add_modifier = {
@@ -97,7 +98,7 @@ situation_red_giant_expansion = {
 			}
 			on_enter = {
 				target.solar_system = {
-					every_system_colony = {
+					every_system_planet_colony = {
 						remove_modifier = red_giant_stage_3
 						remove_modifier = red_giant_stage_5
 						add_modifier = {
@@ -120,13 +121,13 @@ situation_red_giant_expansion = {
 			custom_tooltip = situation_red_giant_expansion_stage_5
 			end = 1500
 			on_first_enter = {
-				target = {					
-					planet_event = { id = infernals.80 days = 5 }
+				target = {
+					carrier_event = { id = infernals.80 days = 5 }
 				}
 			}
 			on_enter = {
 				target.solar_system = {
-					every_system_colony = {
+					every_system_planet_colony = {
 						remove_modifier = red_giant_stage_4
 						add_modifier = {
 							modifier = "red_giant_stage_5"
@@ -183,7 +184,7 @@ situation_red_giant_expansion = {
 				unity = 10
 			}
 		}
-		
+
 		ai_weight = {
 			base = 10
 		}
@@ -228,7 +229,7 @@ situation_red_giant_expansion = {
 	}
 	approach = {
 		name = approach_disrupt_subspace_tunnels2
-		icon = GFX_situation_approach_disrupt 
+		icon = GFX_situation_approach_disrupt
 		icon_background = GFX_situation_approach_bg_green
 		potential = {
 			owner = {
@@ -504,6 +505,7 @@ situation_cosmic_dawn = {
 	fail_icon = GFX_situation_outcome_negative
 	picture = GFX_evt_molten
 	category = positive
+	situation_log_category = empire_concerns
 
 	start_value = 0
 
@@ -690,6 +692,7 @@ situation_galactic_hyperthermia_timer = {
 	complete_icon_frame = GFX_situation_outcome_frame_blue
 	complete_icon = GFX_situation_outcome_unknown
 	initial_progress = 1
+	situation_log_category = ambitions
 
 	on_progress_complete = {
 		custom_tooltip = situation_gh_timer_outcome
@@ -752,6 +755,7 @@ situation_galactic_hyperthermia = {
 	complete_icon_frame = GFX_situation_outcome_frame_blue
 	complete_icon = GFX_situation_outcome_unknown
 	initial_progress = 10
+	situation_log_category = ambitions
 	desc = {
 		trigger = {
 			owner = { has_crisis_level = crisis_hyperthermia_level_5 }
