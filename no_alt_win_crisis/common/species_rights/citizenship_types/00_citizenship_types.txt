@@ -8,6 +8,12 @@ citizenship_full = {
 		exists = from
 		from = { is_machine_empire = no }
 		is_disconnected_drone_pop = no
+		NOT = {
+			from = {
+				has_origin = origin_forever_cruise
+				NOT = { has_country_flag = forever_cruise_over }
+			}
+		}
 	}
 
 	allow = {
@@ -150,6 +156,12 @@ citizenship_full_machine = {
 			NOT = { from = { has_origin = origin_shroud_forged } }
 			NOT = { has_trait = trait_shroud_forged }
 		}
+		NOT = {
+			from = {
+				has_origin = origin_forever_cruise
+				NOT = { has_country_flag = forever_cruise_over }
+			}
+		}
 	}
 
 	allow = {
@@ -275,6 +287,17 @@ citizenship_assimilation = {
 					has_modifier = destroyers_of_the_lost_modifier
 					ROOT = { has_psionic_species_trait = yes }
 				}
+			}
+			NOT = { has_origin = origin_nomadic_purger }
+		}
+		NAND = {
+			from = {
+				has_origin = origin_forever_cruise
+				NOT = { has_country_flag = forever_cruise_over }
+			}
+			OR = {
+				is_founding_cruise_crew = yes
+				is_founding_cruise_passenger = yes
 			}
 		}
 	}
@@ -539,6 +562,52 @@ citizenship_organic_trophy = {
 	}
 }
 
+citizenship_cruise_passenger = {
+	potential = {
+		has_nomads_dlc = yes
+		from? = {
+			is_nomadic = yes
+			has_origin = origin_forever_cruise
+			NOT = { has_country_flag = forever_cruise_over }
+			is_hospitality_servitor_empire = no
+		}
+		is_disconnected_drone_pop = no
+		NOT = { is_same_species = from } # Not the founding crew species
+	}
+
+	allow = { }
+
+	ai_will_do = {
+		factor = 100
+	}
+}
+
+citizenship_cruise_crew = {
+	is_full_citizenship = yes
+
+	potential = {
+		has_nomads_dlc = yes
+		from? = {
+			is_nomadic = yes
+			has_origin = origin_forever_cruise
+			NOT = { has_country_flag = forever_cruise_over }
+		}
+		is_disconnected_drone_pop = no
+		is_founding_cruise_passenger = no
+		OR = {
+			is_same_species = from
+			is_founding_cruise_crew = yes
+			from = { NOT = { has_ethic = ethic_gestalt_consciousness } }
+		}
+	}
+
+	allow = { }
+
+	ai_will_do = {
+		factor = 100
+	}
+}
+
 citizenship_limited = {
 	new_pop_weight = 0.75
 
@@ -569,6 +638,13 @@ citizenship_limited = {
 			is_shackled_robot_species_rights = yes
 		}
 		is_disconnected_drone_pop = no
+		NOT = {
+			from = {
+				has_origin = origin_forever_cruise
+				NOT = { has_country_flag = forever_cruise_over }
+			}
+		}
+		NOT = { from = { has_origin = origin_nomadic_purger } }
 	}
 
 	allow = {
@@ -705,6 +781,10 @@ citizenship_slavery = {
 		}
 	}
 
+	pop_group_modifier = {
+		planet_pops_enslaved_consumer_goods_upkeep_mult = -0.50
+	}
+
 	potential = {
 		exists = from
 		NAND = {
@@ -725,7 +805,18 @@ citizenship_slavery = {
 			}
 		}
 		is_disconnected_drone_pop = no
+		NAND = {
+			from = {
+				has_origin = origin_forever_cruise
+				NOT = { has_country_flag = forever_cruise_over }
+			}
+			OR = {
+				is_founding_cruise_crew = yes
+				is_founding_cruise_passenger = yes
+			}
 		}
+		NOT = { from = { has_origin = origin_nomadic_purger } }
+	}
 
 	allow = {
 		hidden_trigger = { exists = from }
@@ -906,6 +997,7 @@ citizenship_robot_servitude = {
 			has_trait = trait_mechanical
 			has_trait = trait_machine_unit
 		}
+		NOT = { from = { has_origin = origin_nomadic_purger } }
 	}
 
 	allow = {
@@ -952,6 +1044,16 @@ citizenship_purge = {
 			AND = {
 				from = { is_hive_empire = yes }
 				is_robotic = yes
+			}
+		}
+		NAND = {
+			from = {
+				has_origin = origin_forever_cruise
+				NOT = { has_country_flag = forever_cruise_over }
+			}
+			OR = {
+				is_founding_cruise_crew = yes
+				is_founding_cruise_passenger = yes
 			}
 		}
 	}
@@ -1135,6 +1237,12 @@ citizenship_purge = {
 				is_xenophobe = yes
 			}
 		}
+		modifier = {
+			add = 1000
+			from = {
+				has_origin = origin_nomadic_purger
+			}
+		}
 	}
 }
 
@@ -1161,6 +1269,16 @@ citizenship_purge_machine = {
 			is_lonely_hive_mind_pop = no
 			from = { has_valid_civic = civic_machine_servitor }
 			from = { has_ascension_perk = ap_become_the_crisis }
+		}
+		NAND = {
+			from = {
+				has_origin = origin_forever_cruise
+				NOT = { has_country_flag = forever_cruise_over }
+			}
+			OR = {
+				is_founding_cruise_crew = yes
+				is_founding_cruise_passenger = yes
+			}
 		}
 	}
 
@@ -1194,5 +1312,11 @@ citizenship_purge_machine = {
 	}
 	ai_will_do = {
 		factor = 0
+		modifier = {
+			add = 1000
+			from = {
+				has_origin = origin_nomadic_purger
+			}
+		}
 	}
 }
