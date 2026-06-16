@@ -73,6 +73,12 @@ spriteTypes = {
 	}
 
 	spriteType = {
+		name = "GFX_faction_icon_interlink"
+		textureFile = "gfx/interface/icons/faction_icons/faction_icons_interlink.dds"
+		noOfFrames = 1
+	}
+
+	spriteType = {
 		name = "GFX_faction_icon_cyber_creed_labor"
 		textureFile = "gfx/interface/icons/faction_icons/faction_icons_cyber_creed_labor.dds"
 		noOfFrames = 1
@@ -392,8 +398,28 @@ spriteTypes = {
 	}
 
 	spriteType = {
+		name = "GFX_trade_cat_grievances"
+		texturefile = "gfx/interface/icons/diplomacy/forgive_grievance.dds"
+	}
+
+	spriteType = {
 		name = "GFX_trade_cat_specimens"
 		texturefile = "gfx/interface/icons/trade_icons/trade_cat_specimens.dds"
+	}
+
+	spriteType = {
+		name = "GFX_trade_cat_join_war"
+		texturefile = "gfx/interface/icons/trade_icons/trade_cat_join_war.dds"
+	}
+
+	spriteType = {
+		name = "GFX_trade_cat_leave_war"
+		texturefile = "gfx/interface/icons/trade_icons/trade_cat_leave_war.dds"
+	}
+
+	spriteType = {
+		name = "GFX_trade_cat_allow_to_leave_war"
+		texturefile = "gfx/interface/icons/trade_icons/trade_cat_leave_war.dds"
 	}
 
 	spriteType = {
@@ -492,6 +518,11 @@ spriteTypes = {
 	}
 
 	spriteType = {
+		name = "GFX_toggle_nomad"
+		texturefile = "gfx/interface/icons/governments/nomad_toggle.dds"
+	}
+
+	spriteType = {
 		name = "GFX_ethics"
 		texturefile = "gfx/interface/icons/ethics/ethic_middle.dds"
 		noOfFrames = 1
@@ -539,6 +570,12 @@ spriteTypes = {
 	}
 
 	spriteType = {
+		name = "GFX_government_civic_selected_longer"
+		texturefile = "gfx/interface/icons/governments/civic_active_border_longer.dds"
+		noOfFrames = 1
+	}
+
+	spriteType = {
 		name = "GFX_component_slot_icons"
 		texturefile = "gfx/interface/icons/component_slot_icons.dds"
 		noOfFrames = 12
@@ -570,7 +607,7 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_control_group_strip"
 		textureFile = "gfx/interface/icons/control_groups.dds"
-		noOfFrames = 6
+		noOfFrames = 9
 	}
 
 	spriteType = {
@@ -600,31 +637,37 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_ship_class_small"
 		textureFile = "gfx/interface/icons/ship_classes.dds"
-		noOfFrames = 62
+		noOfFrames = 67
 	}
 
 	spriteType = {
 		name = "GFX_starbase_ship_size_small"
 		textureFile = "gfx/interface/icons/starbase_ship_sizes.dds"
-		noOfFrames = 5
+		noOfFrames = 15
 	}
 
 	spriteType = {
 		name = "GFX_starbase_ship_size_medium"
 		textureFile = "gfx/interface/icons/starbase_ship_sizes_medium.dds"
-		noOfFrames = 5
+		noOfFrames = 15
 	}
 
 	spriteType = {
 		name = "GFX_starbase_outliner"
 		textureFile = "gfx/interface/icons/starbase_outliner.dds"
-		noOfFrames = 12
+		noOfFrames = 16
+	}
+
+	spriteType = {
+		name = "GFX_waystation_network_outliner"
+		textureFile = "gfx/interface/waystation/waystation_network_outliner.dds"
+		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_ship_class_medium"
 		textureFile = "gfx/interface/icons/ship_classes_medium.dds"
-		noOfFrames = 62
+		noOfFrames = 67
 	}
 
 	spriteType = {
@@ -644,20 +687,82 @@ spriteTypes = {
 
 	spriteType = {
 		name = "GFX_ship_sizes"
-		textureFile = "gfx/interface/icons/ship_parts/ship_sizes.dds"
-		noOfFrames = 27
+		textureFile = "gfx/interface/icons/ship_sizes.dds"
+		noOfFrames = 29
 	}
 
 	spriteType = {
 		name = "GFX_ship_sizes_top"
-		textureFile = "gfx/interface/icons/ship_parts/ship_sizes_top.dds"
-		noOfFrames = 32
+		textureFile = "gfx/interface/icons/ship_parts/ship_sizes/ship_sizes_top.dds"
+		noOfFrames = 33
 	}
 
 	spriteType = {
 		name = "GFX_ship_sizes_top_damaged"
-		textureFile = "gfx/interface/icons/ship_parts/ship_sizes_top_damaged.dds"
-		noOfFrames = 32
+		textureFile = "gfx/interface/icons/ship_parts/ship_sizes/ship_sizes_top_damaged.dds"
+		noOfFrames = 33
+	}
+
+	spriteType = {
+		name = "GFX_ship_sizes_arkship_top"
+		textureFile = "gfx/interface/icons/ship_parts/ship_sizes/ship_sizes_arkship_top.dds"
+		noOfFrames = 9
+	}
+
+	spriteType = {
+		name = "GFX_ship_sizes_arkship_top_damaged"
+		textureFile = "gfx/interface/icons/ship_parts/ship_sizes/ship_sizes_arkship_top_damaged.dds"
+		noOfFrames = 9
+	}
+
+	spriteType = {
+		name = "GFX_arkship_blueprint_civilian_tier_1"
+		texturefile = "gfx/interface/planetview/arkship_blueprints/arkship_blueprint_civilian_tier_1.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_blueprint_civilian_tier_2"
+		texturefile = "gfx/interface/planetview/arkship_blueprints/arkship_blueprint_civilian_tier_2.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_blueprint_civilian_tier_3"
+		texturefile = "gfx/interface/planetview/arkship_blueprints/arkship_blueprint_civilian_tier_3.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_blueprint_science_tier_1"
+		texturefile = "gfx/interface/planetview/arkship_blueprints/arkship_blueprint_science_tier_1.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_blueprint_science_tier_2"
+		texturefile = "gfx/interface/planetview/arkship_blueprints/arkship_blueprint_science_tier_2.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_blueprint_science_tier_3"
+		texturefile = "gfx/interface/planetview/arkship_blueprints/arkship_blueprint_science_tier_3.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_blueprint_military_tier_1"
+		texturefile = "gfx/interface/planetview/arkship_blueprints/arkship_blueprint_military_tier_1.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_blueprint_military_tier_2"
+		texturefile = "gfx/interface/planetview/arkship_blueprints/arkship_blueprint_military_tier_2.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_blueprint_military_tier_3"
+		texturefile = "gfx/interface/planetview/arkship_blueprints/arkship_blueprint_military_tier_3.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_blueprint_background"
+		texturefile = "gfx/interface/planetview/arkship_blueprints/arkship_blueprint_background.dds"
 	}
 
 	spriteType = {
@@ -1155,6 +1260,157 @@ spriteTypes = {
 		sprite_sheet_sprite_type = "GFX_ship_sizes"
 		default_frame = 27
 	}
+	spriteType = {
+		name = "GFX_ship_size_paladin"
+		sprite_sheet_sprite_type = "GFX_ship_sizes"
+		default_frame = 28
+	}
+	spriteType = {
+		name = "GFX_ship_size_paladin_top"
+		sprite_sheet_sprite_type = "GFX_ship_sizes_top"
+		default_frame = 33
+	}
+	spriteType = {
+		name = "GFX_ship_size_paladin_top_damaged"
+		sprite_sheet_sprite_type = "GFX_ship_sizes_top_damaged"
+		default_frame = 33
+	}
+	spriteType = {
+		name = "GFX_ship_size_civilian_arkship_tier_1"
+		sprite_sheet_sprite_type = "GFX_ship_sizes"
+		default_frame = 29
+	}
+	spriteType = {
+		name = "GFX_ship_size_civilian_arkship_tier_2"
+		sprite_sheet_sprite_type = "GFX_ship_sizes"
+		default_frame = 29
+	}
+	spriteType = {
+		name = "GFX_ship_size_civilian_arkship_tier_3"
+		sprite_sheet_sprite_type = "GFX_ship_sizes"
+		default_frame = 29
+	}
+	spriteType = {
+		name = "GFX_ship_size_military_arkship_tier_1"
+		sprite_sheet_sprite_type = "GFX_ship_sizes"
+		default_frame = 29
+	}
+	spriteType = {
+		name = "GFX_ship_size_military_arkship_tier_2"
+		sprite_sheet_sprite_type = "GFX_ship_sizes"
+		default_frame = 29
+	}
+	spriteType = {
+		name = "GFX_ship_size_military_arkship_tier_3"
+		sprite_sheet_sprite_type = "GFX_ship_sizes"
+		default_frame = 29
+	}
+	spriteType = {
+		name = "GFX_ship_size_science_arkship_tier_1"
+		sprite_sheet_sprite_type = "GFX_ship_sizes"
+		default_frame = 29
+	}
+	spriteType = {
+		name = "GFX_ship_size_science_arkship_tier_2"
+		sprite_sheet_sprite_type = "GFX_ship_sizes"
+		default_frame = 29
+	}
+	spriteType = {
+		name = "GFX_ship_size_science_arkship_tier_3"
+		sprite_sheet_sprite_type = "GFX_ship_sizes"
+		default_frame = 29
+	}
+	spriteType = {
+		name = "GFX_ship_size_civilian_arkship_tier_1_top"
+		sprite_sheet_sprite_type = "GFX_ship_sizes_arkship_top"
+		default_frame = 1
+	}
+	spriteType = {
+		name = "GFX_ship_size_civilian_arkship_tier_1_top_damaged"
+		sprite_sheet_sprite_type = "GFX_ship_sizes_arkship_top_damaged"
+		default_frame = 1
+	}
+	spriteType = {
+		name = "GFX_ship_size_civilian_arkship_tier_2_top"
+		sprite_sheet_sprite_type = "GFX_ship_sizes_arkship_top"
+		default_frame = 2
+	}
+	spriteType = {
+		name = "GFX_ship_size_civilian_arkship_tier_2_top_damaged"
+		sprite_sheet_sprite_type = "GFX_ship_sizes_arkship_top_damaged"
+		default_frame = 2
+	}
+	spriteType = {
+		name = "GFX_ship_size_civilian_arkship_tier_3_top"
+		sprite_sheet_sprite_type = "GFX_ship_sizes_arkship_top"
+		default_frame = 3
+	}
+	spriteType = {
+		name = "GFX_ship_size_civilian_arkship_tier_3_top_damaged"
+		sprite_sheet_sprite_type = "GFX_ship_sizes_arkship_top_damaged"
+		default_frame = 3
+	}
+	spriteType = {
+		name = "GFX_ship_size_military_arkship_tier_1_top"
+		sprite_sheet_sprite_type = "GFX_ship_sizes_arkship_top"
+		default_frame = 7
+	}
+	spriteType = {
+		name = "GFX_ship_size_military_arkship_tier_1_top_damaged"
+		sprite_sheet_sprite_type = "GFX_ship_sizes_arkship_top_damaged"
+		default_frame = 7
+	}
+	spriteType = {
+		name = "GFX_ship_size_military_arkship_tier_2_top"
+		sprite_sheet_sprite_type = "GFX_ship_sizes_arkship_top"
+		default_frame = 8
+	}
+	spriteType = {
+		name = "GFX_ship_size_military_arkship_tier_2_top_damaged"
+		sprite_sheet_sprite_type = "GFX_ship_sizes_arkship_top_damaged"
+		default_frame = 8
+	}
+	spriteType = {
+		name = "GFX_ship_size_military_arkship_tier_3_top"
+		sprite_sheet_sprite_type = "GFX_ship_sizes_arkship_top"
+		default_frame = 9
+	}
+	spriteType = {
+		name = "GFX_ship_size_military_arkship_tier_3_top_damaged"
+		sprite_sheet_sprite_type = "GFX_ship_sizes_arkship_top_damaged"
+		default_frame = 9
+	}
+	spriteType = {
+		name = "GFX_ship_size_science_arkship_tier_1_top"
+		sprite_sheet_sprite_type = "GFX_ship_sizes_arkship_top"
+		default_frame = 4
+	}
+	spriteType = {
+		name = "GFX_ship_size_science_arkship_tier_1_top_damaged"
+		sprite_sheet_sprite_type = "GFX_ship_sizes_arkship_top_damaged"
+		default_frame = 4
+	}
+	spriteType = {
+		name = "GFX_ship_size_science_arkship_tier_2_top"
+		sprite_sheet_sprite_type = "GFX_ship_sizes_arkship_top"
+		default_frame = 5
+	}
+	spriteType = {
+		name = "GFX_ship_size_science_arkship_tier_2_top_damaged"
+		sprite_sheet_sprite_type = "GFX_ship_sizes_arkship_top_damaged"
+		default_frame = 5
+	}
+	spriteType = {
+		name = "GFX_ship_size_science_arkship_tier_3_top"
+		sprite_sheet_sprite_type = "GFX_ship_sizes_arkship_top"
+		default_frame = 6
+	}
+	spriteType = {
+		name = "GFX_ship_size_science_arkship_tier_3_top_damaged"
+		sprite_sheet_sprite_type = "GFX_ship_sizes_arkship_top_damaged"
+		default_frame = 6
+	}
+
 
 	#Behemoth probably don't need GFX_ship_sizes_top or GFX_ship_sizes_top_damaged
 	#spriteType = {
@@ -1988,6 +2244,20 @@ spriteTypes = {
 		texturefile = "gfx/interface/icons/message/message_rare_crystals.dds"
 	}
 
+	spriteType = {
+		name = "GFX_message_arkship_destruction"
+		texturefile = "gfx/interface/icons/message/message_arkship_destruction.dds"
+	}
+
+	spriteType = {
+		name = "GFX_message_arkship_malfunction"
+		texturefile = "gfx/interface/icons/message/message_arkship_malfunction.dds"
+	}
+
+	spriteType = {
+		name = "GFX_message_arkship"
+		texturefile = "gfx/interface/icons/message/message_arkship.dds"
+	}
 
 	### SHIP PARTS ###
 
@@ -3375,6 +3645,11 @@ spriteTypes = {
 	}
 
 	spriteType = {
+		name = "GFX_ship_part_paladin_crest"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_paladin_crest.dds"
+	}
+
+	spriteType = {
 		name = "GFX_ship_part_growth_component_1"
 		texturefile = "gfx/interface/icons/ship_parts/biogenesis/ship_part_growth_component_1.dds"
 	}
@@ -3873,7 +4148,7 @@ spriteTypes = {
 		name = "GFX_ship_part_bio_swarmer_missile_2"
 		texturefile = "gfx/interface/icons/ship_parts/biogenesis/ship_part_bio_swarmer_missile_2.dds"
 	}
-	
+
 	spriteType = {
 		name = "GFX_ship_part_bio_lm_armor_1"
 		texturefile = "gfx/interface/icons/ship_parts/biogenesis/ship_part_bio_lm_armor_1.dds"
@@ -3898,7 +4173,7 @@ spriteTypes = {
 		name = "GFX_ship_part_bio_lm_armor_5"
 		texturefile = "gfx/interface/icons/ship_parts/biogenesis/ship_part_bio_lm_armor_5.dds"
 	}
-	
+
 	spriteType = {
 		name = "GFX_ship_part_lm_armor_1"
 		texturefile = "gfx/interface/icons/ship_parts/ship_part_lm_armor_1.dds"
@@ -3923,12 +4198,17 @@ spriteTypes = {
 		name = "GFX_ship_part_lm_armor_5"
 		texturefile = "gfx/interface/icons/ship_parts/ship_part_lm_armor_5.dds"
 	}
-	
+
 	spriteType = {
 		name = "GFX_ship_part_lm_accelerator"
 		texturefile = "gfx/interface/icons/ship_parts/ship_part_lm_accelerator.dds"
 	}
-	
+	spriteType = {
+		name = "GFX_ship_part_arkship_devastator"
+		texturefile = "gfx/interface/icons/ship_parts/nomads/ship_part_arkship_devastator.dds"
+	}
+
+
 	spriteType = {
 		name = "GFX_ship_part_lm_bio_accelerator"
 		texturefile = "gfx/interface/icons/ship_parts/biogenesis/ship_part_bio_lm_accelerator.dds"
@@ -4320,6 +4600,352 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_starbase_aura_emitter"
 		texturefile = "gfx/interface/icons/modules/sb_aura_emitter.dds"
+	}
+
+	spriteType = {
+		name = "GFX_waystation_energy_module"
+		texturefile = "gfx/interface/icons/modules/waystation_energy_module.dds"
+	}
+
+	spriteType = {
+		name = "GFX_waystation_mining_module"
+		texturefile = "gfx/interface/icons/modules/waystation_mining_module.dds"
+	}
+
+	spriteType = {
+		name = "GFX_waystation_refinery_module"
+		texturefile = "gfx/interface/icons/modules/waystation_refinery_module.dds"
+	}
+
+	spriteType = {
+		name = "GFX_waystation_research_module"
+		texturefile = "gfx/interface/icons/modules/waystation_research_module.dds"
+	}
+
+	spriteType = {
+		name = "GFX_waystation_trade_module"
+		texturefile = "gfx/interface/icons/modules/waystation_trade_module.dds"
+	}
+
+	spriteType = {
+		name = "GFX_waystation_treasure_vault"
+		texturefile = "gfx/interface/icons/modules/waystation_treasure_vault.dds"
+	}
+
+	spriteType = {
+		name = "GFX_waystation_nanotech_module"
+		texturefile = "gfx/interface/icons/modules/waystation_nanotech_module.dds"
+	}
+
+	spriteType = {
+		name = "GFX_waystation_logistics_hub"
+		texturefile = "gfx/interface/icons/modules/waystation_logistics_hub.dds"
+	}
+
+	spriteType = {
+		name = "GFX_waystation_import_hub"
+		texturefile = "gfx/interface/icons/modules/waystation_import_hub.dds"
+	}
+
+	spriteType = {
+		name = "GFX_waystation_export_hub"
+		texturefile = "gfx/interface/icons/modules/waystation_export_hub.dds"
+	}
+
+	spriteType = {
+		name = "GFX_waystation_pirate_hideout"
+		texturefile = "gfx/interface/icons/modules/waystation_pirate_hideout.dds"
+	}
+
+	spriteType = {
+		name = "GFX_waystation_concealment_field"
+		texturefile = "gfx/interface/icons/modules/waystation_concealment_field.dds"
+	}
+
+	spriteType = {
+		name = "GFX_waystation_reaver_stronghold"
+		texturefile = "gfx/interface/icons/modules/waystation_reaver_stronghold.dds"
+	}
+
+	spriteType = {
+		name = "GFX_waystation_cordyceptic_reanimation_facility"
+		texturefile = "gfx/interface/icons/modules/sb_cordyceptic_reanimation_facility.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_docking_bay"
+		texturefile = "gfx/interface/icons/modules/arkship_docking_bay.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_habitation_module"
+		texturefile = "gfx/interface/icons/modules/orbitalring_module_habitation.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_sensor_array"
+		texturefile = "gfx/interface/icons/modules/sm_bulwark_array.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_mining_array"
+		texturefile = "gfx/interface/icons/modules/arkship_mining_array.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_engineering_bay"
+		texturefile = "gfx/interface/icons/modules/arkship_engineering_bay.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_hangar_bay"
+		texturefile = "gfx/interface/icons/modules/arkship_hangar_bay.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_archaeo_hangar_bay"
+		texturefile = "gfx/interface/icons/modules/arkship_archaeo_hangar_bay.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_psionic_hangar_bay"
+		texturefile = "gfx/interface/icons/modules/arkship_psionic_hangar_bay.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_amoeba_hangar_bay"
+		texturefile = "gfx/interface/icons/modules/arkship_amoeba_hangar_bay.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_swarm_hangar_bay"
+		texturefile = "gfx/interface/icons/modules/arkship_swarm_hangar_bay.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_laser_battery"
+		texturefile = "gfx/interface/icons/modules/arkship_laser_battery.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_archaeo_laser_battery"
+		texturefile = "gfx/interface/icons/modules/arkship_archaeo_laser_battery.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_lance_battery"
+		texturefile = "gfx/interface/icons/modules/arkship_lance_battery.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_particle_launcher"
+		texturefile = "gfx/interface/icons/modules/arkship_particle_launcher.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_psionic_torpedo"
+		texturefile = "gfx/interface/icons/modules/arkship_psionic_torpedo.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_arc_emitter_battery"
+		texturefile = "gfx/interface/icons/modules/arkship_arc_emitter_battery.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_psionic_lightning_battery"
+		texturefile = "gfx/interface/icons/modules/arkship_psionic_lightning_battery.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_mass_driver_battery"
+		texturefile = "gfx/interface/icons/modules/arkship_mass_driver_battery.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_archaeo_mass_driver_battery"
+		texturefile = "gfx/interface/icons/modules/arkship_archaeo_mass_driver_battery.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_kinetic_artillery_battery"
+		texturefile = "gfx/interface/icons/modules/arkship_kinetic_artillery_battery.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_lm_accelerator"
+		texturefile = "gfx/interface/icons/modules/arkship_lm_accelerator.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_mass_accelerator"
+		texturefile = "gfx/interface/icons/modules/arkship_mass_accelerator.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_archaeo_mass_accelerator"
+		texturefile = "gfx/interface/icons/modules/arkship_archaeo_mass_accelerator.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_missile_battery"
+		texturefile = "gfx/interface/icons/modules/arkship_missile_battery.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_archaeo_missile_battery"
+		texturefile = "gfx/interface/icons/modules/arkship_archaeo_missile_battery.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_swamer_missile_battery"
+		texturefile = "gfx/interface/icons/modules/arkship_swamer_missile_battery.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_scourge_missile_battery"
+		texturefile = "gfx/interface/icons/modules/arkship_scourge_missile_battery.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_flak_battery"
+		texturefile = "gfx/interface/icons/modules/arkship_flak_battery.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_pd_battery"
+		texturefile = "gfx/interface/icons/modules/arkship_pd_battery.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_archaeo_pd_battery"
+		texturefile = "gfx/interface/icons/modules/arkship_archaeo_pd_battery.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_armor"
+		texturefile = "gfx/interface/icons/modules/arkship_armor.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_lm_armor"
+		texturefile = "gfx/interface/icons/modules/arkship_lm_armor.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_archaeo_armor"
+		texturefile = "gfx/interface/icons/modules/arkship_archaeo_armor.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_shield"
+		texturefile = "gfx/interface/icons/modules/arkship_shield.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_psi_shield"
+		texturefile = "gfx/interface/icons/modules/arkship_psi_shield.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_archaeo_shield"
+		texturefile = "gfx/interface/icons/modules/arkship_archaeo_shield.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_crystal_plating"
+		texturefile = "gfx/interface/icons/modules/arkship_crystal_plating.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_afterburner"
+		texturefile = "gfx/interface/icons/modules/arkship_afterburner.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_armor_hardener"
+		texturefile = "gfx/interface/icons/modules/arkship_armor_hardener.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_shield_hardener"
+		texturefile = "gfx/interface/icons/modules/arkship_shield_hardener.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_quantum_destabilizer"
+		texturefile = "gfx/interface/icons/modules/arkship_quantum_destabilizer.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_subspace_snare"
+		texturefile = "gfx/interface/icons/modules/arkship_subspace_snare.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_shield_dampener"
+		texturefile = "gfx/interface/icons/modules/arkship_shield_dampener.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_aura_strike_craft"
+		texturefile = "gfx/interface/icons/modules/arkship_aura_strike_craft.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_aura_hyperlane"
+		texturefile = "gfx/interface/icons/modules/arkship_aura_hyperlane.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_aura_pd_penetration"
+		texturefile = "gfx/interface/icons/modules/arkship_aura_pd_penetration.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_aura_bombardment"
+		texturefile = "gfx/interface/icons/modules/arkship_aura_bombardment.dds"
+	}
+
+
+	spriteType = {
+		name = "GFX_arkship_aura_range"
+		texturefile = "gfx/interface/icons/modules/arkship_aura_range.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_spinal_devastator_mount"
+		texturefile = "gfx/interface/icons/modules/arkship_spinal_devastator_mount.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_capital_shipyard"
+		texturefile = "gfx/interface/icons/modules/arkship_capital_shipyard.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_planetary_refinery"
+		texturefile = "gfx/interface/icons/modules/arkship_planetary_refinery.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_stellar_igniter"
+		texturefile = "gfx/interface/icons/modules/arkship_stellar_igniter.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_system_scanner"
+		texturefile = "gfx/interface/icons/modules/arkship_system_scanner.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_exodus_jump"
+		texturefile = "gfx/interface/icons/modules/arkship_exodus_jump.dds"
+	}
+
+	spriteType = {
+		name = "GFX_arkship_grand_archive"
+		texturefile = "gfx/interface/icons/modules/arkship_grand_archive.dds"
 	}
 
 	## Starbase Buildings ##
@@ -5175,6 +5801,11 @@ spriteTypes = {
 		texturefile = "gfx/interface/icons/resolutions/resolution_repeal_red.dds"
 	}
 
+	spriteType = {
+		name = "GFX_resolution_crisis_analysis"
+		texturefile = "gfx/interface/icons/resolutions/resolution_crisis_analysis.dds"
+	}
+
 	### Galactic Empire ###
 
 	spriteType = {
@@ -5362,6 +5993,26 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_message_action_stop_pre_ftl_trade"
 		texturefile = "gfx/interface/icons/message/message_action_stop_pre_ftl_trade.dds"
+	}
+
+	spriteType = {
+		name = "GFX_message_grant_waystation_pact"
+		texturefile = "gfx/interface/icons/message/message_waystation_pact.dds"
+	}
+
+	spriteType = {
+		name = "GFX_message_request_waystation_pact"
+		texturefile = "gfx/interface/icons/message/message_waystation_pact.dds"
+	}
+
+	spriteType = {
+		name = "GFX_message_share_waystation_pact"
+		texturefile = "gfx/interface/icons/message/message_waystation_pact.dds"
+	}
+
+	spriteType = {
+		name = "GFX_message_break_waystation_pact"
+		texturefile = "gfx/interface/icons/message/message_break_waystation_pact.dds"
 	}
 
 	spriteType = {
@@ -5768,7 +6419,7 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_district_sprite_sheet"
 		texturefile = "gfx/interface/icons/resources/district_resources.dds"
-		noOfFrames = 22
+		noOfFrames = 29
 	}
 
 	spriteType = {
@@ -5925,13 +6576,62 @@ spriteTypes = {
 		default_frame = 22
 	}
 
+	spriteType = {
+		name = "GFX_district_armor"
+		alwaystransparent = yes
+		sprite_sheet_sprite_type = "GFX_district_sprite_sheet"
+		default_frame = 23
+	}
+
+	spriteType = {
+		name = "GFX_district_damage"
+		alwaystransparent = yes
+		sprite_sheet_sprite_type = "GFX_district_sprite_sheet"
+		default_frame = 24
+	}
+
+	spriteType = {
+		name = "GFX_district_shield"
+		alwaystransparent = yes
+		sprite_sheet_sprite_type = "GFX_district_sprite_sheet"
+		default_frame = 25
+	}
+
+	spriteType = {
+		name = "GFX_district_speed"
+		alwaystransparent = yes
+		sprite_sheet_sprite_type = "GFX_district_sprite_sheet"
+		default_frame = 26
+	}
+
+	spriteType = {
+		name = "GFX_district_starbase"
+		alwaystransparent = yes
+		sprite_sheet_sprite_type = "GFX_district_sprite_sheet"
+		default_frame = 27
+	}
+
+	spriteType = {
+		name = "GFX_district_ship"
+		alwaystransparent = yes
+		sprite_sheet_sprite_type = "GFX_district_sprite_sheet"
+		default_frame = 28
+	}
+
+	spriteType = {
+		name = "GFX_district_build_ship"
+		alwaystransparent = yes
+		sprite_sheet_sprite_type = "GFX_district_sprite_sheet"
+		default_frame = 29
+	}
+
 	# District Specializations Icons
 
 	spriteType = {
 		name = "GFX_district_specialization_wilderness_spawning"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_wilderness_spawning.dds"
 	}
-	
+
 	spriteType = {
 		name = "GFX_district_specialization_wilderness_fortress"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_wilderness_fortress.dds"
@@ -5941,17 +6641,17 @@ spriteTypes = {
 		name = "GFX_district_specialization_broken_shackles_memorial"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_broken_shackles_memorial.dds"
 	}
-	
+
 	spriteType = {
 		name = "GFX_district_specialization_payback_enlightenment"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_payback_enlightenment.dds"
 	}
-	
+
 	spriteType = {
 		name = "GFX_district_specialization_machine_replication"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_machine_replication.dds"
 	}
-	
+
 	spriteType = {
 		name = "GFX_district_specialization_wilderness_food"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_wilderness_food.dds"
@@ -5971,7 +6671,7 @@ spriteTypes = {
 		name = "GFX_district_specialization_wilderness_trade"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_wilderness_trade.dds"
 	}
-	
+
 	spriteType = {
 		name = "GFX_district_specialization_wilderness_unity"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_wilderness_unity.dds"
@@ -5991,7 +6691,7 @@ spriteTypes = {
 		name = "GFX_district_specialization_wilderness_urban"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_wilderness_urban.dds"
 	}
-	
+
 	spriteType = {
 		name = "GFX_district_specialization_hydroponics"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_hydroponics.dds"
@@ -6001,12 +6701,12 @@ spriteTypes = {
 		name = "GFX_district_specialization_knight_commander"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_knight_commander.dds"
 	}
-	
+
 	spriteType = {
 		name = "GFX_district_specialization_agrarian"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_agrarian.dds"
 	}
-	
+
 	spriteType = {
 		name = "GFX_district_specialization_spawning"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_spawning.dds"
@@ -6026,7 +6726,7 @@ spriteTypes = {
 		name = "GFX_district_specialization_healthcare"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_healthcare.dds"
 	}
-	
+
 	spriteType = {
 		name = "GFX_district_specialization_trophy_hunter"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_trophy_hunter.dds"
@@ -6036,7 +6736,7 @@ spriteTypes = {
 		name = "GFX_district_specialization_culture_worker"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_culture_worker.dds"
 	}
-	
+
 	spriteType = {
 		name = "GFX_district_specialization_zoo"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_zoo.dds"
@@ -6066,7 +6766,27 @@ spriteTypes = {
 		name = "GFX_district_specialization_fortress"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_fortress.dds"
 	}
-	
+
+	spriteType = {
+		name = "GFX_district_specialization_fighter"
+		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_fighter.dds"
+	}
+
+	spriteType = {
+		name = "GFX_district_specialization_gun"
+		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_gun.dds"
+	}
+
+	spriteType = {
+		name = "GFX_district_specialization_laser"
+		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_laser.dds"
+	}
+
+	spriteType = {
+		name = "GFX_district_specialization_missile"
+		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_missile.dds"
+	}
+
 	spriteType = {
 		name = "GFX_district_specialization_bureaucrat"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_bureaucrat.dds"
@@ -6076,12 +6796,12 @@ spriteTypes = {
 		name = "GFX_district_specialization_industrial"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_industrial.dds"
 	}
-	
+
 	spriteType = {
 		name = "GFX_district_specialization_foundry"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_foundry.dds"
 	}
-	
+
 	spriteType = {
 		name = "GFX_district_specialization_urban"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_urban.dds"
@@ -6126,7 +6846,7 @@ spriteTypes = {
 		name = "GFX_district_specialization_volatile_motes"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_volatile_motes.dds"
 	}
-	
+
 	spriteType = {
 		name = "GFX_district_specialization_exotic_gases"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_exotic_gases.dds"
@@ -6137,20 +6857,80 @@ spriteTypes = {
 		textureFile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_priest.dds"
 	}
 
-	
+
 	spriteType = {
 		name = "GFX_district_specialization_food"
 		textureFile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_food_market.dds"
 	}
-	
+
 	spriteType = {
 		name = "GFX_district_specialization_minerals"
 		texturefile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_minerals.dds"
 	}
-	
+
 	spriteType = {
 		name = "GFX_district_specialization_energy"
 		textureFile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_energy.dds"
+	}
+
+	spriteType = {
+		name = "GFX_district_specialization_forever_cruise_passenger"
+		textureFile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_forever_cruise_passenger.dds"
+	}
+
+	spriteType = {
+		name = "GFX_district_specialization_forever_cruise_crew"
+		textureFile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_forever_cruise_crew.dds"
+	}
+
+	spriteType = {
+		name = "GFX_district_specialization_forever_cruise_city_passenger"
+		textureFile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_forever_cruise_passenger.dds"
+	}
+
+	spriteType = {
+		name = "GFX_district_specialization_forever_cruise_city_crew"
+		textureFile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_forever_cruise_crew.dds"
+	}
+
+	spriteType = {
+		name = "GFX_district_specialization_forever_cruise_city_mixed"
+		textureFile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_forever_cruise_mixed.dds"
+	}
+
+	spriteType = {
+		name = "GFX_district_specialization_ark_pilgrimage"
+		textureFile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_ark_pilgrimage.dds"
+	}
+
+	spriteType = {
+		name = "GFX_district_specialization_ark_reactor"
+		textureFile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_ark_reactor.dds"
+	}
+
+	spriteType = {
+		name = "GFX_district_specialization_ark_farm"
+		textureFile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_hydroponics.dds"
+	}
+
+	spriteType = {
+		name = "GFX_district_specialization_ark_military"
+		textureFile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_forever_cruise_crew.dds"
+	}
+
+	spriteType = {
+		name = "GFX_district_specialization_ark_military_eco"
+		textureFile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_industrial.dds"
+	}
+
+	spriteType = {
+		name = "GFX_district_specialization_ark_research_unity_consumer_goods"
+		textureFile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_culture_worker.dds"
+	}
+
+	spriteType = {
+		name = "GFX_district_specialization_ark_research_alloys_support"
+		textureFile = "gfx/interface/icons/districts/district_specialization_icons/district_specialization_industrial.dds"
 	}
 
 	# Shroud
@@ -6631,5 +7411,17 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_starbase_pyroclastic_resonator"
 		texturefile = "gfx/interface/icons/modules/sb_pyroclastic_resonator.dds"
+	}
+
+	# Nomads
+
+	spriteType = {
+		name = "GFX_resolution_custodian_council"
+		texturefile = "gfx/interface/icons/resolutions/resolution_custodian_council.dds"
+	}
+
+	spriteType = {
+		name = "GFX_resolution_paladins"
+		texturefile = "gfx/interface/icons/resolutions/resolution_paladins.dds"
 	}
 }
