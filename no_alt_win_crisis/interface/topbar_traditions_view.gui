@@ -299,7 +299,8 @@ guiTypes = {
 
 				background = {
 					name = "bg"
-					quadTextureSprite = "GFX_nemesis_path_bg"
+					spriteType = "GFX_nemesis_path_bg"
+					alwaysTransparent = yes
 				}
 
 				containerWindowType = {
@@ -1510,7 +1511,7 @@ guiTypes = {
 		background = {
 			name = "level_entry_bg"
 			quadTextureSprite = "GFX_nemesis_path_level_boxes"
-			frame = 2
+			frame = 1
 		}
 
 		instantTextBoxType = {
