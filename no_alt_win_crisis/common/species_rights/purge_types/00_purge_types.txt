@@ -155,6 +155,14 @@ purge_displacement = {
 			}
 		}
 		is_disconnected_drone_pop = no
+		from = {
+			NAND = {
+				has_origin = origin_nomadic_purger
+				overlord? = {
+					has_policy_flag = nomad_total_war_purge
+				}
+			}
+		}
 	}
 
 	allow = {
@@ -382,7 +390,15 @@ purge_necrophage = {
 	potential = {
 		exists = from
 		from = {
-			has_origin = origin_necrophage
+			OR = {
+				has_origin = origin_necrophage
+				AND = {
+					has_origin = origin_nomadic_purger
+					overlord? = {
+						has_origin = origin_necrophage
+					}
+				}
+			}
 			has_trait = trait_necrophage
 			OR = {
 				has_valid_civic = civic_fanatic_purifiers
@@ -474,11 +490,20 @@ purge_clips = {
 	potential = {
 		exists = from
 		from = {
-			has_valid_civic = civic_machine_obsessional_directive
+			OR = {
+				has_valid_civic = civic_machine_obsessional_directive
+				AND = {
+					has_origin = origin_nomadic_purger
+					overlord? = {
+						has_valid_civic = civic_machine_obsessional_directive
+					}
+				}
+			}
 			OR = {
 				has_ascension_perk = ap_become_the_crisis
 				has_valid_civic = civic_machine_terminator
 				has_country_flag = paperclip_shamed
+				has_policy_flag = purge_allowed
 			}
 		}
 	}
@@ -499,7 +524,15 @@ purge_sacrifice = {
 		has_shroud_dlc = yes
 		exists = from
 		from = {
-			has_country_flag = devour_war_active
+			OR = {
+				has_country_flag = devour_war_active
+				AND = {
+					has_origin = origin_nomadic_purger
+					overlord? = {
+						has_country_flag = devour_war_active
+					}
+				}
+			}
 		}
 	}
 
