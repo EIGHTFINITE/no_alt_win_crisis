@@ -43,8 +43,12 @@ building_bio_reactor = {
 
 	resources = {
 		category = planet_buildings
-		cost = {
-			minerals = @b1_minerals
+		inline_script = {
+			script = buildings/nomadic_cost_switcher
+			REGULAR_RESOURCE = minerals
+			NOMADIC_RESOURCE = volatile_motes
+			COST = @b1_minerals
+			NOMADIC_COST_MULT = @nomadic_minerals_to_strategic_ratio
 		}
 		upkeep = {
 			food = @b1_upkeep
@@ -113,8 +117,12 @@ building_bio_reactor_2 = {
 
 	resources = {
 		category = planet_buildings
-		cost = {
-			minerals = @b2_minerals
+		inline_script = {
+			script = buildings/nomadic_cost_switcher
+			REGULAR_RESOURCE = minerals
+			NOMADIC_RESOURCE = volatile_motes
+			COST = @b2_minerals
+			NOMADIC_COST_MULT = @nomadic_minerals_to_strategic_ratio
 		}
 		upkeep = {
 			food = @b2_upkeep
