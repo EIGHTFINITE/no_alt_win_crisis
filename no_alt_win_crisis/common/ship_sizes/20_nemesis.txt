@@ -33,7 +33,6 @@ crisis_corvette = {
 
 	potential_country = {
 		has_crisis_level = crisis_level_2
-		is_wilderness_empire = no
 	}
 
 	required_component_set = "power_core"
@@ -87,7 +86,6 @@ crisis_destroyer = {
 
 	potential_country = {
 		has_crisis_level = crisis_level_3
-		is_wilderness_empire = no
 	}
 
 	class = shipclass_military
@@ -147,7 +145,6 @@ crisis_cruiser = {
 
 	potential_country = {
 		has_crisis_level = crisis_level_4
-		is_wilderness_empire = no
 	}
 
 	class = shipclass_military
@@ -215,51 +212,11 @@ star_eater = {
 	}
 
 	potential_construction = {
-		OR = {
-			is_scope_type = starbase
-			AND = {
-				is_scope_type = megastructure
-				OR = {
-					is_megastructure_type = mega_shipyard_3
-					is_megastructure_type = mega_shipyard_restored
-				}
-			}
-		}
+		colossus_potential_construction = yes
 	}
 
 	possible_construction = {
-		custom_tooltip = {
-			fail_text = starbase_citadel_trigger
-			OR = {
-				AND = {
-					is_scope_type = megastructure
-					OR = {
-						is_megastructure_type = mega_shipyard_3
-						is_megastructure_type = mega_shipyard_restored
-					}
-				}
-				AND = {
-					is_scope_type = starbase
-					has_starbase_size >= starbase_citadel
-				}
-			}
-		}
-		custom_tooltip = {
-			fail_text = starbase_colossal_yards_trigger
-			OR = {
-				AND = {
-					is_scope_type = megastructure
-					OR = {
-						is_megastructure_type = mega_shipyard_3
-						is_megastructure_type = mega_shipyard_restored
-					}
-				}
-				AND = {
-					is_scope_type = starbase
-					has_starbase_building = colossus_yards
-				}
-			}
-		}
+		colossus_possible_construction = yes
 	}
 
 	required_component_set = "power_core"

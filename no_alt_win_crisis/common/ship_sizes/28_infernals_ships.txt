@@ -56,7 +56,6 @@ ember_cruiser = {
 
 	potential_country = {
 		has_crisis_level = crisis_hyperthermia_level_3
-		is_wilderness_empire = no
 	}
 
 	use_shipnames_from = cruiser
@@ -138,7 +137,6 @@ ember_battleship = {
 
 	potential_country = {
 		has_crisis_level = crisis_hyperthermia_level_5
-		is_wilderness_empire = no
 	}
 
 	use_shipnames_from = battleship
