@@ -8,8 +8,6 @@ civic_hive_devouring_swarm = {
 		authority = { value = auth_hive_mind }
 	}
 	possible = {
-		OR = {
-			AND = {
 		origin = {
 			NOR = {
 				value = origin_common_ground
@@ -28,12 +26,6 @@ civic_hive_devouring_swarm = {
 			NOR = {
 				value = civic_hive_bodysnatcher
 				value = civic_hive_scorched_earth
-			}
-		}
-			}
-			AND = {
-				civics = { value = civic_hive_devouring_swarm }
-				civics = { value = civic_crisis_hive_devouring_swarm }
 			}
 		}
 	}
@@ -67,69 +59,13 @@ civic_hive_devouring_swarm = {
 		trigger = {
 			is_species_class = LITHOID
 			is_wilderness_empire = no
-			OR = {
-				is_scope_valid = no
-				AND = {
-					is_scope_valid = yes
-					NOT = { has_country_flag = crisis_civic_hive_devouring_swarm }
-				}
-			}
 		}
 	}
 
 	swap_type = {
-		trigger = {
-			is_wilderness_empire = yes
-			OR = {
-				is_scope_valid = no
-				AND = {
-					is_scope_valid = yes
-					NOT = { has_country_flag = crisis_civic_hive_devouring_swarm }
-				}
-			}
-		}
 		name = civic_hive_devouring_swarm_wilderness
+		trigger = { is_wilderness_empire = yes }
 		description = "civic_tooltip_devouring_swarm_wilderness_effects"
-	}
-
-	swap_type = {
-		trigger = {
-			NOT = { is_species_class = LITHOID }
-			is_wilderness_empire = no
-			is_scope_valid = yes
-			has_country_flag = crisis_civic_hive_devouring_swarm
-		}
-		description = "civic_tooltip_devouring_swarm_effects"
-		modifier = {
-			country_government_civic_points_add = 1
-		}
-	}
-
-	swap_type = {
-		trigger = {
-			is_species_class = LITHOID
-			is_wilderness_empire = no
-			is_scope_valid = yes
-			has_country_flag = crisis_civic_hive_devouring_swarm
-		}
-		name = civic_hive_devouring_swarm_lithoid
-		description = "civic_tooltip_devouring_swarm_lithoid_effects"
-		modifier = {
-			country_government_civic_points_add = 1
-		}
-	}
-
-	swap_type = {
-		trigger = {
-			is_wilderness_empire = yes
-			is_scope_valid = yes
-			has_country_flag = crisis_civic_hive_devouring_swarm
-		}
-		name = civic_hive_devouring_swarm_wilderness
-		description = "civic_tooltip_devouring_swarm_wilderness_effects"
-		modifier = {
-			country_government_civic_points_add = 1
-		}
 	}
 }
 
@@ -145,8 +81,6 @@ civic_hive_scorched_earth = {
 		authority = { value = auth_hive_mind }
 	}
 	possible = {
-		OR = {
-			AND = {
 		species_class = { value = INF }
 		civics = {
 			NOR = {
@@ -186,12 +120,6 @@ civic_hive_scorched_earth = {
 				value = origin_fear_of_the_dark
 			}
 		}
-			}
-			AND = {
-				civics = { value = civic_hive_scorched_earth }
-				civics = { value = civic_crisis_hive_scorched_earth }
-			}
-		}
 	}
 	modification = no
 	random_weight = {
@@ -214,17 +142,6 @@ civic_hive_scorched_earth = {
 		army_health = 0.4
 		category_materials_research_speed_mult = 0.5
 	}
-
-	swap_type = {
-		trigger = {
-			is_scope_valid = yes
-			has_country_flag = crisis_civic_hive_scorched_earth
-		}
-		description = "civic_scorched_earth_effects"
-		modifier = {
-			country_government_civic_points_add = 1
-		}
-	}
 }
 
 ##################
@@ -232,15 +149,8 @@ civic_hive_scorched_earth = {
 ##################
 
 civic_machine_terminator = {
-	potential = {
-		OR = {
-			authority = { value = auth_machine_intelligence }
-			civics = { value = civic_crisis_machine_terminator }
-		}
-	}
+	potential = { authority = { value = auth_machine_intelligence } }
 	possible = {
-		OR = {
-			AND = {
 		civics = {
 			NOR = {
 				value = civic_machine_servitor
@@ -264,12 +174,6 @@ civic_machine_terminator = {
 				value = origin_shroud_forged
 			}
 		}
-			}
-			AND = {
-				civics = { value = civic_machine_terminator }
-				civics = { value = civic_crisis_machine_terminator }
-			}
-		}
 	}
 	modification = no
 	random_weight = {
@@ -288,16 +192,5 @@ civic_machine_terminator = {
 		country_naval_cap_mult = 0.33
 		add_attunement_the_eater_of_worlds = @civic_attunement1
 		the_cradle_of_souls_attunement_mult = -0.25
-	}
-
-	swap_type = {
-		trigger = {
-			is_scope_valid = yes
-			has_country_flag = crisis_civic_machine_terminator
-		}
-		description = "civic_tooltip_machine_terminator_effects"
-		modifier = {
-			country_government_civic_points_add = 1
-		}
 	}
 }
