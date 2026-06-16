@@ -14,8 +14,11 @@ weapon_component_template = {
 	firing_arc = 25.0
 	use_ship_main_target = no
 	potential = {
-		from = {
-			country_uses_bio_ships = no
+		OR = {
+			from = {
+				country_uses_bio_ships = no
+			}
+			is_arkship_ship = yes
 		}
 	}
 
@@ -70,8 +73,11 @@ weapon_component_template = {
 	firing_arc = 25.0
 	use_ship_main_target = no
 	potential = {
-		from = {
-			country_uses_bio_ships = no
+		OR = {
+			from = {
+				country_uses_bio_ships = no
+			}
+			is_arkship_ship = yes
 		}
 	}
 
@@ -130,8 +136,11 @@ weapon_component_template = {
 	min_range = 10.0
 	use_ship_main_target = no
 	potential = {
-		from = {
-			country_uses_bio_ships = no
+		OR = {
+			from = {
+				country_uses_bio_ships = no
+			}
+			is_arkship_ship = yes
 		}
 	}
 
@@ -183,8 +192,11 @@ weapon_component_template = {
 	icon = "GFX_ship_part_arc_emitter_2"
 	icon_frame = 1
 	potential = {
-		from = {
-			country_uses_bio_ships = no
+		OR = {
+			from = {
+				country_uses_bio_ships = no
+			}
+			is_arkship_ship = yes
 		}
 	}
 
@@ -250,8 +262,11 @@ weapon_component_template = {
 
 	prerequisites = { "tech_mass_accelerator_1" }
 	potential = {
-		from = {
-			country_uses_bio_ships = no
+		OR = {
+			from = {
+				country_uses_bio_ships = no
+			}
+			is_arkship_ship = yes
 		}
 	}
 
@@ -317,8 +332,11 @@ weapon_component_template = {
 
 	prerequisites = { "tech_mass_accelerator_2" }
 	potential = {
-		from = {
-			country_uses_bio_ships = no
+		OR = {
+			from = {
+				country_uses_bio_ships = no
+			}
+			is_arkship_ship = yes
 		}
 	}
 
@@ -418,14 +436,8 @@ weapon_component_template = {
 		}
 	}
 
-	on_hit = {
-		inline_script = {
-			script = ship_components/collateral_damage
-			RANGE = @perdition_beam_collateral_range
-			DAMAGE = @perdition_beam_fleet_damage
-		}
-		custom_tooltip = "PERDITION_BEAM_FLEET_EFFECT"
-	}
+	collateral_damage = @perdition_beam_fleet_damage
+	collateral_range = @perdition_beam_collateral_range
 
 	target_weights = {
 		titan = 3
@@ -495,14 +507,8 @@ weapon_component_template = {
 		}
 	}
 
-	on_hit = {
-		inline_script = {
-			script = ship_components/collateral_damage
-			RANGE = @ion_cannon_collateral_range
-			DAMAGE = @ion_cannon_fleet_damage
-		}
-		custom_tooltip = "ION_CANNON_FLEET_EFFECT"
-	}
+	collateral_damage = @ion_cannon_fleet_damage
+	collateral_range = @ion_cannon_collateral_range
 
 	target_weights = {
 		titan = 3
@@ -552,14 +558,8 @@ weapon_component_template = {
 		}
 	}
 
-	on_hit = {
-		inline_script = {
-			script = ship_components/collateral_damage
-			RANGE = @perdition_beam_collateral_range
-			DAMAGE = @perdition_beam_fleet_damage
-		}
-		custom_tooltip = "PERDITION_BEAM_FLEET_EFFECT"
-	}
+	collateral_damage = @perdition_beam_fleet_damage
+	collateral_range = @perdition_beam_collateral_range
 
 	target_weights = {
 		titan = 3
@@ -659,6 +659,9 @@ weapon_component_template = {
 
 	target_type = target_enemies
 	target_focus = spread
+	collateral_damage = @ion_cannon_fleet_damage
+	collateral_range = @ion_cannon_collateral_range
+
 	on_hit = {
 		custom_tooltip = "sfe_on_hit_stun_tt"
 		hidden_effect = {
@@ -673,11 +676,6 @@ weapon_component_template = {
 					days = 5 # If this changes, adjust the tt
 				}
 			}
-		}
-		inline_script = {
-			script = ship_components/collateral_damage
-			RANGE = @ion_cannon_collateral_range
-			DAMAGE = @ion_cannon_fleet_damage
 		}
 	}
 
