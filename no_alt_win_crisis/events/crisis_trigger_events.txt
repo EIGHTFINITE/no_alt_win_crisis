@@ -72,6 +72,7 @@ event = {
 							allowed_crisis_type = unbidden
 							allowed_crisis_type = synth_queen
 						}
+						NOT = { has_global_flag = defender_of_the_galaxy_second_crisis }
 					}
 					modifier = { #anti-boring
 						factor = 2
@@ -140,6 +141,7 @@ event = {
 							allowed_crisis_type = prethoryn
 							allowed_crisis_type = synth_queen
 						}
+						NOT = { has_global_flag = defender_of_the_galaxy_second_crisis }
 					}
 					modifier = { #anti-boring
 						factor = 2
@@ -216,6 +218,7 @@ event = {
 							allowed_crisis_type = unbidden
 							allowed_crisis_type = synth_queen
 						}
+						NOT = { has_global_flag = defender_of_the_galaxy_second_crisis }
 					}
 					modifier = { #anti-boring
 						factor = 2
@@ -294,6 +297,7 @@ event = {
 							allowed_crisis_type = unbidden
 							allowed_crisis_type = contingency
 						}
+						NOT = { has_global_flag = defender_of_the_galaxy_second_crisis }
 					}
 					modifier = { #anti-boring
 						factor = 2
