@@ -5,383 +5,475 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_crisis_icon_basebreaker"
 		texturefile = "gfx/interface/icons/crisis/menace_icon_basebreaker_72.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_cataclysm"
 		texturefile = "gfx/interface/icons/crisis/menace_icon_cataclysm_megastructure_72.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_casusbelli"
 		texturefile = "gfx/interface/icons/crisis/menace_icon_crisiscasusbelli_72.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_crisiscorvettes"
 		texturefile = "gfx/interface/icons/crisis/menace_icon_crisiscorvettes_72.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_crisiscruiser"
 		texturefile = "gfx/interface/icons/crisis/menace_icon_crisiscruiser_72.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_crisisdestroyers"
 		texturefile = "gfx/interface/icons/crisis/menace_icon_crisisdestroyers_72.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_crisisobjectives"
 		texturefile = "gfx/interface/icons/crisis/menace_icon_crisisobjectives_72.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 		spriteType = {
 		name = "GFX_crisis_icon_deathfromabove"
 		texturefile = "gfx/interface/icons/crisis/menace_icon_deathfromabove_72.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_easilyreplaced"
 		texturefile = "gfx/interface/icons/crisis/menace_icon_easilyreplaced_72.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_flyswatter"
 		texturefile = "gfx/interface/icons/crisis/menace_icon_flyswatter_72.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_intimidation"
 		texturefile = "gfx/interface/icons/crisis/menace_icon_intimidation_72.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_mobilebulwark"
 		texturefile = "gfx/interface/icons/crisis/menace_icon_mobilebulwark_72.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_paidinambition"
 		texturefile = "gfx/interface/icons/crisis/menace_icon_paidinambition_72.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_relentlessaggression"
 		texturefile = "gfx/interface/icons/crisis/menace_icon_relentlessaggression_72.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_ruthlessraiders"
 		texturefile = "gfx/interface/icons/crisis/menace_icon_ruthlessraiders_72.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_shipchipper"
 		texturefile = "gfx/interface/icons/crisis/menace_icon_shipchipper_72.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_stareater"
 		texturefile = "gfx/interface/icons/crisis/menace_icon_stareater_72.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_undertaker"
 		texturefile = "gfx/interface/icons/crisis/menace_icon_undertaker_72.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_objectives"
 		texturefile = "gfx/interface/icons/crisis/menace_icon_crisisobjectives_72.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_megastructure"
 		texturefile = "gfx/interface/icons/crisis/menace_icon_cataclysm_megastructure_72.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
+	}
+
+	#Defenders
+	spriteType = {
+		name = "GFX_crisis_icon_integrity"
+		texturefile = "gfx/interface/icons/crisis/defenders_icon_integrity.dds"
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = "GFX_crisis_icon_opinion_1"
+		texturefile = "gfx/interface/icons/crisis/defenders_icon_opinion_1.dds"
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = "GFX_crisis_icon_opinion_2"
+		texturefile = "gfx/interface/icons/crisis/defenders_icon_opinion_2.dds"
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = "GFX_crisis_icon_opinion_3"
+		texturefile = "gfx/interface/icons/crisis/defenders_icon_opinion_3.dds"
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = "GFX_crisis_icon_galcom_1"
+		texturefile = "gfx/interface/icons/crisis/defenders_icon_galcom_1.dds"
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = "GFX_crisis_icon_galcom_2"
+		texturefile = "gfx/interface/icons/crisis/defenders_icon_galcom_2.dds"
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = "GFX_crisis_icon_federation_1"
+		texturefile = "gfx/interface/icons/crisis/defenders_icon_federation_1.dds"
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = "GFX_crisis_icon_federation_2"
+		texturefile = "gfx/interface/icons/crisis/defenders_icon_federation_2.dds"
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = "GFX_crisis_icon_crisis_damage_1"
+		texturefile = "gfx/interface/icons/crisis/defenders_icon_crisis_damage_1.dds"
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = "GFX_crisis_icon_crisis_damage_2"
+		texturefile = "gfx/interface/icons/crisis/defenders_icon_crisis_damage_2.dds"
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = "GFX_crisis_icon_crisis_damage_3"
+		texturefile = "gfx/interface/icons/crisis/defenders_icon_crisis_damage_3.dds"
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = "GFX_crisis_icon_crisis_damage_4"
+		texturefile = "gfx/interface/icons/crisis/defenders_icon_crisis_damage_4.dds"
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = "GFX_crisis_icon_research_1"
+		texturefile = "gfx/interface/icons/crisis/defenders_icon_research_1.dds"
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = "GFX_crisis_icon_research_2"
+		texturefile = "gfx/interface/icons/crisis/defenders_icon_research_2.dds"
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = "GFX_crisis_icon_defense_1"
+		texturefile = "gfx/interface/icons/crisis/defenders_icon_defense_1.dds"
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = "GFX_crisis_icon_defense_2"
+		texturefile = "gfx/interface/icons/crisis/defenders_icon_defense_2.dds"
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = "GFX_crisis_icon_defense_3"
+		texturefile = "gfx/interface/icons/crisis/defenders_icon_defense_3.dds"
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = "GFX_crisis_icon_custodian"
+		texturefile = "gfx/interface/icons/crisis/defenders_icon_custodian.dds"
+		noOfFrames = 2
 	}
 
 	#Cosmogenesis
 	spriteType = {
 		name = "GFX_crisis_icon_advanced_logic"
 		texturefile = "gfx/interface/icons/crisis/cosmogenesis_icon_advanced_logic.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_dark_matter_1"
 		texturefile = "gfx/interface/icons/crisis/cosmogenesis_icon_dark_matter_1.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_dark_matter_2"
 		texturefile = "gfx/interface/icons/crisis/cosmogenesis_icon_dark_matter_2.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_dark_matter_3"
 		texturefile = "gfx/interface/icons/crisis/cosmogenesis_icon_dark_matter_3.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_eternal_expansion"
 		texturefile = "gfx/interface/icons/crisis/cosmogenesis_icon_eternal_expansion.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_fe_building_1"
 		texturefile = "gfx/interface/icons/crisis/cosmogenesis_icon_fe_building_1.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_fe_building_2"
 		texturefile = "gfx/interface/icons/crisis/cosmogenesis_icon_fe_building_2.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_fe_building_3"
 		texturefile = "gfx/interface/icons/crisis/cosmogenesis_icon_fe_building_3.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_fe_building_4"
 		texturefile = "gfx/interface/icons/crisis/cosmogenesis_icon_fe_building_4.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_fe_building_5"
 		texturefile = "gfx/interface/icons/crisis/cosmogenesis_icon_fe_building_5.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_fe_ship_1"
 		texturefile = "gfx/interface/icons/crisis/cosmogenesis_icon_fe_ship_1.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_fe_ship_2"
 		texturefile = "gfx/interface/icons/crisis/cosmogenesis_icon_fe_ship_2.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_fe_ship_3"
 		texturefile = "gfx/interface/icons/crisis/cosmogenesis_icon_fe_ship_3.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_gravitational_tools"
 		texturefile = "gfx/interface/icons/crisis/cosmogenesis_icon_gravitational_tools.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_nanotech"
 		texturefile = "gfx/interface/icons/crisis/cosmogenesis_icon_nanotech.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_rare_components"
 		texturefile = "gfx/interface/icons/crisis/cosmogenesis_icon_rare_components.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_reality_theses"
 		texturefile = "gfx/interface/icons/crisis/cosmogenesis_icon_reality_theses.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_void_voyagers"
 		texturefile = "gfx/interface/icons/crisis/cosmogenesis_icon_void_voyagers.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_wetware"
 		texturefile = "gfx/interface/icons/crisis/cosmogenesis_icon_wetware.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 
 	#Behemoths
 	spriteType = {
 		name = "GFX_crisis_icon_behemoth_objectives"
 		texturefile = "gfx/interface/icons/crisis/behemoth_objectives.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_behemoth_egg"
 		texturefile = "gfx/interface/icons/crisis/behemoth_egg.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_behemoth_egg_2"
 		texturefile = "gfx/interface/icons/crisis/behemoth_egg_2.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_behemoth_hatchling"
 		texturefile = "gfx/interface/icons/crisis/behemoth_hatchling.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_behemoth_hatchling_2"
 		texturefile = "gfx/interface/icons/crisis/behemoth_hatchling_2.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_behemoth_mind_meld"
 		texturefile = "gfx/interface/icons/crisis/behemoth_mind_meld.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_behemoth_mutation_research"
 		texturefile = "gfx/interface/icons/crisis/behemoth_mutation_research.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_behemoth_primal_roar"
 		texturefile = "gfx/interface/icons/crisis/behemoth_primal_roar.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_behemoth_ever_hungry"
 		texturefile = "gfx/interface/icons/crisis/behemoth_ever_hungry.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 
 	spriteType = {
 		name = "GFX_crisis_icon_behemoth_bioship_1"
 		texturefile = "gfx/interface/icons/crisis/behemoth_bioship_1.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_behemoth_bioship_2"
 		texturefile = "gfx/interface/icons/crisis/behemoth_bioship_2.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_behemoth_bioship_3"
 		texturefile = "gfx/interface/icons/crisis/behemoth_bioship_3.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_behemoth_bioship_4"
 		texturefile = "gfx/interface/icons/crisis/behemoth_bioship_4.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_behemoth_society_1"
 		texturefile = "gfx/interface/icons/crisis/behemoth_society_1.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_behemoth_society_2"
 		texturefile = "gfx/interface/icons/crisis/behemoth_society_2.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_behemoth_society_3"
 		texturefile = "gfx/interface/icons/crisis/behemoth_society_3.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_behemoth_food_1"
 		texturefile = "gfx/interface/icons/crisis/behemoth_food_1.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_behemoth_food_2"
 		texturefile = "gfx/interface/icons/crisis/behemoth_food_2.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 
 	#Galactic Hyperthermia
 	spriteType = {
 		name = "GFX_crisis_icon_hyperthermia_crystals"
 		texturefile = "gfx/interface/icons/crisis/hyper_icon_crystals.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_hyperthermia_harnessing"
 		texturefile = "gfx/interface/icons/crisis/hyper_icon_harnessing.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_hyperthermia_crucible"
 		texturefile = "gfx/interface/icons/crisis/hyper_icon_crucible.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_hyperthermia_conc_entropy"
 		texturefile = "gfx/interface/icons/crisis/hyper_icon_entropy.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_hyperthermia_radiant"
 		texturefile = "gfx/interface/icons/crisis/hyper_icon_radiant.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_hyperthermia_ignition"
 		texturefile = "gfx/interface/icons/crisis/hyper_icon_ignition.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_hyperthermia_cruiser"
 		texturefile = "gfx/interface/icons/crisis/hyper_icon_cruiser.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_hyperthermia_flames"
 		texturefile = "gfx/interface/icons/crisis/hyper_icon_flames.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_hyperthermia_coronal"
 		texturefile = "gfx/interface/icons/crisis/hyper_icon_coronal.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_hyperthermia_reactors"
 		texturefile = "gfx/interface/icons/crisis/hyper_icon_reactors.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_hyperthermia_solarflare"
 		texturefile = "gfx/interface/icons/crisis/hyper_icon_solarflare.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_hyperthermia_armada"
 		texturefile = "gfx/interface/icons/crisis/hyper_icon_armada.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_hyperthermia_battleship"
 		texturefile = "gfx/interface/icons/crisis/hyper_icon_battleship.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_hyperthermia_critical_mass"
 		texturefile = "gfx/interface/icons/crisis/hyper_icon_critical_mass.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_icon_hyperthermia_ammunition"
 		texturefile = "gfx/interface/icons/crisis/hyper_icon_ammunition.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 
 	## VM: Temp icon. Delete later
 	spriteType = {
 		name = "GFX_crisis_perks"
 		texturefile = "gfx/interface/icons/crisis/Crisis_Perk1.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 
 	## Crisis UI
 
 	spriteType = {
 		name = "GFX_crisis_title_separate"
-		texturefile = "gfx/interface/crisis/Crisis_Title_Separate.dds"	
+		texturefile = "gfx/interface/crisis/Crisis_Title_Separate.dds"
 	}
 
 	spriteType = {
@@ -390,143 +482,169 @@ spriteTypes = {
 	}
 	spriteType = {
 		name = "GFX_crisis_lock_icon"
-		texturefile = "gfx/interface/icons/crisis/Crisis_Lock.dds"	
+		texturefile = "gfx/interface/icons/crisis/Crisis_Lock.dds"
 	}
+
 	spriteType = {
 		name = "GFX_crisis_level_1_btn"
 		texturefile = "gfx/interface/icons/crisis/Crisis_Lvl1_btn.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_level_2_btn"
 		texturefile = "gfx/interface/icons/crisis/Crisis_Lvl2_btn.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
-
 	spriteType = {
 		name = "GFX_crisis_level_3_btn"
 		texturefile = "gfx/interface/icons/crisis/Crisis_Lvl3_btn.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
-
 	spriteType = {
 		name = "GFX_crisis_level_4_btn"
 		texturefile = "gfx/interface/icons/crisis/Crisis_Lvl4_btn.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_level_5_btn"
 		texturefile = "gfx/interface/icons/crisis/Crisis_Lvl5_btn.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
+
+	spriteType = {
+		name = "GFX_crisis_defender_level_1_btn"
+		texturefile = "gfx/interface/icons/crisis/Defenders_Lvl1_btn.dds"
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = "GFX_crisis_defender_level_2_btn"
+		texturefile = "gfx/interface/icons/crisis/Defenders_Lvl2_btn.dds"
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = "GFX_crisis_defender_level_3_btn"
+		texturefile = "gfx/interface/icons/crisis/Defenders_Lvl3_btn.dds"
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = "GFX_crisis_defender_level_4_btn"
+		texturefile = "gfx/interface/icons/crisis/Defenders_Lvl4_btn.dds"
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = "GFX_crisis_defender_level_5_btn"
+		texturefile = "gfx/interface/icons/crisis/Defenders_Lvl5_btn.dds"
+		noOfFrames = 2
+	}
+
 	spriteType = {
 		name = "GFX_crisis_cosmogenesis_level_1_btn"
  		texturefile = "gfx/interface/icons/crisis/Cosmogenesis_Lvl1_btn.dds"
-  		noOfFrames = 2			
+  		noOfFrames = 2
   	}
   	spriteType = {
 		name = "GFX_crisis_cosmogenesis_level_2_btn"
   		texturefile = "gfx/interface/icons/crisis/Cosmogenesis_Lvl2_btn.dds"
-  		noOfFrames = 2			
+  		noOfFrames = 2
 	}
    	spriteType = {
   		name = "GFX_crisis_cosmogenesis_level_3_btn"
    		texturefile = "gfx/interface/icons/crisis/Cosmogenesis_lvl3_btn.dds"
-  		noOfFrames = 2	
-  	}		
+  		noOfFrames = 2
+  	}
 	spriteType = {
    		name = "GFX_crisis_cosmogenesis_level_4_btn"
    		texturefile = "gfx/interface/icons/crisis/Cosmogenesis_Lvl4_btn.dds"
-  		noOfFrames = 2			
+  		noOfFrames = 2
    	}
   	spriteType = {
   		name = "GFX_crisis_cosmogenesis_level_5_btn"
   		texturefile = "gfx/interface/icons/crisis/Cosmogenesis_Lvl5_btn.dds"
-  		noOfFrames = 2			
+  		noOfFrames = 2
   	}
 	spriteType = {
 		name = "GFX_crisis_cosmogenesis_level_1_btn_small"
 		texturefile = "gfx/interface/icons/crisis/Cosmogenesis_Lvl1_btn_small.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_cosmogenesis_level_2_btn_small"
 		texturefile = "gfx/interface/icons/crisis/Cosmogenesis_Lvl2_btn_small.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	 spriteType = {
 		name = "GFX_crisis_cosmogenesis_level_3_btn_small"
 		texturefile = "gfx/interface/icons/crisis/Cosmogenesis_lvl3_btn_small.dds"
-		noOfFrames = 2	
-	}		
+		noOfFrames = 2
+	}
 	spriteType = {
 		name = "GFX_crisis_cosmogenesis_level_4_btn_small"
 		texturefile = "gfx/interface/icons/crisis/Cosmogenesis_Lvl4_btn_small.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_cosmogenesis_level_5_btn_small"
 		texturefile = "gfx/interface/icons/crisis/Cosmogenesis_Lvl5_btn_small.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 
 	spriteType = {
 		name = "GFX_crisis_behemoth_level_1_btn"
  		texturefile = "gfx/interface/icons/crisis/Behemoth_Lvl1_btn.dds"
-  		noOfFrames = 2			
+  		noOfFrames = 2
   	}
   	spriteType = {
 		name = "GFX_crisis_behemoth_level_2_btn"
   		texturefile = "gfx/interface/icons/crisis/Behemoth_Lvl2_btn.dds"
-  		noOfFrames = 2			
+  		noOfFrames = 2
 	}
    	spriteType = {
   		name = "GFX_crisis_behemoth_level_3_btn"
    		texturefile = "gfx/interface/icons/crisis/Behemoth_Lvl3_btn.dds"
-  		noOfFrames = 2	
-  	}		
+  		noOfFrames = 2
+  	}
 	spriteType = {
    		name = "GFX_crisis_behemoth_level_4_btn"
    		texturefile = "gfx/interface/icons/crisis/Behemoth_Lvl4_btn.dds"
-  		noOfFrames = 2			
+  		noOfFrames = 2
    	}
   	spriteType = {
   		name = "GFX_crisis_behemoth_level_5_btn"
   		texturefile = "gfx/interface/icons/crisis/Behemoth_Lvl5_btn.dds"
-  		noOfFrames = 2			
+  		noOfFrames = 2
   	}
 
 	spriteType = {
 		name = "GFX_crisis_hyperthermia_level_1_btn"
 		texturefile = "gfx/interface/icons/crisis/Crisis_Hyperthermia_Lvl1_btn.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_hyperthermia_level_2_btn"
 		texturefile = "gfx/interface/icons/crisis/Crisis_Hyperthermia_Lvl2_btn.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 
 	spriteType = {
 		name = "GFX_crisis_hyperthermia_level_3_btn"
 		texturefile = "gfx/interface/icons/crisis/Crisis_Hyperthermia_Lvl3_btn.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 
 	spriteType = {
 		name = "GFX_crisis_hyperthermia_level_4_btn"
 		texturefile = "gfx/interface/icons/crisis/Crisis_Hyperthermia_Lvl4_btn.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_crisis_hyperthermia_level_5_btn"
 		texturefile = "gfx/interface/icons/crisis/Crisis_Hyperthermia_Lvl5_btn.dds"
-		noOfFrames = 2			
+		noOfFrames = 2
 	}
 
 	spriteType = {
 		name = "GFX_line_crisis"
-		texturefile = "gfx/interface/crisis/line_crisis.dds"		
+		texturefile = "gfx/interface/crisis/line_crisis.dds"
 	}
 
 	## Crisis UI - Crisis path dependant
@@ -575,26 +693,42 @@ spriteTypes = {
 		horizontal = no
 		flipdirection = yes
 	}
+	progressbarType = {
+		name = "GFX_defender_path_progressbar"
+		color = { 1.0 1.0 1.0 }
+		colorTwo = { 1.0 1.0 1.0 }
+		textureFile1 = "gfx/interface/crisis/defender_crisis_progress_bar.dds"
+		textureFile2 = "gfx/interface/crisis/Crisis_progressBar_BG.dds"
+		size = { x = 10 y = 432 }
+		effectFile = "gfx/FX/progress.shader"
+		horizontal = no
+		flipdirection = yes
+	}
 
 	spriteType = {
 		name = "GFX_nemesis_path_level_boxes"
 		texturefile = "gfx/interface/crisis/Crisis_LevelBoxes.dds"
-		noOfFrames = 2	
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_cosmogenesis_path_level_boxes"
 		texturefile = "gfx/interface/crisis/Crisis_LevelBoxes.dds"
-		noOfFrames = 2	
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_behemoth_path_level_boxes"
 		texturefile = "gfx/interface/crisis/behemoth_crisis_levelboxes.dds"
-		noOfFrames = 2	
+		noOfFrames = 2
 	}
 	spriteType = {
 		name = "GFX_hyperthermia_path_level_boxes"
 		texturefile = "gfx/interface/crisis/hyperthermia_crisis_levelboxes.dds"
-		noOfFrames = 2	
+		noOfFrames = 2
+	}
+	spriteType = {
+		name = "GFX_defender_path_level_boxes"
+		texturefile = "gfx/interface/crisis/Defender_LevelBoxes.dds"
+		noOfFrames = 2
 	}
 
 	spriteType = {
@@ -616,44 +750,48 @@ spriteTypes = {
 
 	spriteType = {
 		name = "GFX_nemesis_path_title_box"
-		texturefile = "gfx/interface/crisis/Crisis_Title2.dds"	
+		texturefile = "gfx/interface/crisis/Crisis_Title2.dds"
 	}
 	spriteType = {
 		name = "GFX_cosmogenesis_path_title_box"
-		texturefile = "gfx/interface/crisis/Crisis_Title2.dds"	
+		texturefile = "gfx/interface/crisis/Crisis_Title2.dds"
+	}
+
+	spriteType = {
+		name = "GFX_defender_path_title_box"
+		texturefile = "gfx/interface/crisis/Defender_Crisis_Title2.dds"
 	}
 	spriteType = {
 		name = "GFX_behemoth_path_title_box"
-		texturefile = "gfx/interface/crisis/behemoth_crisis_title2.dds"	
+		texturefile = "gfx/interface/crisis/behemoth_crisis_title2.dds"
 	}
 	spriteType = {
 		name = "GFX_hyperthermia_path_title_box"
-		texturefile = "gfx/interface/crisis/hyperthermia_crisis_title2.dds"	
+		texturefile = "gfx/interface/crisis/hyperthermia_crisis_title2.dds"
+	}
+	spriteType = {
+		name = "GFX_defender_path_levels_frame"
+		texturefile = "gfx/interface/crisis/Defender_Levels_frame.dds"
 	}
 
-	corneredTileSpriteType = {
+	spriteType = {
 		name = "GFX_nemesis_path_bg"
 		texturefile = "gfx/interface/crisis/CrisisBG.dds"
-		borderSize = { x = 0 y = 0 }
-		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
 	}
-	corneredTileSpriteType = {
+	spriteType = {
 		name = "GFX_cosmogenesis_path_bg"
 		texturefile = "gfx/interface/crisis/CrisisBG.dds"
-		borderSize = { x = 0 y = 0 }
-		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
 	}
-	corneredTileSpriteType = {
+	spriteType = {
 		name = "GFX_behemoth_path_bg"
 		texturefile = "gfx/interface/crisis/behemoth_crisisBG.dds"
-		borderSize = { x = 0 y = 0 }
-		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
 	}
-	corneredTileSpriteType = {
+	spriteType = {
 		name = "GFX_hyperthermia_path_bg"
 		texturefile = "gfx/interface/crisis/CrisisBG_Infernal.dds"
-		borderSize = { x = 0 y = 0 }
-		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
 	}
-
+	spriteType= {
+		name = "GFX_defender_path_bg"
+		texturefile = "gfx/interface/crisis/Defender_crisisBG.dds"
+	}
 }
