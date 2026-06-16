@@ -186,30 +186,21 @@ hyperthermia_galaxy_effect = {
 	every_system_planet = {
 		limit = {
 			is_planet_class = pc_ai
-			NOT = { has_planet_flag = machine_lair }
+			NOT = { has_carrier_flag = machine_lair }
 		}
 		destroy_machine_world = yes
 	}
 	random_system_planet = {
 		limit = {
 			is_planet_class = pc_ai
-			has_planet_flag = machine_lair
+			has_carrier_flag = machine_lair
 		}
 		from.owner = { save_event_target_as = final_machine_world_destroyer }
 		stop_crisis_sound = yes
-		planet_event = { id = crisis.2046 }
+		carrier_event = { id = crisis.2046 }
 	}
 	every_system_planet = {
 		limit = {
-			owner = {
-				NOR = {
-					is_infernal_empire = yes
-					has_ascension_perk = ap_galactic_hyperthermia
-					species = {
-						is_same_species = root.species
-					}
-				}
-			}
 			OR = {
 				is_colonizable = yes
 				is_colony = yes
@@ -223,61 +214,24 @@ hyperthermia_galaxy_effect = {
 		add_deposit = d_volcanic_mineral_layers
 		add_deposit = d_volcanic_stable_plateaus
 	}
-	every_system_planet = {
-		limit = {
-			owner = {
-				OR = {
-					is_infernal_empire = yes
-					has_ascension_perk = ap_galactic_hyperthermia
-					species = {
-						is_same_species = root.species
-					}
-				}
-				NAND = {
-					has_ascension_perk = ap_hydrocentric
-					owner_species = {
-						OR = {
-							has_trait = trait_aquatic
-							has_trait = trait_robot_aquatic
-							has_trait = trait_auto_hab_preference
-						}
-					}
-					prev = { is_planet_class = pc_ocean }
-				}
-				is_wilderness_empire = no
-			}
-			OR = {
-				is_colonizable = yes
-				is_colony = yes
-			}
-			NOT = { is_planet_class = pc_city }
-			is_artificial = no
-		}
-		change_pc = pc_volcanic
-		reroll_planet_modifiers = yes
-		reroll_deposits = yes
-		add_deposit = d_volcanic_mineral_layers
-		add_deposit = d_volcanic_stable_plateaus
-	}
-	every_system_planet = {
-		limit = {
-			OR = {
-				is_colonizable = yes
-				is_colony = yes
-			}
-			NOT = { is_planet_class = pc_volcanic }
-		}
-		add_planet_devastation = 100
-	}
-	every_system_colony = {
+	every_system_planet_colony = {
 		limit = {
 			owner = {
 				NOR = {
 					is_infernal_empire = yes
 					has_ascension_perk = ap_galactic_hyperthermia
-					species = {
-						is_same_species = root.species
-					}
+				}
+			}
+		}
+		remove_all_buildings = yes
+		destroy_colony = yes
+	}
+	every_system_ship_colony = {
+		limit = {
+			owner = {
+				NOR = {
+					is_infernal_empire = yes
+					has_ascension_perk = ap_galactic_hyperthermia
 				}
 			}
 		}
@@ -287,33 +241,73 @@ hyperthermia_galaxy_effect = {
 }
 
 hyperthermia_target_effect = {
-	random_system_within_border = {
-		limit = {
-			is_conduit_target = yes
+	if = {
+		limit = { is_nomadic = yes }
+		random_owned_ship = {
+			limit = {
+				is_waystation_ship = yes
+				solar_system = { is_conduit_target = yes }
+			}
+			solar_system = { save_event_target_as = friendly_target }
 		}
-		save_event_target_as = friendly_target
+	}
+	else = {
+		random_system_within_border = {
+			limit = {
+				is_conduit_target = yes
+			}
+			save_event_target_as = friendly_target
+		}
 	}
 	if = {
 		limit = {
 			NOT = { exists = event_target:friendly_target }
 			has_menace_perk = menp_hyperthermia_solarflare
 		}
-		random_system_within_border = {
-			limit = {
-				is_on_border = yes
-				any_neighbor_system = {
-					exists = owner
-					owner = { is_at_war_with = root }
-					is_conduit_target = yes
+		if = {
+			limit = { is_nomadic = yes }
+			random_owned_ship = {
+				limit = {
+					is_waystation_ship = yes
+					solar_system = {
+						is_on_border = yes
+						any_neighbor_system = {
+							exists = owner
+							owner = { is_at_war_with = root }
+							is_conduit_target = yes
+						}
+					}
+				}
+				solar_system = {
+					random_neighbor_system = {
+						limit = {
+							exists = owner
+							owner = { is_at_war_with = root }
+							is_conduit_target = yes
+						}
+						save_event_target_as = hostile_target
+					}
 				}
 			}
-			random_neighbor_system = {
+		}
+		else = {
+			random_system_within_border = {
 				limit = {
-					exists = owner
-					owner = { is_at_war_with = root }
-					is_conduit_target = yes
+					is_on_border = yes
+					any_neighbor_system = {
+						exists = owner
+						owner = { is_at_war_with = root }
+						is_conduit_target = yes
+					}
 				}
-				save_event_target_as = hostile_target
+				random_neighbor_system = {
+					limit = {
+						exists = owner
+						owner = { is_at_war_with = root }
+						is_conduit_target = yes
+					}
+					save_event_target_as = hostile_target
+				}
 			}
 		}
 	}
@@ -393,7 +387,7 @@ set_friendly_conduit_spawn = {
 			create_fleet = {
 				settings = { spawn_debris = no }
 				effect = {
-					set_owner = prev
+					set_owner = root
 					set_location = prev.star
 					create_ship = {
 						name = "NAME_Entropy_Conduit"
@@ -435,7 +429,7 @@ set_hostile_conduit_spawn = {
 			create_fleet = {
 				settings = { spawn_debris = no }
 				effect = {
-					set_owner = prev
+					set_owner = root
 					set_location = prev.star
 					create_ship = {
 						name = "NAME_Entropy_Conduit"
@@ -471,7 +465,7 @@ set_hostile_conduit_spawn = {
 }
 
 create_infernal_primitives = {
-	set_planet_flag = pre_ftl_default
+	set_carrier_flag = pre_ftl_default
 	create_species = {
 		name = random
 		class = INF
