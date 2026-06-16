@@ -16,14 +16,34 @@ civic_crisis_fanatic_purifiers = {
 	}
 	random_weight = { base = 0 }
 	modifier = {
-		country_war_exhaustion_mult = -0.50
-		country_starbase_influence_cost_mult = -0.10
+		country_starbase_influence_cost_mult = -0.20
+		megastructures_waystations_influence_cost_mult = -0.20
 		country_claim_influence_cost_mult = -0.20
+		operations_influence_cost_mult = -0.20
+		country_branch_office_influence_cost_mult = -0.20
 		country_civics_influence_produces_add = 1
 		diplo_weight_mult = 0.4
 		refugee_attraction = -0.50
 		envoys_add = -1
 		country_government_civic_points_add = 1
+	}
+
+	swap_type = {
+		trigger = {
+			NOR = {
+				AND = {
+					has_ascension_perk = ap_become_the_crisis
+					has_crisis_level = crisis_level_2
+				}
+				AND = {
+					has_ascension_perk = ap_galactic_hyperthermia
+					has_crisis_level = crisis_hyperthermia_level_4
+				}
+			}
+		}
+		modifier = {
+			country_war_exhaustion_mult = -0.50
+		}
 	}
 }
 
@@ -45,14 +65,34 @@ civic_crisis_scorched_earth = {
 	}
 	random_weight = { base = 0 }
 	modifier = {
-		country_war_exhaustion_mult = -0.50
-		country_starbase_influence_cost_mult = -0.10
+		country_starbase_influence_cost_mult = -0.20
+		megastructures_waystations_influence_cost_mult = -0.20
 		country_claim_influence_cost_mult = -0.20
+		operations_influence_cost_mult = -0.20
+		country_branch_office_influence_cost_mult = -0.20
 		country_civics_influence_produces_add = 1
 		diplo_weight_mult = 0.4
 		refugee_attraction = -0.50
 		envoys_add = -1
 		country_government_civic_points_add = 1
+	}
+
+	swap_type = {
+		trigger = {
+			NOR = {
+				AND = {
+					has_ascension_perk = ap_become_the_crisis
+					has_crisis_level = crisis_level_2
+				}
+				AND = {
+					has_ascension_perk = ap_galactic_hyperthermia
+					has_crisis_level = crisis_hyperthermia_level_4
+				}
+			}
+		}
+		modifier = {
+			country_war_exhaustion_mult = -0.50
+		}
 	}
 }
 
@@ -74,14 +114,35 @@ civic_crisis_hive_devouring_swarm = {
 	}
 	random_weight = { base = 0 }
 	modifier = {
-		country_war_exhaustion_mult = -0.50
-		country_starbase_influence_cost_mult = -0.10
+		country_starbase_influence_cost_mult = -0.20
+		megastructures_waystations_influence_cost_mult = -0.20
+		megastructures_arkships_influence_cost_mult = -0.05
 		country_claim_influence_cost_mult = -0.20
+		operations_influence_cost_mult = -0.20
+		country_branch_office_influence_cost_mult = -0.20
 		country_civics_influence_produces_add = 1
 		diplo_weight_mult = 0.4
 		refugee_attraction = -0.50
 		envoys_add = -1
 		country_government_civic_points_add = 1
+	}
+
+	swap_type = {
+		trigger = {
+			NOR = {
+				AND = {
+					has_ascension_perk = ap_become_the_crisis
+					has_crisis_level = crisis_level_2
+				}
+				AND = {
+					has_ascension_perk = ap_galactic_hyperthermia
+					has_crisis_level = crisis_hyperthermia_level_4
+				}
+			}
+		}
+		modifier = {
+			country_war_exhaustion_mult = -0.50
+		}
 	}
 }
 
@@ -103,14 +164,34 @@ civic_crisis_hive_scorched_earth = {
 	}
 	random_weight = { base = 0 }
 	modifier = {
-		country_war_exhaustion_mult = -0.50
-		country_starbase_influence_cost_mult = -0.10
+		country_starbase_influence_cost_mult = -0.20
+		megastructures_waystations_influence_cost_mult = -0.20
 		country_claim_influence_cost_mult = -0.20
+		operations_influence_cost_mult = -0.20
+		country_branch_office_influence_cost_mult = -0.20
 		country_civics_influence_produces_add = 1
 		diplo_weight_mult = 0.4
 		refugee_attraction = -0.50
 		envoys_add = -1
 		country_government_civic_points_add = 1
+	}
+
+	swap_type = {
+		trigger = {
+			NOR = {
+				AND = {
+					has_ascension_perk = ap_become_the_crisis
+					has_crisis_level = crisis_level_2
+				}
+				AND = {
+					has_ascension_perk = ap_galactic_hyperthermia
+					has_crisis_level = crisis_hyperthermia_level_4
+				}
+			}
+		}
+		modifier = {
+			country_war_exhaustion_mult = -0.50
+		}
 	}
 }
 
@@ -132,13 +213,33 @@ civic_crisis_machine_terminator = {
 	}
 	random_weight = { base = 0 }
 	modifier = {
-		country_war_exhaustion_mult = -0.50
-		country_starbase_influence_cost_mult = -0.10
+		country_starbase_influence_cost_mult = -0.20
+		megastructures_waystations_influence_cost_mult = -0.20
 		country_claim_influence_cost_mult = -0.20
+		operations_influence_cost_mult = -0.20
+		country_branch_office_influence_cost_mult = -0.20
 		country_civics_influence_produces_add = 1
 		diplo_weight_mult = 0.4
 		refugee_attraction = -0.50
 		envoys_add = -1
 		country_government_civic_points_add = 1
+	}
+
+	swap_type = {
+		trigger = {
+			NOR = {
+				AND = {
+					has_ascension_perk = ap_become_the_crisis
+					has_crisis_level = crisis_level_2
+				}
+				AND = {
+					has_ascension_perk = ap_galactic_hyperthermia
+					has_crisis_level = crisis_hyperthermia_level_4
+				}
+			}
+		}
+		modifier = {
+			country_war_exhaustion_mult = -0.50
+		}
 	}
 }
