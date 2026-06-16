@@ -2,7 +2,7 @@ namespace = unrest
 
 @unrest_event_cooldown = 360
 
-planet_event = {
+carrier_event = {
 	id = unrest.50
 	is_triggered_only = yes
 	hide_window = yes
@@ -27,8 +27,8 @@ planet_event = {
 			}
 		}
 		NOR = {
-			has_planet_flag = 3_year_owner_change_flag
-			has_planet_flag = recent_revolt_attempt
+			has_carrier_flag = 3_year_owner_change_flag
+			has_carrier_flag = recent_revolt_attempt
 		}
 		is_doomsday_planet = no
 		exists = controller
@@ -49,21 +49,21 @@ planet_event = {
 	}
 
 	immediate = {
-		set_timed_planet_flag = {
+		set_timed_carrier_flag = {
 			flag = unrest_timer
 			days = 360
 		}
 		if = { #Getting an impossible to prevent revolt due to culture shock is a bit harsh. (Planet can start with no jobs, for instance)
 			limit = { has_culture_shock = yes }
-			planet_event = { id = unrest.54 days = 1880 random = 180 } #at least 8 years after owner change (including the 3 years via 3_year_owner_change_flag)
+			carrier_event = { id = unrest.54 days = 1880 random = 180 } #at least 8 years after owner change (including the 3 years via 3_year_owner_change_flag)
 		}
 		else = {
-			planet_event = { id = unrest.54 days = 300 random = 59 } #definitely within the next year
+			carrier_event = { id = unrest.54 days = 300 random = 59 } #definitely within the next year
 		}
 	}
 }
 
-planet_event = {
+carrier_event = {
 	id = unrest.54
 	is_triggered_only = yes
 	hide_window = yes
@@ -88,8 +88,8 @@ planet_event = {
 			}
 		}
 		NOR = {
-			has_planet_flag = 3_year_owner_change_flag
-			has_planet_flag = recent_revolt_attempt
+			has_carrier_flag = 3_year_owner_change_flag
+			has_carrier_flag = recent_revolt_attempt
 		}
 		exists = controller
 		controller = { is_same_value = root.owner }
@@ -120,13 +120,13 @@ planet_event = {
 					position = 0
 					order_by = trigger:pop_amount
 					limit = {
-						has_planet_flag = unrest_timer
+						has_carrier_flag = unrest_timer
 						planet_stability < @stabilitylevel2
 						has_orbital_bombardment = no
 						has_ground_combat = no
 						NOR = {
-							has_planet_flag = 3_year_owner_change_flag
-							has_planet_flag = recent_revolt_attempt
+							has_carrier_flag = 3_year_owner_change_flag
+							has_carrier_flag = recent_revolt_attempt
 						}
 						exists = controller
 						controller = { is_same_value = root.owner }
@@ -139,14 +139,14 @@ planet_event = {
 							value > 0
 						}
 					}
-					planet_event = { id = unrest.55 }
+					carrier_event = { id = unrest.55 }
 				}
 			}
 		}
 	}
 }
 
-planet_event = {
+carrier_event = {
 	id = unrest.55
 	title = unrest.55.name
 	desc = {
@@ -253,13 +253,13 @@ situation_event = {
 		set_situation_flag = 25_percent_event
 
 		target = {
-			set_timed_planet_flag = {
+			set_timed_carrier_flag = {
 				flag = recent_unrest_event
 				days = @unrest_event_cooldown
 			}
 			random_list = {
 				1 = {
-					planet_event = { id = unrest.115 }
+					carrier_event = { id = unrest.115 }
 					root = { set_situation_flag = spiritualist }
 					modifier = {
 						factor = 0
@@ -282,7 +282,7 @@ situation_event = {
 					}
 				}
 				1 = {
-					planet_event = { id = unrest.120 }
+					carrier_event = { id = unrest.120 }
 					root = { set_situation_flag = authoritarian }
 					modifier = {
 						factor = 0
@@ -313,7 +313,7 @@ situation_event = {
 					}
 				}
 				1 = {
-					planet_event = { id = unrest.125 }
+					carrier_event = { id = unrest.125 }
 					root = { set_situation_flag = xenophobe }
 					modifier = {
 						factor = 0
@@ -357,7 +357,7 @@ situation_event = {
 					}
 				}
 				1 = {
-					planet_event = { id = unrest.130 }
+					carrier_event = { id = unrest.130 }
 					root = { set_situation_flag = spiritualist }
 					modifier = {
 						factor = 0
@@ -380,7 +380,7 @@ situation_event = {
 					}
 				}
 				1 = {
-					planet_event = { id = unrest.135 }
+					carrier_event = { id = unrest.135 }
 					root = { set_situation_flag = xenophile }
 					modifier = {
 						factor = 0
@@ -416,7 +416,7 @@ situation_event = {
 					}
 				}
 				1 = {
-					planet_event = { id = unrest.140 }
+					carrier_event = { id = unrest.140 }
 					root = { set_situation_flag = egalitarian }
 					modifier = {
 						factor = 0
@@ -447,7 +447,7 @@ situation_event = {
 					}
 				}
 				1 = {
-					planet_event = { id = unrest.145 }
+					carrier_event = { id = unrest.145 }
 					root = { set_situation_flag = pacifist }
 					modifier = {
 						factor = 0
@@ -474,7 +474,7 @@ situation_event = {
 					}
 				}
 				1 = {
-					planet_event = { id = unrest.150 }
+					carrier_event = { id = unrest.150 }
 					root = { set_situation_flag = militarist }
 					modifier = {
 						factor = 0
@@ -559,7 +559,7 @@ situation_event = {
 			exists = controller
 			controller = { is_same_value = root.owner }
 			planet_stability < @stabilitylevel2
-			NOT = { has_planet_flag = recent_unrest_event }
+			NOT = { has_carrier_flag = recent_unrest_event }
 			has_orbital_bombardment = no
 			has_ground_combat = no
 		}
@@ -572,7 +572,7 @@ situation_event = {
 				modifier = minor_terrorist_action
 				days = 7200 # 20 years
 			}
-			set_timed_planet_flag = {
+			set_timed_carrier_flag = {
 				flag = recent_unrest_event
 				days = @unrest_event_cooldown
 			}
@@ -616,7 +616,7 @@ situation_event = {
 			exists = controller
 			controller = { is_same_value = root.owner }
 			planet_stability < @stabilitylevel2
-			NOT = { has_planet_flag = recent_unrest_event }
+			NOT = { has_carrier_flag = recent_unrest_event }
 			has_orbital_bombardment = no
 			has_ground_combat = no
 		}
@@ -629,7 +629,7 @@ situation_event = {
 				modifier = major_terrorist_action
 				days = 3600 # 10 years
 			}
-			set_timed_planet_flag = {
+			set_timed_carrier_flag = {
 				flag = recent_unrest_event
 				days = @unrest_event_cooldown
 			}
@@ -674,7 +674,7 @@ situation_event = {
 			controller = { is_same_value = root.owner }
 			planet_stability < @stabilitylevel2
 			planet_stability >= @stabilitylevel1
-			NOT = { has_planet_flag = recent_unrest_event }
+			NOT = { has_carrier_flag = recent_unrest_event }
 			has_orbital_bombardment = no
 			has_ground_combat = no
 		}
@@ -687,7 +687,7 @@ situation_event = {
 				modifier = riots_averted
 				days = 3600 # 10 years
 			}
-			set_timed_planet_flag = {
+			set_timed_carrier_flag = {
 				flag = recent_unrest_event
 				days = @unrest_event_cooldown
 			}
@@ -710,7 +710,7 @@ situation_event = {
 ### Stage 2 events
 
 # Unrest: Hallowed
-planet_event = {
+carrier_event = {
 	id = unrest.115
 	title = unrest.115.name
 	desc = unrest.115.desc
@@ -739,7 +739,7 @@ planet_event = {
 	}
 }
 
-planet_event = {
+carrier_event = {
 	id = unrest.120
 	title = unrest.120.name
 	desc = unrest.120.desc
@@ -768,7 +768,7 @@ planet_event = {
 	}
 }
 
-planet_event = {
+carrier_event = {
 	id = unrest.125
 	title = unrest.125.name
 	desc = unrest.125.desc
@@ -797,7 +797,7 @@ planet_event = {
 	}
 }
 
-planet_event = {
+carrier_event = {
 	id = unrest.130
 	title = unrest.130.name
 	desc = unrest.130.desc
@@ -826,7 +826,7 @@ planet_event = {
 	}
 }
 
-planet_event = {
+carrier_event = {
 	id = unrest.135
 	title = unrest.135.name
 	desc = unrest.135.desc
@@ -855,7 +855,7 @@ planet_event = {
 	}
 }
 
-planet_event = {
+carrier_event = {
 	id = unrest.140
 	title = unrest.140.name
 	desc = unrest.140.desc
@@ -884,7 +884,7 @@ planet_event = {
 	}
 }
 
-planet_event = {
+carrier_event = {
 	id = unrest.145
 	title = unrest.145.name
 	desc = unrest.145.desc
@@ -913,7 +913,7 @@ planet_event = {
 	}
 }
 
-planet_event = {
+carrier_event = {
 	id = unrest.150
 	title = unrest.150.name
 	desc = unrest.150.desc
@@ -1108,10 +1108,10 @@ situation_event = {
 		deduce_planetary_separatism_species = yes
 
 		owner = {
-			every_owned_planet = {
+			every_owned_colony = {
 				remove_modifier = instability_join_revolt
 			}
-			every_owned_planet = {
+			every_owned_colony = {
 				limit = {
 					planet_stability < @[ stabilitylevel2 + 10 ] #This works. Seriously. (Rationale: slightly unhappy planets are persuaded to join as tipping points are reached)
 					NOT = {
@@ -1516,6 +1516,7 @@ situation_event = {
 				effect = {
 					set_country_type = default #we don't need the rebel country type with this version, but create_rebels effect has useful functionalities
 					save_event_target_as = rebel_empire
+					set_country_flag = separatist_rebel_of_@root.owner
 					if = {
 						limit = {
 							has_trait = trait_necrophage
@@ -1940,6 +1941,9 @@ situation_event = {
 						#It copies the traditions and technologies in code
 
 						create_fleet_from_naval_cap = 0.8
+						last_created_fleet = {
+							set_location = event_target:rebel_planet
+						}
 					}
 				}
 			}
@@ -2175,7 +2179,7 @@ country_event = {
 
 
 
-planet_event = {
+carrier_event = {
 	id = unrest.4300
 	title = unrest.4300.name
 	desc = {
@@ -2243,7 +2247,7 @@ pop_group_event = {
 # Extra slave revolt content
 
 # Resistance: Sabotage
-planet_event = {
+carrier_event = {
 	id = unrest.156
 	title = unrest.156.name
 	desc = unrest.156.desc
@@ -2288,7 +2292,7 @@ situation_event = {
 			exists = controller
 			controller = { is_same_value = root.owner }
 			planet_stability < @stabilitylevel2
-			NOT = { has_planet_flag = recent_unrest_event }
+			NOT = { has_carrier_flag = recent_unrest_event }
 			has_orbital_bombardment = no
 			has_ground_combat = no
 		}
@@ -2300,7 +2304,7 @@ situation_event = {
 		set_situation_flag = random_event_happened
 		set_situation_flag = slave_riots
 		target = {
-			set_timed_planet_flag = {
+			set_timed_carrier_flag = {
 				flag = recent_unrest_event
 				days = @unrest_event_cooldown
 			}
@@ -2352,7 +2356,7 @@ situation_event = {
 			exists = controller
 			controller = { is_same_value = root.owner }
 			planet_stability < @stabilitylevel2
-			NOT = { has_planet_flag = recent_unrest_event }
+			NOT = { has_carrier_flag = recent_unrest_event }
 			has_orbital_bombardment = no
 			has_ground_combat = no
 		}
@@ -2364,7 +2368,7 @@ situation_event = {
 		set_situation_flag = random_event_happened
 		set_situation_flag = slave_hunger_strikes
 		target = {
-			set_timed_planet_flag = {
+			set_timed_carrier_flag = {
 				flag = recent_unrest_event
 				days = @unrest_event_cooldown
 			}
@@ -2394,7 +2398,7 @@ situation_event = {
 }
 
 # Revolt Suppressed #
-planet_event = {
+carrier_event = {
 	id = unrest.161
 	title = unrest.161.name
 	desc = unrest.161.desc
