@@ -201,6 +201,15 @@ hyperthermia_galaxy_effect = {
 	}
 	every_system_planet = {
 		limit = {
+			owner = {
+				NOR = {
+					is_infernal_empire = yes
+					has_ascension_perk = ap_galactic_hyperthermia
+					species = {
+						is_same_species = root.species
+					}
+				}
+			}
 			OR = {
 				is_colonizable = yes
 				is_colony = yes
@@ -214,12 +223,61 @@ hyperthermia_galaxy_effect = {
 		add_deposit = d_volcanic_mineral_layers
 		add_deposit = d_volcanic_stable_plateaus
 	}
+	every_system_planet = {
+		limit = {
+			owner = {
+				OR = {
+					is_infernal_empire = yes
+					has_ascension_perk = ap_galactic_hyperthermia
+					species = {
+						is_same_species = root.species
+					}
+				}
+				NAND = {
+					has_ascension_perk = ap_hydrocentric
+					owner_species = {
+						OR = {
+							has_trait = trait_aquatic
+							has_trait = trait_robot_aquatic
+							has_trait = trait_auto_hab_preference
+						}
+					}
+					prev = { is_planet_class = pc_ocean }
+				}
+				is_wilderness_empire = no
+			}
+			OR = {
+				is_colonizable = yes
+				is_colony = yes
+			}
+			NOT = { is_planet_class = pc_city }
+			is_artificial = no
+		}
+		change_pc = pc_volcanic
+		reroll_planet_modifiers = yes
+		reroll_deposits = yes
+		add_deposit = d_volcanic_mineral_layers
+		add_deposit = d_volcanic_stable_plateaus
+	}
+	every_system_planet = {
+		limit = {
+			OR = {
+				is_colonizable = yes
+				is_colony = yes
+			}
+			NOT = { is_planet_class = pc_volcanic }
+		}
+		add_planet_devastation = 50
+	}
 	every_system_planet_colony = {
 		limit = {
 			owner = {
 				NOR = {
 					is_infernal_empire = yes
 					has_ascension_perk = ap_galactic_hyperthermia
+					species = {
+						is_same_species = root.species
+					}
 				}
 			}
 		}
@@ -232,6 +290,9 @@ hyperthermia_galaxy_effect = {
 				NOR = {
 					is_infernal_empire = yes
 					has_ascension_perk = ap_galactic_hyperthermia
+					species = {
+						is_same_species = root.species
+					}
 				}
 			}
 		}
