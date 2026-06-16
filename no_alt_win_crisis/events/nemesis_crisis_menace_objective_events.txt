@@ -100,12 +100,12 @@ starbase_event = {
 
 # Menace Objective - Purge Pops
 # Fired from on_action 'on_pop_purged'
-planet_event = {
+carrier_event = {
 	id = crisis.4030
 	hide_window = yes
 	is_triggered_only = yes
 
-	# This = Planet scope
+	# This = Colony
 	# From = Country
 	# FromFrom = Pop
 
@@ -121,10 +121,26 @@ planet_event = {
 	}
 
 	immediate = {
-		while = {
-			count = value:per_100_local_pop_amount
-			from = {
-				add_resource = { menace = 3 }
+		if = {
+			limit = {
+				from = {
+					has_origin = origin_nomadic_purger
+					exists = overlord
+				}
+			}
+			while = {
+				count = value:per_100_local_pop_amount
+				from.overlord = {
+					add_resource = { menace = 3 }
+				}
+			}
+		}
+		else = {
+			while = {
+				count = value:per_100_local_pop_amount
+				from = {
+					add_resource = { menace = 3 }
+				}
 			}
 		}
 	}
@@ -133,7 +149,7 @@ planet_event = {
 
 # Menace Objective - Destroy Worlds
 # Fired from on_destroy_planet_with_PLANET_KILLER_CRACKER
-planet_event = {
+carrier_event = {
 	id = crisis.5015
 	hide_window = yes
 	is_triggered_only = yes
@@ -168,8 +184,8 @@ planet_event = {
 }
 
 # Menace Objective - Conquer Worlds
-# Fired from on_action 'on_planet_conquer'
-planet_event = {
+# Fired from on_action 'on_colony_conquer'
+carrier_event = {
 	id = crisis.5010
 	hide_window = yes
 	is_triggered_only = yes

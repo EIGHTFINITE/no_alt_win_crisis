@@ -42,7 +42,7 @@ country_event = {
 						max_steps = 3
 						limit = { has_star_flag = neighbor_t1_first_colony }
 						random_system_planet = {
-							limit = { has_planet_flag = prescripted_ideal }
+							limit = { has_carrier_flag = prescripted_ideal }
 							change_pc = pc_arid
 							reroll_planet = yes
 							clear_blockers = yes
@@ -53,7 +53,7 @@ country_event = {
 						max_steps = 3
 						limit = { has_star_flag = neighbor_t2_second_colony }
 						random_system_planet = {
-							limit = { has_planet_flag = prescripted_ideal }
+							limit = { has_carrier_flag = prescripted_ideal }
 							change_pc = pc_desert
 							reroll_planet = yes
 							clear_blockers = yes
@@ -74,7 +74,7 @@ country_event = {
 					limit = { has_star_flag = neighbor_t1_first_colony }
 					random_system_planet = {
 						limit = {
-							has_planet_flag = prescripted_ideal
+							has_carrier_flag = prescripted_ideal
 							is_planet_class = pc_volcanic
 						}
 						change_pc = pc_arid
@@ -86,7 +86,7 @@ country_event = {
 					limit = { has_star_flag = neighbor_t2_second_colony }
 					random_system_planet = {
 						limit = {
-							has_planet_flag = prescripted_ideal
+							has_carrier_flag = prescripted_ideal
 							is_planet_class = pc_volcanic
 						}
 						change_pc = pc_desert
@@ -118,11 +118,11 @@ country_event = {
 				set_planet_entity = { entity = red_giant_tunnel_faint_class_star_entity }
 				solar_system = {
 					random_system_planet = {
-						limit = { has_planet_flag = red_giant_innerplanet }
+						limit = { has_carrier_flag = red_giant_innerplanet }
 						add_deposit = d_minerals_10
 					}
 					random_system_planet = {
-						limit = { has_planet_flag = red_giant_second_innerplanet }
+						limit = { has_carrier_flag = red_giant_second_innerplanet }
 						add_deposit = d_alloys_5
 					}
 				}
@@ -136,7 +136,7 @@ country_event = {
 			limit = { has_origin = origin_cosmic_dawn }
 			country_event = { id = infernals.2500 days = 1 }
 			capital_scope = {
-				set_planet_flag = cosmic_dawn_homeworld
+				set_carrier_flag = cosmic_dawn_homeworld
 			}
 		}
 	}
@@ -144,7 +144,7 @@ country_event = {
 
 # Scorched Earth Civic - A planet is bombed with the Firestorm stance, generates Unity.
 # This = Planet, From = Bombarder, on_planet_bombarded (daily)
-planet_event = {
+carrier_event = {
 	id = infernals.20
 	hide_window = yes
 
@@ -170,7 +170,7 @@ planet_event = {
 
 # Scorched Earth Civic - A planet is bombed with the Seismic Bombing stance, generates blockers.
 # This = Planet, From = Bombarder, on_planet_bombarded (daily)
-planet_event = {
+carrier_event = {
 	id = infernals.25
 	hide_window = yes
 
@@ -225,36 +225,38 @@ country_event = {
 	trigger = { is_world_forger_empire = yes }
 
 	immediate = {
-		every_owned_planet = {
+		every_owned_colony = { # TODO AUG-56681: Loops through colonies (planets and ships), but we only want regular planets here.
 			limit = {
+				NOT = { ship? = { always = yes } } # Skip ship-carried colonies (e.g. Arkships) - only terraform planets
 				has_anvil_building = yes
 				NOT = { is_planet_class = pc_volcanic }
 			}
 			if = {
-				limit = { NOT = { has_planet_flag = volcanic_terraforming_ongoing } }
-				set_planet_flag = volcanic_terraforming_ongoing
+				limit = { NOT = { has_carrier_flag = volcanic_terraforming_ongoing } }
+				set_carrier_flag = volcanic_terraforming_ongoing
 				start_terraform_progress = {
 					class = pc_volcanic
 					required_progress = 20
 				}
 			}
-			planet_event = { id = infernals.31 }
+			carrier_event = { id = infernals.31 }
 		}
 		# In case the building is lost/removed by an event or effect that doesnt trigger the on_actions
-		every_owned_planet = {
+		every_owned_colony = { # TODO AUG-56681: Loops through colonies (planets and ships), but we only want regular planets here.
 			limit = {
+				NOT = { ship? = { always = yes } } # Skip ship-carried colonies (e.g. Arkships) - only terraform planets
 				has_anvil_building = no
 				is_scripted_terraforming = yes
 			}
 			stop_terraform_process = yes
-			remove_planet_flag = volcanic_terraforming_ongoing
+			remove_carrier_flag = volcanic_terraforming_ongoing
 		}
 	}
 }
 
 # World Forger empire - automatic terraforming
 # Note: If variables here change, adjust tooltips of civics / concepts / building
-planet_event = {
+carrier_event = {
 	id = infernals.31
 	hide_window = yes
 
@@ -362,24 +364,24 @@ planet_event = {
 			validate_planet_buildings_and_districts = yes
 			clear_variable = job_var
 			clear_variable = mining_var
-			remove_planet_flag = volcanic_terraforming_ongoing
-			remove_planet_flag = titanic_life_colony_flag
-			planet_event = { id = infernals.35 }
+			remove_carrier_flag = volcanic_terraforming_ongoing
+			remove_carrier_flag = titanic_life_colony_flag
+			carrier_event = { id = infernals.35 }
 		}
 	}
 }
 
 # Stops scripted terraforming
 # on_building_demolished , on_destroy
-# on_colony_destroyed, on_planet_transfer
-planet_event = {
+# on_colony_destroyed, on_colony_transfer
+carrier_event = {
 	id = infernals.32
 	hide_window = yes
 	is_triggered_only = yes
 
 	trigger = {
 		is_scripted_terraforming = yes
-		has_planet_flag = volcanic_terraforming_ongoing
+		has_carrier_flag = volcanic_terraforming_ongoing
 	}
 
 	immediate = {
@@ -388,31 +390,31 @@ planet_event = {
 		stop_terraform_process = yes
 		remove_building = building_volcanic_forge_1
 		remove_building = building_volcanic_forge_2
-		remove_planet_flag = volcanic_terraforming_ongoing
+		remove_carrier_flag = volcanic_terraforming_ongoing
 	}
 }
 
 # Stops scripted terraforming
 # on_building_ruined, on_building_downgraded, on_building_replaced
-planet_event = {
+carrier_event = {
 	id = infernals.33
 	hide_window = yes
 	is_triggered_only = yes
 
 	trigger = {
 		is_scripted_terraforming = yes
-		has_planet_flag = volcanic_terraforming_ongoing
+		has_carrier_flag = volcanic_terraforming_ongoing
 	}
 	immediate = {
 		clear_variable = job_var
 		clear_variable = mining_var
 		stop_terraform_process = yes
-		remove_planet_flag = volcanic_terraforming_ongoing
+		remove_carrier_flag = volcanic_terraforming_ongoing
 	}
 }
 
 # Planet Forgers terraform a planet into a Volcanic World
-planet_event = {
+carrier_event = {
 	id = infernals.35
 	title = infernals.35.name
 	desc = infernals.35.desc
@@ -445,7 +447,7 @@ planet_event = {
 	}
 	after = {
 		hidden_effect = {
-			owner = { 
+			owner = {
 				if = {
 					limit = {
 						OR = {
@@ -463,7 +465,7 @@ planet_event = {
 }
 
 # Planet Smelter PK
-planet_event = {
+carrier_event = {
 	id = infernals.36
 	hide_window = yes
 	is_triggered_only = yes
@@ -482,10 +484,10 @@ planet_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				NOT = { has_planet_flag = machine_lair }
+				NOT = { has_carrier_flag = machine_lair }
 			}
-			set_planet_flag = planet_burned
-			planet_event = { id = crisis.2040 }
+			set_carrier_flag = planet_burned
+			carrier_event = { id = crisis.2040 }
 			create_ambient_object = {
 				location = this
 				type = habitat_cracker_object
@@ -504,12 +506,12 @@ planet_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				has_planet_flag = machine_lair
+				has_carrier_flag = machine_lair
 			}
-			set_planet_flag = planet_burned
+			set_carrier_flag = planet_burned
 			from.owner = { save_event_target_as = final_machine_world_destroyer }
 			stop_crisis_sound = yes
-			planet_event = { id = crisis.2046 }
+			carrier_event = { id = crisis.2046 }
 			create_ambient_object = {
 				location = this
 				type = habitat_cracker_object
@@ -887,9 +889,9 @@ situation_event = {
 	}
 	immediate = {
 		target = {
-			remove_planet_flag = has_megastructure
+			remove_carrier_flag = has_megastructure
 			set_deposit = d_red_giant_dm
-			planet_event = { id = infernals.9000 days = 1 } #trigger explosion
+			carrier_event = { id = infernals.9000 days = 1 } #trigger explosion
 			if = {
 				limit = {
 					has_mining_station = yes
@@ -903,12 +905,21 @@ situation_event = {
 				}
 			}
 			solar_system = {
-				every_system_colony = {
+				every_system_planet_colony = {
 					remove_modifier = red_giant_stage_5
 					add_modifier = {
 						modifier = "red_giant_exploded"
 						days  = -1
 					}
+					add_planet_devastation = 70
+					every_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							percentage = 0.20
+						}
+					}
+				}
+				every_system_ship_colony = {
 					add_planet_devastation = 70
 					every_owned_pop_group = {
 						kill_pop_group = {
@@ -1055,8 +1066,8 @@ situation_event = {
 		name = ACKNOWLEDGED
 		hidden_effect = {
 			target.solar_system = {
-				every_system_colony = {
-					planet_event = { id = infernals.51 months = 24 }
+				every_system_planet_colony = {
+					carrier_event = { id = infernals.51 months = 24 }
 				}
 			}
 		}
@@ -1076,8 +1087,8 @@ situation_event = {
 		}
 		hidden_effect = {
 			target.solar_system = {
-				every_system_colony = {
-					planet_event = { id = infernals.51 months = 3 }
+				every_system_planet_colony = {
+					carrier_event = { id = infernals.51 months = 3 }
 				}
 			}
 		}
@@ -1098,7 +1109,7 @@ situation_event = {
 }
 
 # Red Giant Mitigated
-planet_event = {
+carrier_event = {
 	id = infernals.51
 	title = infernals.51.name
 	desc = infernals.51.desc
@@ -1132,7 +1143,7 @@ situation_event = {
 
 	immediate = {
 		target.solar_system = {
-			every_system_colony = { remove_modifier = red_giant_stage_1 }
+			every_system_planet_colony = { remove_modifier = red_giant_stage_1 }
 		}
 		if = {
 			limit = { exists = event_target:lusus_miner_vfx@owner } #otherwise the vfx will stay even after the station gets destroyed
@@ -1158,7 +1169,7 @@ situation_event = {
 			remove_point_of_interest = red_giant_lusus_event_poi
 		}
 		target = {
-			remove_planet_flag = has_megastructure #allow placing megastructures again
+			remove_carrier_flag = has_megastructure #allow placing megastructures again
 		}
 	}
 	option = {
@@ -1251,7 +1262,7 @@ situation_event = {
 	after = {
 		#trigger relaxation
 		target.solar_system = {
-			every_system_colony = {
+			every_system_planet_colony = {
 				add_modifier = {
 					modifier = "red_giant_calmed_mod"
 					days  = -1
@@ -1390,7 +1401,7 @@ situation_event = {
 	show_sound = event_ship_explosion
 	is_triggered_only = yes
 	location = target
-	
+
 	event_chain = red_giant_event_chain
 
 	immediate = {
@@ -1400,7 +1411,7 @@ situation_event = {
 		target.solar_system = {
 			every_system_planet = {
 				limit = {
-					has_planet_flag = red_giant_innerplanet
+					has_carrier_flag = red_giant_innerplanet
 				}
 				if = {
 					limit = {
@@ -1466,7 +1477,7 @@ situation_event = {
 	show_sound = event_ship_explosion
 	is_triggered_only = yes
 	location = target
-	
+
 	event_chain = red_giant_event_chain
 
 	immediate = {
@@ -1476,7 +1487,7 @@ situation_event = {
 		target.solar_system = {
 			every_system_planet = {
 				limit = {
-					has_planet_flag = red_giant_second_innerplanet
+					has_carrier_flag = red_giant_second_innerplanet
 				}
 				if = {
 					limit = {
@@ -1534,11 +1545,11 @@ situation_event = {
 }
 
 #reach stage 5
-planet_event = {
+carrier_event = {
 	id = infernals.80
 	hide_window = yes
 	is_triggered_only = yes
-	
+
 	event_chain = red_giant_event_chain
 
 	immediate = {
@@ -1762,7 +1773,7 @@ country_event = {
 				if = {
 					limit = { exists = event_target:red_giant_triangulation_planet }
 					event_target:red_giant_triangulation_planet = {
-						solar_system = { 
+						solar_system = {
 							set_star_flag = red_giant_triangulation_system
 							root.owner = { set_visited = prev }
 						}
@@ -2006,9 +2017,7 @@ ship_event = {
 	after = {
 		custom_tooltip = red_giant_lusus_triangulated_tt
 		root.owner = {
-			hidden_effect = { # remove the unfinished triangulation projects.
-				abort_special_project = INF_ORIGIN_RED_GIANT_TRIANGULATION
-			}
+			set_country_flag = red_giant_triangulated
 			create_point_of_interest = {
 				id = red_giant_lusus_event_poi
 				name = infernals.115.name
@@ -2545,12 +2554,12 @@ situation_event = {
 		if = {
 			limit = {
 				owner = {
-					any_owned_planet = { has_planet_flag = cosmic_dawn_homeworld }
+					any_owned_planet = { has_carrier_flag = cosmic_dawn_homeworld }
 				}
 			}
 			owner = {
 				random_owned_planet = {
-					limit = { has_planet_flag = cosmic_dawn_homeworld }
+					limit = { has_carrier_flag = cosmic_dawn_homeworld }
 					if = {
 						limit = { NOT = { has_deposit = d_cd_ancient_tunnels } }
 						add_deposit = d_cd_ancient_tunnels
@@ -2586,12 +2595,12 @@ situation_event = {
 		if = {
 			limit = {
 				owner = {
-					any_owned_planet = { has_planet_flag = cosmic_dawn_homeworld }
+					any_owned_planet = { has_carrier_flag = cosmic_dawn_homeworld }
 				}
 			}
 			owner = {
 				random_owned_planet = {
-					limit = { has_planet_flag = cosmic_dawn_homeworld }
+					limit = { has_carrier_flag = cosmic_dawn_homeworld }
 					save_event_target_as = homeworld
 				}
 			}
@@ -3418,10 +3427,10 @@ country_event = {
 		}
 		if = {
 			limit = {
-				any_owned_planet = { has_planet_flag = cosmic_dawn_homeworld }
+				any_owned_planet = { has_carrier_flag = cosmic_dawn_homeworld }
 			}
 			random_owned_planet = {
-				limit = { has_planet_flag = cosmic_dawn_homeworld }
+				limit = { has_carrier_flag = cosmic_dawn_homeworld }
 				hidden_effect = {
 					change_variable = { which = cd_pods_var value = 1 }
 				}
@@ -3490,10 +3499,10 @@ country_event = {
 	after = {
 		if = {
 			limit = {
-				any_owned_planet = { has_planet_flag = cosmic_dawn_homeworld }
+				any_owned_planet = { has_carrier_flag = cosmic_dawn_homeworld }
 			}
 			random_owned_planet = {
-				limit = { has_planet_flag = cosmic_dawn_homeworld }
+				limit = { has_carrier_flag = cosmic_dawn_homeworld }
 				hidden_effect = {
 					change_variable = { which = cd_pods_var value = 1 }
 				}
@@ -3630,12 +3639,12 @@ situation_event = {
 		if = {
 			limit = {
 				owner = {
-					any_owned_planet = { has_planet_flag = cosmic_dawn_homeworld }
+					any_owned_planet = { has_carrier_flag = cosmic_dawn_homeworld }
 				}
 			}
 			owner = {
 				random_owned_planet = {
-					limit = { has_planet_flag = cosmic_dawn_homeworld }
+					limit = { has_carrier_flag = cosmic_dawn_homeworld }
 					hidden_effect = {
 						change_variable = { which = cd_pods_var value = 1 }
 					}
@@ -3807,11 +3816,11 @@ situation_event = {
 	immediate = {
 		if = {
 			limit = {
-				owner = { any_owned_planet = { has_planet_flag = cosmic_dawn_homeworld } }
+				owner = { any_owned_planet = { has_carrier_flag = cosmic_dawn_homeworld } }
 			}
 			owner = {
 				random_owned_planet = {
-					limit = { has_planet_flag = cosmic_dawn_homeworld }
+					limit = { has_carrier_flag = cosmic_dawn_homeworld }
 					save_event_target_as = homeworld
 				}
 			}
@@ -3856,7 +3865,7 @@ situation_event = {
 		}
 		event_target:homeworld = {
 			hidden_effect = {
-				set_planet_flag = cosmic_dawn_tunnel_foundry_flag
+				set_carrier_flag = cosmic_dawn_tunnel_foundry_flag
 			}
 		}
 		custom_tooltip = cosmic_dawn_tunnel_foundry
@@ -3880,7 +3889,7 @@ situation_event = {
 		}
 		event_target:homeworld = {
 			hidden_effect = {
-				set_planet_flag = cosmic_dawn_tunnel_bureaucrat_flag
+				set_carrier_flag = cosmic_dawn_tunnel_bureaucrat_flag
 			}
 		}
 		custom_tooltip = cosmic_dawn_tunnel_bureaucrat
@@ -3909,7 +3918,7 @@ situation_event = {
 		}
 		event_target:homeworld = {
 			hidden_effect = {
-				set_planet_flag = cosmic_dawn_tunnel_researcher_flag
+				set_carrier_flag = cosmic_dawn_tunnel_researcher_flag
 			}
 		}
 		custom_tooltip = cosmic_dawn_tunnel_researcher
@@ -3924,7 +3933,7 @@ situation_event = {
 		}
 		event_target:homeworld = {
 			hidden_effect = {
-				set_planet_flag = cosmic_dawn_tunnel_worker_flag
+				set_carrier_flag = cosmic_dawn_tunnel_worker_flag
 			}
 		}
 		custom_tooltip = cosmic_dawn_tunnel_worker
@@ -3943,11 +3952,11 @@ situation_event = {
 	}
 }
 # on_planet_class_changed
-planet_event = {
+carrier_event = {
 	id = infernals.2585
 	hide_window = yes
 	is_triggered_only = yes
-	trigger = { has_planet_flag = cosmic_dawn_homeworld }
+	trigger = { has_carrier_flag = cosmic_dawn_homeworld }
 	immediate = {
 		if = {
 			limit = {
@@ -3963,7 +3972,7 @@ planet_event = {
 # on_colony_1_year_old + on_monthly_pulse_pre_ftl_observation
 
 ### Imminent Eruption
-planet_event = {
+carrier_event = {
 	id = infernals.3000
 	title = infernals.3000.name
 	desc = infernals.3000.desc
@@ -3980,7 +3989,7 @@ planet_event = {
 			is_country_type = default
 			NOT = { has_country_flag = triggered_imminent_erruption }
 		}
-		NOT = { has_planet_flag = colony_event }
+		NOT = { has_carrier_flag = colony_event }
 	}
 
 	immediate = {
@@ -4002,34 +4011,34 @@ planet_event = {
 		}
 		owner = { add_resource = { energy = -500 } }
 		hidden_effect = {
-			planet_event = { id = infernals.3005 days = 5 }
+			carrier_event = { id = infernals.3005 days = 5 }
 		}
 	}
 	option = {
 		name = infernals.3000.b
 		hidden_effect = {
 			random_list = {
-				50 = { planet_event = { id = infernals.3010 days = 5 } }
-				50 = { planet_event = { id = infernals.3015 days = 5 } }
+				50 = { carrier_event = { id = infernals.3010 days = 5 } }
+				50 = { carrier_event = { id = infernals.3015 days = 5 } }
 			}
 		}
 	}
 	option = {
 		name = infernals.3000.c
 		hidden_effect = {
-			planet_event = { id = infernals.3020 days = 5 }
+			carrier_event = { id = infernals.3020 days = 5 }
 		}
 	}
 	option = {
 		name = infernals.3000.d
 		hidden_effect = {
-			planet_event = { id = infernals.3025 days = 5 }
+			carrier_event = { id = infernals.3025 days = 5 }
 		}
 	}
 }
 
 # A
-planet_event = {
+carrier_event = {
 	id = infernals.3005
 	title = infernals.3005.name
 	desc = infernals.3005.desc
@@ -4045,7 +4054,7 @@ planet_event = {
 }
 
 # B 1
-planet_event = {
+carrier_event = {
 	id = infernals.3010
 	title = infernals.3010.name
 	desc = infernals.3010.desc
@@ -4067,7 +4076,7 @@ planet_event = {
 }
 
 # B 2
-planet_event = {
+carrier_event = {
 	id = infernals.3015
 	title = infernals.3015.name
 	desc = infernals.3015.desc
@@ -4091,7 +4100,7 @@ planet_event = {
 }
 
 # C
-planet_event = {
+carrier_event = {
 	id = infernals.3020
 	title = infernals.3020.name
 	desc = infernals.3020.desc
@@ -4115,7 +4124,7 @@ planet_event = {
 }
 
 # D
-planet_event = {
+carrier_event = {
 	id = infernals.3025
 	title = infernals.3025.name
 	desc = infernals.3025.desc
@@ -4139,7 +4148,7 @@ planet_event = {
 }
 
 ### Lava Sports
-planet_event = {
+carrier_event = {
 	id = infernals.3030
 	title = infernals.3030.name
 	desc = infernals.3030.desc
@@ -4157,7 +4166,7 @@ planet_event = {
 			is_gestalt = no
 			NOT = { has_country_flag = triggered_lava_sports }
 		}
-		NOT = { has_planet_flag = colony_event }
+		NOT = { has_carrier_flag = colony_event }
 	}
 
 	immediate = {
@@ -4167,7 +4176,7 @@ planet_event = {
 	option = {
 		name = infernals.3030.a
 		hidden_effect = {
-			planet_event = { id = infernals.3035 days = 5 }
+			carrier_event = { id = infernals.3035 days = 5 }
 			owner = { set_country_flag = had_lava_sports }
 		}
 		owner = {
@@ -4177,7 +4186,7 @@ planet_event = {
 	option = {
 		name = infernals.3030.b
 		hidden_effect = {
-			planet_event = { id = infernals.3040 days = 5 }
+			carrier_event = { id = infernals.3040 days = 5 }
 		}
 		owner = {
 			give_specimen = { key = lava_surfboard }
@@ -4186,13 +4195,13 @@ planet_event = {
 	option = {
 		name = infernals.3030.c
 		hidden_effect = {
-			planet_event = { id = infernals.3045 days = 5 }
+			carrier_event = { id = infernals.3045 days = 5 }
 		}
 	}
 }
 
 # A
-planet_event = {
+carrier_event = {
 	id = infernals.3035
 	title = infernals.3035.name
 	desc = infernals.3035.desc
@@ -4212,7 +4221,7 @@ planet_event = {
 }
 
 # B
-planet_event = {
+carrier_event = {
 	id = infernals.3040
 	title = infernals.3040.name
 	desc = infernals.3040.desc
@@ -4232,7 +4241,7 @@ planet_event = {
 }
 
 # C
-planet_event = {
+carrier_event = {
 	id = infernals.3045
 	title = infernals.3045.name
 	desc = infernals.3045.desc
@@ -4410,7 +4419,7 @@ country_event = {
 			}
 			event_target:situation_red_giant_expansion@root = {
 				target.solar_system = {
-					every_system_colony = {
+					every_system_planet_colony = {
 						add_modifier = {
 							modifier = "red_giant_protect_mod"
 							days = -1
@@ -4442,7 +4451,7 @@ country_event = {
 			}
 			event_target:situation_red_giant_expansion@root = {
 				target.solar_system = {
-					every_system_colony = {
+					every_system_planet_colony = {
 						add_modifier = {
 							modifier = "red_giant_exploit_mod"
 							days = -1
@@ -5297,7 +5306,7 @@ situation_event = {
 		set_situation_approach = approach_stabilize_the_star4
 		set_situation_locked = yes
 		target = {
-			remove_planet_flag = has_megastructure #allow placing megastructures again
+			remove_carrier_flag = has_megastructure #allow placing megastructures again
 		}
 		owner = {
 			add_timeline_event = {
@@ -5993,7 +6002,7 @@ fleet_event = {
 
 # "Molten Core" Grand Archives Specimen. Triggers as random Volcanic Colony event
 # This = Planet
-planet_event = {
+carrier_event = {
 	id = infernals.3200
 	title = infernals.3200.name
 	desc = infernals.3200.desc
@@ -6010,7 +6019,7 @@ planet_event = {
 			is_country_type = default
 			NOT = { has_country_flag = triggered_molten_core }
 		}
-		NOT = { has_planet_flag = colony_event }
+		NOT = { has_carrier_flag = colony_event }
 	}
 
 	immediate = {
@@ -6042,7 +6051,7 @@ planet_event = {
 
 # Fire_Cult 5-year timer
 # Called by Terraforming to Volcanic on_planet_class_changed
-planet_event = {
+carrier_event = {
 	id = infernals.3215
 	hide_window = yes
 	is_triggered_only = yes
@@ -6065,7 +6074,7 @@ planet_event = {
 
 # Fire_Cult 10-year timer
 # Called by using Blazing Scourge Decision
-planet_event = {
+carrier_event = {
 	id = infernals.3220
 	hide_window = yes
 	is_triggered_only = yes
@@ -6081,7 +6090,7 @@ planet_event = {
 }
 
 # Removing the Blazing Scourge blockers var in case of a terraform
-planet_event = {
+carrier_event = {
 	id = infernals.3225
 	hide_window = yes
 	is_triggered_only = yes
@@ -6092,7 +6101,7 @@ planet_event = {
 }
 
 # Burning Heaven + Volcanic Empire achievements
-planet_event = {
+carrier_event = {
 	id = infernals.3230
 	hide_window = yes
 	is_triggered_only = yes

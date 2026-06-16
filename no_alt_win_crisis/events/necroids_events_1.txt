@@ -9,7 +9,7 @@
 namespace = necroids
 
 # Consumption event for necrophage
-planet_event = {
+carrier_event = {
 	id = necroids.1
 	hide_window = yes
 	is_triggered_only = yes
@@ -31,7 +31,7 @@ planet_event = {
 	}
 
 	immediate = {
-		set_timed_planet_flag = {
+		set_timed_carrier_flag = {
 			flag = necrophage_alert_timer
 			days = 2880
 		}
@@ -215,7 +215,7 @@ country_event = {
 }
 
 # AI help for getting secondary necrophage species on the planet
-planet_event = {
+carrier_event = {
 	id = necroids.3
 	is_triggered_only = yes
 	hide_window = yes
@@ -361,7 +361,7 @@ country_event = {
 					limit = {
 						is_colonizable = yes
 						is_colony = no
-						has_planet_flag = prescripted_ideal
+						has_carrier_flag = prescripted_ideal
 					}
 					generate_very_early_pre_ftls_on_planet = yes
 					set_name = random
@@ -385,7 +385,7 @@ country_event = {
 					limit = {
 						is_colonizable = yes
 						is_colony = no
-						has_planet_flag = prescripted_ideal
+						has_carrier_flag = prescripted_ideal
 					}
 					generate_very_early_pre_ftls_on_planet = yes
 					set_name = random
@@ -411,7 +411,7 @@ country_event = {
 # This = Planet scope
 # From = Country
 # FromFrom = Pop
-planet_event = {
+carrier_event = {
 	id = necroids.5
 	is_triggered_only = yes
 	hide_window = yes
@@ -429,125 +429,264 @@ planet_event = {
 	}
 
 	immediate = {
-		weighted_random_owned_pop_group = {
-			limit = {
-				is_same_species = owner_species
-			}
-			species = { save_event_target_as = necrophage_pop_species }
-		}
 		if = {
 			limit = {
-				exists = event_target:necrophage_pop_species
-			}
-			create_pop_group = {
-				species = event_target:necrophage_pop_species
-				size = 0
-				effect = {
-					save_event_target_as = last_created_pop_group
+				from = {
+					has_origin = origin_nomadic_purger
+					exists = overlord
 				}
 			}
-		}
-		else = {
-			create_pop_group = {
-				species = owner_species
-				size = 0
-				effect = {
-					save_event_target_as = last_created_pop_group
+			weighted_random_owned_pop_group = {
+				limit = {
+					is_same_species = owner_species
+				}
+				species = { save_event_target_as = necrophage_pop_species }
+			}
+			if = {
+				limit = {
+					exists = event_target:necrophage_pop_species
+				}
+				create_pop_group = {
+					species = event_target:necrophage_pop_species
+					size = 0
+					effect = {
+						save_event_target_as = last_created_pop_group
+					}
 				}
 			}
-		}
-		if = {
-			limit = {
-				owner = {
-					has_technology = tech_glandular_acclimation
-					NOT = { ideal_planet_class = root }
+			else = {
+				create_pop_group = {
+					species = owner_species
+					size = 0
+					effect = {
+						save_event_target_as = last_created_pop_group
+					}
+				}
+			}
+			if = {
+				limit = {
+					owner = {
+						has_technology = tech_glandular_acclimation
+						NOT = { ideal_planet_class = root }
+					}
+					event_target:last_created_pop_group = {
+						NOT = { ideal_planet_class = root }
+					}
+					NOR = {
+						uses_district_set = habitat
+						uses_district_set = ring_world
+						uses_district_set = city_world
+						uses_district_set = hive_world
+						uses_district_set = machine_world
+						is_planet_class = pc_gaia
+						is_planet_class = pc_relic
+					}
 				}
 				event_target:last_created_pop_group = {
-					NOT = { ideal_planet_class = root }
-				}
-				NOR = {
-					uses_district_set = habitat
-					uses_district_set = ring_world
-					uses_district_set = city_world
-					uses_district_set = hive_world
-					uses_district_set = machine_world
-					is_planet_class = pc_gaia
-					is_planet_class = pc_relic
+					modify_species = {
+						ideal_planet_class = root
+					}
 				}
 			}
 			event_target:last_created_pop_group = {
-				modify_species = {
-					ideal_planet_class = root
+				add_pop_amount = {
+					amount = root.local_pop_amount
 				}
 			}
-		}
-		event_target:last_created_pop_group = {
-			add_pop_amount = {
-				amount = root.local_pop_amount
-			}
-		}
-		while = {
-			count = value:per_100_local_pop_amount
 			if = {
 				limit = {
-					from = {
+					from.overlord = {
 						OR = {
 							has_active_tradition = tr_harmony_unity_of_self
 							has_active_tradition = tr_synchronicity_unity_of_mind
 						}
 					}
 				}
-				from = {
-					add_monthly_resource_mult = {
-						resource = unity
-						value = 1.5
-						min = 5
-						max = 100
+				while = {
+					count = value:per_100_local_pop_amount
+					from.overlord = {
+						add_monthly_resource_mult = {
+							resource = unity
+							value = 1.5
+							min = 5
+							max = 100
+						}
 					}
 				}
 			}
+			every_country = {
+				limit = {
+					has_communications = FROM.overlord
+					NOT = { is_country = FROM.overlord }
+					NOT = { is_same_species = FROMFROM }
+					NOT = { has_ai_personality_behaviour = purger }
+					NOT = { has_origin = origin_necrophage }
+					NOT = { has_ethic = ethic_gestalt_consciousness }
+					NOR = {
+						has_valid_civic = civic_death_cult
+						has_valid_civic = civic_death_cult_corporate
+					}
+					OR = {
+						is_country_type = default
+						has_ai_personality = awakened_fallen_empire_xenophile
+					}
+					has_intel_level = {
+						who = FROM.overlord
+						category = economy
+						level >= 2
+					}
+				}
+				while = {
+					count = root.local_pop_amount
+					add_opinion_modifier = { who = FROM.overlord modifier = opinion_necrophage }
+				}
+			}
+			every_country = {
+				limit = {
+					has_communications = FROM.overlord
+					NOT = { is_country = FROM.overlord }
+					is_same_species = FROMFROM.overlord
+					has_intel_level = {
+						who = FROM.overlord
+						category = economy
+						level >= 1 #lower because you'd hear from a friend of a friend
+					}
+				}
+				while = {
+					count = root.local_pop_amount
+					add_opinion_modifier = { who = FROM.overlord modifier = opinion_necrophage_our_species }
+				}
+			}
 		}
-		every_country = {
+		else_if = {
 			limit = {
-				has_communications = FROM
-				NOT = { is_country = FROM }
-				NOT = { is_same_species = FROMFROM }
-				NOT = { has_ai_personality_behaviour = purger }
-				NOT = { has_origin = origin_necrophage }
-				NOT = { has_ethic = ethic_gestalt_consciousness }
-				NOR = {
-					has_valid_civic = civic_death_cult
-					has_valid_civic = civic_death_cult_corporate
+				from? = {
+					NOT = {
+						has_origin = origin_nomadic_purger
+					}
 				}
-				OR = {
-					is_country_type = default
-					has_ai_personality = awakened_fallen_empire_xenophile
+			}
+			weighted_random_owned_pop_group = {
+				limit = {
+					is_same_species = owner_species
 				}
-				has_intel_level = {
-					who = FROM
-					category = economy
-					level >= 2
+				species = { save_event_target_as = necrophage_pop_species }
+			}
+
+			if = {
+				limit = {
+					exists = event_target:necrophage_pop_species
+				}
+				create_pop_group = {
+					species = event_target:necrophage_pop_species
+					size = 0
+					effect = {
+						save_event_target_as = last_created_pop_group
+					}
+				}
+			}
+			else = {
+				create_pop_group = {
+					species = owner_species
+					size = 0
+					effect = {
+						save_event_target_as = last_created_pop_group
+					}
+				}
+			}
+			if = {
+				limit = {
+					owner = {
+						has_technology = tech_glandular_acclimation
+						NOT = { ideal_planet_class = root }
+					}
+					event_target:last_created_pop_group = {
+						NOT = { ideal_planet_class = root }
+					}
+					NOR = {
+						uses_district_set = habitat
+						uses_district_set = ring_world
+						uses_district_set = city_world
+						uses_district_set = hive_world
+						uses_district_set = machine_world
+						is_planet_class = pc_gaia
+						is_planet_class = pc_relic
+					}
+				}
+				event_target:last_created_pop_group = {
+					modify_species = {
+						ideal_planet_class = root
+					}
+				}
+			}
+			event_target:last_created_pop_group = {
+				add_pop_amount = {
+					amount = root.local_pop_amount
 				}
 			}
 			while = {
-				count = root.local_pop_amount
-				add_opinion_modifier = { who = FROM modifier = opinion_necrophage }
-			}
-		}
-		every_country = {
-			limit = {
-				has_communications = FROM
-				NOT = { is_country = FROM }
-				is_same_species = FROMFROM
-				has_intel_level = {
-					who = FROM
-					category = economy
-					level >= 1 #lower because you'd hear from a friend of a friend
+				count = value:per_100_local_pop_amount
+				if = {
+					limit = {
+						from = {
+							OR = {
+								has_active_tradition = tr_harmony_unity_of_self
+								has_active_tradition = tr_synchronicity_unity_of_mind
+							}
+						}
+					}
+					from = {
+						add_monthly_resource_mult = {
+							resource = unity
+							value = 1.5
+							min = 5
+							max = 100
+						}
+					}
 				}
 			}
-			while = {
-				count = root.local_pop_amount
-				add_opinion_modifier = { who = FROM modifier = opinion_necrophage_our_species }
+			every_country = {
+				limit = {
+					has_communications = FROM
+					NOT = { is_country = FROM }
+					NOT = { is_same_species = FROMFROM }
+					NOT = { has_ai_personality_behaviour = purger }
+					NOT = { has_origin = origin_necrophage }
+					NOT = { has_ethic = ethic_gestalt_consciousness }
+					NOR = {
+						has_valid_civic = civic_death_cult
+						has_valid_civic = civic_death_cult_corporate
+					}
+					OR = {
+						is_country_type = default
+						has_ai_personality = awakened_fallen_empire_xenophile
+					}
+					has_intel_level = {
+						who = FROM
+						category = economy
+						level >= 2
+					}
+				}
+				while = {
+					count = root.local_pop_amount
+					add_opinion_modifier = { who = FROM modifier = opinion_necrophage }
+				}
+			}
+			every_country = {
+				limit = {
+					has_communications = FROM
+					NOT = { is_country = FROM }
+					is_same_species = FROMFROM
+					has_intel_level = {
+						who = FROM
+						category = economy
+						level >= 1 #lower because you'd hear from a friend of a friend
+					}
+				}
+				while = {
+					count = root.local_pop_amount
+					add_opinion_modifier = { who = FROM modifier = opinion_necrophage_our_species }
+				}
 			}
 		}
 	}
@@ -647,7 +786,7 @@ country_event = {
 #FromFrom = Former Owner
 #From = Country scope (new owner)
 #This = Planet scope
-planet_event = {
+carrier_event = {
 	id = necroids.10
 	hide_window = yes
 	is_triggered_only = yes
@@ -740,7 +879,7 @@ country_event = {
 # FromFrom = Pop group
 # local_pop_amount = variable of how many pops were purged
 # Mechromancy - CyberZombies
-planet_event = {
+carrier_event = {
 	id = necroids.25
 	is_triggered_only = yes
 	hide_window = yes
@@ -750,7 +889,15 @@ planet_event = {
 	trigger = {
 		from = {
 			is_machine_empire = yes
-			has_ascension_perk = ap_mechromancy
+			OR = {
+				has_ascension_perk = ap_mechromancy
+				AND = {
+					has_origin = origin_nomadic_purger
+					overlord? = {
+						has_ascension_perk = ap_mechromancy
+					}
+				}
+			}
 		}
 		exists = fromfrom #crisis.202 can remove the last pop
 		fromfrom = {
@@ -832,35 +979,78 @@ planet_event = {
 					}
 				}
 			}
-			create_pop_group = {
-				pop_group = fromfrom
-				species = event_target:zombie_species
-				size = local_pop_amount
-				effect = {
-					set_citizenship_type = {
-						country = root.owner
-						type = citizenship_full_machine
+			if = {
+				limit = {
+					from = {
+						has_origin = origin_nomadic_purger
+						exists = overlord
+					}
+				}
+				from.overlord.capital_scope = {
+					create_pop_group = {
+						pop_group = fromfrom
+						species = event_target:zombie_species
+						size = local_pop_amount
+						effect = {
+							set_citizenship_type = {
+								country = from.overlord
+								type = citizenship_full_machine
+							}
+						}
+					}
+					if = { # assimilator empire
+						limit = {
+							from.overlord = {
+								is_machine_empire = yes
+								has_organo_machine_interfacing_assimilator_synergy = yes
+							}
+						}
+						divide_variable = {
+							which = local_pop_amount
+							value = 5
+						}
+						round_variable_to_closest = {
+							which = local_pop_amount
+							value = 1
+						}
+						while = {
+							count = local_pop_amount
+							from.overlord = { generate_cyborg_treats = yes } # scripted effect
+						}
 					}
 				}
 			}
-			if = { # assimilator empire
-				limit = {
-					root.owner = {
-						is_machine_empire = yes
-						has_organo_machine_interfacing_assimilator_synergy = yes
+			else = {
+				create_pop_group = {
+					pop_group = fromfrom
+					species = event_target:zombie_species
+					size = local_pop_amount
+					effect = {
+						set_citizenship_type = {
+							country = root.owner
+							type = citizenship_full_machine
+						}
 					}
 				}
-				divide_variable = {
-					which = local_pop_amount
-					value = 5
-				}
-				round_variable_to_closest = {
-					which = local_pop_amount
-					value = 1
-				}
-				while = {
-					count = local_pop_amount
-					root.owner = { generate_cyborg_treats = yes } # scripted effect
+				if = { # assimilator empire
+					limit = {
+						root.owner = {
+							is_machine_empire = yes
+							has_organo_machine_interfacing_assimilator_synergy = yes
+						}
+					}
+					divide_variable = {
+						which = local_pop_amount
+						value = 5
+					}
+					round_variable_to_closest = {
+						which = local_pop_amount
+						value = 1
+					}
+					while = {
+						count = local_pop_amount
+						root.owner = { generate_cyborg_treats = yes } # scripted effect
+					}
 				}
 			}
 		}
