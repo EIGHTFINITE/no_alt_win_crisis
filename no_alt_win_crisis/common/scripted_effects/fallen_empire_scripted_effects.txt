@@ -75,23 +75,28 @@ fallen_empire_humiliate_effect = {
 		}
 
 		event_target:fallen_empire_humiliator = {
-			every_system_within_border = {
+			if = {
 				limit = {
-					event_target:fallen_empire_humiliated = {
-						OR = {
-							has_claim = prev
-							any_subject = { has_claim = prevprev }
+					is_nomadic = no
+				}
+				every_system_within_border = {
+					limit = {
+						root = {
+							OR = {
+								has_claim = prev
+								any_subject = { has_claim = prevprev }
+							}
 						}
 					}
-				}
-				event_target:fallen_empire_humiliated = {
-					if = {
-						limit = { has_claim = prev }
-						prev = { remove_claims = { who = event_target:fallen_empire_humiliated } }
-					}
-					every_subject = {
-						limit = { has_claim = prevprev }
-						prevprev = { remove_claims = { who = this } }
+					root = {
+						if = {
+							limit = { has_claim = prev }
+							prev = { remove_claims = { who = root } }
+						}
+						every_subject = {
+							limit = { has_claim = prevprev }
+							prevprev = { remove_claims = { who = this } }
+						}
 					}
 				}
 			}
@@ -236,8 +241,7 @@ create_fe_home_citadel = {
 
 		building = "target_uplink_computer"
 		building = "defense_grid"
-		building = "colossus_yards"
-		building = "titan_yards"
+		building = "capital_yards"
 
 		effect = {
 			while = {
@@ -473,7 +477,7 @@ create_fe_servant_robots = {
 }
 
 create_fe_fringe_colony = {
-	set_planet_flag = fallen_empire_world
+	set_carrier_flag = fallen_empire_world
 	clear_blockers = yes
 	prevent_anomaly = yes
 	set_owner = ROOT
@@ -523,7 +527,7 @@ create_fe_fringe_colony = {
 }
 
 create_fe_spiritualist_fringe_colony = {
-	set_planet_flag = fallen_empire_world
+	set_carrier_flag = fallen_empire_world
 	clear_blockers = yes
 	prevent_anomaly = yes
 	set_owner = ROOT
@@ -1346,68 +1350,6 @@ create_fallen_empire_reinforcement_fleet = {
 	}
 }
 
-create_fallen_empire_fleet = {
-	owner = {
-		create_leader = {
-			class = commander
-			species = owner_main_species
-			name = random
-			leader_age_min = 25
-			leader_age_max = 45
-		}
-		last_created_leader = {
-			add_trait = {
-				trait = subclass_commander_admiral
-			}
-			add_skill = 9
-		}
-	}
-	create_fleet = {
-		effect = {
-			set_owner = prev.owner
-			while = {
-				count = 4
-				create_fallen_empire_large_ship = yes
-			}
-			while = {
-				count = 9
-				create_fallen_empire_small_ship = yes
-			}
-			random_list = {
-				25 = {
-					set_location = {
-						target = prev
-						distance = 30
-						angle = random
-					}
-				}
-				25 = {
-					set_location = {
-						target = prev
-						distance = 45
-						angle = random
-					}
-				}
-				25 = {
-					set_location = {
-						target = prev
-						distance = 60
-						angle = random
-					}
-				}
-				25 = {
-					set_location = {
-						target = prev
-						distance = 75
-						angle = random
-					}
-				}
-			}
-		}
-	}
-	last_created_fleet = { assign_leader = last_created_leader }
-}
-
 create_fallen_empire_titan_fleet = {
 	owner = {
 		create_leader = {
@@ -1438,19 +1380,248 @@ create_fallen_empire_titan_fleet = {
 	last_created_fleet = { assign_leader = last_created_leader }
 }
 
+# Anchor saved as event target because prev inside create_random_fleet's effect resolves to the country, not the calling planet.
+create_fallen_empire_starting_battle_fleet = {
+	save_event_target_as = fe_starting_navy_anchor
+	owner = {
+		create_leader = {
+			class = commander
+			species = owner_main_species
+			name = random
+			leader_age_min = 25
+			leader_age_max = 45
+		}
+		last_created_leader = {
+			add_trait = {
+				trait = subclass_commander_admiral
+			}
+			add_skill = 9
+		}
+		if = {
+			limit = {
+				is_machine_empire = yes
+			}
+			create_random_fleet = {
+				size = value:fe_starting_fleet_size
+				ship_designs = {
+					{ design = NAME_Alpha weight = 0.1 max = 1 }
+					{ design = NAME_Beta weight = 1 }
+					{ design = NAME_Gamma weight = 4 }
+				}
+				effect = {
+					random_list = {
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 30 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 45 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 60 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 75 angle = random } }
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				is_fanatic_materialist = yes
+			}
+			create_random_fleet = {
+				size = value:fe_starting_fleet_size
+				ship_designs = {
+					{ design = NAME_Savant weight = 0.1 max = 1 }
+					{ design = NAME_Scholar weight = 1 }
+					{ design = NAME_Sage weight = 4 }
+				}
+				effect = {
+					random_list = {
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 30 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 45 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 60 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 75 angle = random } }
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				is_fanatic_spiritualist = yes
+			}
+			create_random_fleet = {
+				size = value:fe_starting_fleet_size
+				ship_designs = {
+					{ design = NAME_Eternal weight = 0.1 max = 1 }
+					{ design = NAME_Avatar weight = 1 }
+					{ design = NAME_Zealot weight = 4 }
+				}
+				effect = {
+					random_list = {
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 30 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 45 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 60 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 75 angle = random } }
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					has_ethic = ethic_fanatic_xenophobe
+					has_ethic = ethic_fanatic_militarist
+				}
+			}
+			create_random_fleet = {
+				size = value:fe_starting_fleet_size
+				ship_designs = {
+					{ design = NAME_Imperium weight = 0.1 max = 1 }
+					{ design = NAME_Supremacy weight = 1 }
+					{ design = NAME_Glory weight = 4 }
+				}
+				effect = {
+					random_list = {
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 30 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 45 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 60 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 75 angle = random } }
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				is_fanatic_xenophile = yes
+			}
+			create_random_fleet = {
+				size = value:fe_starting_fleet_size
+				ship_designs = {
+					{ design = NAME_Keeper weight = 0.1 max = 1 }
+					{ design = NAME_Custodian weight = 1 }
+					{ design = NAME_Overseer weight = 4 }
+				}
+				effect = {
+					random_list = {
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 30 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 45 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 60 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 75 angle = random } }
+					}
+				}
+			}
+		}
+		else_if = {
+			# Unified awakened hive draws from all three fragments' ships, plus the Stinger as its titan equivalent.
+			# Gated on awakening_first_fleet_done so the first awakening fleet still uses the original fragment's ships.
+			limit = {
+				is_country_type = awakened_fallen_empire
+				has_country_flag = awakening_first_fleet_done
+				OR = {
+					has_country_flag = fallen_empire_hive_war
+					has_country_flag = fallen_empire_hive_growth
+					has_country_flag = fallen_empire_hive_control
+				}
+			}
+			create_random_fleet = {
+				size = value:fe_starting_fleet_size
+				ship_designs = {
+					{ design = NAME_HIVE_FE_Large_Stinger weight = 0.1 max = 1 }
+					{ design = NAME_HIVE_FE_Large_Mauler_Swarm weight = 4 }
+					{ design = NAME_HIVE_FE_Large_Mauler_Picket weight = 1 }
+					{ design = NAME_HIVE_FE_Small_Weaver_War weight = 4 }
+					{ design = NAME_HIVE_FE_Large_Harbinger weight = 1 }
+					{ design = NAME_HIVE_FE_Small_Weaver_Growth weight = 4 }
+					{ design = NAME_HIVE_FE_Large_Weaver_Control weight = 1 }
+					{ design = NAME_HIVE_FE_Small_Weaver_Control weight = 4 }
+				}
+				effect = {
+					random_list = {
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 30 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 45 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 60 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 75 angle = random } }
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_country_flag = fallen_empire_hive_war
+			}
+			create_random_fleet = {
+				size = value:fe_starting_fleet_size
+				ship_designs = {
+					{ design = NAME_HIVE_FE_Large_Mauler_Swarm weight = 4 }
+					{ design = NAME_HIVE_FE_Large_Mauler_Picket weight = 1 }
+					{ design = NAME_HIVE_FE_Small_Weaver_War weight = 4 }
+				}
+				effect = {
+					random_list = {
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 30 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 45 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 60 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 75 angle = random } }
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_country_flag = fallen_empire_hive_growth
+			}
+			create_random_fleet = {
+				size = value:fe_starting_fleet_size
+				ship_designs = {
+					{ design = NAME_HIVE_FE_Large_Harbinger weight = 1 }
+					{ design = NAME_HIVE_FE_Small_Weaver_Growth weight = 4 }
+				}
+				effect = {
+					random_list = {
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 30 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 45 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 60 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 75 angle = random } }
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_country_flag = fallen_empire_hive_control
+			}
+			create_random_fleet = {
+				size = value:fe_starting_fleet_size
+				ship_designs = {
+					{ design = NAME_HIVE_FE_Large_Weaver_Control weight = 1 }
+					{ design = NAME_HIVE_FE_Small_Weaver_Control weight = 4 }
+				}
+				effect = {
+					random_list = {
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 30 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 45 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 60 angle = random } }
+						25 = { set_location = { target = event_target:fe_starting_navy_anchor distance = 75 angle = random } }
+					}
+				}
+			}
+		}
+	}
+	last_created_fleet = {
+		assign_leader = last_created_leader
+	}
+}
+
 create_fallen_empire_starting_navy = {
-	create_fallen_empire_fleet = yes
-	create_fallen_empire_fleet = yes
+	create_fallen_empire_starting_battle_fleet = yes
 	random = {
-		chance = 33
-		create_fallen_empire_fleet = yes
+		chance = value:fe_starting_second_fleet_chance
+		create_fallen_empire_starting_battle_fleet = yes
+	}
+	random = {
+		chance = value:fe_starting_third_fleet_chance
+		create_fallen_empire_starting_battle_fleet = yes
 	}
 	if = {
 		limit = {
 			host_has_dlc = "Apocalypse"
 		}
 		random = {
-			chance = 10
+			chance = value:fe_starting_first_colossus_chance
 			create_fleet = {
 				effect = {
 					set_owner = prev.owner
@@ -1463,10 +1634,20 @@ create_fallen_empire_starting_navy = {
 				}
 			}
 		}
-	}
-	random = {
-		chance = 25
-		create_fallen_empire_titan_fleet = yes
+		random = {
+			chance = value:fe_starting_second_colossus_chance
+			create_fleet = {
+				effect = {
+					set_owner = prev.owner
+					create_fallen_empire_colossus = yes
+					set_location = {
+						target = prev
+						distance = 45
+						angle = random
+					}
+				}
+			}
+		}
 	}
 	create_fleet = {
 		effect = {
@@ -1504,54 +1685,49 @@ create_fallen_empire_starting_navy = {
 }
 
 add_awakened_fallen_empire_fleet = {
-	country_event = { id = fallen_empires.13 }
+	# Reactive scaling: target the strongest playable empire's fleet power, scaled by difficulty + slider.
+	# For hive awakenings, awakening_absorbed_power was captured pre-integration in fallen_empires_awakening.10
+	# and is subtracted from the target since root.fleet_power's cache doesn't refresh mid-immediate.
+	ordered_playable_country = {
+		order_by = trigger:fleet_power
+		position = 0
+		save_event_target_as = awakening_strongest_empire
+	}
+	set_variable = {
+		which = awakening_target_power
+		value = event_target:awakening_strongest_empire.trigger:fleet_power
+	}
+	multiply_variable = {
+		which = awakening_target_power
+		value = value:awakening_target_multiplier
+	}
 	if = {
+		limit = { is_variable_set = awakening_absorbed_power }
+		subtract_variable = {
+			which = awakening_target_power
+			value = root.awakening_absorbed_power
+		}
+	}
+
+	country_event = { id = fallen_empires.13 }
+	set_country_flag = awakening_first_fleet_done
+	while = {
+		count = 10
 		limit = {
-			any_country = {
-				is_country_type = default
-				OR = {
-					fleet_power > 120000
-					AND = {
-						has_federation = yes
-						federation = {
-							fleet_power > 150000
-						}
-					}
-					AND = {
-						fleet_power > 75000
-						any_country = {
-							has_defensive_pact = prev
-							fleet_power > 75000
-						}
-					}
-				}
+			check_variable_arithmetic = {
+				which = trigger:fleet_power
+				subtract = root.awakening_target_power
+				value < 0
 			}
 		}
 		country_event = { id = fallen_empires.13 }
 	}
+
+	remove_country_flag = awakening_first_fleet_done
+	clear_variable = awakening_target_power
 	if = {
-		limit = {
-			any_country = {
-				is_country_type = default
-				OR = {
-					fleet_power > 200000
-					AND = {
-						has_federation = yes
-						federation = {
-							fleet_power > 200000
-						}
-					}
-					AND = {
-						fleet_power > 120000
-						any_country = {
-							has_defensive_pact = prev
-							fleet_power > 120000
-						}
-					}
-				}
-			}
-		}
-		country_event = { id = fallen_empires.13 }
+		limit = { is_variable_set = awakening_absorbed_power }
+		clear_variable = awakening_absorbed_power
 	}
 }
 
@@ -1995,7 +2171,7 @@ create_hive_fe_federation = {
 awaken_strongest_fe_fragment = {
 	event_target:strongest_fragment = {
 		country_event = { id = fallen_empires_awakening.10 }
-		save_event_Target_as = first_awakener
+		save_event_target_as = first_awakener
 	}
 }
 
@@ -2122,9 +2298,11 @@ generate_boring_species_choices = {
 		0 = {
 			modifier = {
 				add = 30
-				any_trait_available_for_species = {
-					trait_has_all_tags = { reptilian }
-					NOT = { trait_has_any_tag = { special } }
+				event_target:boring_species = {
+					any_trait_available_for_species = {
+						trait_has_all_tags = { reptilian }
+						NOT = { trait_has_any_tag = { special } }
+					}
 				}
 				NOT = { has_country_flag = boring_reptilian_choice }
 			}
@@ -2133,9 +2311,11 @@ generate_boring_species_choices = {
 		0 = {
 			modifier = {
 				add = 30
-				any_trait_available_for_species = {
-					trait_has_all_tags = { avian }
-					NOT = { trait_has_any_tag = { special } }
+				event_target:boring_species = {
+					any_trait_available_for_species = {
+						trait_has_all_tags = { avian }
+						NOT = { trait_has_any_tag = { special } }
+					}
 				}
 				NOT = { has_country_flag = boring_avian_choice }
 			}
@@ -2144,9 +2324,11 @@ generate_boring_species_choices = {
 		0 = {
 			modifier = {
 				add = 30
-				any_trait_available_for_species = {
-					trait_has_all_tags = { arthropoid }
-					NOT = { trait_has_any_tag = { special } }
+				event_target:boring_species = {
+					any_trait_available_for_species = {
+						trait_has_all_tags = { arthropoid }
+						NOT = { trait_has_any_tag = { special } }
+					}
 				}
 				NOT = { has_country_flag = boring_arthropoid_choice }
 			}
@@ -2155,9 +2337,11 @@ generate_boring_species_choices = {
 		0 = {
 			modifier = {
 				add = 30
-				any_trait_available_for_species = {
-					trait_has_all_tags = { molluscoid }
-					NOT = { trait_has_any_tag = { special } }
+				event_target:boring_species = {
+					any_trait_available_for_species = {
+						trait_has_all_tags = { molluscoid }
+						NOT = { trait_has_any_tag = { special } }
+					}
 				}
 				NOT = { has_country_flag = boring_molluscoid_choice }
 			}
@@ -2166,9 +2350,11 @@ generate_boring_species_choices = {
 		0 = {
 			modifier = {
 				add = 30
-				any_trait_available_for_species = {
-					trait_has_all_tags = { fungoid }
-					NOT = { trait_has_any_tag = { special } }
+				event_target:boring_species = {
+					any_trait_available_for_species = {
+						trait_has_all_tags = { fungoid }
+						NOT = { trait_has_any_tag = { special } }
+					}
 				}
 				NOT = { has_country_flag = boring_fungoid_choice }
 			}
@@ -2177,9 +2363,11 @@ generate_boring_species_choices = {
 		0 = {
 			modifier = {
 				add = 30
-				any_trait_available_for_species = {
-					trait_has_all_tags = { plantoid }
-					NOT = { trait_has_any_tag = { special } }
+				event_target:boring_species = {
+					any_trait_available_for_species = {
+						trait_has_all_tags = { plantoid }
+						NOT = { trait_has_any_tag = { special } }
+					}
 				}
 				NOT = { has_country_flag = boring_plantoid_choice }
 			}
@@ -2188,9 +2376,11 @@ generate_boring_species_choices = {
 		0 = {
 			modifier = {
 				add = 30
-				any_trait_available_for_species = {
-					trait_has_all_tags = { lithoid }
-					NOT = { trait_has_any_tag = { special } }
+				event_target:boring_species = {
+					any_trait_available_for_species = {
+						trait_has_all_tags = { lithoid }
+						NOT = { trait_has_any_tag = { special } }
+					}
 				}
 				NOT = { has_country_flag = boring_lithoid_choice }
 			}
@@ -2255,9 +2445,11 @@ generate_boring_species_choices = {
 		0 = {
 			modifier = {
 				add = 30
-				any_trait_available_for_species = {
-					trait_has_all_tags = { psionic }
-					NOT = { trait_has_any_tag = { special } }
+				event_target:boring_species = {
+					any_trait_available_for_species = {
+						trait_has_all_tags = { psionic }
+						NOT = { trait_has_any_tag = { special } }
+					}
 				}
 				NOT = { has_country_flag = boring_psionic_choice }
 			}
@@ -2436,7 +2628,7 @@ grant_fe_building = {
 	create_message = {
 		type = FALLEN_EMPIRE_BUILDING_GAINED
 		localization = MESSAGE_FALLEN_EMPIRE_BUILDING_GAINED
-		target = root
+		target = capital_scope
 		days = 30
 	}
 }
