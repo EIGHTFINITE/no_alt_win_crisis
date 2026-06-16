@@ -18,10 +18,10 @@ tb_others_group = {
 		resources = {
 			minor_artifacts
 			astral_threads
-			menace
-			advanced_logic
-			feral_insight
 			entropy_crystals
+			feral_insight
+			advanced_logic
+			menace
 		}
 		onclick = discoveries
 		show_only_if_owned = yes
