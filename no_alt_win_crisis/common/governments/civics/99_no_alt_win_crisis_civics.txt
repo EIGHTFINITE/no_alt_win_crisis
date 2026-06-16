@@ -2,14 +2,9 @@ civic_fanatic_purifiers = {
 	modification = no
 	potential = {
 		ethics = { NOT = { value = ethic_gestalt_consciousness } }
-		OR = {
 		authority = { NOT = { value = auth_corporate } }
-			civics = { value = civic_crisis_fanatic_purifiers }
-		}
 	}
 	possible = {
-		OR = {
-			AND = {
 		ethics = {
 			value = ethic_fanatic_xenophobe
 			OR = {
@@ -53,12 +48,6 @@ civic_fanatic_purifiers = {
 				value = origin_broken_shackles
 			}
 		}
-			}
-			AND = {
-				civics = { value = civic_fanatic_purifiers }
-				civics = { value = civic_crisis_fanatic_purifiers }
-			}
-		}
 	}
 	random_weight = {
 		base = 1000
@@ -82,10 +71,7 @@ civic_fanatic_purifiers = {
 	swap_type = {
 		trigger = {
 			is_scope_valid = yes
-			OR = {
 			has_country_flag = dark_forest_achievement
-				has_country_flag = crisis_civic_fanatic_purifiers
-			}
 		}
 		description = "civic_tooltip_fanatic_purifiers_effects"
 		modifier = {
@@ -104,14 +90,9 @@ civic_scorched_earth = {
 	description = "civic_scorched_earth_effects"
 	potential = {
 		ethics = { NOT = { value = ethic_gestalt_consciousness } }
-		OR = {
 		authority = { NOT = { value = auth_corporate } }
-			civics = { value = civic_crisis_scorched_earth }
-		}
 	}
 	possible = {
-		OR = {
-			AND = {
 		species_class = { value = INF }
 		ethics = {
 			OR = {
@@ -136,6 +117,7 @@ civic_scorched_earth = {
 				value = civic_secret_societies
 				value = civic_diplomatic_corps
 				value = civic_memorialist
+				value = civic_void_reavers
 			}
 			NOR = {
 				text = civic_tooltip_not_guardian
@@ -167,12 +149,6 @@ civic_scorched_earth = {
 				value = origin_scion
 			}
 		}
-			}
-			AND = {
-				civics = { value = civic_scorched_earth }
-				civics = { value = civic_crisis_scorched_earth }
-			}
-		}
 	}
 	modification = no
 	random_weight = {
@@ -198,15 +174,4 @@ civic_scorched_earth = {
 	added_climate_labels = { TYPE_HEADER_04 }
 	removed_planet_types = { pc_arctic pc_alpine pc_tundra }
 	added_planet_types = { pc_volcanic }
-
-	swap_type = {
-		trigger = {
-			is_scope_valid = yes
-			has_country_flag = crisis_civic_scorched_earth
-		}
-		description = "civic_scorched_earth_effects"
-		modifier = {
-			country_government_civic_points_add = 1
-		}
-	}
 }
