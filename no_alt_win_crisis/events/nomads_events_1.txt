@@ -947,7 +947,7 @@ ship_event = {
 	trigger = {
 		owner? = {
 			is_nomadic = yes
-			has_valid_civic = civic_star_seekers
+			is_star_seeker_empire = yes
 		}
 	}
 	immediate = {
@@ -2003,6 +2003,9 @@ ship_event = {
 			is_nomadic = yes
 			has_country_flag = checklist_decipher_signal
 		}
+		from.owner? = {
+			is_same_value = event_target:comms_signal_system@owner
+		}
 	}
 
 	immediate = {
@@ -2013,6 +2016,7 @@ ship_event = {
 				amount = 1
 			}
 		}
+		clear_global_event_target = event_target:comms_signal_system@from.owner
 	}
 }
 
@@ -7845,6 +7849,9 @@ country_event = {
 				trait = leader_trait_nomadic_caregiver
 				consume_selection = yes
 			}
+			give_trait_no_notify_ignore_autocracy_restriction = {
+				TRAIT = leader_trait_synthetic
+			}
 			set_age = 35
 		}
 	}
@@ -9836,9 +9843,12 @@ country_event = {
 							}
 						}
 						root = {
-							issue_contract = {
-								contract = contract_sightseeing_tour
-								location = prev
+							if = {
+								limit = { exists = prev.solar_system }
+								issue_contract = {
+									contract = contract_sightseeing_tour
+									location = prev
+								}
 							}
 						}
 					}
@@ -9902,9 +9912,12 @@ country_event = {
 							}
 						}
 					}
-					issue_contract = {
-						contract = contract_join_war
-						location = capital_scope
+					if = {
+						limit = { exists = capital_scope }
+						issue_contract = {
+							contract = contract_join_war
+							location = capital_scope
+						}
 					}
 				}
 				50 = { # Colony Startup
@@ -11754,6 +11767,45 @@ country_event = {
 	}
 }
 
+# Total wars only end in status quo, so the raid war goal's ark-seizing surrender path never runs.
+# on_status_quo: Root = Actor, From = Recipient, FromFrom = Main Attacker, FromFromFrom = Main Defender, FromFromFromFrom = War
+country_event = {
+	id = nomads.3105
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		fromfromfromfrom = {
+			is_total_war = yes
+			any_war_participant = {
+				is_nomadic = yes
+				any_owned_fleet = {
+					is_arkship_fleet = yes
+					NOT = { is_controlled_by = owner }
+				}
+			}
+		}
+	}
+
+	immediate = {
+		# Resolve the on_status_quo scope chain (see header) once into readable named targets.
+		fromfrom = { save_event_target_as = total_war_main_attacker }
+		fromfromfrom = { save_event_target_as = total_war_main_defender }
+		fromfromfromfrom = { save_event_target_as = total_war }
+		event_target:total_war = {
+			# Defeated nomads forfeit their occupied arkships to the opposing war leader.
+			every_defender = {
+				limit = { is_nomadic = yes }
+				total_war_seize_occupied_arks_effect = { WINNER = event_target:total_war_main_attacker }
+			}
+			every_attacker = {
+				limit = { is_nomadic = yes }
+				total_war_seize_occupied_arks_effect = { WINNER = event_target:total_war_main_defender }
+			}
+		}
+	}
+}
+
 ##############################
 ### Arkships Functionality ###
 ##############################
@@ -12227,6 +12279,7 @@ carrier_event = {
 					counter = contract_progress_counter
 					amount = 1
 				}
+				set_country_flag = successful_stellar_ignition@root.solar_system
 			}
 		}
 	}
@@ -12689,30 +12742,6 @@ country_event = {
 		}
 	}
 
-	after = {
-		if = {
-			limit = {
-				has_country_flag = embarking_from_doomsday
-			}
-			remove_country_flag = embarking_from_doomsday
-			if = {
-				limit = { has_ethic = ethic_gestalt_consciousness }
-				capital_scope = {
-					add_modifier = {
-						modifier = doomsday_first_arkship_gestalt
-					}
-				}
-			}
-			else = {
-				capital_scope = {
-					add_modifier = {
-						modifier = doomsday_first_arkship
-					}
-				}
-			}
-		}
-	}
-
 	# We are embarking as military.
 	option = {
 		name = nomads.4710.a.military
@@ -12741,10 +12770,12 @@ country_event = {
 				create_embarking_subject_country_effect = {
 					PLAYER_COUNTRY = event_target:player_country
 				}
+				last_created_country? = {
+					save_event_target_as = subject_country
+				}
 				convert_starbases_into_waystation_effect = {
 					PLAYER_COUNTRY = event_target:player_country
 					EMBARKING_COUNTRY = event_target:player_country
-					SUBJECT = last_created_country
 				}
 				every_owned_colony = {
 					limit = {
@@ -12817,10 +12848,12 @@ country_event = {
 				create_embarking_subject_country_effect = {
 					PLAYER_COUNTRY = event_target:player_country
 				}
+				last_created_country? = {
+					save_event_target_as = subject_country
+				}
 				convert_starbases_into_waystation_effect = {
 					PLAYER_COUNTRY = event_target:player_country
 					EMBARKING_COUNTRY = event_target:player_country
-					SUBJECT = last_created_country
 				}
 				every_owned_colony = {
 					limit = {
@@ -12893,10 +12926,12 @@ country_event = {
 				create_embarking_subject_country_effect = {
 					PLAYER_COUNTRY = event_target:player_country
 				}
+				last_created_country? = {
+					save_event_target_as = subject_country
+				}
 				convert_starbases_into_waystation_effect = {
 					PLAYER_COUNTRY = event_target:player_country
 					EMBARKING_COUNTRY = event_target:player_country
-					SUBJECT = last_created_country
 				}
 				every_owned_colony = {
 					limit = {
@@ -12980,10 +13015,12 @@ country_event = {
 				set_origin_effect = { SOURCE_COUNTRY = event_target:player_country }
 				give_embarking_empire_logistic_ship = { EMBARKING_PLANET = from }
 			}
+			last_created_country? = {
+				save_event_target_as = subject_country
+			}
 			convert_starbases_into_waystation_effect = {
 				PLAYER_COUNTRY = event_target:player_country
-				EMBARKING_COUNTRY = last_created_country
-				SUBJECT = last_created_country
+				EMBARKING_COUNTRY = event_target:subject_country
 			}
 		}
 		custom_tooltip = embark_create_subject
@@ -13005,6 +13042,27 @@ country_event = {
 				}
 			}
 		}
+		if = {
+			limit = {
+				has_country_flag = embarking_from_doomsday
+			}
+			remove_country_flag = embarking_from_doomsday
+			if = {
+				limit = { has_ethic = ethic_gestalt_consciousness }
+				capital_scope = {
+					add_modifier = {
+						modifier = doomsday_first_arkship_gestalt
+					}
+				}
+			}
+			else = {
+				capital_scope = {
+					add_modifier = {
+						modifier = doomsday_first_arkship
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -13021,6 +13079,9 @@ ship_event = { # Nomad Exploration Rewards
 		owner = {
 			is_nomadic = yes
 			has_ascension_perk = ap_wanderlust
+			NOT = {
+				has_country_flag = nomad_exploration_complete
+			}
 		}
 		is_arkship_ship = yes
 		from = {
@@ -14175,25 +14236,23 @@ carrier_event = {
 	trigger = {
 		NOT = { has_carrier_flag = recently_plundered }
 		has_orbital_bombardment_stance = plundering
+		planet_devastation <= 70
 	}
 
 	immediate = {
+		log = "booty plundered"
 		set_timed_carrier_flag = {
 			flag = recently_plundered
 			days = 30
 		}
 		random_list = {
-			7.5 = { #No Booty
+			2.5 = { #No Booty
 				#  Increased by armies on the planet
 				modifier = {
 					factor = trigger:num_armies
 				}
 			}
 			50 = { #Steal 40% of a month of prod
-				modifier = {
-					factor = 0
-					planet_devastation <= 70
-				}
 				modifier = {
 					factor = 1.1
 					any_fleet_in_orbit = {
@@ -14258,59 +14317,15 @@ starbase_event = {
 			flag = piracy_collected
 			days = 29
 		}
-		#if there is still a colony, silently steal 1.5% of its production
 		if = {
-			limit = {
-				solar_system = {
-					any_system_planet = {
-						is_colony = yes
-					}
-				}
-			}
+			limit = { root.fleet = { is_cloaked = no } }
 			solar_system = {
 				every_system_planet = {
-					limit = {
-						is_colony = yes
-					}
-					if = { #if the pirate empire has a stronghold somewhere, make it 3%
-						limit = {
-							root.owner = {
-								any_owned_fleet = {
-									is_waystation_ship = yes
-									starbase = {
-										has_starbase_module = waystation_reaver_stronghold
-									}
-								}
-							}
-						}
-						steal_planet_output = {
-							planet = this
+					limit = { is_colony = yes }
+					owner = {
+						add_opinion_modifier = {
 							who = root.owner
-							resource = all
-							percentage = 0.03
-							mode = steal
-							notification_mode = none
-						}
-					}
-					else = { #otherwise, skim 1.5%
-						steal_planet_output = {
-							planet = this
-							who = root.owner
-							resource = all
-							percentage = 0.015
-							mode = steal
-							notification_mode = none
-						}
-					}
-					if = {
-						limit = {
-							root.fleet = { is_cloaked = no }
-						}
-						owner = {
-							add_opinion_modifier = {
-								who = root.owner
-								modifier = opinion_waystation_piracy
-							}
+							modifier = opinion_waystation_piracy
 						}
 					}
 				}
@@ -16108,28 +16123,6 @@ system_event = {
 	}
 }
 
-# Destroy Dyson Gun impact ambient objects after delay
-# THIS = Target System
-system_event = {
-	id = nomads.8005
-	hide_window = yes
-
-	is_triggered_only = yes
-
-	immediate = {
-		every_system_ambient_object = {
-			limit = {
-				OR = {
-					is_ambient_object_type = dyson_gun_stage_1_impact
-					is_ambient_object_type = dyson_gun_stage_2_impact
-					is_ambient_object_type = dyson_gun_stage_3_impact
-				}
-			}
-			destroy_ambient_object = this
-		}
-	}
-}
-
 # === Stellar Cannon crisis responses ===
 # These fire on the empire that fired the Stellar Cannon (ROOT), from dyson_gun_firing.
 
@@ -16276,7 +16269,11 @@ ship_event = {
 		from = {
 			owner = {
 				any_war = {
-					any_defender = { is_same_value = root.owner }
+					# Symmetric raid: either side may disable the other side's waystations
+					OR = {
+						any_defender = { is_same_value = root.owner }
+						any_attacker = { is_same_value = root.owner }
+					}
 					OR = {
 						using_war_goal = {
 							type = wg_nomad_raid
@@ -16597,68 +16594,6 @@ country_event = {
 	}
 }
 
-# nomads.8035 - Tribute Vault: monthly tribute collection from subject colonies in system
-starbase_event = {
-	id = nomads.8035
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		exists = root
-		solar_system = {
-			any_fleet_in_system = {
-				is_waystation_ship = yes
-				starbase = {
-					has_starbase_module = waystation_treasure_vault
-				}
-			}
-		}
-		NOT = { has_starbase_flag = tribute_collected }
-		solar_system = {
-			any_system_planet = {
-				is_colony = yes
-				owner = {
-					has_overlord = root.owner
-					is_primitive = no
-				}
-			}
-		}
-	}
-
-	immediate = {
-		set_timed_starbase_flag = {
-			flag = tribute_collected
-			days = 29
-		}
-		solar_system = {
-			every_system_planet = {
-				limit = {
-					is_colony = yes
-					owner? = {
-						has_overlord = root.owner
-						is_primitive = no
-					}
-				}
-				steal_planet_output = {
-					planet = this
-					who = root.ship
-					resource = basic
-					resource = advanced
-					resource = strategic
-					percentage = value:tribute_vault_percentage
-					notification_mode = none
-				}
-			}
-		}
-	}
-
-	after = {
-		starbase_event = {
-			id = nomads.8035
-			days = 30
-		}
-	}
-}
 
 # nomads.8040 - Tribute Vault: clean up stale loyalty modifier for former subjects
 country_event = {

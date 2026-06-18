@@ -13813,19 +13813,46 @@ country_event = {
 				event_chain = "the_synth_queen_history_chain"
 			}
 			set_country_flag = apostate_site_spawned
-			random_system_within_border = {
+			if = {
 				limit = {
-					any_system_planet = {
-						uninhabitable_regular_planet = yes
-						NOT = { exists = archaeological_site }
+					is_nomadic = yes
+				}
+				random_owned_fleet = {
+					limit = {
+						is_arkship_fleet = yes
+						solar_system = {
+							any_system_planet = {
+								uninhabitable_regular_planet = yes
+								NOT = { exists = archaeological_site }
+							}
+						}
+					}
+					solar_system = {
+						random_system_planet = {
+							limit = {
+								uninhabitable_regular_planet = yes
+								NOT = { exists = archaeological_site }
+							}
+							save_event_target_as = apostate_site_planet
+						}
 					}
 				}
-				random_system_planet = {
+			}
+			else = {
+				random_system_within_border = {
 					limit = {
-						uninhabitable_regular_planet = yes
-						NOT = { exists = archaeological_site }
+						any_system_planet = {
+							uninhabitable_regular_planet = yes
+							NOT = { exists = archaeological_site }
+						}
 					}
-					save_event_target_as = apostate_site_planet
+					random_system_planet = {
+						limit = {
+							uninhabitable_regular_planet = yes
+							NOT = { exists = archaeological_site }
+						}
+						save_event_target_as = apostate_site_planet
+					}
 				}
 			}
 		}

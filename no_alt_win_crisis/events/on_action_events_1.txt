@@ -7945,85 +7945,26 @@ ship_event = {
 		}
 		owner = {
 			OR = {
-				AND = {
-					is_nomadic = no
-					root.from = {
-						has_resource = {
-							amount > 0
-							type = volatile_motes
-						}
-					}
-					NOT = {
-						has_country_flag = volatile_motes_found
-					}
+				has_resource_for_discovery = {
+					RESOURCE = volatile_motes
 				}
-				AND = {
-					is_nomadic = no
-					root.from = {
-						has_resource = {
-							amount > 0
-							type = exotic_gases
-						}
-					}
-					NOT = {
-						has_country_flag = exotic_gases_found
-					}
+				has_resource_for_discovery = {
+					RESOURCE = exotic_gases
 				}
-				AND = {
-					is_nomadic = no
-					root.from = {
-						has_resource = {
-							amount > 0
-							type = rare_crystals
-						}
-					}
-					NOT = {
-						has_country_flag = rare_crystals_found
-					}
+				has_resource_for_discovery = {
+					RESOURCE = rare_crystals
 				}
-				AND = {
-					root.from = {
-						has_resource = {
-							amount > 0
-							type = sr_living_metal
-						}
-					}
-					NOT = {
-						has_country_flag = living_metal_found
-					}
+				has_resource_for_discovery = {
+					RESOURCE = sr_living_metal
 				}
-				AND = {
-					root.from = {
-						has_resource = {
-							amount > 0
-							type = sr_zro
-						}
-					}
-					NOT = {
-						has_country_flag = zro_found
-					}
+				has_resource_for_discovery = {
+					RESOURCE = sr_zro
 				}
-				AND = {
-					root.from = {
-						has_resource = {
-							amount > 0
-							type = sr_dark_matter
-						}
-					}
-					NOT = {
-						has_country_flag = dark_matter_found
-					}
+				has_resource_for_discovery = {
+					RESOURCE = sr_dark_matter
 				}
-				AND = {
-					root.from = {
-						has_resource = {
-							amount > 0
-							type = astral_threads
-						}
-					}
-					NOT = {
-						has_country_flag = astral_threads_found
-					}
+				has_resource_for_discovery = {
+					RESOURCE = astral_threads
 				}
 			}
 		}
@@ -8118,7 +8059,7 @@ ship_event = {
 				else_if = {
 					limit = { has_resource = { type = sr_zro amount > 0 } }
 					root.owner = {
-						set_country_flag =	zro_found
+						set_country_flag =	sr_zro_found
 						create_strategic_resource_message = {
 							RESOURCE_TYPE = MESSAGE_STRATEGIC_RESOURCE_FOUND_ZRO
 							RESOURCE_DESC = MESSAGE_STRATEGIC_RESOURCE_FOUND_ZRO_DESC
@@ -8128,7 +8069,7 @@ ship_event = {
 				else_if = {
 					limit = { has_resource = { type = sr_dark_matter amount > 0 } }
 					root.owner = {
-						set_country_flag =	dark_matter_found
+						set_country_flag =	sr_dark_matter_found
 						create_strategic_resource_message = {
 							RESOURCE_TYPE = MESSAGE_STRATEGIC_RESOURCE_FOUND_DARK_MATTER
 							RESOURCE_DESC = MESSAGE_STRATEGIC_RESOURCE_FOUND_DARK_MATTER_DESC
@@ -8138,7 +8079,7 @@ ship_event = {
 				else_if = {
 					limit = { has_resource = { type = sr_living_metal amount > 0 } }
 					root.owner = {
-						set_country_flag =	living_metal_found
+						set_country_flag =	sr_living_metal_found
 						create_strategic_resource_message = {
 							RESOURCE_TYPE = MESSAGE_STRATEGIC_RESOURCE_FOUND_LIVING_METAL
 							RESOURCE_DESC = MESSAGE_STRATEGIC_RESOURCE_FOUND_LIVING_METAL_DESC
@@ -8172,7 +8113,7 @@ ship_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		owner = { set_country_flag = zro_found }
+		owner = { set_country_flag = sr_zro_found }
 	}
 
 	option = {
@@ -8193,7 +8134,7 @@ ship_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		owner = { set_country_flag = zro_found }
+		owner = { set_country_flag = sr_zro_found }
 	}
 
 	option = {
@@ -8333,15 +8274,15 @@ ship_event = {
 			}
 			else_if = {
 				limit = { has_resource = { type = sr_zro amount > 0 } }
-				root.owner = { set_country_flag = zro_found }
+				root.owner = { set_country_flag = sr_zro_found }
 			}
 			else_if = {
 				limit = { has_resource = { type = sr_dark_matter amount > 0 } }
-				root.owner = { set_country_flag = dark_matter_found }
+				root.owner = { set_country_flag = sr_dark_matter_found }
 			}
 			else_if = {
 				limit = { has_resource = { type = sr_living_metal amount > 0 } }
-				root.owner = { set_country_flag = living_metal_found }
+				root.owner = { set_country_flag = sr_living_metal_found }
 			}
 			else_if = {
 				limit = { has_resource = { type = astral_threads amount > 0 } }
