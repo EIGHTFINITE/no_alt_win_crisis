@@ -350,6 +350,7 @@ country_event = {
 
 	trigger = {
 		has_origin = origin_necrophage
+		is_nomadic = no
 	}
 
 	immediate = {
