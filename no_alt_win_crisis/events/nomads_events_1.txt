@@ -6812,7 +6812,15 @@ country_event = {
 	}
 
 	immediate = {
-		country_event = { id = nomads.1305 days = 15 random = 340 }
+		if = {
+			limit = { cruise_favoring_side_approach = yes }
+			# Favoring passengers or crew: generate contracts more often
+			country_event = { id = nomads.1305 days = 15 random = 160 }
+			country_event = { id = nomads.1305 days = 180 random = 160 }
+		}
+		else = {
+			country_event = { id = nomads.1305 days = 15 random = 340 }
+		}
 	}
 }
 
@@ -6827,7 +6835,21 @@ country_event = {
 	trigger = {
 		is_nomadic = yes
 		has_origin = origin_forever_cruise
-		count_issued_contracts < 3
+		OR = {
+			count_issued_contracts < 3
+			# Higher backlog allowed while favoring passengers or crew
+			AND = {
+				count_issued_contracts < 5
+				cruise_favoring_side_approach = yes
+			}
+		}
+		any_situation = {
+			is_situation_type = situation_passenger_satisfaction
+			OR = {
+				situation_progress < 450
+				situation_progress > 550
+			}
+		}
 		NOR = {
 			has_country_flag = forever_cruise_planetfall
 			has_country_flag = forever_cruise_mutiny
@@ -6847,6 +6869,13 @@ country_event = {
 			random_list = {
 				# Sun Trip Passenger
 				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_passenger
+						}
+					}
 					inline_script = {
 						script = events/nomads_suntrip_cruise_event
 						ISSUER = passenger
@@ -6854,6 +6883,13 @@ country_event = {
 					}
 				}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_passenger
+					}
+				}
 				inline_script = {
 					script = events/nomads_suntrip_cruise_event
 					ISSUER = passenger
@@ -6861,6 +6897,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_passenger
+					}
+				}
 				inline_script = {
 					script = events/nomads_suntrip_cruise_event
 					ISSUER = passenger
@@ -6868,6 +6911,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_passenger
+					}
+				}
 				inline_script = {
 					script = events/nomads_suntrip_cruise_event
 					ISSUER = passenger
@@ -6875,6 +6925,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_passenger
+					}
+				}
 				inline_script = {
 					script = events/nomads_suntrip_cruise_event
 					ISSUER = passenger
@@ -6883,6 +6940,13 @@ country_event = {
 			}
 			# Sun Trip Crew
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_crew
+					}
+				}
 				inline_script = {
 					script = events/nomads_suntrip_cruise_event
 					ISSUER = crew
@@ -6890,6 +6954,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_crew
+					}
+				}
 				inline_script = {
 					script = events/nomads_suntrip_cruise_event
 					ISSUER = crew
@@ -6897,6 +6968,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_crew
+					}
+				}
 				inline_script = {
 					script = events/nomads_suntrip_cruise_event
 					ISSUER = crew
@@ -6904,6 +6982,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_crew
+					}
+				}
 				inline_script = {
 					script = events/nomads_suntrip_cruise_event
 					ISSUER = crew
@@ -6911,6 +6996,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_crew
+					}
+				}
 				inline_script = {
 					script = events/nomads_suntrip_cruise_event
 					ISSUER = crew
@@ -6919,6 +7011,13 @@ country_event = {
 			}
 			# Shore Leave Passenger
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_passenger
+					}
+				}
 				find_cruise_species = {
 					SPECIES = passenger
 				}
@@ -6929,6 +7028,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_passenger
+					}
+				}
 				find_cruise_species = {
 					SPECIES = passenger
 				}
@@ -6939,6 +7045,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_passenger
+					}
+				}
 				find_cruise_species = {
 					SPECIES = passenger
 				}
@@ -6949,6 +7062,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_passenger
+					}
+				}
 				find_cruise_species = {
 					SPECIES = passenger
 				}
@@ -6959,6 +7079,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_passenger
+					}
+				}
 				find_cruise_species = {
 					SPECIES = passenger
 				}
@@ -6970,6 +7097,13 @@ country_event = {
 			}
 			# Shore Leave Crew
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_crew
+					}
+				}
 				find_cruise_species = {
 					SPECIES = crew
 				}
@@ -6980,6 +7114,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_crew
+					}
+				}
 				find_cruise_species = {
 					SPECIES = crew
 				}
@@ -6990,6 +7131,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_crew
+					}
+				}
 				find_cruise_species = {
 					SPECIES = crew
 				}
@@ -7000,6 +7148,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_crew
+					}
+				}
 				find_cruise_species = {
 					SPECIES = crew
 				}
@@ -7010,6 +7165,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_crew
+					}
+				}
 				find_cruise_species = {
 					SPECIES = crew
 				}
@@ -7021,6 +7183,13 @@ country_event = {
 			}
 			# Espionage Support Passenger
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_passenger
+					}
+				}
 				inline_script = {
 					script = events/nomads_espionage_support_cruise_event
 					ISSUER = passenger
@@ -7028,6 +7197,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_passenger
+					}
+				}
 				inline_script = {
 					script = events/nomads_espionage_support_cruise_event
 					ISSUER = passenger
@@ -7035,6 +7211,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_passenger
+					}
+				}
 				inline_script = {
 					script = events/nomads_espionage_support_cruise_event
 					ISSUER = passenger
@@ -7042,6 +7225,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_passenger
+					}
+				}
 				inline_script = {
 					script = events/nomads_espionage_support_cruise_event
 					ISSUER = passenger
@@ -7049,6 +7239,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_passenger
+					}
+				}
 				inline_script = {
 					script = events/nomads_espionage_support_cruise_event
 					ISSUER = passenger
@@ -7057,6 +7254,13 @@ country_event = {
 			}
 			# Espionage Support Crew
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_crew
+					}
+				}
 				inline_script = {
 					script = events/nomads_espionage_support_cruise_event
 					ISSUER = crew
@@ -7064,6 +7268,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_crew
+					}
+				}
 				inline_script = {
 					script = events/nomads_espionage_support_cruise_event
 					ISSUER = crew
@@ -7071,6 +7282,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_crew
+					}
+				}
 				inline_script = {
 					script = events/nomads_espionage_support_cruise_event
 					ISSUER = crew
@@ -7078,6 +7296,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_crew
+					}
+				}
 				inline_script = {
 					script = events/nomads_espionage_support_cruise_event
 					ISSUER = crew
@@ -7085,6 +7310,13 @@ country_event = {
 				}
 			}
 			10 = {
+				modifier = {
+					factor = 2
+					any_situation = {
+						is_situation_type = situation_passenger_satisfaction
+						current_situation_approach = situation_passenger_satisfaction_crew
+					}
+				}
 				inline_script = {
 					script = events/nomads_espionage_support_cruise_event
 					ISSUER = crew
