@@ -3,7 +3,6 @@ tech_fe_market_1 = { # Not for gestalt
 	cost = @fallentechcost
 	tier = @fallentechtier
 	category = { statecraft }
-	ai_update_type = all
 	weight = @tier5weight3
 	is_rare = yes
 	is_dangerous = yes
