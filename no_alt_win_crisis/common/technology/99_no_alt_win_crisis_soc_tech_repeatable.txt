@@ -9,7 +9,10 @@ tech_repeatable_improved_tile_food_output = {
 	potential = {
 		OR = {
 			has_technology = tech_gene_crops
-			is_wilderness_empire = yes
+			AND = {
+				is_wilderness_empire = yes
+				has_ascension_perk = ap_behemoths
+			}
 		}
 	}
 	
