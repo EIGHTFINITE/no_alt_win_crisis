@@ -3,7 +3,6 @@ tech_cosmogenesis_world = {
     cost = @tier5cost1
     tier = 5
     category = { materials }
-    ai_update_type = all
     is_rare = yes
     weight = 0
 
