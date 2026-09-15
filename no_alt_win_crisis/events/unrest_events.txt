@@ -258,7 +258,7 @@ situation_event = {
 				days = @unrest_event_cooldown
 			}
 			random_list = {
-				1 = {
+				10 = {
 					carrier_event = { id = unrest.115 }
 					root = { set_situation_flag = spiritualist }
 					modifier = {
@@ -270,10 +270,12 @@ situation_event = {
 						}
 					}
 					complex_trigger_modifier = {
-						trigger = count_owned_pop_amount
+						trigger = pop_ethic_percentage
+						trigger_scope = colony
 						parameters = {
-							limit = { has_ethic = ethic_spiritualist }
+							ethic = ethic_spiritualist
 						}
+						mult = 100
 						mode = add
 					}
 					modifier = {
@@ -281,7 +283,7 @@ situation_event = {
 						owner = { is_spiritualist = yes }
 					}
 				}
-				1 = {
+				10 = {
 					carrier_event = { id = unrest.120 }
 					root = { set_situation_flag = authoritarian }
 					modifier = {
@@ -293,10 +295,12 @@ situation_event = {
 						}
 					}
 					complex_trigger_modifier = {
-						trigger = count_owned_pop_amount
+						trigger = pop_ethic_percentage
+						trigger_scope = colony
 						parameters = {
-							limit = { has_ethic = ethic_authoritarian }
+							ethic = ethic_authoritarian
 						}
+						mult = 100
 						mode = add
 					}
 					modifier = {
@@ -312,7 +316,7 @@ situation_event = {
 						owner = { is_democratic_authority = yes }
 					}
 				}
-				1 = {
+				10 = {
 					carrier_event = { id = unrest.125 }
 					root = { set_situation_flag = xenophobe }
 					modifier = {
@@ -324,10 +328,12 @@ situation_event = {
 						}
 					}
 					complex_trigger_modifier = {
-						trigger = count_owned_pop_amount
+						trigger = pop_ethic_percentage
+						trigger_scope = colony
 						parameters = {
-							limit = { has_ethic = ethic_xenophobe }
+							ethic = ethic_xenophobe
 						}
+						mult = 100
 						mode = add
 					}
 					modifier = {
@@ -356,9 +362,9 @@ situation_event = {
 						NOT = { is_majority_species = owner }
 					}
 				}
-				1 = {
+				10 = {
 					carrier_event = { id = unrest.130 }
-					root = { set_situation_flag = spiritualist }
+					root = { set_situation_flag = materialist }
 					modifier = {
 						factor = 0
 						NOT = {
@@ -368,10 +374,12 @@ situation_event = {
 						}
 					}
 					complex_trigger_modifier = {
-						trigger = count_owned_pop_amount
+						trigger = pop_ethic_percentage
+						trigger_scope = colony
 						parameters = {
-							limit = { has_ethic = ethic_materialist }
+							ethic = ethic_materialist
 						}
+						mult = 100
 						mode = add
 					}
 					modifier = {
@@ -379,7 +387,7 @@ situation_event = {
 						owner = { is_materialist = yes }
 					}
 				}
-				1 = {
+				10 = {
 					carrier_event = { id = unrest.135 }
 					root = { set_situation_flag = xenophile }
 					modifier = {
@@ -404,10 +412,12 @@ situation_event = {
 						}
 					}
 					complex_trigger_modifier = {
-						trigger = count_owned_pop_amount
+						trigger = pop_ethic_percentage
+						trigger_scope = colony
 						parameters = {
-							limit = { has_ethic = ethic_xenophile }
+							ethic = ethic_xenophile
 						}
+						mult = 100
 						mode = add
 					}
 					modifier = {
@@ -415,7 +425,7 @@ situation_event = {
 						owner = { is_xenophile = yes }
 					}
 				}
-				1 = {
+				10 = {
 					carrier_event = { id = unrest.140 }
 					root = { set_situation_flag = egalitarian }
 					modifier = {
@@ -427,10 +437,12 @@ situation_event = {
 						}
 					}
 					complex_trigger_modifier = {
-						trigger = count_owned_pop_amount
+						trigger = pop_ethic_percentage
+						trigger_scope = colony
 						parameters = {
-							limit = { has_ethic = ethic_egalitarian }
+							ethic = ethic_egalitarian
 						}
+						mult = 100
 						mode = add
 					}
 					modifier = {
@@ -446,7 +458,7 @@ situation_event = {
 						owner = { is_imperial_authority = yes }
 					}
 				}
-				1 = {
+				10 = {
 					carrier_event = { id = unrest.145 }
 					root = { set_situation_flag = pacifist }
 					modifier = {
@@ -458,10 +470,12 @@ situation_event = {
 						}
 					}
 					complex_trigger_modifier = {
-						trigger = count_owned_pop_amount
+						trigger = pop_ethic_percentage
+						trigger_scope = colony
 						parameters = {
-							limit = { has_ethic = ethic_pacifist }
+							ethic = ethic_pacifist
 						}
+						mult = 100
 						mode = add
 					}
 					modifier = {
@@ -473,7 +487,7 @@ situation_event = {
 						owner = { is_at_war = yes }
 					}
 				}
-				1 = {
+				10 = {
 					carrier_event = { id = unrest.150 }
 					root = { set_situation_flag = militarist }
 					modifier = {
@@ -485,10 +499,12 @@ situation_event = {
 						}
 					}
 					complex_trigger_modifier = {
-						trigger = count_owned_pop_amount
+						trigger = pop_ethic_percentage
+						trigger_scope = colony
 						parameters = {
-							limit = { has_ethic = ethic_militarist }
+							ethic = ethic_militarist
 						}
+						mult = 100
 						mode = add
 					}
 					modifier = {
@@ -500,7 +516,7 @@ situation_event = {
 						owner = { is_at_war = yes }
 					}
 				}
-				1 = {
+				10 = {
 					if = {
 						limit = {
 							owner = { is_hive_empire = yes }
@@ -1513,6 +1529,7 @@ situation_event = {
 				origin = "origin_separatists"
 				species = event_target:rebellion_species
 				flag = random
+				nomadic = root.owner
 				effect = {
 					set_country_type = default #we don't need the rebel country type with this version, but create_rebels effect has useful functionalities
 					save_event_target_as = rebel_empire
@@ -1637,6 +1654,29 @@ situation_event = {
 						}
 					}
 
+					if = {
+						limit = { is_nomadic = yes }
+						set_resource_converter = nomadic_operational_reserves
+						set_faction_properties = {
+							needs_border_access = no
+						}
+						create_fleet = {
+							effect = {
+								set_owner = prev
+
+								create_ship = {
+									name = random
+									random_existing_design = nomads_constructor
+								}
+
+								set_fleet_stance = evasive
+								set_location = prev.capital_star
+							}
+						}
+						# nomads.20 starts the Operational Reserves situation and moves fleets into orbit, so it runs after the ships exist.
+						country_event = { id = nomads.20 }
+					}
+
 					create_leader = {
 						class = random_ruler
 						species = owner_main_species
@@ -1675,53 +1715,59 @@ situation_event = {
 						}
 
 						solar_system = {
+							# Nomads have no primary starbases and cannot claim systems.
 							if = {
-								limit = { exists = starbase }
-								starbase = {
-									if = {
-										limit = {
-											is_owned_by = root.owner
-										}
-										set_owner = event_target:rebel_empire
+								limit = {
+									root.owner = { is_nomadic = no }
+								}
+								if = {
+									limit = { exists = starbase }
+									starbase = {
 										if = {
-											limit = { has_starbase_size = starbase_outpost }
-											set_starbase_size = starbase_starport
-											set_starbase_module = {
-												slot = 1
-												module = shipyard
-											}
-											set_starbase_module = {
-												slot = 2
-												module = shipyard
-											}
-										}
-										else_if = {
 											limit = {
-												NOT = { has_starbase_module = shipyard }
+												is_owned_by = root.owner
 											}
-											set_starbase_module = {
-												slot = 1
-												module = shipyard
+											set_owner = event_target:rebel_empire
+											if = {
+												limit = { has_starbase_size = starbase_outpost }
+												set_starbase_size = starbase_starport
+												set_starbase_module = {
+													slot = 1
+													module = shipyard
+												}
+												set_starbase_module = {
+													slot = 2
+													module = shipyard
+												}
 											}
-											set_starbase_module = {
-												slot = 2
-												module = shipyard
+											else_if = {
+												limit = {
+													NOT = { has_starbase_module = shipyard }
+												}
+												set_starbase_module = {
+													slot = 1
+													module = shipyard
+												}
+												set_starbase_module = {
+													slot = 2
+													module = shipyard
+												}
 											}
 										}
 									}
 								}
-							}
-							else = {
-								create_starbase = {
-									size = starbase_starport
-									module = shipyard
-									module = shipyard
-									owner = event_target:rebel_empire
+								else = {
+									create_starbase = {
+										size = starbase_starport
+										module = shipyard
+										module = shipyard
+										owner = event_target:rebel_empire
+									}
 								}
-							}
-							add_claims = {
-								who = root.owner
-								show_notification = no
+								add_claims = {
+									who = root.owner
+									show_notification = no
+								}
 							}
 							every_system_planet = {
 								limit = {
@@ -1779,12 +1825,17 @@ situation_event = {
 
 								solar_system = {
 									if = {
-										limit = { exists = starbase }
-										starbase = { set_owner = event_target:rebel_empire }
-									}
-									add_claims = {
-										who = root.owner
-										show_notification = no
+										limit = {
+											root.owner = { is_nomadic = no }
+										}
+										if = {
+											limit = { exists = starbase }
+											starbase = { set_owner = event_target:rebel_empire }
+										}
+										add_claims = {
+											who = root.owner
+											show_notification = no
+										}
 									}
 									every_system_planet = {
 										limit = {
