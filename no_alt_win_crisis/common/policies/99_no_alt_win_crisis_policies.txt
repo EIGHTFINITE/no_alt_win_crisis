@@ -1,4 +1,5 @@
 diplomatic_stance = {
+	category = diplomacy
 	potential = {
 		OR = {
 			is_country_type = default
@@ -1521,6 +1522,10 @@ diplomatic_stance = {
 }
 
 war_philosophy = {
+	category = {
+		diplomacy
+		military
+	}
 
 	potential = {
 		OR = {
@@ -1692,6 +1697,7 @@ war_philosophy = {
 }
 
 orbital_bombardment = {
+	category = military
 
 	potential = {
 		OR = {
@@ -1854,6 +1860,7 @@ orbital_bombardment = {
 }
 
 interference = {
+	category = diplomacy
 
 	potential = {
 		has_met_primitives = yes
@@ -2087,6 +2094,7 @@ interference = {
 
 # Specifically for pre_sapients policies, you can have a pre_sapient_purge = purge_type parameter to determine how a policy purges presapients
 pre_sapients = {
+	category = society
 	potential = {
 		OR = {
 			has_country_flag = found_presapients
@@ -2234,6 +2242,7 @@ pre_sapients = {
 }
 
 disconnected_drones = {
+	category = society
 	potential = {
 		has_biogenesis_dlc = yes
 		is_regular_empire = yes
@@ -2344,6 +2353,7 @@ disconnected_drones = {
 }
 
 refugees = {
+	category = society
 	potential = {
 		has_encountered_other_species = yes
 		is_country_type = default
@@ -2416,6 +2426,7 @@ refugees = {
 }
 
 purge = {
+	category = society
 	option = {
 		name = "purge_not_allowed"
 
@@ -2430,6 +2441,23 @@ purge = {
 
 		policy_flags = {
 			purge_not_allowed
+		}
+
+		on_enabled = {
+			if = {
+				limit = {
+					is_nomadic = yes
+					OR = {
+						has_policy_flag = nomad_total_war_purge
+						has_policy_flag = nomad_total_war_displace
+					}
+				}
+				set_policy = {
+					policy = nomad_total_war
+					option = nomad_total_war_subject
+					cooldown = yes
+				}
+			}
 		}
 	}
 
@@ -2451,6 +2479,20 @@ purge = {
 				has_origin = origin_nomadic_purger
 				overlord? = {
 					has_policy_flag = nomad_total_war_purge
+				}
+			}
+		}
+
+		on_enabled = {
+			if = {
+				limit = {
+					is_nomadic = yes
+					has_policy_flag = nomad_total_war_purge
+				}
+				set_policy = {
+					policy = nomad_total_war
+					option = nomad_total_war_displace
+					cooldown = yes
 				}
 			}
 		}
