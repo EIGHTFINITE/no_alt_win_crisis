@@ -67,6 +67,7 @@ civic_hive_devouring_swarm = {
 		trigger = {
 			is_species_class = LITHOID
 			is_wilderness_empire = no
+			is_nomadic = no
 			OR = {
 				is_scope_valid = no
 				AND = {
@@ -85,12 +86,20 @@ civic_hive_devouring_swarm = {
 			is_species_class = LITHOID
 			is_wilderness_empire = no
 			is_nomadic = yes
+			OR = {
+				is_scope_valid = no
+				AND = {
+					is_scope_valid = yes
+					NOT = { has_country_flag = crisis_civic_hive_devouring_swarm }
+				}
+			}
 		}
 	}
 
 	swap_type = {
 		trigger = {
 			is_wilderness_empire = yes
+			is_nomadic = no
 			OR = {
 				is_scope_valid = no
 				AND = {
@@ -107,6 +116,7 @@ civic_hive_devouring_swarm = {
 		trigger = {
 			NOT = { is_species_class = LITHOID }
 			is_wilderness_empire = no
+			is_nomadic = no
 			is_scope_valid = yes
 			has_country_flag = crisis_civic_hive_devouring_swarm
 		}
@@ -120,6 +130,7 @@ civic_hive_devouring_swarm = {
 		trigger = {
 			is_species_class = LITHOID
 			is_wilderness_empire = no
+			is_nomadic = no
 			is_scope_valid = yes
 			has_country_flag = crisis_civic_hive_devouring_swarm
 		}
@@ -133,6 +144,7 @@ civic_hive_devouring_swarm = {
 	swap_type = {
 		trigger = {
 			is_wilderness_empire = yes
+			is_nomadic = no
 			is_scope_valid = yes
 			has_country_flag = crisis_civic_hive_devouring_swarm
 		}
@@ -142,6 +154,23 @@ civic_hive_devouring_swarm = {
 			country_government_civic_points_add = 1
 		}
 	}
+
+	swap_type = {
+		name = civic_hive_devouring_swarm_lithoid_nomadic
+		description = "civic_tooltip_devouring_swarm_lithoid_nomadic_effects"
+
+		trigger = {
+			is_species_class = LITHOID
+			is_wilderness_empire = no
+			is_nomadic = yes
+			is_scope_valid = yes
+			has_country_flag = crisis_civic_hive_devouring_swarm
+		}
+		modifier = {
+			country_government_civic_points_add = 1
+		}
+	}
+
 }
 
 ####################################
