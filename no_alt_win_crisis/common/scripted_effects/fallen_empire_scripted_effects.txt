@@ -235,9 +235,9 @@ create_fe_home_citadel = {
 		module = "shipyard"
 		module = "shipyard"
 		module = "shipyard"
-		module = "hangar_bay"
-		module = "gun_battery"
-		module = "gun_battery"
+		module = "starbase_hangar_bay"
+		module = "starbase_laser_battery"
+		module = "starbase_laser_battery"
 
 		building = "target_uplink_computer"
 		building = "defense_grid"
@@ -259,9 +259,9 @@ create_fe_citadel = {
 		module = "shipyard"
 		module = "anchorage"
 		module = "anchorage"
-		module = "hangar_bay"
-		module = "gun_battery"
-		module = "gun_battery"
+		module = "starbase_hangar_bay"
+		module = "starbase_laser_battery"
+		module = "starbase_laser_battery"
 
 		building = "crew_quarters"
 		building = "command_center"
@@ -284,9 +284,9 @@ create_hive_fe_citadel = {
 		module = "shipyard"
 		module = "anchorage"
 		module = "anchorage"
-		module = "hangar_bay"
-		module = "gun_battery"
-		module = "gun_battery"
+		module = "starbase_hangar_bay"
+		module = "starbase_laser_battery"
+		module = "starbase_laser_battery"
 
 		building = "growth_chamber"
 		building = "command_center"
@@ -477,7 +477,7 @@ create_fe_servant_robots = {
 }
 
 create_fe_fringe_colony = {
-	set_carrier_flag = fallen_empire_world
+	set_planet_flag = fallen_empire_world
 	clear_blockers = yes
 	prevent_anomaly = yes
 	set_owner = ROOT
@@ -527,7 +527,7 @@ create_fe_fringe_colony = {
 }
 
 create_fe_spiritualist_fringe_colony = {
-	set_carrier_flag = fallen_empire_world
+	set_planet_flag = fallen_empire_world
 	clear_blockers = yes
 	prevent_anomaly = yes
 	set_owner = ROOT
@@ -1199,7 +1199,7 @@ create_fallen_empire_small_ship = {
 				}
 				modifier = {
 					factor = 2
-					has_country_flag = fallen_empire_hive_war
+					owner = { has_country_flag = fallen_empire_hive_war }
 				}
 			}
 			10 = {
@@ -1211,7 +1211,7 @@ create_fallen_empire_small_ship = {
 				}
 				modifier = {
 					factor = 2
-					has_country_flag = fallen_empire_hive_growth
+					owner = { has_country_flag = fallen_empire_hive_growth }
 				}
 			}
 			10 = {
@@ -1223,7 +1223,7 @@ create_fallen_empire_small_ship = {
 				}
 				modifier = {
 					factor = 2
-					has_country_flag = fallen_empire_hive_control
+					owner = { has_country_flag = fallen_empire_hive_control }
 				}
 			}
 		}
