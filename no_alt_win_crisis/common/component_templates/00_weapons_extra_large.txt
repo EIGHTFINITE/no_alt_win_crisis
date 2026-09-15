@@ -28,8 +28,16 @@ weapon_component_template = {
 	prerequisites = { "tech_energy_lance_1" }
 	component_set = "ENERGY_LANCE_1"
 	projectile_gfx = "particle_lance"
-	tags = { weapon_type_energy weapon_role_artillery x_slot }
-	ai_tags = { weapon_role_artillery artillery}
+	tags = {
+		weapon_type_energy
+		weapon_role_artillery
+		x_slot
+	}
+	ai_tags = {
+		weapon_role_artillery
+		artillery
+		artillery_stealth
+	}
 	ai_tag_weight = 0
 	upgrades_to = "ENERGY_LANCE_2"
 	resources = {
@@ -87,8 +95,16 @@ weapon_component_template = {
 	prerequisites = { "tech_energy_lance_2" }
 	component_set = "ENERGY_LANCE_2"
 	projectile_gfx = "tachyon_lance"
-	tags = { weapon_type_energy weapon_role_artillery x_slot }
-	ai_tags = { weapon_role_artillery artillery }
+	tags = {
+		weapon_type_energy
+		weapon_role_artillery
+		x_slot
+	}
+	ai_tags = {
+		weapon_role_artillery
+		artillery
+		artillery_stealth
+	}
 	ai_tag_weight = 0
 	resources = {
 		category = ship_components
@@ -150,8 +166,16 @@ weapon_component_template = {
 	prerequisites = { "tech_arc_emitter_1" }
 	component_set = "ARC_EMITTER_1"
 	projectile_gfx = "arc_emitter"
-	tags = { weapon_type_energy weapon_role_artillery x_slot }
-	ai_tags = { weapon_role_artillery artillery }
+	tags = {
+		weapon_type_energy
+		weapon_role_artillery
+		x_slot
+	}
+	ai_tags = {
+		weapon_role_artillery
+		artillery
+		artillery_stealth
+	}
 	ai_tag_weight = 0
 	upgrades_to = "ARC_EMITTER_2"
 	resources = {
@@ -210,8 +234,16 @@ weapon_component_template = {
 	prerequisites = { "tech_arc_emitter_2" }
 	component_set = "ARC_EMITTER_2"
 	projectile_gfx = "focused_arc_emitter"
-	tags = { weapon_type_energy weapon_role_artillery x_slot }
-	ai_tags = { weapon_role_artillery artillery }
+	tags = {
+		weapon_type_energy
+		weapon_role_artillery
+		x_slot
+	}
+	ai_tags = {
+		weapon_role_artillery
+		artillery
+		artillery_stealth
+	}
 	ai_tag_weight = 0
 	resources = {
 		category = ship_components
@@ -275,8 +307,16 @@ weapon_component_template = {
 	}
 	component_set = "MASS_ACCELERATOR_1"
 	projectile_gfx = "kinetic_artillery"
-	tags = { weapon_type_kinetic weapon_role_artillery x_slot }
-	ai_tags = { weapon_role_artillery artillery }
+	tags = {
+		weapon_type_kinetic
+		weapon_role_artillery
+		x_slot
+	}
+	ai_tags = {
+		weapon_role_artillery
+		artillery
+		artillery_stealth
+	}
 	ai_tag_weight = 0
 	upgrades_to = "MASS_ACCELERATOR_2"
 	resources = {
@@ -345,8 +385,16 @@ weapon_component_template = {
 	}
 	component_set = "MASS_ACCELERATOR_2"
 	projectile_gfx = "adv_kinetic_artillery"
-	tags = { weapon_type_kinetic weapon_role_artillery x_slot }
-	ai_tags = { weapon_role_artillery artillery }
+	tags = {
+		weapon_type_kinetic
+		weapon_role_artillery
+		x_slot
+	}
+	ai_tags = {
+		weapon_role_artillery
+		artillery
+		artillery_stealth
+	}
 	ai_tag_weight = 0
 	resources = {
 		category = ship_components
@@ -402,7 +450,16 @@ weapon_component_template = {
 #	firing_arc = 10.0
 	use_ship_main_target = no
 
-	tags = { weapon_type_energy weapon_role_artillery t_slot }
+	tags = {
+		weapon_type_energy
+		weapon_role_artillery
+		t_slot
+	}
+	ai_tags = {
+		weapon_role_artillery
+		artillery
+		artillery_stealth
+	}
 	prerequisites = { "tech_titans" }
 	component_set = "PERDITION_BEAM"
 	projectile_gfx = "perdition_beam"
@@ -469,7 +526,16 @@ weapon_component_template = {
 #	firing_arc = 10.0
 	use_ship_main_target = no
 
-	tags = { weapon_type_energy weapon_role_artillery t_slot }
+	tags = {
+		weapon_type_energy
+		weapon_role_artillery
+		t_slot
+	}
+	ai_tags = {
+		weapon_role_artillery
+		artillery
+		artillery_stealth
+	}
 
 	prerequisites = { "tech_titans" }
 	component_set = "PERDITION_BEAM"
@@ -520,10 +586,11 @@ weapon_component_template = {
 
 	ai_weight = {
 		weight = 1
-		modifier = {
-			factor = 0.0
-			no_resource_for_component = { RESOURCE = rare_crystals }
-		}
+		# The ion cannon deliberately ignores the no resource check since this is the only weapon it can normally equip.
+		# modifier = {
+		# 	factor = 0.0
+		# 	no_resource_for_component = { RESOURCE = rare_crystals }
+		# }
 	}
 }
 
@@ -542,7 +609,16 @@ weapon_component_template = {
 #	firing_arc = 25.0
 	use_ship_main_target = no
 
-	tags = { weapon_type_energy weapon_role_artillery t_slot }
+	tags = {
+		weapon_type_energy
+		weapon_role_artillery
+		t_slot
+	}
+	ai_tags = {
+		weapon_role_artillery
+		artillery
+		artillery_stealth
+	}
 
 	component_set = "TITAN_LASER"
 	projectile_gfx = "titan_laser"
@@ -599,8 +675,16 @@ weapon_component_template = {
 
 	component_set = "LENS_FLARE_BEAM"
 	projectile_gfx = "lens_flare_beam"
-	tags = { weapon_type_energy weapon_role_artillery x_slot }
-	ai_tags = { weapon_role_artillery artillery }
+	tags = {
+		weapon_type_energy
+		weapon_role_artillery
+		x_slot
+	}
+	ai_tags = {
+		weapon_role_artillery
+		artillery
+		artillery_stealth
+	}
 	ai_tag_weight = 0
 
 	on_hit = {
@@ -651,7 +735,16 @@ weapon_component_template = {
 #	firing_arc = 10.0
 	use_ship_main_target = no
 
-	tags = { weapon_type_energy weapon_role_artillery x_slot }
+	tags = {
+		weapon_type_energy
+		weapon_role_artillery
+		x_slot
+	}
+	ai_tags = {
+		weapon_role_artillery
+		artillery
+		artillery_stealth
+	}
 
 	potential = { is_ship_size = starfire_cannon }
 	component_set = "SOLARFLARE_EMITTER"
