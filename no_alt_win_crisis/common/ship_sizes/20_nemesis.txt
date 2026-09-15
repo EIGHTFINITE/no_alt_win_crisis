@@ -35,6 +35,21 @@ crisis_corvette = {
 		has_crisis_level = crisis_level_2
 	}
 
+	possible_country = {
+		custom_tooltip = {
+			fail_text = not_possible_operational_reserves_critical_tt
+			OR = {
+				is_nomadic = no
+				any_situation = {
+					is_situation_type = situation_nomad_economy
+					NOT = {
+						current_stage = situation_nomad_economy_stage_critical
+					}
+				}
+			}
+		}
+	}
+
 	required_component_set = "power_core"
 	required_component_set = "ftl_components"
 	required_component_set = "thruster_components"
@@ -55,7 +70,24 @@ crisis_corvette = {
 	available_to_everyone = yes
 
 	ai_ship_data = {
-		fraction = 33
+		fraction = {
+			base = 33
+			# Once Become the Crisis unlocks this hull, strongly prefer it over standard and bio ships.
+			modifier = {
+				factor = @special_ship_composition_preference
+				has_crisis_level = crisis_level_2
+			}
+			# Composition is shaped by the active fleet doctrine.
+			inline_script = {
+				script = "ai/doctrine_composition_weight"
+				SPEARHEAD = @doctrine_composition_favored
+				BATTLELINE = @doctrine_composition_neutral
+				BARRAGE = @doctrine_composition_disfavored
+				STRIKE_WING = @doctrine_composition_neutral
+				AMBUSH = @doctrine_composition_favored
+				PHALANX = @doctrine_composition_neutral
+			}
+		}
 	}
 }
 
@@ -88,6 +120,21 @@ crisis_destroyer = {
 		has_crisis_level = crisis_level_3
 	}
 
+	possible_country = {
+		custom_tooltip = {
+			fail_text = not_possible_operational_reserves_critical_tt
+			OR = {
+				is_nomadic = no
+				any_situation = {
+					is_situation_type = situation_nomad_economy
+					NOT = {
+						current_stage = situation_nomad_economy_stage_critical
+					}
+				}
+			}
+		}
+	}
+
 	class = shipclass_military
 	construction_type = starbase_shipyard
 	enable_default_design = yes
@@ -113,7 +160,29 @@ crisis_destroyer = {
 	available_to_everyone = yes
 
 	ai_ship_data = {
-		fraction = 33
+		fraction = {
+			base = 33
+			# Once Become the Crisis unlocks this hull, strongly prefer it over standard and bio ships.
+			modifier = {
+				factor = @special_ship_composition_preference
+				has_crisis_level = crisis_level_3
+			}
+			# Composition is shaped by the active fleet doctrine.
+			inline_script = {
+				script = "ai/doctrine_composition_weight"
+				SPEARHEAD = @doctrine_composition_minor
+				BATTLELINE = @doctrine_composition_neutral
+				BARRAGE = @doctrine_composition_minor
+				STRIKE_WING = @doctrine_composition_neutral
+				AMBUSH = @doctrine_composition_favored
+				PHALANX = @doctrine_composition_neutral
+			}
+			# Nudged toward hulls matching the empire's preferred weapon family.
+			inline_script = {
+				script = "ai/weapon_preference_composition_weight"
+				SHIP_SIZE = crisis_destroyer
+			}
+		}
 	}
 }
 
@@ -142,9 +211,23 @@ crisis_cruiser = {
 	default_behavior = line
 	ship_roles = { gunship brawler artillery }
 
-
 	potential_country = {
 		has_crisis_level = crisis_level_4
+	}
+
+	possible_country = {
+		custom_tooltip = {
+			fail_text = not_possible_operational_reserves_critical_tt
+			OR = {
+				is_nomadic = no
+				any_situation = {
+					is_situation_type = situation_nomad_economy
+					NOT = {
+						current_stage = situation_nomad_economy_stage_critical
+					}
+				}
+			}
+		}
 	}
 
 	class = shipclass_military
@@ -172,7 +255,24 @@ crisis_cruiser = {
 	available_to_everyone = yes
 
 	ai_ship_data = {
-		fraction = 33
+		fraction = {
+			base = 33
+			# Once Become the Crisis unlocks this hull, strongly prefer it over standard and bio ships.
+			modifier = {
+				factor = @special_ship_composition_preference
+				has_crisis_level = crisis_level_4
+			}
+			# Composition is shaped by the active fleet doctrine.
+			inline_script = {
+				script = "ai/doctrine_composition_weight"
+				SPEARHEAD = @doctrine_composition_neutral
+				BATTLELINE = @doctrine_composition_neutral
+				BARRAGE = @doctrine_composition_favored
+				STRIKE_WING = @doctrine_composition_neutral
+				AMBUSH = @doctrine_composition_minor
+				PHALANX = @doctrine_composition_neutral
+			}
+		}
 	}
 }
 

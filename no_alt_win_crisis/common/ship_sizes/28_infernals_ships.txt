@@ -37,7 +37,7 @@ ember_cruiser = {
 		}
 		{
 			name = energy_torpedoes
-			trigger = { has_technology = tech_energy_torpedoes_1 }
+			trigger = { has_energy_torpedo_tech = yes }
 		}
 		{
 			name = energy_torpedoes_stealth
@@ -90,18 +90,25 @@ ember_cruiser = {
 				add = 25
 				uses_standard_ship_sizes = yes
 			}
+			# Once the Hyperthermia crisis unlocks this hull, strongly prefer it over standard and bio ships.
 			modifier = {
-				factor = 1.5
-				is_preferred_weapons = weapon_type_strike_craft
+				factor = @special_ship_composition_preference
+				has_crisis_level = crisis_hyperthermia_level_3
 			}
-			modifier = {
-				factor = 1.5
-				has_valid_ai_personality = yes
-				OR = {
-					has_ai_personality = evangelising_zealots
-					has_ai_personality = spiritual_seekers
-					has_ai_personality = slaving_despots
-				}
+			# Composition is shaped by the active fleet doctrine.
+			inline_script = {
+				script = "ai/doctrine_composition_weight"
+				SPEARHEAD = @doctrine_composition_minor_disfavored
+				BATTLELINE = @doctrine_composition_neutral
+				BARRAGE = @doctrine_composition_favored
+				STRIKE_WING = @doctrine_composition_favored
+				AMBUSH = @doctrine_composition_minor
+				PHALANX = @doctrine_composition_neutral
+			}
+			# Nudged toward hulls matching the empire's preferred weapon family.
+			inline_script = {
+				script = "ai/weapon_preference_composition_weight"
+				SHIP_SIZE = ember_cruiser
 			}
 		}
 	}
@@ -171,27 +178,25 @@ ember_battleship = {
 				add = 50
 				uses_standard_ship_sizes = yes
 			}
+			# Once the Hyperthermia crisis unlocks this hull, strongly prefer it over standard and bio ships.
 			modifier = {
-				factor = 1.5
-				is_preferred_weapons = weapon_type_strike_craft
+				factor = @special_ship_composition_preference
+				has_crisis_level = crisis_hyperthermia_level_5
 			}
-			modifier = {
-				factor = 1.5
-				has_valid_civic = civic_hive_devouring_swarm
+			# Composition is shaped by the active fleet doctrine.
+			inline_script = {
+				script = "ai/doctrine_composition_weight"
+				SPEARHEAD = @doctrine_composition_disfavored
+				BATTLELINE = @doctrine_composition_neutral
+				BARRAGE = @doctrine_composition_strong_favored
+				STRIKE_WING = @doctrine_composition_favored
+				AMBUSH = @doctrine_composition_neutral
+				PHALANX = @doctrine_composition_minor
 			}
-			modifier = {
-				factor = 1.5
-				is_machine_empire = yes
-			}
-			modifier = {
-				factor = 1.5
-				has_valid_ai_personality = yes
-				OR = {
-					has_ai_personality = honorbound_warriors
-					has_ai_personality = hegemonic_imperialists
-					has_ai_personality = democratic_crusaders
-					has_ai_personality = became_the_crisis
-				}
+			# Nudged toward hulls matching the empire's preferred weapon family.
+			inline_script = {
+				script = "ai/weapon_preference_composition_weight"
+				SHIP_SIZE = ember_battleship
 			}
 		}
 	}
