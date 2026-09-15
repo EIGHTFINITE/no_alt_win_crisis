@@ -5,7 +5,6 @@ tech_archaeo_refinery = {
 	tier = 3
 	prerequisites = { "tech_archaeostudies" }
 	is_rare = yes
-	ai_update_type = all
 	weight = @tier4weight3
 
 	potential = {
