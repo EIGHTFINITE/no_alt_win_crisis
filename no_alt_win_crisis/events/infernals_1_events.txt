@@ -42,7 +42,7 @@ country_event = {
 						max_steps = 3
 						limit = { has_star_flag = neighbor_t1_first_colony }
 						random_system_planet = {
-							limit = { has_carrier_flag = prescripted_ideal }
+							limit = { has_planet_flag = prescripted_ideal }
 							change_pc = pc_arid
 							reroll_planet = yes
 							clear_blockers = yes
@@ -53,7 +53,7 @@ country_event = {
 						max_steps = 3
 						limit = { has_star_flag = neighbor_t2_second_colony }
 						random_system_planet = {
-							limit = { has_carrier_flag = prescripted_ideal }
+							limit = { has_planet_flag = prescripted_ideal }
 							change_pc = pc_desert
 							reroll_planet = yes
 							clear_blockers = yes
@@ -74,7 +74,7 @@ country_event = {
 					limit = { has_star_flag = neighbor_t1_first_colony }
 					random_system_planet = {
 						limit = {
-							has_carrier_flag = prescripted_ideal
+							has_planet_flag = prescripted_ideal
 							is_planet_class = pc_volcanic
 						}
 						change_pc = pc_arid
@@ -86,7 +86,7 @@ country_event = {
 					limit = { has_star_flag = neighbor_t2_second_colony }
 					random_system_planet = {
 						limit = {
-							has_carrier_flag = prescripted_ideal
+							has_planet_flag = prescripted_ideal
 							is_planet_class = pc_volcanic
 						}
 						change_pc = pc_desert
@@ -118,11 +118,11 @@ country_event = {
 				set_planet_entity = { entity = red_giant_tunnel_faint_class_star_entity }
 				solar_system = {
 					random_system_planet = {
-						limit = { has_carrier_flag = red_giant_innerplanet }
+						limit = { has_planet_flag = red_giant_innerplanet }
 						add_deposit = d_minerals_10
 					}
 					random_system_planet = {
-						limit = { has_carrier_flag = red_giant_second_innerplanet }
+						limit = { has_planet_flag = red_giant_second_innerplanet }
 						add_deposit = d_alloys_5
 					}
 				}
@@ -484,7 +484,7 @@ carrier_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				NOT = { has_carrier_flag = machine_lair }
+				NOT = { has_planet_flag = machine_lair }
 			}
 			set_carrier_flag = planet_burned
 			carrier_event = { id = crisis.2040 }
@@ -506,7 +506,7 @@ carrier_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				has_carrier_flag = machine_lair
+				has_planet_flag = machine_lair
 			}
 			set_carrier_flag = planet_burned
 			from.owner = { save_event_target_as = final_machine_world_destroyer }
@@ -889,7 +889,7 @@ situation_event = {
 	}
 	immediate = {
 		target = {
-			remove_carrier_flag = has_megastructure
+			remove_planet_flag = red_giant_unstable
 			set_deposit = d_red_giant_dm
 			carrier_event = { id = infernals.9000 days = 1 } #trigger explosion
 			if = {
@@ -1169,7 +1169,7 @@ situation_event = {
 			remove_point_of_interest = red_giant_lusus_event_poi
 		}
 		target = {
-			remove_carrier_flag = has_megastructure #allow placing megastructures again
+			remove_planet_flag = red_giant_unstable #allow placing megastructures again
 		}
 	}
 	option = {
@@ -1411,7 +1411,7 @@ situation_event = {
 		target.solar_system = {
 			every_system_planet = {
 				limit = {
-					has_carrier_flag = red_giant_innerplanet
+					has_planet_flag = red_giant_innerplanet
 				}
 				if = {
 					limit = {
@@ -1487,7 +1487,7 @@ situation_event = {
 		target.solar_system = {
 			every_system_planet = {
 				limit = {
-					has_carrier_flag = red_giant_second_innerplanet
+					has_planet_flag = red_giant_second_innerplanet
 				}
 				if = {
 					limit = {
@@ -5306,7 +5306,7 @@ situation_event = {
 		set_situation_approach = approach_stabilize_the_star4
 		set_situation_locked = yes
 		target = {
-			remove_carrier_flag = has_megastructure #allow placing megastructures again
+			remove_planet_flag = red_giant_unstable #allow placing megastructures again
 		}
 		owner = {
 			add_timeline_event = {
@@ -5985,13 +5985,15 @@ fleet_event = {
 		}
 		large_artifact_reward = yes
 	}
-	# In case the primitives have been resettled to the afterlife
+	# In case the primitives have been resettled to the afterlife, or there is no system owner (e.g. nomads)
 	option = {
 		name = infernals.2735.c
 		trigger = {
 			FROM = {
-				exists = owner
-				owner = { is_primitive = no }
+				OR = {
+					NOT = { exists = owner }
+					owner = { is_primitive = no }
+				}
 			}
 		}
 		large_artifact_reward = yes

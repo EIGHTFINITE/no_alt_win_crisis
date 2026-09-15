@@ -4152,7 +4152,7 @@ ship_event = {
 				has_owner = yes
 				owner = { is_country_type = primitive }
 			}
-			NOT = { has_carrier_flag = fotd_hunter@root.owner }
+			NOT = { has_planet_flag = fotd_hunter@root.owner }
 		}
 	}
 
@@ -4899,7 +4899,7 @@ carrier_event = {
 					}
 					from = {
 						add_resource = {
-							alloys = 0.12
+							alloys = 0.24
 							mult = local_pop_amount
 						}
 					}
@@ -4988,7 +4988,7 @@ carrier_event = {
 					}
 					from = {
 						add_resource = {
-							alloys = 0.12
+							alloys = 0.18
 							mult = local_pop_amount
 						}
 					}
@@ -6737,10 +6737,10 @@ country_event = {
 								}
 							}
 						}
-						country_event = { id = syndaw.1030 days = 5 }
+						country_event = { id = syndaw.1030 }
 					}
 					else = {
-						country_event = { id = syndaw.1035 days = 5 }
+						country_event = { id = syndaw.1035 }
 					}
 				}
 				event_target:destroyer_country = {
@@ -7347,7 +7347,7 @@ carrier_event = {
 		}
 		from = { country_event = { id = action.83 } }
 		change_pc = pc_nuked
-		set_carrier_flag = nuked_planet_anomalies_disabled
+		set_planet_flag = nuked_planet_anomalies_disabled
 		remove_all_buildings = yes
 		reroll_deposits = yes
 		tomb_world_modifier_cleanup = yes
@@ -7574,6 +7574,7 @@ carrier_event = {
 		remove_modifier = hunter_killer_drones
 		remove_modifier = compliance_protocols
 		remove_modifier = martial_law
+		remove_modifier = martial_law_knights
 		remove_modifier = crime_lord_deal
 		remove_modifier = crime_lord_deal_broken
 		remove_modifier = anticrime_campaign
@@ -7648,7 +7649,7 @@ event = {
 						AND = {
 							has_shroud_dlc = yes
 							NOT = {
-								has_carrier_flag = exile_planet
+								has_planet_flag = exile_planet
 							}
 						}
 					}
@@ -7712,7 +7713,7 @@ event = {
 						AND = {
 							has_shroud_dlc = yes
 							NOT = {
-								has_carrier_flag = exile_planet
+								has_planet_flag = exile_planet
 							}
 						}
 					}
@@ -7764,7 +7765,7 @@ event = {
 				# Fruitful Origin - the outpost is being created for the first time
 				if = {
 					limit = {
-						has_carrier_flag = seed_pods_colonization
+						has_planet_flag = seed_pods_colonization
 					}
 					carrier_event = { id = origin.7400 }
 				}
@@ -8363,12 +8364,10 @@ carrier_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		from = {
-			exists = this
+		from? = {
 			is_country_type = default
 		}
-		owner = {
-			exists = this
+		owner? = {
 			is_country_type = default
 			NOT = { is_same_value = from }
 		}

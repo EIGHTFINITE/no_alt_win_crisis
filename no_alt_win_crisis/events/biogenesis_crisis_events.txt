@@ -467,7 +467,7 @@ country_event = {
 			}
 		}
 		fromfrom = {
-			has_carrier_flag = has_megastructure
+			has_planet_flag = has_megastructure
 		}
 	}
 
@@ -1384,8 +1384,9 @@ fleet_event = {
 		solar_system = {
 			exists = owner
 			owner = {
-				NOT = {
+				NOR = {
 					has_country_flag = voidspawn_boss_met
+					has_crisis_level = crisis_behemoth_level_4
 				}
 			}
 		}
@@ -1937,7 +1938,7 @@ country_event = {
 				#Remove the megastructure
 				planet =  {
 					save_event_target_as = target_planet
-					remove_carrier_flag = has_megastructure
+					remove_planet_flag = has_megastructure
 				}
 				solar_system = {
 					spawn_megastructure = {
@@ -1998,7 +1999,7 @@ country_event = {
 		if = { # Set ship size factor
 			limit = {
 				fromfromfrom = {
-					ship_size_multiplier <= 3
+					ship_size_multiplier < @cruiser_size_multiplier
 				}
 			}
 			#smol ship (0.5)
@@ -2010,8 +2011,8 @@ country_event = {
 		else_if = {
 			limit = {
 				fromfromfrom = {
-					ship_size_multiplier > 3
-					ship_size_multiplier < 16
+					ship_size_multiplier >= @cruiser_size_multiplier
+					ship_size_multiplier < @titan_size_multiplier
 				}
 			}
 			#medium ship (2)
@@ -2023,7 +2024,7 @@ country_event = {
 		else_if = {
 			limit = {
 				fromfromfrom = {
-					ship_size_multiplier >= 16
+					ship_size_multiplier >= @titan_size_multiplier
 				}
 			}
 			set_variable = {
@@ -3089,7 +3090,7 @@ carrier_event = {
 
 	immediate = {
 		save_event_target_as = target_planet
-		set_carrier_flag = has_megastructure
+		set_planet_flag = has_megastructure
 		from.owner = {
 			save_event_target_as = behemoth_owner
 			complete_crisis_objective = crisobj_build_behemoth_egg
@@ -3457,7 +3458,7 @@ ship_event = {
 
 	immediate = {
 		while = {
-			count = trigger:ship_size_multiplier
+			count = value:ship_size_naval_cap_count|SHIP_SCOPE|this|
 			if = {
 				limit = {
 					has_grand_archive_dlc = yes
@@ -3499,7 +3500,7 @@ country_event = {
 
 	immediate = {
 		while = {
-			count = fromfromfrom.trigger:ship_size_multiplier
+			count = value:ship_size_naval_cap_count|SHIP_SCOPE|fromfromfrom|
 			if = {
 				limit = {
 					fromfromfrom = { is_ship_category = bio_ship }
@@ -3536,7 +3537,7 @@ ship_event = {
 
 	immediate = {
 		while = {
-			count = trigger:ship_size_multiplier
+			count = value:ship_size_naval_cap_count|SHIP_SCOPE|this|
 			from.owner = { complete_crisis_objective = crisobj_cap_fauna }
 		}
 	}

@@ -439,7 +439,7 @@ carrier_event = {
 		NOR = {
 			has_global_flag = arc_hunting_grounds
 			has_carrier_flag = colony_event
-			has_carrier_flag = suppress_archaeological_sites
+			has_planet_flag = suppress_archaeological_sites
 		}
 	}
 
@@ -709,7 +709,7 @@ country_event = {
 								is_planet_class = pc_frozen
 							}
 							NOT = { exists = archaeological_site }
-							NOT = { has_carrier_flag = suppress_archaeological_sites }
+							NOT = { has_planet_flag = suppress_archaeological_sites }
 						}
 					}
 				}
@@ -723,7 +723,7 @@ country_event = {
 								is_planet_class = pc_frozen
 							}
 							NOT = { exists = archaeological_site }
-							NOT = { has_carrier_flag = suppress_archaeological_sites }
+							NOT = { has_planet_flag = suppress_archaeological_sites }
 						}
 						save_event_target_as = tomb_planet
 					}
@@ -740,7 +740,7 @@ country_event = {
 						is_planet_class = pc_frozen
 					}
 					NOT = { exists = archaeological_site }
-					NOT = { has_carrier_flag = suppress_archaeological_sites }
+					NOT = { has_planet_flag = suppress_archaeological_sites }
 				}
 				save_event_target_as = tomb_planet
 			}
@@ -1184,7 +1184,7 @@ ship_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		from = { has_carrier_flag = minigalaxy_planet }
+		from = { has_planet_flag = minigalaxy_planet }
 		NOT = {
 			has_global_flag = minigalaxy_site_spawned
 		}
@@ -1195,7 +1195,7 @@ ship_event = {
 		from = {
 			solar_system = {
 				random_system_planet = {
-					limit = { has_carrier_flag = minigalaxy_moon }
+					limit = { has_planet_flag = minigalaxy_moon }
 					save_event_target_as = minigalaxy_moon
 				}
 			}
@@ -1232,7 +1232,7 @@ ship_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		from = { has_carrier_flag = minigalaxy_moon }
+		from = { has_planet_flag = minigalaxy_moon }
 		NOT = { has_global_flag = minigalaxy_site_spawned }
 	}
 
@@ -1318,7 +1318,7 @@ fleet_event = {
 		from = {
 			solar_system = {
 				random_system_planet = {
-					limit = { has_carrier_flag = minigalaxy_planet }
+					limit = { has_planet_flag = minigalaxy_planet }
 					save_event_target_as = minigalaxy_planet
 				}
 			}
@@ -2958,7 +2958,8 @@ fleet_event = {
 			else_if = {
 				limit = {
 					NOT = { has_technology = tech_mega_art }
-				}
+					has_megacorp = yes
+					is_nomadic = no				}
 				add_research_option = tech_mega_art
 				add_tech_progress = {
 					tech = tech_mega_art
@@ -3023,6 +3024,7 @@ fleet_event = {
 			}
 			else_if = {
 				limit = {
+					is_nomadic = no
 					NOT = { has_technology = tech_terrestrial_sculpting }
 				}
 				add_research_option = tech_terrestrial_sculpting
@@ -3524,6 +3526,7 @@ fleet_event = {
 			}
 			else_if = {
 				limit = {
+					is_nomadic = no
 					NOT = { has_technology = tech_massive_glacier }
 				}
 				add_research_option = tech_massive_glacier
@@ -4138,9 +4141,21 @@ fleet_event = {
 			}
 			else_if = {
 				limit = {
+					is_nomadic = no
 					NOT = { has_technology = tech_volcano }
 				}
 				add_research_option = tech_volcano
+				add_monthly_resource_mult = {
+					resource = physics_research
+					value = @tier3researchreward
+					min = @tier3researchmin
+					max = @tier3researchmax
+				}
+			}
+			else_if = {
+				limit = {
+					is_nomadic = yes
+				}
 				add_monthly_resource_mult = {
 					resource = physics_research
 					value = @tier3researchreward
@@ -5212,6 +5227,7 @@ fleet_event = {
 			}
 			else_if = {
 				limit = {
+					is_nomadic = no
 					NOT = { has_technology = tech_toxic_kelp }
 				}
 				add_research_option = tech_toxic_kelp
@@ -5324,6 +5340,7 @@ fleet_event = {
 			}
 			else_if = {
 				limit = {
+					is_nomadic = no
 					NOT = { has_technology = tech_terrestrial_sculpting }
 				}
 				add_research_option = tech_terrestrial_sculpting
@@ -5743,6 +5760,7 @@ fleet_event = {
 			}
 			else_if = {
 				limit = {
+					is_nomadic = no
 					NOT = { has_technology = tech_cryostasis_2 }
 				}
 				add_research_option = tech_cryostasis_2
@@ -5875,6 +5893,7 @@ fleet_event = {
 			}
 			else_if = {
 				limit = {
+					is_nomadic = no
 					NOT = { has_technology = tech_volcano }
 				}
 				add_research_option = tech_volcano
@@ -7818,12 +7837,14 @@ country_event = {
 						limit = {
 							any_fleet_in_system = {
 								exists = owner
+								is_mobile = yes
 								NOT = { is_owned_by = root }
 							}
 						}
 						every_fleet_in_system = {
 							limit = {
 								exists = owner
+								is_mobile = yes
 								NOT = { is_owned_by = root }
 							}
 							owner = {
@@ -8426,6 +8447,7 @@ fleet_event = {
 				has_leviathans = yes
 				exists = event_target:curator_enclave_country
 				NOT = { owner = { has_communications = event_target:curator_enclave_country } }
+				NOT = { owner = { has_event_chain = find_the_curators } }
 			}
 			owner = {
 				begin_event_chain = {
@@ -10311,7 +10333,7 @@ carrier_event = {
 		NOR = {
 			has_global_flag = arc_transformation
 			has_carrier_flag = colony_event
-			has_carrier_flag = suppress_archaeological_sites
+			has_planet_flag = suppress_archaeological_sites
 		}
 	}
 

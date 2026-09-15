@@ -5072,7 +5072,7 @@ espionage_operation_event = {
 							has_intel_level = {
 								category = government
 								level = 2
-								who = prev.target
+								who = from
 							}
 						}
 					}
@@ -5091,7 +5091,7 @@ espionage_operation_event = {
 							has_intel_level = {
 								category = government
 								level = 1
-								who = prev.target
+								who = from
 							}
 						}
 					}
@@ -5110,7 +5110,7 @@ espionage_operation_event = {
 							has_intel_level = {
 								category = government
 								level = 0
-								who = prev.target
+								who = from
 							}
 						}
 					}
@@ -5129,7 +5129,7 @@ espionage_operation_event = {
 							has_intel_level = {
 								category = diplomacy
 								level = 2
-								who = prev.target
+								who = from
 							}
 						}
 					}
@@ -5148,7 +5148,7 @@ espionage_operation_event = {
 							has_intel_level = {
 								category = diplomacy
 								level = 1
-								who = prev.target
+								who = from
 							}
 						}
 					}
@@ -5167,7 +5167,7 @@ espionage_operation_event = {
 							has_intel_level = {
 								category = diplomacy
 								level = 0
-								who = prev.target
+								who = from
 							}
 						}
 					}
@@ -5186,7 +5186,7 @@ espionage_operation_event = {
 							has_intel_level = {
 								category = economy
 								level = 2
-								who = prev.target
+								who = from
 							}
 						}
 					}
@@ -5205,7 +5205,7 @@ espionage_operation_event = {
 							has_intel_level = {
 								category = economy
 								level = 1
-								who = prev.target
+								who = from
 							}
 						}
 					}
@@ -5224,7 +5224,7 @@ espionage_operation_event = {
 							has_intel_level = {
 								category = economy
 								level = 0
-								who = prev.target
+								who = from
 							}
 						}
 					}
@@ -5243,7 +5243,7 @@ espionage_operation_event = {
 							has_intel_level = {
 								category = technology
 								level = 2
-								who = prev.target
+								who = from
 							}
 						}
 					}
@@ -5260,7 +5260,7 @@ espionage_operation_event = {
 					owner = {
 						NOT = {
 							has_intel_level = {
-								who = prev.target
+								who = from
 								category = technology
 								level = 1
 							}
@@ -5279,7 +5279,7 @@ espionage_operation_event = {
 					owner = {
 						NOT = {
 							has_intel_level = {
-								who = prev.target
+								who = from
 								category = technology
 								level = 0
 							}
@@ -5300,7 +5300,7 @@ espionage_operation_event = {
 							has_intel_level = {
 								category = military
 								level = 2
-								who = prev.target
+								who = from
 							}
 						}
 					}
@@ -5317,7 +5317,7 @@ espionage_operation_event = {
 					owner = {
 						NOT = {
 							has_intel_level = {
-								who = prev.target
+								who = from
 								category = military
 								level = 1
 							}
@@ -5336,7 +5336,7 @@ espionage_operation_event = {
 					owner = {
 						NOT = {
 							has_intel_level = {
-								who = prev.target
+								who = from
 								category = military
 								level = 0
 							}
@@ -5356,7 +5356,7 @@ espionage_operation_event = {
 				modifier = {
 					factor = 0.5
 					owner = {
-						intel = { who = prev.target value >= 40 }
+						intel = { who = from value >= 40 }
 					}
 				}
 				set_espionage_operation_flag = intel_report_intel_10
@@ -5365,7 +5365,7 @@ espionage_operation_event = {
 				 modifier = {
 					factor = 0.25
 					owner = {
-						intel = { who = prev.target value >= 50 }
+						intel = { who = from value >= 50 }
 					}
 				 }
 				set_espionage_operation_flag = intel_report_intel_15
@@ -5378,105 +5378,105 @@ espionage_operation_event = {
 			has_espionage_operation_flag = intel_report_gov_3
 		}
 		name = operation.7000.a
-		owner = { add_intel_report = { category = government level = 3 days = 360 who = prev.target } }
+		owner = { add_intel_report = { category = government level = 3 days = 360 who = from } }
 	}
 	option = {
 		trigger = {
 			has_espionage_operation_flag = intel_report_gov_2
 		}
 		name = operation.7000.a
-		owner = { add_intel_report = { category = government level = 2 days = 360 who = prev.target } }
+		owner = { add_intel_report = { category = government level = 2 days = 360 who = from } }
 	}
 	option = {
 		trigger = {
 			has_espionage_operation_flag = intel_report_gov_1
 		}
 		name = operation.7000.a
-		owner = { add_intel_report = { category = government level = 1 days = 360 who = prev.target } }
+		owner = { add_intel_report = { category = government level = 1 days = 360 who = from } }
 	}
 	option = {
 		trigger = {
 			has_espionage_operation_flag = intel_report_dip_3
 		}
 		name = operation.7000.a
-		owner = { add_intel_report = { category = diplomacy level = 3 days = 360 who = prev.target } }
+		owner = { add_intel_report = { category = diplomacy level = 3 days = 360 who = from } }
 	}
 	option = {
 		trigger = {
 			has_espionage_operation_flag = intel_report_dip_2
 		}
 		name = operation.7000.a
-		owner = { add_intel_report = { category = diplomacy level = 2 days = 360 who = prev.target } }
+		owner = { add_intel_report = { category = diplomacy level = 2 days = 360 who = from } }
 	}
 	option = {
 		trigger = {
 			has_espionage_operation_flag = intel_report_dip_1
 		}
 		name = operation.7000.a
-		owner = { add_intel_report = { category = diplomacy level = 1 days = 360 who = prev.target } }
+		owner = { add_intel_report = { category = diplomacy level = 1 days = 360 who = from } }
 	}
 	option = {
 		trigger = {
 			has_espionage_operation_flag = intel_report_eco_3
 		}
 		name = operation.7000.a
-		owner = { add_intel_report = { category = economy level = 3 days = 360 who = prev.target } }
+		owner = { add_intel_report = { category = economy level = 3 days = 360 who = from } }
 	}
 	option = {
 		trigger = {
 			has_espionage_operation_flag = intel_report_eco_2
 		}
 		name = operation.7000.a
-		owner = { add_intel_report = { category = economy level = 2 days = 360 who = prev.target } }
+		owner = { add_intel_report = { category = economy level = 2 days = 360 who = from } }
 	}
 	option = {
 		trigger = {
 			has_espionage_operation_flag = intel_report_eco_1
 		}
 		name = operation.7000.a
-		owner = { add_intel_report = { category = economy level = 1 days = 360 who = prev.target } }
+		owner = { add_intel_report = { category = economy level = 1 days = 360 who = from } }
 	}
 	option = {
 		trigger = {
 			has_espionage_operation_flag = intel_report_tec_3
 		}
 		name = operation.7000.a
-		owner = { add_intel_report = { category = technology level = 3 days = 360 who = prev.target } }
+		owner = { add_intel_report = { category = technology level = 3 days = 360 who = from } }
 	}
 	option = {
 		trigger = {
 			has_espionage_operation_flag = intel_report_tec_2
 		}
 		name = operation.7000.a
-		owner = { add_intel_report = { category = technology level = 2 days = 360 who = prev.target } }
+		owner = { add_intel_report = { category = technology level = 2 days = 360 who = from } }
 	}
 	option = {
 		trigger = {
 			has_espionage_operation_flag = intel_report_tec_1
 		}
 		name = operation.7000.a
-		owner = { add_intel_report = { category = technology level = 1 days = 360 who = prev.target } }
+		owner = { add_intel_report = { category = technology level = 1 days = 360 who = from } }
 	}
 	option = {
 		trigger = {
 			has_espionage_operation_flag = intel_report_mil_3
 		}
 		name = operation.7000.a
-		owner = { add_intel_report = { category = military level = 3 days = 360 who = prev.target } }
+		owner = { add_intel_report = { category = military level = 3 days = 360 who = from } }
 	}
 	option = {
 		trigger = {
 			has_espionage_operation_flag = intel_report_mil_2
 		}
 		name = operation.7000.a
-		owner = { add_intel_report = { category = military level = 2 days = 360 who = prev.target } }
+		owner = { add_intel_report = { category = military level = 2 days = 360 who = from } }
 	}
 	option = {
 		trigger = {
 			has_espionage_operation_flag = intel_report_mil_1
 		}
 		name = operation.7000.a
-		owner = { add_intel_report = { category = military level = 1 days = 360 who = prev.target } }
+		owner = { add_intel_report = { category = military level = 1 days = 360 who = from } }
 	}
 	option = {
 		trigger = {
@@ -5486,7 +5486,7 @@ espionage_operation_event = {
 		owner = {
 			add_intel = {
 				amount = 5
-				who = prev.target
+				who = from
 			}
 		}
 	}
@@ -5498,7 +5498,7 @@ espionage_operation_event = {
 		owner = {
 			add_intel = {
 				amount = 10
-				who = prev.target
+				who = from
 			}
 		}
 	}
@@ -5510,7 +5510,7 @@ espionage_operation_event = {
 		owner = {
 			add_intel = {
 				amount = 15
-				who = prev.target
+				who = from
 			}
 		}
 	}
