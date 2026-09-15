@@ -186,14 +186,14 @@ hyperthermia_galaxy_effect = {
 	every_system_planet = {
 		limit = {
 			is_planet_class = pc_ai
-			NOT = { has_carrier_flag = machine_lair }
+			NOT = { has_planet_flag = machine_lair }
 		}
 		destroy_machine_world = yes
 	}
 	random_system_planet = {
 		limit = {
 			is_planet_class = pc_ai
-			has_carrier_flag = machine_lair
+			has_planet_flag = machine_lair
 		}
 		from.owner = { save_event_target_as = final_machine_world_destroyer }
 		stop_crisis_sound = yes
@@ -526,7 +526,7 @@ set_hostile_conduit_spawn = {
 }
 
 create_infernal_primitives = {
-	set_carrier_flag = pre_ftl_default
+	set_planet_flag = pre_ftl_default
 	create_species = {
 		name = random
 		class = INF
