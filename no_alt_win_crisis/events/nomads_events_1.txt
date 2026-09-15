@@ -557,6 +557,11 @@ carrier_event = { # Purge variant
 			limit = {
 				exists = fromfrom
 			}
+			# Displace approach: absorb a fraction of the population before the vassal displaces the rest.
+			if = {
+				limit = { from = { has_policy_flag = nomad_total_war_displace } }
+				nomad_assimilate_displaced_pops_effect = { NOMAD = from }
+			}
 			if = {
 				limit = {
 					from = {
@@ -663,78 +668,169 @@ carrier_event = {
 	}
 
 	immediate = { # We have no more pops to purge, time to abandon this planet
-		if = {
+		nomad_purge_vassal_abandon_colony_effect = yes
+	}
+}
+
+# Assimilation never fires on_pop_purged (which nomads.10 handles), so check each month whether the vassal has finished
+# purging and assimilating. Once it has, abandon it and hand every remaining pop (including the assimilated ones) up to
+# the overlord in one lump sum, rather than trickling them up month by month.
+event = {
+	id = nomads.11
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_playable_country = {
+			has_origin = origin_nomadic_purger
+			exists = overlord
+		}
+	}
+
+	immediate = {
+		every_playable_country = {
 			limit = {
-				from = { num_owned_planets <= 1 }
+				has_origin = origin_nomadic_purger
+				exists = overlord
 			}
-			from = {
-				set_timed_country_flag = { # We are about to delete this country and we don't want anything odd happening
-					flag = supress_country_destroyed_message
-					days = 2
-				}
-				transfer_resource_to_empire = {
-					RESOURCE = minerals
-					TARGET = overlord
-				}
-				transfer_resource_to_empire = {
-					RESOURCE = food
-					TARGET = overlord
-				}
-				transfer_resource_to_empire = {
-					RESOURCE = energy
-					TARGET = overlord
-				}
-				transfer_resource_to_empire = {
-					RESOURCE = alloys
-					TARGET = overlord
-				}
-				transfer_resource_to_empire = {
-					RESOURCE = consumer_goods
-					TARGET = overlord
-				}
-				transfer_resource_to_empire = {
-					RESOURCE = trade
-					TARGET = overlord
-				}
-				transfer_resource_to_empire = {
-					RESOURCE = volatile_motes
-					TARGET = overlord
-				}
-				transfer_resource_to_empire = {
-					RESOURCE = exotic_gases
-					TARGET = overlord
-				}
-				transfer_resource_to_empire = {
-					RESOURCE = rare_crystals
-					TARGET = overlord
-				}
-				transfer_resource_to_empire = {
-					RESOURCE = sr_living_metal
-					TARGET = overlord
-				}
-				transfer_resource_to_empire = {
-					RESOURCE = sr_zro
-					TARGET = overlord
-				}
-				transfer_resource_to_empire = {
-					RESOURCE = sr_dark_matter
-					TARGET = overlord
-				}
-				transfer_resource_to_empire = {
-					RESOURCE = nanites
-					TARGET = overlord
-				}
-				transfer_resource_to_empire = {
-					RESOURCE = minor_artifacts
-					TARGET = overlord
-				}
-				transfer_resource_to_empire = {
-					RESOURCE = astral_threads
-					TARGET = overlord
+			every_owned_colony = {
+				# Nothing left to purge or assimilate: the vassal's work is done, so abandon it. The abandon step hands up
+				# every remaining pop (including the assimilated ones) to the overlord in one lump sum.
+				if = {
+					limit = {
+						has_current_purge = no
+						NOT = { any_owned_pop_group = { is_being_assimilated = yes } }
+					}
+					nomad_purge_vassal_abandon_colony_effect = yes
 				}
 			}
 		}
-		destroy_colony = yes
+	}
+}
+
+# Hands a purge-vassal colony's stockpile and the NOMADIC_PURGE_COMPLETE toast up to the overlord. Fired from on_colony_destroyed (owner still valid) so it works however the colony is removed. Scope = the destroyed colony.
+carrier_event = {
+	id = nomads.13
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = owner
+		owner = {
+			has_origin = origin_nomadic_purger
+			exists = overlord
+		}
+	}
+
+	immediate = {
+		# Colony message targets are not implemented (AUG-55014) and everything here is destroyed soon after, so
+		# all values are frozen into the message at creation and the target is the purged planet, which persists.
+		owner = {
+			save_event_target_as = purge_vassal_country
+			set_variable = { which = purge_xfer_pops  value = 0 }
+			if = {
+				limit = { is_variable_set = purge_resettled_pops }
+				set_variable = { which = purge_xfer_pops  value = purge_resettled_pops }
+			}
+			set_variable = { which = purge_xfer_total  value = purge_xfer_pops }
+			set_purge_xfer_resource_effect = { RESOURCE = minerals }
+			set_purge_xfer_resource_effect = { RESOURCE = food }
+			set_purge_xfer_resource_effect = { RESOURCE = energy }
+			set_purge_xfer_resource_effect = { RESOURCE = alloys }
+			set_purge_xfer_resource_effect = { RESOURCE = consumer_goods }
+			set_purge_xfer_resource_effect = { RESOURCE = trade }
+			set_purge_xfer_resource_effect = { RESOURCE = volatile_motes }
+			set_purge_xfer_resource_effect = { RESOURCE = exotic_gases }
+			set_purge_xfer_resource_effect = { RESOURCE = rare_crystals }
+			set_purge_xfer_resource_effect = { RESOURCE = sr_living_metal }
+			set_purge_xfer_resource_effect = { RESOURCE = sr_zro }
+			set_purge_xfer_resource_effect = { RESOURCE = sr_dark_matter }
+			set_purge_xfer_resource_effect = { RESOURCE = nanites }
+			set_purge_xfer_resource_effect = { RESOURCE = minor_artifacts }
+			set_purge_xfer_resource_effect = { RESOURCE = astral_threads }
+			# Resources-only total, so the toast can line-break its resources and pops sections independently.
+			set_variable = { which = purge_xfer_res_total  value = purge_xfer_total }
+			subtract_variable = { which = purge_xfer_res_total  value = purge_xfer_pops }
+		}
+		# Created before the transfer below empties the vassal's stockpile
+		owner.overlord = {
+			create_message = {
+				type = NOMADIC_PURGE_COMPLETE
+				localization = NOMADIC_PURGE_COMPLETE_DESC
+				days = 30
+				target = root
+				variable = {
+					type = name
+					localization = PLANET
+					scope = root
+				}
+				variable = {
+					type = resources
+					localization = RESOURCES
+					scope = event_target:purge_vassal_country
+					resources = { minerals food energy alloys consumer_goods trade volatile_motes exotic_gases rare_crystals sr_living_metal sr_zro sr_dark_matter nanites minor_artifacts astral_threads }
+					trigger = { event_target:purge_vassal_country = { check_variable = { which = purge_xfer_res_total  value > 0 } } }
+				}
+				variable = {
+					type = variable
+					varname = purge_xfer_pops
+					localization = POPS
+					scope = event_target:purge_vassal_country
+					trigger = { event_target:purge_vassal_country = { check_variable = { which = purge_xfer_pops  value > 0 } } }
+				}
+				variable = {
+					type = key
+					localization = POPS_UNIT
+					value = purge_xfer_unit_pops
+					trigger = { event_target:purge_vassal_country = { check_variable = { which = purge_xfer_pops  value > 0 } } }
+				}
+				variable = {
+					# " and " joins the resources and pops, but only shows when both sections are present
+					type = key
+					localization = AND
+					value = purge_xfer_and
+					trigger = {
+						event_target:purge_vassal_country = {
+							check_variable = { which = purge_xfer_res_total  value > 0 }
+							check_variable = { which = purge_xfer_pops  value > 0 }
+						}
+					}
+				}
+				variable = {
+					# Single line-break putting the gained resources/pops on their own line below the headline
+					type = key
+					localization = LINEBREAK
+					value = purge_xfer_linestart
+					trigger = { event_target:purge_vassal_country = { check_variable = { which = purge_xfer_total  value > 0 } } }
+				}
+				variable = {
+					type = key
+					localization = GAINED
+					value = purge_xfer_lineend
+					trigger = { event_target:purge_vassal_country = { check_variable = { which = purge_xfer_total  value > 0 } } }
+				}
+			}
+		}
+		if = {
+			limit = {
+				owner = { num_owned_planets <= 1 }
+			}
+			owner = {
+				set_timed_country_flag = {
+					flag = supress_country_destroyed_message
+					days = 2
+				}
+				transfer_resources_to_empire = {
+					target = overlord
+					resources = { minerals food energy alloys consumer_goods trade volatile_motes exotic_gases rare_crystals sr_living_metal sr_zro sr_dark_matter nanites minor_artifacts astral_threads }
+					percentage = 1.0
+				}
+			}
+		}
+		# Clear the snapshot so a later engine-removed colony cannot show this colony's pops
+		owner = {
+			set_variable = { which = purge_resettled_pops  value = 0 }
+		}
 	}
 }
 
@@ -826,6 +922,21 @@ country_event = {
 	}
 }
 
+#Fired whenever you gain an arkship just to ensure no colony events sneak through
+carrier_event = {
+	id = nomads.16
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_planet_class = pc_ark
+	}
+
+	immediate = {
+		set_carrier_flag = colony_event
+	}
+}
+
 # Fired by: on_game_start_country
 # Starts the Operational Reserves situation and Star Journal chain (Star Seekers only).
 # Also relocates all starting fleets to orbit a random non-star planet in their system.
@@ -869,7 +980,7 @@ country_event = {
 			capital_scope.solar_system = {
 				random_system_planet = {
 					limit = {
-						has_carrier_flag = delete_me_planet
+						has_planet_flag = delete_me_planet
 					}
 					remove_planet = yes
 				}
@@ -2945,6 +3056,12 @@ system_event = {
 					id = nomads.265
 				}
 			}
+
+			# Fallback 3 years later if no winner is declared
+			system_event = {
+				id = nomads.281
+				years = 3
+			}
 		}
 		else_if = {
 			limit = {
@@ -3197,73 +3314,32 @@ system_event = {
 				}
 			}
 		}
+		champions_forge_tournament_cleanup_effect = yes
+	}
+}
 
-		# Enable all fleets
-		every_ship_in_system = {
-			limit = {
-				is_disabled = yes
-			}
-			set_disabled = no
-		}
+# Fallback conclusion: fired 3 years after a tournament begins (nomads.260).
+# If it still has not concluded, declare no winner and clean everything up.
+system_event = {
+	id = nomads.281
+	hide_window = yes
+	is_triggered_only = yes
 
-		# Return the fleets to their owners
-		every_fleet_in_system = {
-			limit = {
-				has_fleet_flag = player_champions_forge_contestant_fleet
-			}
-			remove_fleet_flag = champions_forge_contestant_fleet
-			remove_fleet_flag = player_champions_forge_contestant_fleet
-			owner = {
-				if = {
-					limit = {
-						any_owned_leader = {
-							has_leader_flag = temp_contestant_admiral
-						}
-					}
-					random_owned_leader = {
-						limit = { has_leader_flag = temp_contestant_admiral }
-						kill_leader = { show_notification = no }
-					}
-				}
-			}
-			end_fleet_contract = {
-				initiator = this.controller
-				reason = cancelled
-			}
-			every_owned_ship = {
-				set_disable_at_health = no
-			}
-			clear_orders = yes
-			set_mia = mia_return_home
-			set_mia_return_delay = 180
-		}
-		every_fleet_in_system = {
-			limit = {
-				has_fleet_flag = champions_forge_contestant_fleet
-			}
-			destroy_fleet = this
-		}
-		# Destroy the team countries
-		every_country = {
-			limit = {
-				is_country_type = champions_forge_contestant
-			}
-			destroy_country = yes
-		}
-		# Remove the flag for ongoing Champions Forge tournaments
+	trigger = {
 		event_target:champions_forge_enclave_country = {
-			remove_country_flag = champions_forge_tournament_ongoing
-			remove_country_flag = champions_forge_battle_started
+			has_country_flag = champions_forge_tournament_ongoing
 		}
+	}
 
-		# Return to flying around the galaxy
-		event_target:champions_forge_enclave_fleet = {
-			set_timed_fleet_flag = {
-				flag = champions_forge_match_cooldown
-				years = 20
+	immediate = {
+		# Tell every still-participating empire that no winner could be determined
+		every_playable_country = {
+			limit = {
+				has_event_chain = champions_forge_tournament_chain
 			}
-			champions_forge_departure_effect = yes
+			country_event = { id = nomads.306 }
 		}
+		champions_forge_tournament_cleanup_effect = yes
 	}
 }
 
@@ -3455,6 +3531,23 @@ country_event = {
 				}
 			}
 		}
+	}
+}
+
+# No winner notification (fallback timeout, nomads.281)
+country_event = {
+	id = nomads.306
+	title = "nomads.306.name"
+	desc = "nomads.306.desc"
+	picture = GFX_evt_champions_forge
+	show_sound = event_public_unrest
+	location = event_target:champions_forge_enclave_system
+	event_chain = champions_forge_tournament_chain
+	is_triggered_only = yes
+
+	option = {
+		name = nomads.306.a
+		end_event_chain = champions_forge_tournament_chain
 	}
 }
 
@@ -5167,6 +5260,7 @@ country_event = { # You defeated the Khan Aspirant, time to be the Khan?
 
 	trigger = {
 		has_origin = origin_heirs_of_the_khan
+		NOT = { has_global_flag = marauder_crisis_started }
 		fromfromfrom = {
 			OR = {
 				has_fleet_flag = aspiring_khan
@@ -5205,7 +5299,7 @@ country_event = { # You defeated the Khan Aspirant, time to be the Khan?
 		allow = {
 			custom_tooltip = {
 				fail_text = "cannot_be_defender_of_the_galaxy"
-				NOT = { has_ascension_perk = ap_defender_of_the_galaxy }
+				has_defender_of_the_galaxy_ap = no
 			}
 			custom_tooltip = {
 				fail_text = "cannot_be_custodian"
@@ -5270,7 +5364,10 @@ country_event = { # You defeated the Khan Aspirant, but there is another player 
 
 	trigger = {
 		has_origin = origin_heirs_of_the_khan
-		NOT = { has_country_flag = won_khan_duel }
+		NOR = {
+			has_country_flag = won_khan_duel
+			has_global_flag = marauder_crisis_started
+		}
 		fromfromfrom = {
 			OR = {
 				has_fleet_flag = aspiring_khan
@@ -5370,7 +5467,7 @@ country_event = { # Three years have passed and you are now the Khan
 		allow = {
 			custom_tooltip = {
 				fail_text = "cannot_be_defender_of_the_galaxy"
-				NOT = { has_ascension_perk = ap_defender_of_the_galaxy }
+				has_defender_of_the_galaxy_ap = no
 			}
 			custom_tooltip = {
 				fail_text = "cannot_be_custodian"
@@ -5668,7 +5765,7 @@ country_event = { # Marauders approach heir of the khan after being destroyed
 		allow = {
 			custom_tooltip = {
 				fail_text = "cannot_be_defender_of_the_galaxy"
-				NOT = { has_ascension_perk = ap_defender_of_the_galaxy }
+				has_defender_of_the_galaxy_ap = no
 			}
 			custom_tooltip = {
 				fail_text = cannot_be_custodian
@@ -5863,9 +5960,9 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		exists = event_target:great_khan
+		exists = event_target:great_khan_empire
 		exists = event_target:marauder_country_1
-		is_at_war_with = event_target:great_khan
+		is_at_war_with = event_target:great_khan_empire
 		NOR = {
 			has_country_flag = khan_war_enemy
 			has_country_flag = heir_of_the_khan_khan
@@ -5891,7 +5988,7 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		exists = event_target:great_khan
+		exists = event_target:great_khan_empire
 		exists = event_target:marauder_country_1
 		any_country = {
 			has_country_flag = khan_war_enemy
@@ -5902,7 +5999,7 @@ country_event = {
 		every_country = {
 			limit = {
 				has_country_flag = khan_war_enemy
-				NOT = { is_at_war_with = event_target:great_khan }
+				NOT = { is_at_war_with = event_target:great_khan_empire }
 			}
 			remove_country_flag = khan_war_enemy
 			set_faction_hostility = {
@@ -5968,6 +6065,7 @@ situation_event = {
 		text = "nomads.1005.machine.desc"
 	}
 	picture = GFX_evt_big_landing_ship
+	show_sound = event_planet_thrusters
 	is_triggered_only = yes
 
 	immediate = {
@@ -6059,6 +6157,7 @@ situation_event = {
 		}
 		picture = GFX_evt_organic_oppression
 	}
+	show_sound = event_salute
 	is_triggered_only = yes
 
 	immediate = {
@@ -6164,6 +6263,7 @@ country_event = {
 		picture = GFX_evt_arkship_in_orbit
 	}
 	location = capital_scope
+	show_sound = event_hand_shake
 	is_triggered_only = yes
 
 	trigger = {
@@ -6265,13 +6365,14 @@ situation_event = {
 		text = "nomads.1050.machine.desc"
 	}
 	picture = GFX_evt_civil_action
+	show_sound = event_assembly_fight
 	is_triggered_only = yes
 
 	immediate = {
 		set_situation_flag = passenger_planetfall_demanded
 	}
 
-	option = { # Regular
+	option = { # Regular A
 		trigger = {
 			owner = {
 				is_hive_empire = no
@@ -6279,25 +6380,186 @@ situation_event = {
 			}
 		}
 		name = "nomads.1050.regular.a"
-		custom_tooltip = "nomads.1100.all.a.tt"
+		custom_tooltip = "nomads.1100.a.tt"
+		custom_tooltip = "situation_continues_planetfall_tt"
 	}
-	option = { # Hive
+	option = { # Regular B
+		trigger = {
+			owner = {
+				is_hive_empire = no
+				is_machine_empire = no
+			}
+		}
+		name = "nomads.1050.regular.b"
+		custom_tooltip = "nomads.1050.b.tt"
+		custom_tooltip = "situation_flips_mutiny_tt"
+		hidden_effect = {
+			set_variable = {
+				which = passenger_satisfaction_index
+				value = @cruise_contract_add
+			}
+			set_timed_situation_flag = {
+				flag = satisfaction_passengers_grace_period
+				months = 24
+			}
+			owner = {
+				set_timed_country_flag = {
+					flag = emergency_entertainment
+					days = 3600
+				}
+			}
+		}
+	}
+	option = { # Regular C
+		trigger = {
+			owner = {
+				is_hive_empire = no
+				is_machine_empire = no
+			}
+		}
+		name = "nomads.1050.regular.c"
+		custom_tooltip = "nomads.1050.c.tt"
+		custom_tooltip = "situation_flips_mutiny_tt"
+		hidden_effect = {
+			set_variable = {
+				which = passenger_satisfaction_index
+				value = @cruise_contract_add
+			}
+			set_timed_situation_flag = {
+				flag = satisfaction_passengers_grace_period
+				months = 24
+			}
+			owner = {
+				set_timed_country_flag = {
+					flag = deferred_maintenance
+					days = 3600
+				}
+			}
+		}
+	}
+	option = { # Hive A
 		trigger = {
 			owner = {
 				is_hive_empire = yes
 			}
 		}
 		name = "nomads.1050.hive.a"
-		custom_tooltip = "nomads.1100.all.a.tt"
+		custom_tooltip = "nomads.1100.a.tt"
+		custom_tooltip = "situation_continues_planetfall_tt"
 	}
-	option = { # Machine
+	option = { # Hive B
+		trigger = {
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		name = "nomads.1050.hive.b"
+		custom_tooltip = "nomads.1050.b.tt"
+		custom_tooltip = "situation_flips_mutiny_tt"
+		hidden_effect = {
+			set_variable = {
+				which = passenger_satisfaction_index
+				value = @cruise_contract_add
+			}
+			set_timed_situation_flag = {
+				flag = satisfaction_passengers_grace_period
+				months = 24
+			}
+			owner = {
+				set_timed_country_flag = {
+					flag = emergency_entertainment
+					days = 3600
+				}
+			}
+		}
+	}
+	option = { # Hive C
+		trigger = {
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		name = "nomads.1050.hive.c"
+		custom_tooltip = "nomads.1050.c.tt"
+		custom_tooltip = "situation_flips_mutiny_tt"
+		hidden_effect = {
+			set_variable = {
+				which = passenger_satisfaction_index
+				value = @cruise_contract_add
+			}
+			set_timed_situation_flag = {
+				flag = satisfaction_passengers_grace_period
+				months = 24
+			}
+			owner = {
+				set_timed_country_flag = {
+					flag = deferred_maintenance
+					days = 3600
+				}
+			}
+		}
+	}
+	option = { # Machine A
 		trigger = {
 			owner = {
 				is_machine_empire = yes
 			}
 		}
 		name = "nomads.1050.machine.a"
-		custom_tooltip = "nomads.1100.all.a.tt"
+		custom_tooltip = "nomads.1100.a.tt"
+		custom_tooltip = "situation_continues_planetfall_tt"
+	}
+	option = { # Machine B
+		trigger = {
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		name = "nomads.1050.machine.b"
+		custom_tooltip = "nomads.1050.b.tt"
+		custom_tooltip = "situation_flips_mutiny_tt"
+		hidden_effect = {
+			set_variable = {
+				which = passenger_satisfaction_index
+				value = @cruise_contract_add
+			}
+			set_timed_situation_flag = {
+				flag = satisfaction_passengers_grace_period
+				months = 24
+			}
+			owner = {
+				set_timed_country_flag = {
+					flag = emergency_entertainment
+					days = 3600
+				}
+			}
+		}
+	}
+	option = { # Machine C
+		trigger = {
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		name = "nomads.1050.machine.c"
+		custom_tooltip = "nomads.1050.c.tt"
+		custom_tooltip = "situation_flips_mutiny_tt"
+		hidden_effect = {
+			set_variable = {
+				which = passenger_satisfaction_index
+				value = @cruise_contract_add
+			}
+			set_timed_situation_flag = {
+				flag = satisfaction_passengers_grace_period
+				months = 24
+			}
+			owner = {
+				set_timed_country_flag = {
+					flag = deferred_maintenance
+					days = 3600
+				}
+			}
+		}
 	}
 }
 
@@ -6343,6 +6605,7 @@ situation_event = {
 		}
 		picture = GFX_evt_robot_encounter
 	}
+	show_sound = event_slot_machine
 	is_triggered_only = yes
 
 	trigger = {
@@ -6412,13 +6675,14 @@ situation_event = {
 		text = "nomads.1100.machine.desc"
 	}
 	picture = GFX_evt_alien_segregation
+	show_sound = event_ghost_town
 	is_triggered_only = yes
 
 	immediate = {
 
 	}
 
-	option = { # Regular
+	option = { # Regular A
 		trigger = {
 			owner = {
 				is_hive_empire = no
@@ -6426,25 +6690,210 @@ situation_event = {
 			}
 		}
 		name = "nomads.1100.regular.a"
-		custom_tooltip = "nomads.1100.all.a.tt"
+		custom_tooltip = "nomads.1100.a.tt"
+		custom_tooltip = "situation_continues_planetfall_tt"
 	}
-	option = { # Hive
+	option = { # Regular B
+		trigger = {
+			owner = {
+				is_hive_empire = no
+				is_machine_empire = no
+			}
+		}
+		name = "nomads.1100.regular.b"
+		custom_tooltip = "nomads.1100.b.tt"
+		if = {
+			limit = {
+				check_variable = {
+					which = passenger_satisfaction_index
+					value >= -0.5
+				}
+			}
+			custom_tooltip = "situation_flips_mutiny_tt"
+		}
+		else = {
+			custom_tooltip = "situation_slows_planetfall_tt"
+		}
+		hidden_effect = {
+			owner = {
+				set_timed_country_flag = {
+					flag = passenger_entertainment_programs
+					days = 1800
+				}
+			}
+		}
+		owner = { increase_passenger_satisfaction = yes }
+	}
+	option = { # Regular C
+		trigger = {
+			owner = {
+				is_hive_empire = no
+				is_machine_empire = no
+			}
+		}
+		name = "nomads.1100.regular.c"
+		custom_tooltip = "nomads.1100.c.tt"
+		if = {
+			limit = {
+				check_variable = {
+					which = passenger_satisfaction_index
+					value >= -0.5
+				}
+			}
+			custom_tooltip = "situation_flips_mutiny_tt"
+		}
+		else = {
+			custom_tooltip = "situation_slows_planetfall_tt"
+		}
+		hidden_effect = {
+			owner = {
+				set_timed_country_flag = {
+					flag = double_crew_shifts
+					days = 1800
+				}
+			}
+		}
+		owner = { increase_passenger_satisfaction = yes }
+	}
+	option = { # Hive A
 		trigger = {
 			owner = {
 				is_hive_empire = yes
 			}
 		}
 		name = "nomads.1100.hive.a"
-		custom_tooltip = "nomads.1100.all.a.tt"
+		custom_tooltip = "nomads.1100.a.tt"
+		custom_tooltip = "situation_continues_planetfall_tt"
 	}
-	option = { # Machine
+	option = { # Hive B
+		trigger = {
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		name = "nomads.1100.hive.b"
+		custom_tooltip = "nomads.1100.b.tt"
+		if = {
+			limit = {
+				check_variable = {
+					which = passenger_satisfaction_index
+					value >= -0.5
+				}
+			}
+			custom_tooltip = "situation_flips_mutiny_tt"
+		}
+		else = {
+			custom_tooltip = "situation_slows_planetfall_tt"
+		}
+		hidden_effect = {
+			owner = {
+				set_timed_country_flag = {
+					flag = passenger_entertainment_programs
+					days = 1800
+				}
+			}
+		}
+		owner = { increase_passenger_satisfaction = yes }
+	}
+	option = { # Hive C
+		trigger = {
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		name = "nomads.1100.hive.c"
+		custom_tooltip = "nomads.1100.c.tt"
+		if = {
+			limit = {
+				check_variable = {
+					which = passenger_satisfaction_index
+					value >= -0.5
+				}
+			}
+			custom_tooltip = "situation_flips_mutiny_tt"
+		}
+		else = {
+			custom_tooltip = "situation_slows_planetfall_tt"
+		}
+		hidden_effect = {
+			owner = {
+				set_timed_country_flag = {
+					flag = double_crew_shifts
+					days = 1800
+				}
+			}
+		}
+		owner = { increase_passenger_satisfaction = yes }
+	}
+	option = { # Machine A
 		trigger = {
 			owner = {
 				is_machine_empire = yes
 			}
 		}
 		name = "nomads.1100.machine.a"
-		custom_tooltip = "nomads.1100.all.a.tt"
+		custom_tooltip = "nomads.1100.a.tt"
+		custom_tooltip = "situation_continues_planetfall_tt"
+	}
+	option = { # Machine B
+		trigger = {
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		name = "nomads.1100.machine.b"
+		custom_tooltip = "nomads.1100.b.tt"
+		if = {
+			limit = {
+				check_variable = {
+					which = passenger_satisfaction_index
+					value >= -0.5
+				}
+			}
+			custom_tooltip = "situation_flips_mutiny_tt"
+		}
+		else = {
+			custom_tooltip = "situation_slows_planetfall_tt"
+		}
+		hidden_effect = {
+			owner = {
+				set_timed_country_flag = {
+					flag = passenger_entertainment_programs
+					days = 1800
+				}
+			}
+		}
+		owner = { increase_passenger_satisfaction = yes }
+	}
+	option = { # Machine C
+		trigger = {
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		name = "nomads.1100.machine.c"
+		custom_tooltip = "nomads.1100.c.tt"
+		if = {
+			limit = {
+				check_variable = {
+					which = passenger_satisfaction_index
+					value >= -0.5
+				}
+			}
+			custom_tooltip = "situation_flips_mutiny_tt"
+		}
+		else = {
+			custom_tooltip = "situation_slows_planetfall_tt"
+		}
+		hidden_effect = {
+			owner = {
+				set_timed_country_flag = {
+					flag = double_crew_shifts
+					days = 1800
+				}
+			}
+		}
+		owner = { increase_passenger_satisfaction = yes }
 	}
 }
 
@@ -6479,6 +6928,7 @@ situation_event = {
 		text = "nomads.1150.machine.desc"
 	}
 	picture = GFX_evt_obelisk_tourists
+	show_sound = event_announcement
 	is_triggered_only = yes
 
 	immediate = {
@@ -6497,7 +6947,7 @@ situation_event = {
 		hidden_effect = {
 			set_variable = {
 				which = passenger_satisfaction_index
-				value = 1
+				value = @cruise_contract_add
 			}
 		}
 	}
@@ -6512,7 +6962,7 @@ situation_event = {
 		hidden_effect = {
 			set_variable = {
 				which = passenger_satisfaction_index
-				value = 1
+				value = @cruise_contract_add
 			}
 		}
 	}
@@ -6527,7 +6977,7 @@ situation_event = {
 		hidden_effect = {
 			set_variable = {
 				which = passenger_satisfaction_index
-				value = 1
+				value = @cruise_contract_add
 			}
 		}
 	}
@@ -6543,7 +6993,7 @@ situation_event = {
 		hidden_effect = {
 			set_variable = {
 				which = passenger_satisfaction_index
-				value = -1
+				value = @cruise_contract_sub
 			}
 		}
 	}
@@ -6558,7 +7008,7 @@ situation_event = {
 		hidden_effect = {
 			set_variable = {
 				which = passenger_satisfaction_index
-				value = -1
+				value = @cruise_contract_sub
 			}
 		}
 	}
@@ -6573,7 +7023,7 @@ situation_event = {
 		hidden_effect = {
 			set_variable = {
 				which = passenger_satisfaction_index
-				value = -1
+				value = @cruise_contract_sub
 			}
 		}
 	}
@@ -6610,13 +7060,14 @@ situation_event = {
 		text = "nomads.1200.machine.desc"
 	}
 	picture = GFX_evt_astral_rift_interdimensional_circus_2
+	show_sound = event_metal_fatigue
 	is_triggered_only = yes
 
 	immediate = {
 
 	}
 
-	option = { # Regular
+	option = { # Regular A
 		trigger = {
 			owner = {
 				is_hive_empire = no
@@ -6624,25 +7075,210 @@ situation_event = {
 			}
 		}
 		name = "nomads.1200.regular.a"
-		custom_tooltip = "nomads.1200.all.a.tt"
+		custom_tooltip = "nomads.1200.a.tt"
+		custom_tooltip = "situation_continues_mutiny_tt"
 	}
-	option = { # Hive
+	option = { # Regular B
+		trigger = {
+			owner = {
+				is_hive_empire = no
+				is_machine_empire = no
+			}
+		}
+		name = "nomads.1200.regular.b"
+		custom_tooltip = "nomads.1200.b.regular.tt"
+		if = {
+			limit = {
+				check_variable = {
+					which = passenger_satisfaction_index
+					value <= 0.5
+				}
+			}
+			custom_tooltip = "situation_flips_planetfall_tt"
+		}
+		else = {
+			custom_tooltip = "situation_slows_mutiny_tt"
+		}
+		hidden_effect = {
+			owner = {
+				set_timed_country_flag = {
+					flag = mandatory_crew_rest
+					days = 1800
+				}
+			}
+		}
+		owner = { decrease_passenger_satisfaction = yes }
+	}
+	option = { # Regular C
+		trigger = {
+			owner = {
+				is_hive_empire = no
+				is_machine_empire = no
+			}
+		}
+		name = "nomads.1200.regular.c"
+		custom_tooltip = "nomads.1200.c.tt"
+		if = {
+			limit = {
+				check_variable = {
+					which = passenger_satisfaction_index
+					value <= 0.5
+				}
+			}
+			custom_tooltip = "situation_flips_planetfall_tt"
+		}
+		else = {
+			custom_tooltip = "situation_slows_mutiny_tt"
+		}
+		hidden_effect = {
+			owner = {
+				set_timed_country_flag = {
+					flag = scaled_back_passenger_programs
+					days = 1800
+				}
+			}
+		}
+		owner = { decrease_passenger_satisfaction = yes }
+	}
+	option = { # Hive A
 		trigger = {
 			owner = {
 				is_hive_empire = yes
 			}
 		}
 		name = "nomads.1200.hive.a"
-		custom_tooltip = "nomads.1200.all.a.tt"
+		custom_tooltip = "nomads.1200.a.tt"
+		custom_tooltip = "situation_continues_mutiny_tt"
 	}
-	option = { # Machine
+	option = { # Hive B
+		trigger = {
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		name = "nomads.1200.hive.b"
+		custom_tooltip = "nomads.1200.b.gestalt.tt"
+		if = {
+			limit = {
+				check_variable = {
+					which = passenger_satisfaction_index
+					value <= 0.5
+				}
+			}
+			custom_tooltip = "situation_flips_planetfall_tt"
+		}
+		else = {
+			custom_tooltip = "situation_slows_mutiny_tt"
+		}
+		hidden_effect = {
+			owner = {
+				set_timed_country_flag = {
+					flag = mandatory_crew_rest
+					days = 1800
+				}
+			}
+		}
+		owner = { decrease_passenger_satisfaction = yes }
+	}
+	option = { # Hive C
+		trigger = {
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		name = "nomads.1200.hive.c"
+		custom_tooltip = "nomads.1200.c.tt"
+		if = {
+			limit = {
+				check_variable = {
+					which = passenger_satisfaction_index
+					value <= 0.5
+				}
+			}
+			custom_tooltip = "situation_flips_planetfall_tt"
+		}
+		else = {
+			custom_tooltip = "situation_slows_mutiny_tt"
+		}
+		hidden_effect = {
+			owner = {
+				set_timed_country_flag = {
+					flag = scaled_back_passenger_programs
+					days = 1800
+				}
+			}
+		}
+		owner = { decrease_passenger_satisfaction = yes }
+	}
+	option = { # Machine A
 		trigger = {
 			owner = {
 				is_machine_empire = yes
 			}
 		}
 		name = "nomads.1200.machine.a"
-		custom_tooltip = "nomads.1200.all.a.tt"
+		custom_tooltip = "nomads.1200.a.tt"
+		custom_tooltip = "situation_continues_mutiny_tt"
+	}
+	option = { # Machine B
+		trigger = {
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		name = "nomads.1200.machine.b"
+		custom_tooltip = "nomads.1200.b.gestalt.tt"
+		if = {
+			limit = {
+				check_variable = {
+					which = passenger_satisfaction_index
+					value <= 0.5
+				}
+			}
+			custom_tooltip = "situation_flips_planetfall_tt"
+		}
+		else = {
+			custom_tooltip = "situation_slows_mutiny_tt"
+		}
+		hidden_effect = {
+			owner = {
+				set_timed_country_flag = {
+					flag = mandatory_crew_rest
+					days = 1800
+				}
+			}
+		}
+		owner = { decrease_passenger_satisfaction = yes }
+	}
+	option = { # Machine C
+		trigger = {
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		name = "nomads.1200.machine.c"
+		custom_tooltip = "nomads.1200.c.tt"
+		if = {
+			limit = {
+				check_variable = {
+					which = passenger_satisfaction_index
+					value <= 0.5
+				}
+			}
+			custom_tooltip = "situation_flips_planetfall_tt"
+		}
+		else = {
+			custom_tooltip = "situation_slows_mutiny_tt"
+		}
+		hidden_effect = {
+			owner = {
+				set_timed_country_flag = {
+					flag = scaled_back_passenger_programs
+					days = 1800
+				}
+			}
+		}
+		owner = { decrease_passenger_satisfaction = yes }
 	}
 }
 
@@ -6677,14 +7313,14 @@ situation_event = {
 		text = "nomads.1250.machine.desc"
 	}
 	picture = GFX_evt_arkship_bridge
-	show_sound = event_arkship_in_crisis
+	show_sound = event_public_unrest
 	is_triggered_only = yes
 
 	immediate = {
 		set_situation_flag = crew_mutiny_demanded
 	}
 
-	option = { # Regular
+	option = { # Regular A
 		trigger = {
 			owner = {
 				is_hive_empire = no
@@ -6692,25 +7328,192 @@ situation_event = {
 			}
 		}
 		name = "nomads.1250.regular.a"
-		custom_tooltip = "nomads.1200.all.a.tt"
+		custom_tooltip = "nomads.1250.a.tt"
+		custom_tooltip = "situation_continues_mutiny_tt"
 	}
-	option = { # Hive
+	option = { # Regular B
+		trigger = {
+			owner = {
+				is_hive_empire = no
+				is_machine_empire = no
+			}
+		}
+		name = "nomads.1250.regular.b"
+		custom_tooltip = "nomads.1250.b.tt"
+		custom_tooltip = "situation_flips_planetfall_tt"
+		hidden_effect = {
+			owner = {
+				set_timed_country_flag = {
+					flag = empowered_crew_leaders
+					days = 3600
+				}
+			}
+			set_variable = {
+				which = passenger_satisfaction_index
+				value = @cruise_contract_sub
+			}
+			set_timed_situation_flag = {
+				flag = satisfaction_crew_grace_period
+				months = 24
+			}
+		}
+		owner = { decrease_passenger_satisfaction = yes }
+	}
+	option = { # Regular C
+		trigger = {
+			owner = {
+				is_hive_empire = no
+				is_machine_empire = no
+			}
+		}
+		name = "nomads.1250.regular.c"
+		custom_tooltip = "nomads.1250.c.tt"
+		custom_tooltip = "situation_flips_planetfall_tt"
+		hidden_effect = {
+			owner = {
+				set_timed_country_flag = {
+					flag = suspended_passenger_services
+					days = 3600
+				}
+			}
+			set_variable = {
+				which = passenger_satisfaction_index
+				value = @cruise_contract_sub
+			}
+			set_timed_situation_flag = {
+				flag = satisfaction_crew_grace_period
+				months = 24
+			}
+		}
+		owner = { decrease_passenger_satisfaction = yes }
+	}
+	option = { # Hive A
 		trigger = {
 			owner = {
 				is_hive_empire = yes
 			}
 		}
 		name = "nomads.1250.hive.a"
-		custom_tooltip = "nomads.1200.all.a.tt"
+		custom_tooltip = "nomads.1250.a.tt"
+		custom_tooltip = "situation_continues_mutiny_tt"
 	}
-	option = { # Machine
+	option = { # Hive B
+		trigger = {
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		name = "nomads.1250.hive.b"
+		custom_tooltip = "nomads.1250.b.tt"
+		custom_tooltip = "situation_flips_planetfall_tt"
+		hidden_effect = {
+			owner = {
+				set_timed_country_flag = {
+					flag = empowered_crew_leaders
+					days = 3600
+				}
+			}
+			set_variable = {
+				which = passenger_satisfaction_index
+				value = @cruise_contract_sub
+			}
+			set_timed_situation_flag = {
+				flag = satisfaction_crew_grace_period
+				months = 24
+			}
+		}
+		owner = { decrease_passenger_satisfaction = yes }
+	}
+	option = { # Hive C
+		trigger = {
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		name = "nomads.1250.hive.c"
+		custom_tooltip = "nomads.1250.c.tt"
+		custom_tooltip = "situation_flips_planetfall_tt"
+		hidden_effect = {
+			owner = {
+				set_timed_country_flag = {
+					flag = suspended_passenger_services
+					days = 3600
+				}
+			}
+			set_variable = {
+				which = passenger_satisfaction_index
+				value = @cruise_contract_sub
+			}
+			set_timed_situation_flag = {
+				flag = satisfaction_crew_grace_period
+				months = 24
+			}
+		}
+		owner = { decrease_passenger_satisfaction = yes }
+	}
+	option = { # Machine A
 		trigger = {
 			owner = {
 				is_machine_empire = yes
 			}
 		}
 		name = "nomads.1250.machine.a"
-		custom_tooltip = "nomads.1200.all.a.tt"
+		custom_tooltip = "nomads.1250.a.tt"
+		custom_tooltip = "situation_continues_mutiny_tt"
+	}
+	option = { # Machine B
+		trigger = {
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		name = "nomads.1250.machine.b"
+		custom_tooltip = "nomads.1250.b.tt"
+		custom_tooltip = "situation_flips_planetfall_tt"
+		hidden_effect = {
+			owner = {
+				set_timed_country_flag = {
+					flag = empowered_crew_leaders
+					days = 3600
+				}
+			}
+			set_variable = {
+				which = passenger_satisfaction_index
+				value = @cruise_contract_sub
+			}
+			set_timed_situation_flag = {
+				flag = satisfaction_crew_grace_period
+				months = 24
+			}
+		}
+		owner = { decrease_passenger_satisfaction = yes }
+	}
+	option = { # Machine C
+		trigger = {
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		name = "nomads.1250.machine.c"
+		custom_tooltip = "nomads.1250.c.tt"
+		custom_tooltip = "situation_flips_planetfall_tt"
+		hidden_effect = {
+			owner = {
+				set_timed_country_flag = {
+					flag = suspended_passenger_services
+					days = 3600
+				}
+			}
+			set_variable = {
+				which = passenger_satisfaction_index
+				value = @cruise_contract_sub
+			}
+			set_timed_situation_flag = {
+				flag = satisfaction_crew_grace_period
+				months = 24
+			}
+		}
+		owner = { decrease_passenger_satisfaction = yes }
 	}
 }
 
@@ -6756,6 +7559,7 @@ situation_event = {
 		}
 		picture = GFX_evt_robot_assembly_plant
 	}
+	show_sound = event_conversation
 	is_triggered_only = yes
 
 	trigger = {
@@ -6866,6 +7670,7 @@ country_event = {
 				check_variable = { which = cruise_contract_attempts value < 5 }
 			}
 			change_variable = { which = cruise_contract_attempts value = 1 }
+			reroll_random = yes
 			random_list = {
 				# Sun Trip Passenger
 				10 = {
@@ -6882,448 +7687,419 @@ country_event = {
 						VARIANT = 1
 					}
 				}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_passenger
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_passenger
+						}
+					}
+					inline_script = {
+						script = events/nomads_suntrip_cruise_event
+						ISSUER = passenger
+						VARIANT = 2
 					}
 				}
-				inline_script = {
-					script = events/nomads_suntrip_cruise_event
-					ISSUER = passenger
-					VARIANT = 2
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_passenger
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_passenger
+						}
+					}
+					inline_script = {
+						script = events/nomads_suntrip_cruise_event
+						ISSUER = passenger
+						VARIANT = 3
 					}
 				}
-				inline_script = {
-					script = events/nomads_suntrip_cruise_event
-					ISSUER = passenger
-					VARIANT = 3
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_passenger
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_passenger
+						}
+					}
+					inline_script = {
+						script = events/nomads_suntrip_cruise_event
+						ISSUER = passenger
+						VARIANT = 4
 					}
 				}
-				inline_script = {
-					script = events/nomads_suntrip_cruise_event
-					ISSUER = passenger
-					VARIANT = 4
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_passenger
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_passenger
+						}
+					}
+					inline_script = {
+						script = events/nomads_suntrip_cruise_event
+						ISSUER = passenger
+						VARIANT = 5
 					}
 				}
-				inline_script = {
-					script = events/nomads_suntrip_cruise_event
-					ISSUER = passenger
-					VARIANT = 5
-				}
-			}
-			# Sun Trip Crew
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_crew
+				# Sun Trip Crew
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_crew
+						}
+					}
+					inline_script = {
+						script = events/nomads_suntrip_cruise_event
+						ISSUER = crew
+						VARIANT = 1
 					}
 				}
-				inline_script = {
-					script = events/nomads_suntrip_cruise_event
-					ISSUER = crew
-					VARIANT = 1
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_crew
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_crew
+						}
+					}
+					inline_script = {
+						script = events/nomads_suntrip_cruise_event
+						ISSUER = crew
+						VARIANT = 2
 					}
 				}
-				inline_script = {
-					script = events/nomads_suntrip_cruise_event
-					ISSUER = crew
-					VARIANT = 2
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_crew
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_crew
+						}
+					}
+					inline_script = {
+						script = events/nomads_suntrip_cruise_event
+						ISSUER = crew
+						VARIANT = 3
 					}
 				}
-				inline_script = {
-					script = events/nomads_suntrip_cruise_event
-					ISSUER = crew
-					VARIANT = 3
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_crew
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_crew
+						}
+					}
+					inline_script = {
+						script = events/nomads_suntrip_cruise_event
+						ISSUER = crew
+						VARIANT = 4
 					}
 				}
-				inline_script = {
-					script = events/nomads_suntrip_cruise_event
-					ISSUER = crew
-					VARIANT = 4
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_crew
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_crew
+						}
+					}
+					inline_script = {
+						script = events/nomads_suntrip_cruise_event
+						ISSUER = crew
+						VARIANT = 5
 					}
 				}
-				inline_script = {
-					script = events/nomads_suntrip_cruise_event
-					ISSUER = crew
-					VARIANT = 5
-				}
-			}
-			# Shore Leave Passenger
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_passenger
+				# Shore Leave Passenger
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_passenger
+						}
+					}
+					inline_script = {
+						script = events/nomads_shoreleave_cruise_event
+						ISSUER = passenger
+						VARIANT = 1
 					}
 				}
-				find_cruise_species = {
-					SPECIES = passenger
-				}
-				inline_script = {
-					script = events/nomads_shoreleave_cruise_event
-					ISSUER = passenger
-					VARIANT = 1
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_passenger
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_passenger
+						}
+					}
+					inline_script = {
+						script = events/nomads_shoreleave_cruise_event
+						ISSUER = passenger
+						VARIANT = 2
 					}
 				}
-				find_cruise_species = {
-					SPECIES = passenger
-				}
-				inline_script = {
-					script = events/nomads_shoreleave_cruise_event
-					ISSUER = passenger
-					VARIANT = 2
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_passenger
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_passenger
+						}
+					}
+					inline_script = {
+						script = events/nomads_shoreleave_cruise_event
+						ISSUER = passenger
+						VARIANT = 3
 					}
 				}
-				find_cruise_species = {
-					SPECIES = passenger
-				}
-				inline_script = {
-					script = events/nomads_shoreleave_cruise_event
-					ISSUER = passenger
-					VARIANT = 3
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_passenger
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_passenger
+						}
+					}
+
+					inline_script = {
+						script = events/nomads_shoreleave_cruise_event
+						ISSUER = passenger
+						VARIANT = 4
 					}
 				}
-				find_cruise_species = {
-					SPECIES = passenger
-				}
-				inline_script = {
-					script = events/nomads_shoreleave_cruise_event
-					ISSUER = passenger
-					VARIANT = 4
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_passenger
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_passenger
+						}
+					}
+					inline_script = {
+						script = events/nomads_shoreleave_cruise_event
+						ISSUER = passenger
+						VARIANT = 5
 					}
 				}
-				find_cruise_species = {
-					SPECIES = passenger
-				}
-				inline_script = {
-					script = events/nomads_shoreleave_cruise_event
-					ISSUER = passenger
-					VARIANT = 5
-				}
-			}
-			# Shore Leave Crew
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_crew
+				# Shore Leave Crew
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_crew
+						}
+					}
+					inline_script = {
+						script = events/nomads_shoreleave_cruise_event
+						ISSUER = crew
+						VARIANT = 1
 					}
 				}
-				find_cruise_species = {
-					SPECIES = crew
-				}
-				inline_script = {
-					script = events/nomads_shoreleave_cruise_event
-					ISSUER = crew
-					VARIANT = 1
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_crew
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_crew
+						}
+					}
+					inline_script = {
+						script = events/nomads_shoreleave_cruise_event
+						ISSUER = crew
+						VARIANT = 2
 					}
 				}
-				find_cruise_species = {
-					SPECIES = crew
-				}
-				inline_script = {
-					script = events/nomads_shoreleave_cruise_event
-					ISSUER = crew
-					VARIANT = 2
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_crew
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_crew
+						}
+					}
+					inline_script = {
+						script = events/nomads_shoreleave_cruise_event
+						ISSUER = crew
+						VARIANT = 3
 					}
 				}
-				find_cruise_species = {
-					SPECIES = crew
-				}
-				inline_script = {
-					script = events/nomads_shoreleave_cruise_event
-					ISSUER = crew
-					VARIANT = 3
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_crew
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_crew
+						}
+					}
+					inline_script = {
+						script = events/nomads_shoreleave_cruise_event
+						ISSUER = crew
+						VARIANT = 4
 					}
 				}
-				find_cruise_species = {
-					SPECIES = crew
-				}
-				inline_script = {
-					script = events/nomads_shoreleave_cruise_event
-					ISSUER = crew
-					VARIANT = 4
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_crew
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_crew
+						}
+					}
+					inline_script = {
+						script = events/nomads_shoreleave_cruise_event
+						ISSUER = crew
+						VARIANT = 5
 					}
 				}
-				find_cruise_species = {
-					SPECIES = crew
-				}
-				inline_script = {
-					script = events/nomads_shoreleave_cruise_event
-					ISSUER = crew
-					VARIANT = 5
-				}
-			}
-			# Espionage Support Passenger
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_passenger
+				# Espionage Support Passenger
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_passenger
+						}
+					}
+					inline_script = {
+						script = events/nomads_espionage_support_cruise_event
+						ISSUER = passenger
+						VARIANT = 1
 					}
 				}
-				inline_script = {
-					script = events/nomads_espionage_support_cruise_event
-					ISSUER = passenger
-					VARIANT = 1
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_passenger
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_passenger
+						}
+					}
+					inline_script = {
+						script = events/nomads_espionage_support_cruise_event
+						ISSUER = passenger
+						VARIANT = 2
 					}
 				}
-				inline_script = {
-					script = events/nomads_espionage_support_cruise_event
-					ISSUER = passenger
-					VARIANT = 2
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_passenger
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_passenger
+						}
+					}
+					inline_script = {
+						script = events/nomads_espionage_support_cruise_event
+						ISSUER = passenger
+						VARIANT = 3
 					}
 				}
-				inline_script = {
-					script = events/nomads_espionage_support_cruise_event
-					ISSUER = passenger
-					VARIANT = 3
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_passenger
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_passenger
+						}
+					}
+					inline_script = {
+						script = events/nomads_espionage_support_cruise_event
+						ISSUER = passenger
+						VARIANT = 4
 					}
 				}
-				inline_script = {
-					script = events/nomads_espionage_support_cruise_event
-					ISSUER = passenger
-					VARIANT = 4
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_passenger
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_passenger
+						}
+					}
+					inline_script = {
+						script = events/nomads_espionage_support_cruise_event
+						ISSUER = passenger
+						VARIANT = 5
 					}
 				}
-				inline_script = {
-					script = events/nomads_espionage_support_cruise_event
-					ISSUER = passenger
-					VARIANT = 5
-				}
-			}
-			# Espionage Support Crew
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_crew
+				# Espionage Support Crew
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_crew
+						}
+					}
+					inline_script = {
+						script = events/nomads_espionage_support_cruise_event
+						ISSUER = crew
+						VARIANT = 1
 					}
 				}
-				inline_script = {
-					script = events/nomads_espionage_support_cruise_event
-					ISSUER = crew
-					VARIANT = 1
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_crew
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_crew
+						}
+					}
+					inline_script = {
+						script = events/nomads_espionage_support_cruise_event
+						ISSUER = crew
+						VARIANT = 2
 					}
 				}
-				inline_script = {
-					script = events/nomads_espionage_support_cruise_event
-					ISSUER = crew
-					VARIANT = 2
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_crew
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_crew
+						}
+					}
+					inline_script = {
+						script = events/nomads_espionage_support_cruise_event
+						ISSUER = crew
+						VARIANT = 3
 					}
 				}
-				inline_script = {
-					script = events/nomads_espionage_support_cruise_event
-					ISSUER = crew
-					VARIANT = 3
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_crew
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_crew
+						}
+					}
+					inline_script = {
+						script = events/nomads_espionage_support_cruise_event
+						ISSUER = crew
+						VARIANT = 4
 					}
 				}
-				inline_script = {
-					script = events/nomads_espionage_support_cruise_event
-					ISSUER = crew
-					VARIANT = 4
-				}
-			}
-			10 = {
-				modifier = {
-					factor = 2
-					any_situation = {
-						is_situation_type = situation_passenger_satisfaction
-						current_situation_approach = situation_passenger_satisfaction_crew
+				10 = {
+					modifier = {
+						factor = 2
+						any_situation = {
+							is_situation_type = situation_passenger_satisfaction
+							current_situation_approach = situation_passenger_satisfaction_crew
+						}
+					}
+					inline_script = {
+						script = events/nomads_espionage_support_cruise_event
+						ISSUER = crew
+						VARIANT = 5
 					}
 				}
-				inline_script = {
-					script = events/nomads_espionage_support_cruise_event
-					ISSUER = crew
-					VARIANT = 5
-				}
 			}
-		}
 		}
 		remove_country_flag = cruise_contract_issued
 		remove_country_flag = cruise_suntrip_failed
@@ -8423,7 +9199,7 @@ country_event = {
 	trigger = {
 		FromFrom = {
 			NOT = {
-				planet = { has_carrier_flag = invaded_by_champion }
+				planet = { has_planet_flag = invaded_by_champion }
 			}
 		}
 		has_country_flag = hired_nomadic_champion
@@ -8438,7 +9214,7 @@ country_event = {
 
 	immediate = {
 		FromFrom = {
-			planet = { set_carrier_flag = invaded_by_champion }
+			planet = { set_planet_flag = invaded_by_champion }
 		}
 		if = {
 			limit = {
@@ -8448,7 +9224,7 @@ country_event = {
 				}
 			}
 			random_list = {
-				15 = {
+				3 = {
 					# Nothing Happens
 				}
 				1 = { # Trophy Found
@@ -8722,7 +9498,7 @@ fleet_event = {
 			if = {
 				limit = {
 					any_system_planet = {
-						has_carrier_flag = princess_poi_planet_1
+						has_planet_flag = princess_poi_planet_1
 					}
 				}
 				root.owner = {
@@ -8733,7 +9509,7 @@ fleet_event = {
 			if = {
 				limit = {
 					any_system_planet = {
-						has_carrier_flag = princess_poi_planet_2
+						has_planet_flag = princess_poi_planet_2
 					}
 				}
 				root.owner = {
@@ -8744,7 +9520,7 @@ fleet_event = {
 			if = {
 				limit = {
 					any_system_planet = {
-						has_carrier_flag = princess_poi_planet_3
+						has_planet_flag = princess_poi_planet_3
 					}
 				}
 				root.owner = {
@@ -8836,6 +9612,8 @@ country_event = {
 	option = {
 		name = nomads.1600.b
 		hidden_effect = {
+			# This option already reveals the wreck, so block the branch that reveals a second one.
+			set_country_flag = princess_poi_every_memory
 			remove_point_of_interest = nomadic_princess_poi_1
 			remove_point_of_interest = nomadic_princess_poi_2
 			remove_point_of_interest = nomadic_princess_poi_3
@@ -8913,7 +9691,7 @@ fleet_event = {
 			if = {
 				limit = {
 					any_system_planet = {
-						has_carrier_flag = princess_poi_planet_1
+						has_planet_flag = princess_poi_planet_1
 					}
 				}
 				root.owner = {
@@ -8924,7 +9702,7 @@ fleet_event = {
 			if = {
 				limit = {
 					any_system_planet = {
-						has_carrier_flag = princess_poi_planet_2
+						has_planet_flag = princess_poi_planet_2
 					}
 				}
 				root.owner = {
@@ -8935,7 +9713,7 @@ fleet_event = {
 			if = {
 				limit = {
 					any_system_planet = {
-						has_carrier_flag = princess_poi_planet_3
+						has_planet_flag = princess_poi_planet_3
 					}
 				}
 				root.owner = {
@@ -10775,6 +11553,10 @@ country_event = {
 			counter = contract_scan_debris_counter
 			amount = 1
 		}
+		# Mark that the debris was scanned so the contract's abort_trigger does not
+		# cancel it on the same day: scanning consumes the debris, and the contract
+		# is only completed on the following day when the counter is checked.
+		set_timed_country_flag = { flag = scan_debris_contract_scanned days = 10 }
 	}
 }
 
@@ -12011,9 +12793,20 @@ country_event = {
 			is_total_war = yes
 			any_war_participant = {
 				is_nomadic = yes
-				any_owned_fleet = {
-					is_arkship_fleet = yes
-					NOT = { is_controlled_by = owner }
+				# Fire on a defeated arkship OR ownership of any waystation.
+				OR = {
+					any_owned_fleet = {
+						is_arkship_fleet = yes
+						any_owned_ship = {
+							is_arkship_ship = yes
+							is_disabled = yes
+						}
+					}
+					any_owned_fleet = {
+						any_owned_ship = {
+							is_waystation_ship = yes
+						}
+					}
 				}
 			}
 		}
@@ -12025,15 +12818,60 @@ country_event = {
 		fromfromfrom = { save_event_target_as = total_war_main_defender }
 		fromfromfromfrom = { save_event_target_as = total_war }
 		event_target:total_war = {
-			# Defeated nomads forfeit their occupied arkships to the opposing war leader.
-			every_defender = {
-				limit = { is_nomadic = yes }
-				total_war_seize_occupied_arks_effect = { WINNER = event_target:total_war_main_attacker }
+			# Defeated nomads forfeit their disabled arkships (with colony + pops) and waystations to the opposing war leader.
+			if = {
+				limit = { event_target:total_war_main_attacker = { is_nomadic = yes } }
+				every_defender = {
+					limit = { is_nomadic = yes }
+					save_event_target_as = nomad_raid_defender
+					event_target:total_war_main_attacker = {
+						nomad_raid_seize_ark_effect = yes
+						nomad_raid_seize_disabled_waystations_effect = yes
+					}
+				}
 			}
-			every_attacker = {
-				limit = { is_nomadic = yes }
-				total_war_seize_occupied_arks_effect = { WINNER = event_target:total_war_main_defender }
+			if = {
+				limit = { event_target:total_war_main_defender = { is_nomadic = yes } }
+				every_attacker = {
+					limit = { is_nomadic = yes }
+					save_event_target_as = nomad_raid_defender
+					event_target:total_war_main_defender = {
+						nomad_raid_seize_ark_effect = yes
+						nomad_raid_seize_disabled_waystations_effect = yes
+					}
+				}
 			}
+			if = {
+				limit = {
+					event_target:total_war_main_attacker = { is_nomadic = no }
+					OR = {
+						using_war_goal = { type = wg_wipe_them_out     owner = event_target:total_war_main_attacker }
+						using_war_goal = { type = wg_cleansing        owner = event_target:total_war_main_attacker }
+						using_war_goal = { type = wg_absorption       owner = event_target:total_war_main_attacker }
+						using_war_goal = { type = wg_assimilation     owner = event_target:total_war_main_attacker }
+						using_war_goal = { type = wg_machine_uprising owner = event_target:total_war_main_attacker }
+					}
+				}
+				every_defender = {
+					limit = { is_nomadic = yes }
+					annihilate_captured_arks_effect = yes
+				}
+			}
+		}
+	}
+}
+
+# Deferred by annihilate_captured_arks_effect: destroys the arkships flagged during status-quo resolution once the war has fully ended.
+# this = the defeated nomad
+country_event = {
+	id = nomads.3110
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_owned_fleet = {
+			limit = { has_fleet_flag = arkship_pending_annihilation }
+			destroy_fleet = this
 		}
 	}
 }
@@ -12182,7 +13020,12 @@ carrier_event = {
 		# Decrease opinion of system owner
 		if = {
 			limit = {
-				exempt_from_harvest_resources_opinion_reduction_trigger = no
+				NOT = {
+					exempt_from_harvest_resources_opinion_reduction_trigger = {
+						NOMAD = event_target:arkship.controller
+					}
+				}
+				has_deposit = yes
 			}
 			space_owner? = {
 				add_opinion_modifier = {
@@ -12268,6 +13111,86 @@ carrier_event = {
 	}
 }
 
+# Notification for a regular empire when a nomadic fleet harvests one of their deposits within their borders
+# this = harvested celestial body (planet)
+# from = harvesting fleet (arkship or logistic ship)
+carrier_event = {
+	id = nomads.4105
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from? = {
+			owner = { is_nomadic = yes }
+		}
+		space_owner? = {
+			is_country_type = default
+			is_nomadic = no
+			NOT = { has_country_flag = nomad_harvest_notified_recently }
+		}
+		NOT = {
+			exempt_from_harvest_resources_opinion_reduction_trigger = {
+				NOMAD = from.owner
+			}
+		}
+	}
+
+	immediate = {
+		solar_system = { save_event_target_as = nomad_harvested_system }
+		from = {
+			owner = { save_event_target_as = nomad_harvesting_deposits_country }
+		}
+		space_owner = {
+			# setting flag to decrease spam
+			set_timed_country_flag = {
+				flag = nomad_harvest_notified_recently
+				years = 3
+			}
+			if = {
+				# the event itself
+				limit = {
+					NOT = { has_country_flag = nomad_harvesting_deposits_seen }
+				}
+				set_country_flag = nomad_harvesting_deposits_seen
+				country_event = { id = nomads.4110 }
+			}
+			else = {
+				# if happened before, toast
+				create_message = {
+					type = MESSAGE_NOMAD_HARVESTING_DEPOSITS
+					localization = MESSAGE_NOMAD_HARVESTING_DEPOSITS_DESC
+					days = @toast_important_message_days
+					target = event_target:nomad_harvested_system
+					variable = {
+						type = name
+						localization = COUNTRY
+						scope = event_target:nomad_harvesting_deposits_country
+					}
+					variable = {
+						type = name
+						localization = SYSTEM
+						scope = event_target:nomad_harvested_system
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = nomads.4110
+	title = nomads.4110.name
+	desc = nomads.4110.desc
+	picture = GFX_evt_arkship_in_orbit
+	location = event_target:nomad_harvested_system
+
+	is_triggered_only = yes
+
+	option = {
+		name = UNDERSTOOD
+	}
+}
+
 # Fired by on_arkship_strip_mine
 carrier_event = {
 	id = nomads.4200
@@ -12284,7 +13207,12 @@ carrier_event = {
 		# Decrease opinion of system owner
 		if = {
 			limit = {
-				exempt_from_harvest_resources_opinion_reduction_trigger = no
+				NOT = {
+					exempt_from_harvest_resources_opinion_reduction_trigger = {
+						NOMAD = event_target:arkship.controller
+					}
+				}
+				has_deposit = yes
 			}
 			space_owner? = {
 				add_opinion_modifier = {
@@ -12437,7 +13365,11 @@ planet_event = {
 		# Decrease opinion of system owner
 		if = {
 			limit = {
-				exempt_from_harvest_resources_opinion_reduction_trigger = no
+				NOT = {
+					exempt_from_harvest_resources_opinion_reduction_trigger = {
+						NOMAD = event_target:arkship.controller
+					}
+				}
 			}
 			space_owner? = {
 				add_opinion_modifier = {
@@ -12608,7 +13540,7 @@ planet_event = {
 			# Block rival outposts and pre-FTL emergence while the Settle dialog is open.
 			set_timed_star_flag = {
 				flag = nomad_settling_in_progress
-				days = 30
+				days = 300
 			}
 			save_event_target_as = settled_system
 		}
@@ -12836,6 +13768,10 @@ country_event = {
 			}
 			event_target:subject_country? = {
 				set_country_as_nomad_effect = { IS_NOMAD = yes }
+				# Start the Operational Reserves situation (and Star Journal chain) the same way game start and embarking do.
+				country_event = {
+					id = nomads.20
+				}
 				set_faction_properties = {
 					needs_border_access = no
 				}
@@ -13020,6 +13956,7 @@ country_event = {
 						OR = {
 							is_ship_size = constructor
 							is_ship_size = engineer_vessel
+							is_ship_class = shipclass_colonizer
 						}
 					}
 					set_owner = last_created_country
@@ -13046,6 +13983,12 @@ country_event = {
 				every_owned_megastructure = {
 					limit = { is_megastructure_incompatible_with_nomads = yes }
 					remove_megastructure = this
+				}
+				every_owned_fleet = {
+					limit = {
+						is_ship_class = shipclass_colonizer
+					}
+					destroy_fleet = this
 				}
 			}
 		}
@@ -13098,6 +14041,7 @@ country_event = {
 						OR = {
 							is_ship_size = constructor
 							is_ship_size = engineer_vessel
+							is_ship_class = shipclass_colonizer
 						}
 					}
 					set_owner = last_created_country
@@ -13124,6 +14068,12 @@ country_event = {
 				every_owned_megastructure = {
 					limit = { is_megastructure_incompatible_with_nomads = yes }
 					remove_megastructure = this
+				}
+				every_owned_fleet = {
+					limit = {
+						is_ship_class = shipclass_colonizer
+					}
+					destroy_fleet = this
 				}
 			}
 		}
@@ -13176,6 +14126,7 @@ country_event = {
 						OR = {
 							is_ship_size = constructor
 							is_ship_size = engineer_vessel
+							is_ship_class = shipclass_colonizer
 						}
 					}
 					set_owner = last_created_country
@@ -13202,6 +14153,12 @@ country_event = {
 				every_owned_megastructure = {
 					limit = { is_megastructure_incompatible_with_nomads = yes }
 					remove_megastructure = this
+				}
+				every_owned_fleet = {
+					limit = {
+						is_ship_class = shipclass_colonizer
+					}
+					destroy_fleet = this
 				}
 			}
 		}
@@ -13937,14 +14894,14 @@ planet_event = {
 
 	immediate = {
 		if = {
-			limit = { NOT = { has_carrier_flag = being_devoured } }
+			limit = { NOT = { has_planet_flag = being_devoured } }
 			# First arrival: full initialisation
-			set_timed_carrier_flag = {
+			set_timed_planet_flag = {
 				days = 360
 				flag = recently_eaten_planet
 			}
 			set_carrier_flag = colony_event
-			set_carrier_flag = being_devoured
+			set_planet_flag = being_devoured
 			add_modifier = {
 				modifier = being_devoured_modifier
 				days = -1
@@ -13978,7 +14935,7 @@ planet_event = {
 		}
 		else = {
 			# Returning after cancellation: clear the grace period flag
-			remove_carrier_flag = arkship_absent_grace
+			remove_planet_flag = arkship_absent_grace
 		}
 		from = { set_fleet_flag = consuming_world_arkship@root }
 	}
@@ -13994,7 +14951,7 @@ planet_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		set_timed_carrier_flag = {
+		set_timed_planet_flag = {
 			flag = arkship_absent_grace
 			days = 180
 		}
@@ -14016,8 +14973,8 @@ situation_event = {
 			limit = {
 				target = {
 					NOR = {
-						has_carrier_flag = recently_eaten_planet
-						has_carrier_flag = arkship_absent_grace
+						has_planet_flag = recently_eaten_planet
+						has_planet_flag = arkship_absent_grace
 					}
 				}
 			}
@@ -14150,7 +15107,7 @@ situation_event = {
 				}
 			}
 			target = {
-				set_timed_carrier_flag = { flag = recently_eaten_planet days = 360 }
+				set_timed_planet_flag = { flag = recently_eaten_planet days = 360 }
 			}
 		}
 	}
@@ -14190,9 +15147,9 @@ situation_event = {
 			}
 			change_pc = pc_shattered
 			clear_deposits = yes
-			remove_carrier_flag = being_devoured
+			remove_planet_flag = being_devoured
 			remove_carrier_flag = colony_event
-			remove_carrier_flag = arkship_absent_grace
+			remove_planet_flag = arkship_absent_grace
 			remove_modifier = being_devoured_modifier
 		}
 		destroy_situation = this
@@ -14210,14 +15167,14 @@ planet_event = {
 
 	immediate = {
 		if = {
-			limit = { NOT = { has_carrier_flag = being_devoured } }
+			limit = { NOT = { has_planet_flag = being_devoured } }
 			# First arrival: full initialisation
-			set_timed_carrier_flag = {
+			set_timed_planet_flag = {
 				days = 360
 				flag = recently_eaten_planet
 			}
 			set_carrier_flag = colony_event
-			set_carrier_flag = being_devoured
+			set_planet_flag = being_devoured
 			add_modifier = {
 				modifier = being_devoured_modifier_nanotech
 				days = -1
@@ -14251,7 +15208,7 @@ planet_event = {
 		}
 		else = {
 			# Returning after cancellation: clear the grace period flag
-			remove_carrier_flag = arkship_absent_grace
+			remove_planet_flag = arkship_absent_grace
 		}
 		from = { set_fleet_flag = consuming_world_arkship@root }
 	}
@@ -14267,7 +15224,7 @@ planet_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		set_timed_carrier_flag = {
+		set_timed_planet_flag = {
 			flag = arkship_absent_grace
 			days = 180
 		}
@@ -14289,8 +15246,8 @@ situation_event = {
 			limit = {
 				target = {
 					NOR = {
-						has_carrier_flag = recently_eaten_planet
-						has_carrier_flag = arkship_absent_grace
+						has_planet_flag = recently_eaten_planet
+						has_planet_flag = arkship_absent_grace
 					}
 				}
 			}
@@ -14374,7 +15331,7 @@ situation_event = {
 				}
 			}
 			target = {
-				set_timed_carrier_flag = { flag = recently_eaten_planet days = 360 }
+				set_timed_planet_flag = { flag = recently_eaten_planet days = 360 }
 			}
 		}
 	}
@@ -14390,7 +15347,7 @@ situation_event = {
 	immediate = {
 		target = {
 			if = {
-				limit = { has_carrier_flag = fallen_empire_capital }
+				limit = { has_planet_flag = fallen_empire_capital }
 				owner = { set_country_flag = past_the_expiration_date_achievement }
 			}
 			change_pc = pc_gray_goo
@@ -14414,9 +15371,9 @@ situation_event = {
 					add_deposit = d_nanite_harvester_deposit_large
 				}
 			}
-			remove_carrier_flag = being_devoured
+			remove_planet_flag = being_devoured
 			remove_carrier_flag = colony_event
-			remove_carrier_flag = arkship_absent_grace
+			remove_planet_flag = arkship_absent_grace
 			remove_modifier = being_devoured_modifier_nanotech
 			carrier_event = { id = action.68 }
 		}
@@ -16498,31 +17455,104 @@ ship_event = {
 		is_waystation_ship = yes
 		exists = from
 		from = { exists = owner }
-		from = {
-			owner = {
-				any_war = {
-					# Symmetric raid: either side may disable the other side's waystations
-					OR = {
-						any_defender = { is_same_value = root.owner }
-						any_attacker = { is_same_value = root.owner }
-					}
-					OR = {
-						using_war_goal = {
-							type = wg_nomad_raid
-							owner = prev
+		OR = {
+			# Disabled by an enemy during a nomad raid war
+			from = {
+				owner = {
+					any_war = {
+						# Symmetric raid: either side may disable the other side's waystations
+						OR = {
+							any_defender = { is_same_value = root.owner }
+							any_attacker = { is_same_value = root.owner }
 						}
-						using_war_goal = {
-							type = wg_raid_contract
-							owner = prev
+						OR = {
+							using_war_goal = {
+								type = wg_nomad_raid
+								owner = prev
+							}
+							using_war_goal = {
+								type = wg_raid_contract
+								owner = prev
+							}
+							AND = {
+								is_total_war = yes
+								prev = { is_nomadic = yes }
+							}
 						}
 					}
 				}
 			}
+			# Disabled by hostile space fauna instead of being destroyed (matching regular starbase behavior)
+			from = { owner = { is_fauna_country = yes } }
 		}
 	}
 
 	immediate = {
 		set_disabled = yes
+		if = {
+			limit = {
+				from = { owner = { is_fauna_country = yes } }
+			}
+			from.fleet = {
+				set_fleet_flag = disabled_waystation
+			}
+		}
+	}
+}
+
+# Enabling Waystation Fauna Disabled
+# Scope = Fleet
+# From = System
+fleet_event = {
+	id = nomads.8005
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_fleet_flag = disabled_waystation
+	}
+
+	immediate = {
+		remove_fleet_flag = disabled_waystation
+		from = {
+			random_fleet_in_system = {
+				limit = {
+					is_waystation_ship = yes
+				}
+				random_owned_ship = {
+					set_disabled = no
+				}
+			}
+		}
+	}
+}
+
+# Enabling Waystation Fauna Disabled
+# This = owner of fleet 1 (destroyed)
+# From = owner of fleet 2 (combatant)
+# FromFrom = fleet 1
+# FromFromFrom = fleet 2
+
+country_event = {
+	id = nomads.8006
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		fromfrom = { has_fleet_flag = disabled_waystation }
+	}
+
+	immediate = {
+		fromfrom.solar_system = {
+			random_fleet_in_system = {
+				limit = {
+					is_waystation_ship = yes
+				}
+				random_owned_ship = {
+					set_disabled = no
+				}
+			}
+		}
 	}
 }
 
@@ -17042,7 +18072,7 @@ fleet_event = {
 		solar_system = {
 			remove_star_flag = chrysanthemum_tomb_system
 			random_system_planet = {
-				limit = { has_carrier_flag = unity_tomb }
+				limit = { has_planet_flag = unity_tomb }
 				save_event_target_as = unity_planet
 				create_ambient_object = {
 					type = "chrysanthemum_object"
@@ -17176,7 +18206,7 @@ country_event = {
 		capital_scope.solar_system = {
 			random_system_planet = {
 				limit = {
-					has_carrier_flag = delete_me
+					has_planet_flag = delete_me
 				}
 				remove_planet = yes
 			}

@@ -60,7 +60,7 @@ carrier_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				NOT = { has_carrier_flag = machine_lair }
+				NOT = { has_planet_flag = machine_lair }
 			}
 			set_carrier_flag = destroyed_by_colossus
 			set_carrier_flag = planet_cracked
@@ -71,7 +71,7 @@ carrier_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				has_carrier_flag = machine_lair
+				has_planet_flag = machine_lair
 			}
 			set_carrier_flag = destroyed_by_colossus
 			set_carrier_flag = planet_cracked
@@ -294,6 +294,7 @@ carrier_event = {
 			limit = {
 				is_planet_class = pc_habitat
 			}
+			clear_consecration_effect = yes
 			spawn_habitat_cracker_effect = yes
 		}
 		else_if = {
@@ -449,8 +450,8 @@ carrier_event = {
 			is_human_species = no
 		}
 		OR = {
-			has_carrier_flag = planet_earth
-			has_carrier_flag = nuked_earth
+			has_planet_flag = planet_earth
+			has_planet_flag = nuked_earth
 			AND = {
 				exists = owner
 				owner = {
@@ -551,7 +552,7 @@ carrier_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				NOT = { has_carrier_flag = machine_lair }
+				NOT = { has_planet_flag = machine_lair }
 			}
 			set_carrier_flag = destroyed_by_colossus
 			set_carrier_flag = planet_shielded
@@ -562,7 +563,7 @@ carrier_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				has_carrier_flag = machine_lair
+				has_planet_flag = machine_lair
 			}
 			set_carrier_flag = destroyed_by_colossus
 			set_carrier_flag = planet_shielded
@@ -1131,7 +1132,7 @@ carrier_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				NOT = { has_carrier_flag = machine_lair }
+				NOT = { has_planet_flag = machine_lair }
 			}
 			set_carrier_flag = destroyed_by_colossus
 			set_carrier_flag = planet_godrayed
@@ -1157,7 +1158,7 @@ carrier_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				has_carrier_flag = machine_lair
+				has_planet_flag = machine_lair
 			}
 			set_carrier_flag = destroyed_by_colossus
 			set_carrier_flag = planet_godrayed
@@ -1292,10 +1293,11 @@ carrier_event = {
 			limit = {
 				has_any_ethic = yes
 			}
-			pop_group_transfer_ethic = {
+			pop_group_add_ethic_effect = {
 				POP_GROUP = this
 				ETHOS = ethic_spiritualist
 				PERCENTAGE = 1 # 100%
+				RANDOM = 25
 			}
 		}
 		# Special graphics for Habitats and Ring Worlds
@@ -1899,7 +1901,7 @@ carrier_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				NOT = { has_carrier_flag = machine_lair }
+				NOT = { has_planet_flag = machine_lair }
 			}
 			#set_carrier_flag = destroyed_by_colossus
 			set_carrier_flag = planet_drenched
@@ -1925,7 +1927,7 @@ carrier_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				has_carrier_flag = machine_lair
+				has_planet_flag = machine_lair
 			}
 			#set_carrier_flag = destroyed_by_colossus
 			set_carrier_flag = planet_drenched
@@ -2125,10 +2127,7 @@ carrier_event = {
 
 		every_owned_pop_group = {
 			limit = {
-				NOR = {
-					has_trait = trait_aquatic
-					has_trait = trait_robot_aquatic
-				}
+				has_aquatic_trait = no
 			}
 			while = {
 				count = value:per_100_pop_amount #For every 100 pops iterate through this loop once
@@ -2300,7 +2299,7 @@ carrier_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				NOT = { has_carrier_flag = machine_lair }
+				NOT = { has_planet_flag = machine_lair }
 			}
 			set_carrier_flag = destroyed_by_colossus
 			set_carrier_flag = planet_cracked #doesn't matter
@@ -2311,7 +2310,7 @@ carrier_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				has_carrier_flag = machine_lair
+				has_planet_flag = machine_lair
 			}
 			set_carrier_flag = destroyed_by_colossus
 			set_carrier_flag = planet_cracked
@@ -2601,7 +2600,7 @@ carrier_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				NOT = { has_carrier_flag = machine_lair }
+				NOT = { has_planet_flag = machine_lair }
 				from.owner = {
 					has_ascension_perk = ap_archaeoengineers
 				}
@@ -2630,7 +2629,7 @@ carrier_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				has_carrier_flag = machine_lair
+				has_planet_flag = machine_lair
 				from.owner = {
 					has_ascension_perk = ap_archaeoengineers
 				}
@@ -2935,7 +2934,7 @@ carrier_event = {
 		else = {
 			change_pc = this
 		}
-		set_timed_carrier_flag = {
+		set_timed_planet_flag = {
 			flag = devolved_planet
 			days = 360
 		}
@@ -3114,7 +3113,7 @@ carrier_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				NOT = { has_carrier_flag = machine_lair }
+				NOT = { has_planet_flag = machine_lair }
 			}
 			set_carrier_flag = destroyed_by_colossus
 			set_carrier_flag = planet_cracked
@@ -3125,7 +3124,7 @@ carrier_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ai
-				has_carrier_flag = machine_lair
+				has_planet_flag = machine_lair
 			}
 			set_carrier_flag = destroyed_by_colossus
 			set_carrier_flag = planet_cracked

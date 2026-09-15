@@ -110,29 +110,35 @@ carrier_event = {
 				}
 			}
 		}
+		# root is the carrier, which is the Arkship ship for Nomads - scope to the colony for the planet-class work below.
+		colony = {
+			save_event_target_as = necrophage_apotheosis_colony
+		}
 		if = {
 			limit = {
 				event_target:last_created_pop_group = {
-					NOT = { ideal_planet_class = root }
+					NOT = { ideal_planet_class = event_target:necrophage_apotheosis_colony }
 				}
-				NOR = {
-					uses_district_set = habitat
-					uses_district_set = ring_world
-					uses_district_set = city_world
-					uses_district_set = hive_world
-					uses_district_set = machine_world
-					is_planet_class = pc_gaia
-					is_planet_class = pc_relic
+				event_target:necrophage_apotheosis_colony = {
+					NOR = {
+						uses_district_set = habitat
+						uses_district_set = ring_world
+						uses_district_set = city_world
+						uses_district_set = hive_world
+						uses_district_set = machine_world
+						is_planet_class = pc_gaia
+						is_planet_class = pc_relic
+					}
 				}
 				owner = {
 					has_technology = tech_glandular_acclimation
-					NOT = { ideal_planet_class = root }
+					NOT = { ideal_planet_class = event_target:necrophage_apotheosis_colony }
 					has_mutation_environmental_integration_tradition = no
 				}
 			}
 			event_target:last_created_pop_group = {
 				modify_species = {
-					ideal_planet_class = root
+					ideal_planet_class = event_target:necrophage_apotheosis_colony
 				}
 			}
 		}
@@ -144,15 +150,25 @@ carrier_event = {
 				percentage = 1
 			}
 		}
+		# Colony message targets are not implemented (AUG-55014) - target the planet, or the Arkship fleet for Nomads
+		if = {
+			limit = { is_planet_class = pc_ark }
+			fleet = {
+				save_event_target_as = necrophage_toast_target
+			}
+		}
+		else = {
+			save_event_target_as = necrophage_toast_target
+		}
 		create_message = {
 			type = MESSAGE_NECROPHAGE_POPS_NECROPHAGED
 			localization = MESSAGE_NECROPHAGE_POPS_NECROPHAGED
 			days = 30
-			target = this
+			target = event_target:necrophage_toast_target
 			variable = {
 				type = name
 				localization = PLANET
-				scope = this
+				scope = event_target:necrophage_apotheosis_colony
 			}
 			variable = {
 				type = variable
@@ -362,7 +378,7 @@ country_event = {
 					limit = {
 						is_colonizable = yes
 						is_colony = no
-						has_carrier_flag = prescripted_ideal
+						has_planet_flag = prescripted_ideal
 					}
 					generate_very_early_pre_ftls_on_planet = yes
 					set_name = random
@@ -386,7 +402,7 @@ country_event = {
 					limit = {
 						is_colonizable = yes
 						is_colony = no
-						has_carrier_flag = prescripted_ideal
+						has_planet_flag = prescripted_ideal
 					}
 					generate_very_early_pre_ftls_on_planet = yes
 					set_name = random
@@ -449,7 +465,7 @@ carrier_event = {
 				}
 				create_pop_group = {
 					species = event_target:necrophage_pop_species
-					size = 0
+					size = local_pop_amount 
 					effect = {
 						save_event_target_as = last_created_pop_group
 					}
@@ -458,7 +474,7 @@ carrier_event = {
 			else = {
 				create_pop_group = {
 					species = owner_species
-					size = 0
+					size = local_pop_amount 
 					effect = {
 						save_event_target_as = last_created_pop_group
 					}
@@ -489,29 +505,21 @@ carrier_event = {
 					}
 				}
 			}
-			event_target:last_created_pop_group = {
-				add_pop_amount = {
-					amount = root.local_pop_amount
-				}
-			}
+			
 			if = {
 				limit = {
-					from.overlord = {
+					from = {
 						OR = {
 							has_active_tradition = tr_harmony_unity_of_self
 							has_active_tradition = tr_synchronicity_unity_of_mind
 						}
 					}
 				}
-				while = {
-					count = value:per_100_local_pop_amount
-					from.overlord = {
-						add_monthly_resource_mult = {
-							resource = unity
-							value = 1.5
-							min = 5
-							max = 100
-						}
+				# nomad purge-vassal: hand the unity up to the necrophage overlord, flat per 100 pops to match the other purge civics
+				from.overlord = {
+					add_resource = {
+						unity = 1.5
+						mult = root.value:per_100_local_pop_amount
 					}
 				}
 			}
@@ -546,7 +554,7 @@ carrier_event = {
 				limit = {
 					has_communications = FROM.overlord
 					NOT = { is_country = FROM.overlord }
-					is_same_species = FROMFROM.overlord
+					is_same_species = FROMFROM
 					has_intel_level = {
 						who = FROM.overlord
 						category = economy
@@ -960,7 +968,6 @@ carrier_event = {
 								remove_trait = trait_robot_latent_psionic
 								remove_trait = trait_psionic
 								remove_trait = trait_robot_psionic
-								remove_trait = trait_limited_cybernetic
 								change_scoped_species = no
 								effect = {
 									set_species_flag = cyber_zombie_species_of@event_target:old_species
@@ -992,6 +999,7 @@ carrier_event = {
 						pop_group = fromfrom
 						species = event_target:zombie_species
 						size = local_pop_amount
+						category = maintenance_drone
 						effect = {
 							set_citizenship_type = {
 								country = from.overlord
@@ -1026,6 +1034,7 @@ carrier_event = {
 					pop_group = fromfrom
 					species = event_target:zombie_species
 					size = local_pop_amount
+					category = maintenance_drone
 					effect = {
 						set_citizenship_type = {
 							country = root.owner
