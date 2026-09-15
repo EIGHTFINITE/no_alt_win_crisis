@@ -394,6 +394,14 @@ ap_behemoths = {
 			}
 			activate_crisis_progression = behemoth_path
 		}
+		if = {
+			limit = {
+				is_wilderness_empire = yes
+			}
+			hidden_effect = {
+				give_tech_no_error_effect = { MESSAGE = no TECH = tech_hydroponics }
+			}
+		}
 	}
 
 	modifier = {
