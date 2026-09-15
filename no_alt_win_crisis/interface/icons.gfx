@@ -2,162 +2,162 @@ spriteTypes = {
 
 	spriteType = {
 		name = "GFX_faction_icon_imperialist"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_imperialists.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_imperialists.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_prosperity"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_prosperity.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_prosperity.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_colonialist"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_colonialist_lobby.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_colonialist_lobby.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_isolationist"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_isolationists.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_isolationists.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_progressive"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_progressives.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_progressives.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_separatist"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_manifesti.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_manifesti.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_manifesti"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_progressives.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_progressives.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_rebellious_slaves"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_rebellious_slaves.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_rebellious_slaves.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_supremacist"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_supremacists.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_supremacists.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_technologist"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_technologists.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_technologists.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_totalitarian"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_totalitarians.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_totalitarians.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_traditionalist"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_traditionalists.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_traditionalists.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_interlink"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_interlink.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_interlink.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_cyber_creed_labor"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_cyber_creed_labor.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_cyber_creed_labor.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_cyber_creed_war"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_cyber_creed_war.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_cyber_creed_war.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_cyber_creed_construction"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_cyber_creed_construction.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_cyber_creed_construction.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_cyber_creed_research"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_cyber_creed_research.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_cyber_creed_research.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_cyber_creed_labor_2"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_cyber_creed_labor.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_cyber_creed_labor.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_cyber_creed_war_2"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_cyber_creed_war.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_cyber_creed_war.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_cyber_creed_construction_2"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_cyber_creed_construction.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_cyber_creed_construction.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_cyber_creed_research_2"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_cyber_creed_research.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_cyber_creed_research.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_cyber_creed_general"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_cyber_creed_creedless.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_cyber_creed_creedless.dds"
 		noOfFrames = 1
 	}
 	spriteType = {
 		name = "GFX_faction_icon_xenoist"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_xenoists.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_xenoists.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_the_masquerade"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_the_masquerade.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_the_masquerade.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_the_curtain"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_the_curtain.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_the_curtain.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_the_grand_dance"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_the_grand_dance.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_the_grand_dance.dds"
 		noOfFrames = 1
 	}
 
 	spriteType = {
 		name = "GFX_faction_icon_fire_cult"
-		textureFile = "gfx/interface/icons/faction_icons/faction_icons_fire_cult.dds"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_fire_cult.dds"
 		noOfFrames = 1
 	}
 
@@ -438,8 +438,23 @@ spriteTypes = {
 	}
 
 	spriteType = {
+		name = "GFX_faction_approval_icon"
+		texturefile = "gfx/interface/icons/factions/faction_approval.dds"
+	}
+
+	spriteType = {
+		name = "GFX_political_power_icon"
+		texturefile = "gfx/interface/icons/modifiers/mod_pop_political_power.dds"
+	}
+
+	spriteType = {
 		name = "GFX_faction_support_icon"
-		texturefile = "gfx/interface/icons/faction_support.dds"
+		texturefile = "gfx/interface/icons/factions/faction_support.dds"
+	}
+
+	spriteType = {
+		name = "GFX_faction_supporters_icon"
+		texturefile = "gfx/interface/icons/factions/faction_supporters.dds"
 	}
 
 	spriteType = {
@@ -509,7 +524,7 @@ spriteTypes = {
 
 	spriteType = {
 		name = "GFX_faction_attraction_icon"
-		texturefile = "gfx/interface/icons/faction_attraction_icon.dds"
+		texturefile = "gfx/interface/icons/factions/faction_attraction.dds"
 	}
 
 	spriteType = {
@@ -694,13 +709,13 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_ship_sizes_top"
 		textureFile = "gfx/interface/icons/ship_parts/ship_sizes/ship_sizes_top.dds"
-		noOfFrames = 33
+		noOfFrames = 34
 	}
 
 	spriteType = {
 		name = "GFX_ship_sizes_top_damaged"
 		textureFile = "gfx/interface/icons/ship_parts/ship_sizes/ship_sizes_top_damaged.dds"
-		noOfFrames = 33
+		noOfFrames = 34
 	}
 
 	spriteType = {
@@ -1260,6 +1275,18 @@ spriteTypes = {
 		sprite_sheet_sprite_type = "GFX_ship_sizes"
 		default_frame = 27
 	}
+
+	spriteType = {
+		name = "GFX_ship_size_behemoth_top"
+		sprite_sheet_sprite_type = "GFX_ship_sizes_top"
+		default_frame = 34
+	}
+	spriteType = {
+		name = "GFX_ship_size_behemoth_top_damaged"
+		sprite_sheet_sprite_type = "GFX_ship_sizes_top_damaged"
+		default_frame = 34
+	}
+
 	spriteType = {
 		name = "GFX_ship_size_paladin"
 		sprite_sheet_sprite_type = "GFX_ship_sizes"
@@ -6222,43 +6249,43 @@ spriteTypes = {
 	}
 	spriteType = {
 		name = "GFX_faction_icon_traditionalist_small"
-		textureFile = "gfx/interface/icons/faction_icons/traditionalists.dds"
+		textureFile = "gfx/interface/icons/factions/types/traditionalists.dds"
 	}
 	spriteType = {
 		name = "GFX_faction_icon_imperialist_small"
-		textureFile = "gfx/interface/icons/faction_icons/imperialists.dds"
+		textureFile = "gfx/interface/icons/factions/types/imperialists.dds"
 	}
 	spriteType = {
 		name = "GFX_faction_icon_isolationists_small"
-		textureFile = "gfx/interface/icons/faction_icons/isolationists.dds"
+		textureFile = "gfx/interface/icons/factions/types/isolationists.dds"
 	}
 	spriteType = {
 		name = "GFX_faction_icon_manifesti_small"
-		textureFile = "gfx/interface/icons/faction_icons/manifesti.dds"
+		textureFile = "gfx/interface/icons/factions/types/manifesti.dds"
 	}
 	spriteType = {
 		name = "GFX_faction_icon_progressives_small"
-		textureFile = "gfx/interface/icons/faction_icons/progressives.dds"
+		textureFile = "gfx/interface/icons/factions/types/progressives.dds"
 	}
 	spriteType = {
 		name = "GFX_faction_icon_prosperity_small"
-		textureFile = "gfx/interface/icons/faction_icons/prosperity.dds"
+		textureFile = "gfx/interface/icons/factions/types/prosperity.dds"
 	}
 	spriteType = {
 		name = "GFX_faction_icon_supremacists_small"
-		textureFile = "gfx/interface/icons/faction_icons/supremacists.dds"
+		textureFile = "gfx/interface/icons/factions/types/supremacists.dds"
 	}
 	spriteType = {
 		name = "GFX_faction_icon_technologists_small"
-		textureFile = "gfx/interface/icons/faction_icons/technologists.dds"
+		textureFile = "gfx/interface/icons/factions/types/technologists.dds"
 	}
 	spriteType = {
 		name = "GFX_faction_icon_totalitarians_small"
-		textureFile = "gfx/interface/icons/faction_icons/totalitarians.dds"
+		textureFile = "gfx/interface/icons/factions/types/totalitarians.dds"
 	}
 	spriteType = {
 		name = "GFX_faction_icon_xenoists_small"
-		textureFile = "gfx/interface/icons/faction_icons/xenoists.dds"
+		textureFile = "gfx/interface/icons/factions/types/xenoists.dds"
 	}
 	spriteType = {
 		name = "GFX_ethic_spiritualist"
