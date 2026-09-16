@@ -71,6 +71,98 @@ country_event = {
 		trigger = {
 			is_hive_empire = no
 			is_machine_empire = no
+		}
+		name = origin.6165.a
+		icon = {
+			icon = GFX_fanatic_purifier
+			text = WILL_TURN_TO_PURIFIER
+		}
+
+		if = {
+			limit = {
+				NOT = { has_civic = civic_fanatic_purifiers }
+				NOT = { has_civic = civic_machine_terminator }
+				NOT = { has_civic = civic_hive_devouring_swarm }
+				NOT = { has_civic = civic_scorched_earth }
+				NOT = { has_civic = civic_hive_scorched_earth }
+			}
+			force_remove_civic_by_index = 6
+			force_remove_civic_by_index = 5
+			force_remove_civic_by_index = 4
+			force_remove_civic_by_index = 3
+			force_remove_civic_by_index = 2
+			force_remove_civic_by_index = 1
+			clear_ethos = yes
+			country_add_ethic = ethic_fanatic_xenophobe
+			country_add_ethic = ethic_militarist
+			if = {
+				limit = {
+					is_megacorp = yes
+				}
+				force_add_civic = civic_naval_contractors
+				force_add_civic = civic_private_military_companies
+				if = {
+					limit = { has_technology = tech_galactic_administration }
+					force_add_civic = civic_corporate_flight_schools
+				}
+			}
+			else = {
+				force_add_civic = civic_distinguished_admiralty
+				if = {
+					limit = {
+						OR = {
+							is_democratic_authority = yes
+							is_oligarchic_authority = yes
+						}
+					}
+					force_add_civic = civic_citizen_service
+				}
+				else = {
+					force_add_civic = civic_warrior_culture
+				}
+				if = {
+					limit = { has_technology = tech_galactic_administration }
+					force_add_civic = civic_flight_schools
+				}
+			}
+			force_add_civic = civic_fanatic_purifiers
+			force_add_civic = civic_crisis_fanatic_purifiers
+			set_country_flag = crisis_civic_fanatic_purifiers
+			hidden_effect = {
+				country_event = { id = no_alt_win_crisis.3 }
+				set_policy = {
+					policy = diplomatic_stance
+					option = diplo_stance_purification
+				}
+			}
+		}
+
+		add_resource = { unity = 5000 }
+
+		ai_chance = {
+			weight = 10
+			modifier = {
+				add = 5
+				owner = {
+					num_rivals >= 3
+				}
+			}
+			modifier = {
+				factor = 2
+				owner = {
+					OR = {
+						is_xenophobe = yes
+						is_gestalt = yes
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			is_hive_empire = no
+			is_machine_empire = no
 			OR = {
 				is_infernal_empire = yes
 				has_ascension_perk = ap_galactic_hyperthermia
@@ -128,7 +220,7 @@ country_event = {
 		trigger = {
 			is_hive_empire = yes
 		}
-		name = cstorms.1771.desc.swarm
+		name = terra.80.d.wilderness
 		icon = {
 			icon = GFX_hive_devouring_swarm
 			text = WILL_TURN_TO_HIVE_DEVOURING_SWARM
@@ -141,6 +233,70 @@ country_event = {
 				NOT = { has_civic = civic_hive_devouring_swarm }
 				NOT = { has_civic = civic_scorched_earth }
 				NOT = { has_civic = civic_hive_scorched_earth }
+			}
+			force_add_civic = civic_hive_devouring_swarm
+			force_add_civic = civic_crisis_hive_devouring_swarm
+			set_country_flag = crisis_civic_hive_devouring_swarm
+			hidden_effect = {
+				set_policy = {
+					policy = diplomatic_stance
+					option = diplo_stance_hunger
+				}
+				country_event = { id = no_alt_win_crisis.3 }
+			}
+		}
+
+		add_resource = { unity = 5000 }
+
+		ai_chance = {
+			weight = 10
+			modifier = {
+				add = 5
+				owner = {
+					num_rivals >= 3
+				}
+			}
+			modifier = {
+				factor = 2
+				owner = {
+					OR = {
+						is_xenophobe = yes
+						is_gestalt = yes
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			is_hive_empire = yes
+		}
+		name = terra.80.d.wilderness
+		icon = {
+			icon = GFX_hive_devouring_swarm
+			text = WILL_TURN_TO_HIVE_DEVOURING_SWARM
+		}
+
+		if = {
+			limit = {
+				NOT = { has_civic = civic_fanatic_purifiers }
+				NOT = { has_civic = civic_machine_terminator }
+				NOT = { has_civic = civic_hive_devouring_swarm }
+				NOT = { has_civic = civic_scorched_earth }
+				NOT = { has_civic = civic_hive_scorched_earth }
+			}
+			force_remove_civic_by_index = 6
+			force_remove_civic_by_index = 5
+			force_remove_civic_by_index = 4
+			force_remove_civic_by_index = 3
+			force_remove_civic_by_index = 2
+			force_remove_civic_by_index = 1
+			force_add_civic = civic_hive_shared_genetics
+			force_add_civic = civic_hive_aerospace_adaptation
+			if = {
+				limit = { has_technology = tech_galactic_administration }
+				force_add_civic = civic_hive_strength_of_legions
 			}
 			force_add_civic = civic_hive_devouring_swarm
 			force_add_civic = civic_crisis_hive_devouring_swarm
