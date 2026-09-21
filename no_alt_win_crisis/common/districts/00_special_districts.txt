@@ -199,23 +199,11 @@ district_mindlink = {
 		produces = {
 			trigger = {
 				owner = { is_variable_set =  pops_transferred }
-				owner = { is_wilderness_empire = no }
 			}
 			unity = 1.5
 			physics_research = 0.5
 			society_research = 0.5
 			engineering_research = 0.5
-			mult = owner.value:transferred_pops_district_percent
-		}
-		produces = {
-			trigger = {
-				owner = { is_variable_set =  pops_transferred }
-				owner = { is_wilderness_empire = yes }
-			}
-			unity = 300
-			physics_research = 100
-			society_research = 100
-			engineering_research = 100
 			mult = owner.value:transferred_pops_district_percent
 		}
 	}

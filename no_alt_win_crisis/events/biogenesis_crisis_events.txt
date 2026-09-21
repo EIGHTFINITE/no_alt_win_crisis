@@ -256,63 +256,149 @@ country_event = {
 				which = growth_factor_variable
 				value = 0
 			}
-			# Kill a few pops across country
-			every_owned_planet = {
+			if = {
 				limit = {
-					pop_amount > 500
+					is_wilderness_empire = yes
 				}
-				random_list = {
-					20 = {}
-					20 = {
-						weighted_random_owned_pop_group = {
-							kill_single_pop = yes
+				every_owned_planet = {
+					limit = {
+						count_owned_pop_amount = {
+							limit = { pop_group_has_trait = trait_wilderness }
+							count > 500
 						}
-						owner = {
-							change_variable = {
-								which = pops_transferred
-								value = 100
+					}
+					random_list = {
+						20 = {}
+						20 = {
+							owner = {
+								random_owned_pop_group = {
+									limit = {
+										has_trait = trait_wilderness
+									}
+									kill_pop_group = {
+										pop_group = this
+										amount = 100
+									}
+								}
+								change_variable = {
+									which = pops_transferred
+									value = 100
+								}
+							}
+						}
+						20 = {
+							owner = {
+								random_owned_pop_group = {
+									limit = {
+										has_trait = trait_wilderness
+									}
+									kill_pop_group = {
+										pop_group = this
+										amount = 200
+									}
+								}
+								change_variable = {
+									which = pops_transferred
+									value = 200
+								}
+							}
+						}
+						20 = {
+							owner = {
+								random_owned_pop_group = {
+									limit = {
+										has_trait = trait_wilderness
+									}
+									kill_pop_group = {
+										pop_group = this
+										amount = 300
+									}
+								}
+								change_variable = {
+									which = pops_transferred
+									value = 300
+								}
+							}
+						}
+						20 = {
+							owner = {
+								random_owned_pop_group = {
+									limit = {
+										has_trait = trait_wilderness
+									}
+									kill_pop_group = {
+										pop_group = this
+										amount = 400
+									}
+								}
+								change_variable = {
+									which = pops_transferred
+									value = 400
+								}
 							}
 						}
 					}
-					20 = {
-						while = {
-							count = 2
-							weighted_random_owned_pop_group = {
-								kill_single_pop = yes
-							}
-						}
-						owner = {
-							change_variable = {
-								which = pops_transferred
-								value = 200
-							}
-						}
+				}
+			}
+			else = {
+				# Kill a few pops across country
+				every_owned_planet = {
+					limit = {
+						pop_amount > 500
 					}
-					20 = {
-						while = {
-							count = 3
+					random_list = {
+						20 = {}
+						20 = {
 							weighted_random_owned_pop_group = {
 								kill_single_pop = yes
 							}
-						}
-						owner = {
-							change_variable = {
-								which = pops_transferred
-								value = 300
+							owner = {
+								change_variable = {
+									which = pops_transferred
+									value = 100
+								}
 							}
 						}
-					}
-					20 = {
-						while = {
-							count = 4
-							weighted_random_owned_pop_group = {
-								kill_single_pop = yes
+						20 = {
+							while = {
+								count = 2
+								weighted_random_owned_pop_group = {
+									kill_single_pop = yes
+								}
+							}
+							owner = {
+								change_variable = {
+									which = pops_transferred
+									value = 200
+								}
 							}
 						}
-						owner = {
-							change_variable = {
-								which = pops_transferred
-								value = 400
+						20 = {
+							while = {
+								count = 3
+								weighted_random_owned_pop_group = {
+									kill_single_pop = yes
+								}
+							}
+							owner = {
+								change_variable = {
+									which = pops_transferred
+									value = 300
+								}
+							}
+						}
+						20 = {
+							while = {
+								count = 4
+								weighted_random_owned_pop_group = {
+									kill_single_pop = yes
+								}
+							}
+							owner = {
+								change_variable = {
+									which = pops_transferred
+									value = 400
+								}
 							}
 						}
 					}
@@ -2641,87 +2727,135 @@ country_event = {
 	hide_window = yes
 
 	immediate = {
-		capital_scope = {
-			if = {
-				#check that someone is working a transference job and that there are more than 5 pops on the planet
-				limit = {
-					pop_amount > 500
-					OR = {
-						num_assigned_jobs = {
-							job = transference_volunteer
-							value > 0
+		if = {
+			limit = {
+				is_wilderness_empire = yes
+			}
+			capital_scope = {
+				if = {
+					limit = {
+						count_owned_pop_amount = {
+							limit = { pop_group_has_trait = trait_wilderness }
+							count > 500
 						}
-						num_assigned_jobs = {
-							job = transference_drone
-							value > 0
+					}
+					owner = {
+						export_trigger_value_to_variable = {
+							trigger = num_districts
+							parameters = {
+								type = district_mindlink
+							}
+							variable = num_transference_jobs_var
+						}
+						multiply_variable = { which = num_transference_jobs_var value = 150 }
+						ceiling_variable = num_transference_jobs_var
+						while = {
+							count = num_transference_jobs_var
+							random_owned_planet = {
+								limit = {
+									count_owned_pop_amount = {
+										limit = { pop_group_has_trait = trait_wilderness }
+										count > 1
+									}
+								}
+								random_owned_pop_group = {
+									limit = {
+										has_trait = trait_wilderness
+									}
+									kill_pop_group = {
+										pop_group = this
+										amount = 1
+									}
+								}
+							}
 						}
 					}
 				}
-				owner = {
-					if = {
-						limit = {
-							is_gestalt = no
-						}
-						export_trigger_value_to_variable = { #Kill 10% rounded up
-							trigger = num_assigned_jobs
-							parameters = {
+			}
+		}
+		else = {
+			capital_scope = {
+				if = {
+					#check that someone is working a transference job and that there are more than 5 pops on the planet
+					limit = {
+						pop_amount > 500
+						OR = {
+							num_assigned_jobs = {
 								job = transference_volunteer
+								value > 0
 							}
-							variable = num_transference_jobs_var
-						}
-						divide_variable = { which = num_transference_jobs_var value = 10 }
-						ceiling_variable = num_transference_jobs_var
-					}
-					if = {
-						limit = {
-							is_gestalt = yes
-						}
-						export_trigger_value_to_variable = { #Kill 10% rounded up
-							trigger = num_assigned_jobs
-							parameters = {
+							num_assigned_jobs = {
 								job = transference_drone
+								value > 0
 							}
-							variable = num_transference_jobs_var
-						}
-						divide_variable = { which = num_transference_jobs_var value = 10 }
-						ceiling_variable = num_transference_jobs_var
-					}
-				}
-				save_event_target_as = transference_target_colony
-				set_variable = {
-					which = num_transference_jobs_var
-					value = owner.num_transference_jobs_var
-				}
-				while = {
-					count = owner.num_transference_jobs_var
-					random_owned_pop_job = {
-						limit = {
-							has_job_type = transference_volunteer
-						}
-						kill_assigned_pop_amount = {
-							amount = 1
 						}
 					}
-					random_owned_pop_job = {
-						limit = {
-							has_job_type = transference_drone
+					owner = {
+						if = {
+							limit = {
+								is_gestalt = no
+							}
+							export_trigger_value_to_variable = { #Kill 10% rounded up
+								trigger = num_assigned_jobs
+								parameters = {
+									job = transference_volunteer
+								}
+								variable = num_transference_jobs_var
+							}
+							divide_variable = { which = num_transference_jobs_var value = 10 }
+							ceiling_variable = num_transference_jobs_var
 						}
-						kill_assigned_pop_amount = {
-							amount = 1
+						if = {
+							limit = {
+								is_gestalt = yes
+							}
+							export_trigger_value_to_variable = { #Kill 10% rounded up
+								trigger = num_assigned_jobs
+								parameters = {
+									job = transference_drone
+								}
+								variable = num_transference_jobs_var
+							}
+							divide_variable = { which = num_transference_jobs_var value = 10 }
+							ceiling_variable = num_transference_jobs_var
 						}
 					}
-				}
-				owner = {
-					create_message = {
-						type = MESSAGE_POPS_TRANSFERRED
-						localization =  MESSAGE_POPS_TRANSFERRED_DESC
-						days = @toast_message_days
-						target = event_target:transference_target_colony
-						variable = {
-							type = variable
-							varname = num_transference_jobs_var
-							localization = VALUE
-							scope = capital_scope
+					save_event_target_as = transference_target_colony
+					set_variable = {
+						which = num_transference_jobs_var
+						value = owner.num_transference_jobs_var
+					}
+					while = {
+						count = owner.num_transference_jobs_var
+						random_owned_pop_job = {
+							limit = {
+								has_job_type = transference_volunteer
+							}
+							kill_assigned_pop_amount = {
+								amount = 1
+							}
+						}
+						random_owned_pop_job = {
+							limit = {
+								has_job_type = transference_drone
+							}
+							kill_assigned_pop_amount = {
+								amount = 1
+							}
+						}
+					}
+					owner = {
+						create_message = {
+							type = MESSAGE_POPS_TRANSFERRED
+							localization =  MESSAGE_POPS_TRANSFERRED_DESC
+							days = @toast_message_days
+							target = event_target:transference_target_colony
+							variable = {
+								type = variable
+								varname = num_transference_jobs_var
+								localization = VALUE
+								scope = capital_scope
+							}
 						}
 					}
 				}
