@@ -1,0 +1,307 @@
+@lathe_alloy_cost = 1000
+@lathe_logic_cost = 500
+@lathe_upkeep = 50
+@biomass_cost = 50
+
+@hab_cost = 500
+@hab_maintenance = 2
+@low_hab_maintenance = 0.2
+
+district_cosmogenesis_goverment = {
+	icon = district_city
+	overlay_icon = GFX_district_government
+
+	exempt_from_ai_planet_specialization = yes
+
+	is_uncapped = {
+		always = no
+	}
+
+	zone_slots = {
+		slot_cosmogenesis_government
+	}
+
+	show_on_uncolonized = {
+		uses_district_set = cosmogenesis_world
+	}
+
+	potential = {
+		uses_district_set = cosmogenesis_world
+		exists = owner
+		owner = { has_ascension_perk = ap_cosmogenesis }
+	}
+}
+
+district_cosmogenesis_world_science = {
+	overlay_icon = GFX_district_research
+	base_buildtime = 250
+
+	show_on_uncolonized = {
+		uses_district_set = cosmogenesis_world
+	}
+
+	zone_slots = {
+		slot_empty
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			alloys = @lathe_alloy_cost
+			advanced_logic = @lathe_logic_cost
+		}
+		upkeep = {
+			energy = @lathe_upkeep
+		}
+	}
+
+	potential = {
+		uses_district_set = cosmogenesis_world
+		exists = owner
+		owner = { has_ascension_perk = ap_cosmogenesis }
+	}
+	planet_modifier = {
+		planet_housing_add = 1500
+		pc_cosmogenesis_world_max_buildings_add = 1
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			NOT = { owner = { has_deficit = energy } }
+		}
+		planet_neural_chips_physics_research_produces_add = 0.75
+		planet_neural_chips_society_research_produces_add = 0.75
+		planet_neural_chips_engineering_research_produces_add = 0.75
+	}
+
+	ai_estimate_without_unemployment = yes
+	additional_ai_weight = 200
+	ai_weight_coefficient = 1.2
+}
+
+district_cosmogenesis_world_logic = {
+	overlay_icon = GFX_district_advanced_logic
+	base_buildtime = 250
+
+	show_on_uncolonized = {
+		uses_district_set = cosmogenesis_world
+	}
+
+	zone_slots = {
+		slot_empty
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			alloys = @lathe_alloy_cost
+			advanced_logic = @lathe_logic_cost
+		}
+		upkeep = {
+			energy = @lathe_upkeep
+		}
+	}
+
+	potential = {
+		uses_district_set = cosmogenesis_world
+		exists = owner
+		owner = { has_ascension_perk = ap_cosmogenesis }
+	}
+	planet_modifier = {
+		planet_housing_add = 1500
+		pc_cosmogenesis_world_max_buildings_add = 1
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			NOT = { owner = { has_deficit = energy } }
+		}
+		planet_neural_chips_advanced_logic_produces_add = 0.025
+	}
+
+	ai_estimate_without_unemployment = yes
+	additional_ai_weight = 200
+	ai_weight_coefficient = 1.2
+}
+
+district_mindlink = {
+	icon = district_city
+	overlay_icon = GFX_district_feral_insight
+	base_buildtime = 720
+	gridbox = district_city
+
+	exempt_from_ai_planet_specialization = yes
+
+	show_on_uncolonized = {
+		always = no
+	}
+
+	potential = {
+		exists = owner
+		is_capital = yes
+		owner = {
+			has_menace_perk = menp_behemoth_mind_meld
+		}
+	}
+
+	allow = {
+		hidden_trigger = {
+			NOR = {
+				has_modifier = resort_colony
+				has_modifier = penal_colony
+				has_modifier = slave_colony
+			}
+		}
+		custom_tooltip = {
+			fail_text = arcology_project_construction_fail_tt
+			OR = {
+				owner = { is_nomadic = yes }
+				NOT = { has_carrier_flag = arcology_project_construction }
+			}
+		}
+	}
+
+	zone_slots = {
+		slot_city_government
+		slot_city_01
+		slot_city_02
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_ark_city
+		district_arcology_housing
+		district_rw_city
+		district_rw_hive
+		district_rw_nexus
+		district_city
+		district_nexus
+		district_hive
+		district_hab_housing
+		district_crashed_slaver_ship
+		district_craglands
+	}
+
+	resources = {
+		category = planet_districts_cities
+		cost = {
+			food = 1500
+		}
+		cost = {
+			trigger = {
+				owner = { is_wilderness_empire = yes }
+			}
+			biomass = @biomass_cost
+		}
+		upkeep = {
+			food = 2
+		}
+		produces = {
+			trigger = {
+				owner = { is_variable_set =  pops_transferred }
+				owner = { is_wilderness_empire = no }
+			}
+			unity = 1.5
+			physics_research = 0.5
+			society_research = 0.5
+			engineering_research = 0.5
+			mult = owner.value:transferred_pops_district_percent
+		}
+		produces = {
+			trigger = {
+				owner = { is_variable_set =  pops_transferred }
+				owner = { is_wilderness_empire = yes }
+			}
+			unity = 300
+			physics_research = 100
+			society_research = 100
+			engineering_research = 100
+			mult = owner.value:transferred_pops_district_percent
+		}
+	}
+
+	inline_script = {
+		script = buildings/on_all_wilderness_buildings_districts
+	}
+
+	planet_modifier = {
+		planet_housing_add = 3000
+	}
+
+	triggered_planet_modifier = { #Regular modifiers
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_transference_volunteer_add = 1500
+		}
+	}
+
+	triggered_planet_modifier = { # Gestalt modifiers
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		modifier = {
+			planet_housing_add = 1000
+			job_transference_drone_add = 1500
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_agrarian_idyll
+			}
+		}
+		modifier = {
+			planet_housing_add = -500
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_prosperity_public_works }
+		}
+		modifier = {
+			planet_housing_add = 500
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_1
+			}
+		}
+		modifier = {
+			planet_housing_add = 500
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_2
+				NOT = { has_valid_civic = civic_agrarian_idyll }
+			}
+		}
+		modifier = {
+			planet_housing_add = 500
+		}
+	}
+
+	triggered_desc = { #same as transference drone so everyone gets it
+		trigger = {
+			exists = owner
+		}
+		text = job_transference_volunteer_effect_desc
+	}
+}
