@@ -291,6 +291,16 @@ event = {
 							}
 						}
 					}
+					modifier = {
+						factor = 0
+						any_country = {
+							OR = {
+								is_country_type = fallen_empire
+								is_country_type = awakened_fallen_empire
+								is_crisis_faction = yes
+							}
+						}
+					}
 					modifier = { # incentivize Cetana to show up last or she'll likely murder all the other crises
 						factor = 0.5
 							any_country = {
