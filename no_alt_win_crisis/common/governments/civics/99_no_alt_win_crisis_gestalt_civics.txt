@@ -31,10 +31,7 @@ civic_hive_devouring_swarm = {
 					}
 				}
 			}
-			AND = {
-				civics = { value = civic_hive_devouring_swarm }
-				civics = { value = civic_crisis_hive_devouring_swarm }
-			}
+			civics = { value = civic_crisis_hive_devouring_swarm }
 		}
 	}
 	random_weight = {
@@ -227,10 +224,7 @@ civic_hive_scorched_earth = {
 					}
 				}
 			}
-			AND = {
-				civics = { value = civic_hive_scorched_earth }
-				civics = { value = civic_crisis_hive_scorched_earth }
-			}
+			civics = { value = civic_crisis_hive_scorched_earth }
 		}
 	}
 	modification = no
@@ -305,10 +299,7 @@ civic_machine_terminator = {
 					}
 				}
 			}
-			AND = {
-				civics = { value = civic_machine_terminator }
-				civics = { value = civic_crisis_machine_terminator }
-			}
+			civics = { value = civic_crisis_machine_terminator }
 		}
 	}
 	modification = no

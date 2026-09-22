@@ -54,10 +54,7 @@ civic_fanatic_purifiers = {
 					}
 				}
 			}
-			AND = {
-				civics = { value = civic_fanatic_purifiers }
-				civics = { value = civic_crisis_fanatic_purifiers }
-			}
+			civics = { value = civic_crisis_fanatic_purifiers }
 		}
 	}
 	random_weight = {
@@ -169,10 +166,7 @@ civic_scorched_earth = {
 					}
 				}
 			}
-			AND = {
-				civics = { value = civic_scorched_earth }
-				civics = { value = civic_crisis_scorched_earth }
-			}
+			civics = { value = civic_crisis_scorched_earth }
 		}
 	}
 	modification = no
