@@ -1514,7 +1514,10 @@ situation_event = {
 			limit = {
 				has_country_flag = revolt_joiner_empire_@root
 				#Check eligibility again in case there are pacts in the meantime or something went wrong
-				basic_eligibility_for_separatism_joining_trigger = yes
+				separatism_joining_eligibility_trigger = {
+					SPECIES = event_target:rebellion_species
+					SITUATION = event_target:revolt_situation
+				}
 			}
 			save_event_target_as = new_owner_empire
 		}
@@ -1982,7 +1985,9 @@ situation_event = {
 								}
 							}
 						}
-						country_event = { id = unrest.4220 }
+						event_target:new_owner_empire = {
+							country_event = { id = unrest.4220 }
+						}
 					}
 					else = {
 						add_resource = {
@@ -2208,13 +2213,13 @@ country_event = {
 	desc = {
 		text = unrest.4220.desc.hive
 		trigger = {
-			is_machine_empire = yes
+			is_hive_empire = yes
 		}
 	}
 	desc = {
 		text = unrest.4220.desc.machine
 		trigger = {
-			is_hive_empire = yes
+			is_machine_empire = yes
 		}
 	}
 	location = event_target:rebel_planet

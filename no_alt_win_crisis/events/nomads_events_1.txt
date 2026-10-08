@@ -2253,14 +2253,16 @@ country_event = {
 	}
 }
 
-# Re-enable disabled arkships after a war ends
-# ROOT = Loser, FROM = Main Winner
+# on_war_ended: ROOT = Loser, FROM = Main Winner
+# on_becoming_subject: ROOT = Subject, FROM = Overlord
 country_event = {
 	id = nomads.94
 	hide_window = yes
 	is_triggered_only = yes
 
 	trigger = {
+		# A Champions Forge team country is a temporary subject, not a subjugation
+		NOT = { is_country_type = champions_forge_contestant }
 		OR = {
 			is_nomadic = yes
 			from = { is_nomadic = yes }
@@ -2268,12 +2270,29 @@ country_event = {
 	}
 
 	immediate = {
-		# Re-enable the loser's disabled arkships
+		country_event = { id = nomads.96 }
+		from = { country_event = { id = nomads.96 } }
+	}
+}
+
+# Re-enable one empire's disabled arkships and waystations
+# ROOT = the empire whose vessels are recovered
+country_event = {
+	id = nomads.96
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		# An arkship still held by an occupier stays disabled until the occupation ends
 		every_owned_fleet = {
-			limit = { is_arkship_fleet = yes }
+			limit = {
+				is_arkship_fleet = yes
+				is_controlled_by = owner
+			}
 			every_owned_ship = {
 				limit = {
 					is_arkship_ship = yes
+					NOT = { has_ship_flag = disabled_by_gatekeeper_event }
 					is_disabled = yes
 				}
 				repair_amount = 1000
@@ -2281,7 +2300,6 @@ country_event = {
 				remove_ship_flag = disabled_by_default_empire_event
 			}
 		}
-		# Re-enable the loser's disabled waystations
 		every_owned_fleet = {
 			limit = {
 				any_owned_ship = { is_waystation_ship = yes  is_disabled = yes }
@@ -2290,31 +2308,6 @@ country_event = {
 				limit = { is_waystation_ship = yes  is_disabled = yes }
 				repair_amount = 1000
 				set_disabled = no
-			}
-		}
-		# Re-enable the winner's disabled arkships and waystations
-		from = {
-			every_owned_fleet = {
-				limit = { is_arkship_fleet = yes }
-				every_owned_ship = {
-					limit = {
-						is_arkship_ship = yes
-						is_disabled = yes
-					}
-					repair_amount = 1000
-					set_disabled = no
-					remove_ship_flag = disabled_by_default_empire_event
-				}
-			}
-			every_owned_fleet = {
-				limit = {
-					any_owned_ship = { is_waystation_ship = yes  is_disabled = yes }
-				}
-				every_owned_ship = {
-					limit = { is_waystation_ship = yes  is_disabled = yes }
-					repair_amount = 1000
-					set_disabled = no
-				}
 			}
 		}
 	}
@@ -2739,24 +2732,23 @@ country_event = {
 	}
 }
 
-# Set up the Champions Forge enclave
+# Spawn the Champions Forge enclave
+# via on_galactic_community_formed
 country_event = {
 	id = nomads.200
 	hide_window = yes
 	is_triggered_only = yes
 
 	trigger = {
-		has_country_flag = champions_forge_enclave_country
+		has_nomads_dlc = yes
+		NOT = { has_global_flag = champions_forge_spawned }
 	}
 
 	immediate = {
-		set_variable = {
-			which = champions_forge_invitation_five_year_increments
-			value = 0
-		}
-		set_variable = {
-			which = cfl_tournament_count
-			value = 0
+		create_champions_forge = yes
+		if = {
+			limit = { exists = event_target:champions_forge_enclave_country }
+			set_global_flag = champions_forge_spawned
 		}
 	}
 }
@@ -13681,6 +13673,9 @@ country_event = {
 	option = {
 		trigger = {		# You need to be able to release a subject to have this option
 			is_homicidal = no
+			NOT = {
+				has_origin = origin_toxic_knights
+			}
 			OR = {
 				is_gestalt = no
 				has_origin = origin_progenitor_hive
@@ -18210,6 +18205,98 @@ country_event = {
 				}
 				remove_planet = yes
 			}
+		}
+	}
+}
+
+# Stores each waystation's stockpile fill, or its network's for a logistic hub, on its system, and each logistic ship's stockpile fill on the fleet
+country_event = {
+	id = nomads.9035
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_nomadic = yes
+	}
+
+	immediate = {
+		every_owned_nonprimary_starbase = {
+			limit = {
+				is_waystation_starbase = yes
+			}
+			if = {
+				limit = {
+					waystation_has_remote_collection = yes
+				}
+				export_trigger_value_to_variable = {
+					trigger = waystation_network_stockpile_used
+					variable = waystation_collection_fill
+				}
+			}
+			else = {
+				export_trigger_value_to_variable = {
+					trigger = used_stockpile_capacity_percentage
+					variable = waystation_collection_fill
+				}
+			}
+			solar_system = {
+				set_variable = {
+					which = waystation_collection_fill
+					value = prev.waystation_collection_fill
+				}
+			}
+		}
+		every_owned_fleet = {
+			limit = {
+				is_ship_size = nomads_constructor
+			}
+			set_variable = {
+				which = logistic_drop_off_fill
+				value = 0
+			}
+			every_owned_ship = {
+				limit = {
+					is_ship_size = nomads_constructor
+				}
+				export_trigger_value_to_variable = {
+					trigger = used_stockpile_capacity_percentage
+					variable = logistic_drop_off_fill
+				}
+				if = {
+					limit = {
+						prev = {
+							check_variable = {
+								which = logistic_drop_off_fill
+								value < prev.logistic_drop_off_fill
+							}
+						}
+					}
+					prev = {
+						set_variable = {
+							which = logistic_drop_off_fill
+							value = prev.logistic_drop_off_fill
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# THIS = Starbase (Not The Ship)
+# FROM = Previous Owner Country
+starbase_event = {
+	id = nomads.9040
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_waystation_starbase = yes
+	}
+
+	immediate = {
+		solar_system = {
+			clear_variable = waystation_collection_fill
 		}
 	}
 }

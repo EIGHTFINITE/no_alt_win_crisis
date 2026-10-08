@@ -596,6 +596,7 @@ carrier_event = {
 	hide_window = yes
 
 	trigger = {
+		exists = owner
 		any_fleet_in_orbit = {
 			controller = { is_hostile = root.owner }
 			any_owned_ship = {
