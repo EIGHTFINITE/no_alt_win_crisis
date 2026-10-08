@@ -21,6 +21,12 @@ building_bio_reactor = {
 			}
 			has_any_farming_district_or_building = yes
 		}
+		owner = {
+			OR = {
+				is_ai = no
+				country_uses_food = yes
+			}
+		}
 	}
 
 	destroy_trigger = {
@@ -94,6 +100,12 @@ building_bio_reactor_2 = {
 				is_ai = no
 			}
 			has_any_farming_district_or_building = yes
+		}
+		owner = {
+			OR = {
+				is_ai = no
+				country_uses_food = yes
+			}
 		}
 	}
 
