@@ -2820,7 +2820,10 @@ carrier_event = { # Embarking Colony Pops - From on_cosmogenesis_pickup_planet_r
 					owner = {
 						has_origin = origin_toxic_knights
 					}
-					has_planet_flag = toxic_knights_habitat
+					OR = {
+						has_planet_flag = toxic_knights_habitat
+						has_planet_flag = toxic_knights_settled_world
+					}
 				}
 				set_planet_flag = keep_evacuated
 			}
