@@ -58,15 +58,7 @@ crisobj_destroy_starbases = {
 
 crisobj_purge_pops = {
 	reward = {
-		base = 3000
-		divide = trigger:num_galaxy_systems 	#on huge, this is 3. On smallest, it is 15
-		complex_trigger_modifier = { 			#fewer worlds => more menace from purging
-			trigger = check_galaxy_setup_value
-			parameters = { setting = habitable_worlds_scale }
-			mode = divide
-		}
-		round = yes 							#we don't want 3.124 menace
-		min = 3									#just in case
+		base = 0
 	}
 }
 

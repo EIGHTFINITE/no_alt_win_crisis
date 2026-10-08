@@ -758,6 +758,19 @@ carrier_event = {
 		}
 
 		finish_assimilation_effect = yes
+		if = {
+			limit = { has_ascension_perk = ap_become_the_crisis }
+			add_resource = { menace = 3 }
+		}
+		else_if = {
+			limit = {
+				has_origin = origin_nomadic_purger
+				overlord? = { has_ascension_perk = ap_become_the_crisis }
+			}
+			overlord = {
+				add_resource = { menace = 3 }
+			}
+		}
 
 		set_update_modifiers_batch = end			# Unfreeze modifier calculation for performance
 		clear_assimilation_variables = yes
