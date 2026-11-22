@@ -16,7 +16,4 @@ WILL_TURN_TO_SCORCHED_EARTH: "This option will cause us to become a §Y$civic_sc
 WILL_TURN_TO_HIVE_DEVOURING_SWARM: "This option will cause us to become a §Y$civic_hive_devouring_swarm$§! empire."
 WILL_TURN_TO_HIVE_SCORCHED_EARTH: "This option will cause us to become a §Y$civic_hive_scorched_earth$§! empire."
 WILL_TURN_TO_MACHINE_TERMINATOR: "This option will cause us to become a §Y$civic_machine_terminator$§! empire."
-councilor_machine_terminator: "$councilor_fanatic_purifiers$"
-councilor_machine_terminator_female: "$councilor_fanatic_purifiers$"
-councilor_machine_terminator_desc: "$councilor_fanatic_purifiers_desc$"
 must_finish_behemoths_path: "$TRIGGER_FAIL$We cannot select this Ascension Perk until we complete the ['ascension_perk:ap_behemoths'] path."
