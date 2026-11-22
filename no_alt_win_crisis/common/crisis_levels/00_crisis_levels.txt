@@ -15,10 +15,6 @@
 
 crisis_level_1 = {
 	# REQUIREMENTS
-	allow = {
-		resource_stockpile_compare = { resource = menace value >= 0 }
-		has_ascension_perk = ap_become_the_crisis
-	}
 	required_crisis_currency = 0
 
 	# REWARDS
@@ -40,8 +36,6 @@ crisis_level_1 = {
 crisis_level_2 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = menace value >= 1000 }
-		has_ascension_perk = ap_become_the_crisis
 		custom_tooltip = {
 			success_text = crisis_level_2_req_clear_tooltip
 			fail_text =	crisis_level_2_req_tooltip
@@ -55,7 +49,7 @@ crisis_level_2 = {
 			}
 		}
 	}
-	required_crisis_currency = 0
+	required_crisis_currency = 1000
 
 	# REWARDS
 	perks = {
@@ -81,8 +75,6 @@ crisis_level_2 = {
 crisis_level_3 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = menace value >= 2000 }
-		has_ascension_perk = ap_become_the_crisis
 		custom_tooltip = {
 			success_text = crisis_level_3_req_clear_tooltip
 			fail_text =	crisis_level_3_req_tooltip
@@ -96,7 +88,7 @@ crisis_level_3 = {
 			}
 		}
 	}
-	required_crisis_currency = 0
+	required_crisis_currency = 2000
 
 	# REWARDS
 	perks = {
@@ -123,8 +115,6 @@ crisis_level_3 = {
 crisis_level_4 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = menace value >= 5000 }
-		has_ascension_perk = ap_become_the_crisis
 		custom_tooltip = {
 			success_text = crisis_level_4_req_clear_tooltip
 			fail_text =	crisis_level_4_req_tooltip
@@ -138,7 +128,7 @@ crisis_level_4 = {
 			}
 		}
 	}
-	required_crisis_currency = 0
+	required_crisis_currency = 5000
 
 	# REWARDS
 	perks = {
@@ -164,8 +154,6 @@ crisis_level_4 = {
 crisis_level_5 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = menace value >= 10000 }
-		has_ascension_perk = ap_become_the_crisis
 		custom_tooltip = {
 			success_text = crisis_level_5_req_clear_tooltip
 			fail_text =	crisis_level_5_req_tooltip
@@ -190,7 +178,7 @@ crisis_level_5 = {
 			}
 		}
 	}
-	required_crisis_currency = 0
+	required_crisis_currency = 10000
 
 	# REWARDS
 	perks = {
@@ -201,7 +189,25 @@ crisis_level_5 = {
 	}
 
 	on_unlock = {
+		owner = {
+			if = {
+				limit = { has_federation = yes }
+				leave_alliance = { override_requirements = yes }
+			}
+			tooltip = {
+				if = {
+					limit = {
+						is_galactic_community_formed = yes
+						is_galactic_community_member = yes
+					}
+					remove_from_galactic_community = yes
+				}
+			}
+		}
 		hidden_effect = {
+			# force Declare Crisis resolution through an appropriate party
+			declare_crisis_effect = yes
+
 			owner = {
 				room_name_override = ""
 				add_event_chain_counter = {
@@ -211,8 +217,6 @@ crisis_level_5 = {
 				}
 				end_event_chain = become_the_crisis_chain
 				country_event = { id = crisis.6000 days = 5 }
-				country_event = { id = no_alt_win_crisis.2 days = 10 }
-				country_event = { id = no_alt_win_crisis.1 days = 15 }
 			}
 		}
 	}
@@ -370,10 +374,6 @@ crisis_defender_level_5 = {
 
 crisis_cosmogenesis_level_1 = {
 	# REQUIREMENTS
-	allow = {
-		resource_stockpile_compare = { resource = advanced_logic value >= 0 }
-		has_ascension_perk = ap_cosmogenesis
-	}
 	required_crisis_currency = 0
 
 	# REWARDS
@@ -385,18 +385,7 @@ crisis_cosmogenesis_level_1 = {
 	}
 
 	on_unlock = {
-		if = {
-			limit = {
-				is_wilderness_empire = yes
-			}
-			add_research_option = tech_cosmogenesis_crisis_1
-			add_research_option = tech_dark_matter_power_core
-			add_research_option = tech_weaver_bio_healing_6
-			add_research_option = tech_weaver_bio_evasion_6
-		}
-		else = {
-			add_cosmogenesis_level_1_perks = yes
-		}
+		add_cosmogenesis_level_1_perks = yes
 		hidden_effect = {
 			owner = {
 				country_event = { id = crisis.7100 }
@@ -408,15 +397,13 @@ crisis_cosmogenesis_level_1 = {
 crisis_cosmogenesis_level_2 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = advanced_logic value >= 4000 }
-		has_ascension_perk = ap_cosmogenesis
 		custom_tooltip = {
 			success_text = cosmogenesis_level_2_req_clear_tooltip
 			fail_text =	cosmogenesis_level_2_req_tooltip
 			has_technology = tech_cosmogenesis_crisis_1
 		}
 	}
-	required_crisis_currency = 0
+	required_crisis_currency = 4000
 
 	# REWARDS
 	perks = {
@@ -439,15 +426,13 @@ crisis_cosmogenesis_level_2 = {
 crisis_cosmogenesis_level_3 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = advanced_logic value >= 10000 }
-		has_ascension_perk = ap_cosmogenesis
 		custom_tooltip = {
 			success_text =	cosmogenesis_level_3_req_clear_tooltip
 			fail_text =	cosmogenesis_level_3_req_tooltip
 			has_technology = tech_cosmogenesis_crisis_2
 		}
 	}
-	required_crisis_currency = 0
+	required_crisis_currency = 10000
 
 	# REWARDS
 	perks = {
@@ -458,12 +443,6 @@ crisis_cosmogenesis_level_3 = {
 	}
 
 	on_unlock = {
-		if = {
-			limit = {
-				is_gestalt = yes
-			}
-			add_research_option = tech_fe_market_1
-		}
 		add_cosmogenesis_level_3_perks = yes
 		hidden_effect = {
 			owner = {
@@ -476,8 +455,6 @@ crisis_cosmogenesis_level_3 = {
 crisis_cosmogenesis_level_4 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = advanced_logic value >= 22000 }
-		has_ascension_perk = ap_cosmogenesis
 		custom_tooltip = {
 			success_text =	cosmogenesis_level_4_req_clear_tooltip
 			fail_text =	cosmogenesis_level_4_req_tooltip
@@ -488,7 +465,7 @@ crisis_cosmogenesis_level_4 = {
 			NOT = { has_country_flag = cosmogenesis_aborted }
 		}
 	}
-	required_crisis_currency = 0
+	required_crisis_currency = 22000
 
 	# REWARDS
 	perks = {
@@ -515,8 +492,6 @@ crisis_cosmogenesis_level_4 = {
 crisis_cosmogenesis_level_5 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = advanced_logic value >= 60000 }
-		has_ascension_perk = ap_cosmogenesis
 		custom_tooltip = {
 			success_text =	cosmogenesis_level_5_req_clear_tooltip
 			fail_text =	cosmogenesis_level_5_req_tooltip
@@ -536,7 +511,7 @@ crisis_cosmogenesis_level_5 = {
 		}
 		is_subject = no
 	}
-	required_crisis_currency = 0
+	required_crisis_currency = 60000
 
 	# REWARDS
 	perks = {
@@ -548,11 +523,8 @@ crisis_cosmogenesis_level_5 = {
 	on_unlock = {
 		add_cosmogenesis_level_5_perks = yes
 		hidden_effect = {
-			add_research_option = tech_strike_craft_skrand
 			owner = {
 				country_event = { id = crisis.7120 }
-				country_event = { id = no_alt_win_crisis.2 days = 5 }
-				country_event = { id = no_alt_win_crisis.1 days = 10 }
 			}
 		}
 	}
@@ -560,10 +532,6 @@ crisis_cosmogenesis_level_5 = {
 
 crisis_behemoth_level_1 = {
 	# REQUIREMENTS
-	allow = {
-		resource_stockpile_compare = { resource = feral_insight value >= 0 }
-		has_ascension_perk = ap_behemoths
-	}
 	required_crisis_currency = 0
 
 	# REWARDS
@@ -592,15 +560,13 @@ crisis_behemoth_level_1 = {
 crisis_behemoth_level_2 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = feral_insight value >= 2000 }
-		has_ascension_perk = ap_behemoths
 		custom_tooltip = {
 			success_text = crisis_egg_built
 			fail_text = crisis_egg_required
 			has_country_flag = behemoth_egg_built
 		}
 	}
-	required_crisis_currency = 0
+	required_crisis_currency = 2000
 
 	# REWARDS
 	perks = {
@@ -629,15 +595,13 @@ crisis_behemoth_level_2 = {
 crisis_behemoth_level_3 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = feral_insight value >= 6000 }
-		has_ascension_perk = ap_behemoths
 		custom_tooltip = {
 			success_text = crisis_egg_hatched
 			fail_text = crisis_hatchling_required
 			has_country_flag = behemoth_egg_hatched
 		}
 	}
-	required_crisis_currency = 0
+	required_crisis_currency = 6000
 
 	# REWARDS
 	perks = {
@@ -663,15 +627,13 @@ crisis_behemoth_level_3 = {
 crisis_behemoth_level_4 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = feral_insight value >= 18000 }
-		has_ascension_perk = ap_behemoths
 		custom_tooltip = {
 			success_text = crisis_level_2_req_clear_tooltip
 			fail_text =	crisis_level_2_req_tooltip
 			has_country_flag = crisis_special_project_3_complete
 		}
 	}
-	required_crisis_currency = 0
+	required_crisis_currency = 18000
 
 	# REWARDS
 	perks = {
@@ -697,8 +659,6 @@ crisis_behemoth_level_4 = {
 crisis_behemoth_level_5 = {
 	# REQUIREMENTS
 	allow = {
-		resource_stockpile_compare = { resource = feral_insight value >= 45000 }
-		has_ascension_perk = ap_behemoths
 		is_subject = no
 		custom_tooltip = {
 			success_text = crisis_level_5_req_clear_tooltip
@@ -706,7 +666,7 @@ crisis_behemoth_level_5 = {
 			has_country_flag = crisis_special_project_4_complete
 		}
 	}
-	required_crisis_currency = 0
+	required_crisis_currency = 45000
 
 	# REWARDS
 	perks = {
@@ -718,6 +678,20 @@ crisis_behemoth_level_5 = {
 
 	on_unlock = {
 		hidden_effect = {
+			declare_crisis_effect = yes
+			every_playable_country = {
+				limit = {
+					is_galactic_community_member = no
+					NOT = {
+						is_same_value = owner
+						is_at_war_with = owner
+					}
+				}
+				join_war_on_side = {
+					war = event_target:crisis_war
+					side = event_target:community_war_leader
+				}
+			}
 			owner = {
 				add_event_chain_counter = {
 					event_chain = "behemoth_crisis_chain"
@@ -725,8 +699,6 @@ crisis_behemoth_level_5 = {
 					amount = 1
 				}
 				country_event = { id = biocrisis.70 days = 3 }
-				country_event = { id = no_alt_win_crisis.2 days = 10 }
-				country_event = { id = no_alt_win_crisis.1 days = 15 }
 			}
 		}
 	}
@@ -735,8 +707,6 @@ crisis_behemoth_level_5 = {
 crisis_hyperthermia_level_1 = {
 	required_crisis_currency = 0
 	allow = {
-		resource_stockpile_compare = { resource = entropy_crystals value >= 0 }
-		has_ascension_perk = ap_galactic_hyperthermia
 		is_subject = no
 		custom_tooltip = {
 			success_text = crisis_hyperthermia_lv1_tt
@@ -759,8 +729,6 @@ crisis_hyperthermia_level_1 = {
 crisis_hyperthermia_level_2 = {
 	required_crisis_currency = 0
 	allow = {
-		resource_stockpile_compare = { resource = entropy_crystals value >= 0 }
-		has_ascension_perk = ap_galactic_hyperthermia
 		is_subject = no
 		custom_tooltip = {
 			success_text = crisis_hyperthermia_lv2_tt
@@ -783,8 +751,6 @@ crisis_hyperthermia_level_2 = {
 crisis_hyperthermia_level_3 = {
 	required_crisis_currency = 0
 	allow = {
-		resource_stockpile_compare = { resource = entropy_crystals value >= 0 }
-		has_ascension_perk = ap_galactic_hyperthermia
 		is_subject = no
 		custom_tooltip = {
 			success_text = crisis_hyperthermia_lv3_tt
@@ -809,8 +775,6 @@ crisis_hyperthermia_level_3 = {
 crisis_hyperthermia_level_4 = {
 	required_crisis_currency = 0
 	allow = {
-		resource_stockpile_compare = { resource = entropy_crystals value >= 0 }
-		has_ascension_perk = ap_galactic_hyperthermia
 		is_subject = no
 		custom_tooltip = {
 			success_text = crisis_hyperthermia_lv4_tt
@@ -846,8 +810,6 @@ crisis_hyperthermia_level_4 = {
 crisis_hyperthermia_level_5 = {
 	required_crisis_currency = 0
 	allow = {
-		resource_stockpile_compare = { resource = entropy_crystals value >= 0 }
-		has_ascension_perk = ap_galactic_hyperthermia
 		is_subject = no
 		custom_tooltip = {
 			success_text = crisis_hyperthermia_lv5_tt
