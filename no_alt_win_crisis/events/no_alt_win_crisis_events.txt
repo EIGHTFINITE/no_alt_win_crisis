@@ -105,8 +105,7 @@ country_event = {
 				}
 			}
 			force_add_civic = civic_fanatic_purifiers
-			force_add_civic = civic_crisis_fanatic_purifiers
-			set_country_flag = crisis_civic_fanatic_purifiers
+			force_add_civic = civic_become_the_crisis
 			hidden_effect = {
 				country_event = { id = no_alt_win_crisis.3 }
 				set_policy = {
@@ -162,8 +161,7 @@ country_event = {
 				NOT = { has_civic = civic_hive_scorched_earth }
 			}
 			force_add_civic = civic_scorched_earth
-			force_add_civic = civic_crisis_scorched_earth
-			set_country_flag = crisis_civic_scorched_earth
+			force_add_civic = civic_become_the_crisis
 			hidden_effect = {
 				country_event = { id = no_alt_win_crisis.3 }
 				set_policy = {
@@ -241,95 +239,8 @@ country_event = {
 				limit = { has_civic = civic_melded_monopoly }
 				force_remove_civic = civic_melded_monopoly
 			}
-			if = {
-				limit = {
-					check_variable = { which = num_no_alt_win_crisis_civics value >= 3 }
-				}
-				if = {
-					limit = { country_uses_bio_ships = yes }
-					force_add_civic = civic_hive_shared_genetics
-					force_add_civic = civic_hive_aerospace_adaptation
-					force_add_civic = civic_hive_strength_of_legions
-				}
-				else = {
-					force_add_civic = civic_hive_subspace_ephapse
-					force_add_civic = civic_hive_strength_of_legions
-					force_add_civic = civic_hive_cordyceptic_drones
-				}
-			}
-			else_if = {
-				limit = {
-					check_variable = { which = num_no_alt_win_crisis_civics value >= 2 }
-				}
-				if = {
-					limit = { country_uses_bio_ships = yes }
-					if = {
-						limit = { has_civic = civic_hive_shared_genetics }
-						force_add_civic = civic_hive_aerospace_adaptation
-						force_add_civic = civic_hive_strength_of_legions
-					}
-					else_if = {
-						limit = { has_civic = civic_hive_aerospace_adaptation }
-						force_add_civic = civic_hive_shared_genetics
-						force_add_civic = civic_hive_strength_of_legions
-					}
-					else = {
-						force_add_civic = civic_hive_shared_genetics
-						force_add_civic = civic_hive_aerospace_adaptation
-					}
-				}
-				else = {
-					if = {
-						limit = { has_civic = civic_hive_subspace_ephapse }
-						force_add_civic = civic_hive_strength_of_legions
-						force_add_civic = civic_hive_cordyceptic_drones
-					}
-					else_if = {
-						limit = { has_civic = civic_hive_strength_of_legions }
-						force_add_civic = civic_hive_subspace_ephapse
-						force_add_civic = civic_hive_cordyceptic_drones
-					}
-					else = {
-						force_add_civic = civic_hive_subspace_ephapse
-						force_add_civic = civic_hive_strength_of_legions
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					check_variable = { which = num_no_alt_win_crisis_civics value >= 1 }
-				}
-				if = {
-					limit = { country_uses_bio_ships = yes }
-					if = {
-						limit = { NOT = { has_civic = civic_hive_shared_genetics } }
-						force_add_civic = civic_hive_shared_genetics
-					}
-					else_if = {
-						limit = { NOT = { has_civic = civic_hive_aerospace_adaptation } }
-						force_add_civic = civic_hive_aerospace_adaptation
-					}
-					else = {
-						force_add_civic = civic_hive_strength_of_legions
-					}
-				}
-				else = {
-					if = {
-						limit = { NOT = { has_civic = civic_hive_subspace_ephapse } }
-						force_add_civic = civic_hive_subspace_ephapse
-					}
-					else_if = {
-						limit = { NOT = { has_civic = civic_hive_strength_of_legions } }
-						force_add_civic = civic_hive_strength_of_legions
-					}
-					else = {
-						force_add_civic = civic_hive_cordyceptic_drones
-					}
-				}
-			}
 			force_add_civic = civic_hive_devouring_swarm
-			force_add_civic = civic_crisis_hive_devouring_swarm
-			set_country_flag = crisis_civic_hive_devouring_swarm
+			force_add_civic = civic_become_the_crisis
 			hidden_effect = {
 				set_policy = {
 					policy = diplomatic_stance
@@ -384,8 +295,7 @@ country_event = {
 				NOT = { has_civic = civic_hive_scorched_earth }
 			}
 			force_add_civic = civic_hive_scorched_earth
-			force_add_civic = civic_crisis_hive_scorched_earth
-			set_country_flag = crisis_civic_hive_scorched_earth
+			force_add_civic = civic_become_the_crisis
 			hidden_effect = {
 				country_event = { id = no_alt_win_crisis.3 }
 				set_policy = {
@@ -436,8 +346,7 @@ country_event = {
 				NOT = { has_civic = civic_hive_scorched_earth }
 			}
 			force_add_civic = civic_machine_terminator
-			force_add_civic = civic_crisis_machine_terminator
-			set_country_flag = crisis_civic_machine_terminator
+			force_add_civic = civic_become_the_crisis
 			hidden_effect = {
 				country_event = { id = no_alt_win_crisis.3 }
 				set_policy = {
@@ -510,15 +419,30 @@ country_event = {
 		# Kick the Crisis out of Alliances.
 		if = {
 			limit = { has_federation = yes }
-			every_federation_ally = {
+			if = {
 				limit = {
-					NOT = {
-						species = {
-							is_same_species = root.species
+					any_federation_ally = {
+						NOT = {
+							species = {
+								is_same_species = root.species
+							}
 						}
+						has_federation = yes
 					}
-					has_federation = yes
 				}
+				every_federation_ally = {
+					limit = {
+						NOT = {
+							species = {
+								is_same_species = root.species
+							}
+						}
+						has_federation = yes
+					}
+					leave_alliance = { override_requirements = yes }
+				}
+			}
+			else = {
 				leave_alliance = { override_requirements = yes }
 			}
 		}
