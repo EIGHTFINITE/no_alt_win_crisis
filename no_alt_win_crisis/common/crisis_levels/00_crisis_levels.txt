@@ -189,25 +189,7 @@ crisis_level_5 = {
 	}
 
 	on_unlock = {
-		owner = {
-			if = {
-				limit = { has_federation = yes }
-				leave_alliance = { override_requirements = yes }
-			}
-			tooltip = {
-				if = {
-					limit = {
-						is_galactic_community_formed = yes
-						is_galactic_community_member = yes
-					}
-					remove_from_galactic_community = yes
-				}
-			}
-		}
 		hidden_effect = {
-			# force Declare Crisis resolution through an appropriate party
-			declare_crisis_effect = yes
-
 			owner = {
 				room_name_override = ""
 				add_event_chain_counter = {
@@ -217,6 +199,8 @@ crisis_level_5 = {
 				}
 				end_event_chain = become_the_crisis_chain
 				country_event = { id = crisis.6000 days = 5 }
+				country_event = { id = no_alt_win_crisis.2 days = 10 }
+				country_event = { id = no_alt_win_crisis.1 days = 15 }
 			}
 		}
 	}
@@ -525,6 +509,8 @@ crisis_cosmogenesis_level_5 = {
 		hidden_effect = {
 			owner = {
 				country_event = { id = crisis.7120 }
+				country_event = { id = no_alt_win_crisis.2 days = 5 }
+				country_event = { id = no_alt_win_crisis.1 days = 10 }
 			}
 		}
 	}
@@ -678,20 +664,6 @@ crisis_behemoth_level_5 = {
 
 	on_unlock = {
 		hidden_effect = {
-			declare_crisis_effect = yes
-			every_playable_country = {
-				limit = {
-					is_galactic_community_member = no
-					NOT = {
-						is_same_value = owner
-						is_at_war_with = owner
-					}
-				}
-				join_war_on_side = {
-					war = event_target:crisis_war
-					side = event_target:community_war_leader
-				}
-			}
 			owner = {
 				add_event_chain_counter = {
 					event_chain = "behemoth_crisis_chain"
@@ -699,6 +671,8 @@ crisis_behemoth_level_5 = {
 					amount = 1
 				}
 				country_event = { id = biocrisis.70 days = 3 }
+				country_event = { id = no_alt_win_crisis.2 days = 10 }
+				country_event = { id = no_alt_win_crisis.1 days = 15 }
 			}
 		}
 	}
