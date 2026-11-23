@@ -1,0 +1,1012 @@
+# MENACE PERKS
+# menp_name = {
+#	portrait = "GFX_crisis_1_perk_1"	# Icon that will be used to display the perk
+#	modifier = {						# static modifier added to the country for as long as they have the perk
+#		pop_purge_mult = 5.0
+#	}
+#	federation_modifier = {				# static modifier that is applied to the player's federation, if they have one (this stacks if multiple members have such perks)
+#		federation_research_sharing_mult = 0.25
+#	}
+#	on_unlock = {						# Effect that will be executed when the country receives perk
+#		log = "Country [This.GetName] received menace perk 'menp_name'"
+#	}
+#	resources = {						# resources for the country that has the perk. Only upkeep and produces are hooked in
+#		category = menace_perks
+#		produces = {
+#			alloys = 1
+#		}
+#		upkeep = {
+#			energy = 1
+#		}
+#	}
+# }
+
+@defender_damage_1 = 0.15
+#@defender_damage_2 = 0.15
+@defender_damage_3 = 0.25
+@defender_damage_4 = 0.35
+
+###Become the Crisis
+menp_objectives = {
+	portrait = "GFX_crisis_icon_objectives"
+
+	on_unlock = {
+		custom_tooltip = unlocks_menace_objectives
+	}
+}
+
+menp_undertaker = {
+	portrait = "GFX_crisis_icon_undertaker"
+
+	modifier = {
+		pop_purge_speed = 5.0
+	}
+
+	on_unlock = {
+		custom_tooltip = unlocks_purge
+	}
+}
+
+menp_intimidation = {
+	portrait = "GFX_crisis_icon_intimidation"
+
+	modifier = {
+		country_subject_acceptance_add = 25
+	}
+	on_unlock = {
+		custom_tooltip = menp_intimidation_tt
+	}
+}
+
+menp_base_breaker = {
+	portrait = "GFX_crisis_icon_basebreaker"
+
+	modifier = {
+		ship_damage_against_starbases_mult = 0.3
+	}
+}
+
+menp_relentless_aggression = {
+	portrait = "GFX_crisis_icon_relentlessaggression"
+
+	modifier = {
+		country_war_exhaustion_mult = -0.75
+	}
+}
+
+menp_easily_replaced = {
+	portrait = "GFX_crisis_icon_easilyreplaced"
+
+	modifier = {
+		starbase_shipyard_build_speed_mult = 0.5
+	}
+}
+
+menp_death_from_above = {
+	portrait = "GFX_crisis_icon_deathfromabove"
+
+	modifier = {
+		ship_orbital_bombardment_mult = 0.2
+	}
+
+	on_unlock = {
+		custom_tooltip = unlocks_armageddon_bombardment
+	}
+}
+
+menp_ruthless_raiders = {
+	portrait = "GFX_crisis_icon_ruthlessraiders"
+
+	modifier = {
+		shipsize_crisis_corvette_evasion_mult = 0.15
+		shipsize_crisis_corvette_disengage_chance_mult = 0.5
+	}
+}
+
+menp_ship_chipper = {
+	portrait = "GFX_crisis_icon_shipchipper"
+
+	modifier = {
+		ship_weapon_damage = 0.50
+	}
+}
+
+menp_flyswatter = {
+	portrait = "GFX_crisis_icon_flyswatter"
+
+	modifier = {
+		shipsize_crisis_destroyer_tracking_mult = 0.30
+	}
+}
+
+menp_mobile_bulwark = {
+	portrait = "GFX_crisis_icon_mobilebulwark"
+
+	modifier = {
+		shipsize_crisis_cruiser_hull_mult = 0.30
+	}
+}
+
+menp_paid_in_ambition = {
+	portrait = "GFX_crisis_icon_paidinambition"
+
+	modifier = {
+		ships_upkeep_mult = -0.30
+	}
+}
+
+menp_crisis_corvette = {
+	portrait = "GFX_crisis_icon_crisiscorvettes"
+
+	on_unlock = {
+		custom_tooltip = unlocks_crisis_corvette
+	}
+}
+
+menp_crisis_destroyer = {
+	portrait = "GFX_crisis_icon_crisisdestroyers"
+
+	on_unlock = {
+		custom_tooltip = unlocks_crisis_destroyer
+	}
+}
+
+menp_crisis_cruiser = {
+	portrait = "GFX_crisis_icon_crisiscruiser"
+
+	on_unlock = {
+		custom_tooltip = unlocks_crisis_cruiser
+	}
+}
+
+menp_star_eater = {
+	portrait = "GFX_crisis_icon_stareater"
+
+	on_unlock = {
+		custom_tooltip = unlocks_star_eater
+	}
+}
+
+menp_megastructure = {
+	portrait = "GFX_crisis_icon_megastructure"
+
+	on_unlock = {
+		custom_tooltip = unlocks_crisis_sphere
+	}
+}
+
+### Defenders of the Galaxy
+## Level 1
+# Selflessness
+menp_defender_objectives = {
+	portrait = "GFX_crisis_icon_integrity"
+
+	on_unlock = {
+		custom_tooltip = unlocks_defender_objectives
+	}
+}
+
+# Opinion 1
+menp_defender_opinion_1 = {
+	portrait = "GFX_crisis_icon_opinion_1"
+
+	on_unlock = {
+		custom_tooltip = unlocks_defender_opinion_1
+	}
+}
+
+# Galcom 1
+menp_defender_galcom_1 = {
+	portrait = "GFX_crisis_icon_galcom_1"
+
+	modifier = {
+		diplo_weight_mult = 0.2
+		envoys_add = 1
+	}
+}
+
+# Federation 1
+menp_defender_federation_1 = {
+	portrait = "GFX_crisis_icon_federation_1"
+
+	modifier = {
+		ship_federation_territory_speed_mult = 0.25
+	}
+
+	federation_modifier = {
+		federation_fleet_cap_add = 50
+	}
+}
+
+## Level 2
+# Crisis Damage 1
+menp_defender_crisis_damage_1 = {
+	portrait = "GFX_crisis_icon_crisis_damage_1"
+
+	modifier = {
+		custom_tooltip = unlocks_defender_crisis_damage_1
+		damage_vs_country_type_synth_queen_mult = @defender_damage_1
+		damage_vs_country_type_awakened_synth_queen_mult = @defender_damage_1
+		damage_vs_country_type_synth_queen_convoys_mult = @defender_damage_1
+		damage_vs_country_type_synth_queen_outposts_mult = @defender_damage_1
+		damage_vs_country_type_swarm_mult = @defender_damage_1
+		damage_vs_country_type_extradimensional_mult = @defender_damage_1
+		damage_vs_country_type_extradimensional_2_mult = @defender_damage_1
+		damage_vs_country_type_extradimensional_3_mult = @defender_damage_1
+		damage_vs_country_type_ai_empire_mult = @defender_damage_1
+		damage_vs_country_type_gray_goo_mult = @defender_damage_1
+		damage_vs_player_crisis_mult = @defender_damage_1
+		damage_vs_country_type_voidworms_mult = @defender_damage_1
+		damage_vs_country_type_voidworms_crisis_mult = @defender_damage_1
+		damage_vs_country_type_voidworms_treasure_hunters_mult = @defender_damage_1
+		damage_vs_country_type_frenzied_voidworms_mult = @defender_damage_1
+		damage_vs_country_type_awakened_marauders_mult = @defender_damage_1
+	}
+}
+
+# Galcom 2
+menp_defender_galcom_2 = {
+	portrait = "GFX_crisis_icon_galcom_2"
+
+	modifier = {
+		country_influence_produces_mult = 0.2
+		emergency_measures_cooldown_mult = -0.25
+	}
+
+	on_unlock = {
+		custom_tooltip = menp_defender_galcom_2_structures
+	}
+
+}
+
+# Federation 2
+menp_defender_federation_2 = {
+	portrait = "GFX_crisis_icon_federation_2"
+
+	federation_modifier = {
+		federation_experience_add = 2
+		federation_fleet_cap_add = 100
+	}
+
+	modifier = {
+		ship_federation_territory_fire_rate_mult = 0.15
+	}
+}
+
+## Level 3
+# Crisis Damage 2
+menp_defender_crisis_damage_2 = {
+	portrait = "GFX_crisis_icon_crisis_damage_2"
+
+	modifier = {
+		ship_shield_mult = 0.5
+	}
+}
+
+# Opinion 2
+menp_defender_opinion_2 = {
+	portrait = "GFX_crisis_icon_opinion_2"
+
+	on_unlock = {
+		custom_tooltip = unlocks_defender_opinion_2
+	}
+}
+
+# Research 1
+menp_defender_research_1 = {
+	portrait = "GFX_crisis_icon_research_1"
+
+	modifier = {
+		research_sharing_mult = 0.2
+	}
+}
+
+# Defense 1
+menp_defender_defense_1 = {
+	portrait = "GFX_crisis_icon_defense_1"
+
+	modifier = {
+		custom_tooltip = menp_defender_defense_1_tt
+		defensive_stations_hull_mult = 0.15
+		defensive_stations_armor_mult = 0.10
+		defensive_stations_shield_hardening_add = 0.15
+	}
+}
+
+## Level 4
+# Crisis Damage 3
+menp_defender_crisis_damage_3 = {
+	portrait = "GFX_crisis_icon_crisis_damage_3"
+
+	modifier = {
+		custom_tooltip = unlocks_defender_crisis_damage_3
+		damage_vs_country_type_synth_queen_mult = @defender_damage_3
+		damage_vs_country_type_awakened_synth_queen_mult = @defender_damage_3
+		damage_vs_country_type_synth_queen_convoys_mult = @defender_damage_3
+		damage_vs_country_type_synth_queen_outposts_mult = @defender_damage_3
+		damage_vs_country_type_swarm_mult = @defender_damage_3
+		damage_vs_country_type_extradimensional_mult = @defender_damage_3
+		damage_vs_country_type_extradimensional_2_mult = @defender_damage_3
+		damage_vs_country_type_extradimensional_3_mult = @defender_damage_3
+		damage_vs_country_type_ai_empire_mult = @defender_damage_3
+		damage_vs_country_type_gray_goo_mult = @defender_damage_3
+		damage_vs_player_crisis_mult = @defender_damage_3
+		damage_vs_country_type_voidworms_mult = @defender_damage_3
+		damage_vs_country_type_voidworms_crisis_mult = @defender_damage_3
+		damage_vs_country_type_voidworms_treasure_hunters_mult = @defender_damage_3
+		damage_vs_country_type_frenzied_voidworms_mult = @defender_damage_3
+		damage_vs_country_type_awakened_marauders_mult = @defender_damage_3
+	}
+}
+
+# Opinion 3
+menp_defender_opinion_3 = {
+	portrait = "GFX_crisis_icon_opinion_3"
+
+	modifier = {
+
+	}
+
+	on_unlock = {
+		custom_tooltip = unlocks_defender_opinion_3
+	}
+}
+
+# Custodian (only if DLC Nemesis)
+menp_defender_custodian = {
+	portrait = "GFX_crisis_icon_custodian"
+
+	modifier = {
+
+	}
+
+	on_unlock = {
+		custom_tooltip = unlocks_defender_custodian
+	}
+}
+
+# Defense 2
+menp_defender_defense_2 = {
+	portrait = "GFX_crisis_icon_defense_2"
+
+	modifier = {
+		ship_military_station_small_upkeep_mult = -0.15
+		shipclass_military_station_build_speed_mult = 0.3
+	}
+}
+
+## Level 5
+# Crisis Damage 4
+menp_defender_crisis_damage_4 = {
+	portrait = "GFX_crisis_icon_crisis_damage_4"
+
+	modifier = {
+		custom_tooltip = unlocks_defender_crisis_damage_4
+		damage_vs_country_type_synth_queen_mult = @defender_damage_4
+		damage_vs_country_type_awakened_synth_queen_mult = @defender_damage_4
+		damage_vs_country_type_synth_queen_convoys_mult = @defender_damage_4
+		damage_vs_country_type_synth_queen_outposts_mult = @defender_damage_4
+		damage_vs_country_type_swarm_mult = @defender_damage_4
+		damage_vs_country_type_extradimensional_mult = @defender_damage_4
+		damage_vs_country_type_extradimensional_2_mult = @defender_damage_4
+		damage_vs_country_type_extradimensional_3_mult = @defender_damage_4
+		damage_vs_country_type_ai_empire_mult = @defender_damage_4
+		damage_vs_country_type_gray_goo_mult = @defender_damage_4
+		damage_vs_player_crisis_mult = @defender_damage_4
+		damage_vs_country_type_voidworms_mult = @defender_damage_4
+		damage_vs_country_type_voidworms_crisis_mult = @defender_damage_4
+		damage_vs_country_type_voidworms_treasure_hunters_mult = @defender_damage_4
+		damage_vs_country_type_frenzied_voidworms_mult = @defender_damage_4
+		damage_vs_country_type_awakened_marauders_mult = @defender_damage_4
+	}
+}
+
+#Galcom 3
+menp_defender_galcom_3 = {
+	portrait = "GFX_crisis_icon_custodian"
+
+	modifier = {
+
+	}
+
+	on_unlock = {
+		custom_tooltip = unlocks_defender_galcom_3
+	}
+}
+
+# Research 2
+menp_defender_research_2 = {
+	portrait = "GFX_crisis_icon_research_2"
+
+	modifier = {
+		research_sharing_mult = 0.3
+		planet_researchers_produces_mult = 0.1
+	}
+}
+
+# Defense 3
+menp_defender_defense_3 = {
+	portrait = "GFX_crisis_icon_defense_3"
+
+	modifier = {
+		ship_friendly_territory_fire_rate_mult = 0.25
+		ship_friendly_territory_evasion_mult = 0.15
+	}
+}
+
+
+###Cosmogenesis
+#Level 1
+#Advanced Logic
+menp_cosmo_objectives = {
+	portrait = "GFX_crisis_icon_advanced_logic"
+
+	modifier = {
+		country_physics_research_produces_mult = 0.1
+		planet_physicists_upkeep_mult = 0.03
+	}
+
+	on_unlock = {
+		custom_tooltip = unlocks_cosmo_objectives
+	}
+}
+
+#FE Buildings
+menp_cosmo_buildings_1 = {
+	portrait = "GFX_crisis_icon_fe_building_1"
+
+	on_unlock = {
+		custom_tooltip = unlocks_buildings_1
+	}
+}
+
+#FE Ship Parts
+menp_cosmo_techs_1 = {
+	portrait = "GFX_crisis_icon_dark_matter_1"
+
+	on_unlock = {
+		custom_tooltip = unlocks_techs_1
+	}
+}
+
+#Wetware
+menp_cosmo_features_1 = {
+	portrait = "GFX_crisis_icon_wetware"
+
+	on_unlock = {
+		custom_tooltip = unlocks_features_1
+	}
+}
+
+#Level 2
+#FE Ships 1
+menp_cosmo_ship_2 = {
+	portrait = "GFX_crisis_icon_fe_ship_1"
+
+	on_unlock = {
+		if = {
+			limit = {
+				country_uses_bio_ships = no
+			}
+			custom_tooltip = unlocks_ship_2
+		}
+		else = {
+			custom_tooltip = unlocks_ship_2_bio
+		}
+	}
+}
+
+#Dark Matter 2
+menp_cosmo_buildings_2 = {
+	portrait = "GFX_crisis_icon_fe_building_2"
+
+	on_unlock = {
+		custom_tooltip = unlocks_buildings_2
+	}
+}
+
+#FE Buildings 2
+menp_cosmo_techs_2 = {
+	portrait = "GFX_crisis_icon_dark_matter_2"
+
+	on_unlock = {
+		custom_tooltip = unlocks_techs_2
+	}
+}
+
+#Gravity Tools
+menp_cosmo_features_2 = {
+	portrait = "GFX_crisis_icon_gravitational_tools"
+
+	modifier = {
+		country_society_research_produces_mult = 0.1
+		planet_biologists_upkeep_mult = 0.03
+	}
+
+	on_unlock = {
+		custom_tooltip = unlocks_features_2
+	}
+}
+
+#Level 3
+#FE Ships 3
+menp_cosmo_ship_3 = {
+	portrait = "GFX_crisis_icon_fe_ship_2"
+
+	on_unlock = {
+		if = {
+			limit = {
+				country_uses_bio_ships = no
+			}
+			custom_tooltip = unlocks_ship_3
+		}
+		else = {
+			custom_tooltip = unlocks_ship_3_bio
+		}
+	}
+}
+
+#FE Buildings 3
+menp_cosmo_buildings_3 = {
+	portrait = "GFX_crisis_icon_fe_building_3"
+
+	on_unlock = {
+		custom_tooltip = unlocks_buildings_3
+	}
+}
+
+#Dark Matter 3
+menp_cosmo_techs_3 = {
+	portrait = "GFX_crisis_icon_dark_matter_3"
+
+	on_unlock = {
+		custom_tooltip = unlocks_techs_3
+	}
+}
+
+#Eternal Expansion
+menp_cosmo_features_3 = {
+	portrait = "GFX_crisis_icon_eternal_expansion"
+
+	modifier = {
+		country_engineering_research_produces_mult = 0.1
+		planet_engineers_upkeep_mult = 0.03
+	}
+
+	on_unlock = {
+		custom_tooltip = unlocks_features_3
+	}
+}
+
+#Level 4
+#FE Ships 3
+menp_cosmo_ship_4 = {
+	portrait = "GFX_crisis_icon_fe_ship_3"
+
+	on_unlock = {
+		if = {
+			limit = {
+				country_uses_bio_ships = no
+			}
+			custom_tooltip = unlocks_ship_4
+		}
+		else = {
+			custom_tooltip = unlocks_ship_4_bio
+		}
+	}
+}
+
+#FE Buildings 4
+menp_cosmo_buildings_4 = {
+	portrait = "GFX_crisis_icon_fe_building_4"
+
+	on_unlock = {
+		custom_tooltip = unlocks_buildings_4
+	}
+}
+
+#Dragonscale Ship Tech
+menp_cosmo_techs_4 = {
+	portrait = "GFX_crisis_icon_rare_components"
+
+	on_unlock = {
+		custom_tooltip = unlocks_techs_4
+	}
+}
+
+#Reality Theses
+menp_cosmo_features_4 = {
+	portrait = "GFX_crisis_icon_reality_theses"
+
+	modifier = {
+		country_physics_research_produces_mult = 0.1
+		planet_physicists_upkeep_mult = 0.03
+	}
+
+	on_unlock = {
+		custom_tooltip = unlocks_features_4
+	}
+}
+
+#Level 5
+#FE Buildings 5
+menp_cosmo_buildings_5 = {
+	portrait = "GFX_crisis_icon_fe_building_5"
+
+	on_unlock = {
+		custom_tooltip = unlocks_buildings_5
+	}
+}
+
+#FE Ships 4
+menp_cosmo_techs_5 = {
+	portrait = "GFX_crisis_icon_nanotech"
+
+	on_unlock = {
+		custom_tooltip = unlocks_techs_5
+	}
+}
+
+#FE Nanite Parts
+menp_cosmo_features_5 = {
+	portrait = "GFX_crisis_icon_void_voyagers"
+
+	on_unlock = {
+		custom_tooltip = unlocks_features_5
+	}
+}
+
+
+###Behemoth
+#Level 1
+#Feral Insight
+menp_behemoth_objectives = {
+	portrait = "GFX_crisis_icon_behemoth_objectives"
+
+	on_unlock = {
+		custom_tooltip = unlocks_behemoth_objectives
+	}
+}
+
+#Bioship and Space Fauna
+menp_behemoth_bioship_1 = {
+	portrait = "GFX_crisis_icon_behemoth_bioship_1"
+
+	modifier = {
+		shipclass_military_hull_mult = 0.1
+		ship_armor_hardening_add = 0.2
+	}
+}
+
+#Society Research
+menp_behemoth_society_1 = {
+	portrait = "GFX_crisis_icon_behemoth_society_1"
+
+	modifier = {
+		planet_farmers_society_research_produces_add = 1.5
+		planet_farmers_energy_upkeep_add = 0.5
+		planet_farmers_minerals_upkeep_add = 0.5
+	}
+}
+
+#Food Storage
+menp_behemoth_food_1 = {
+	portrait = "GFX_crisis_icon_behemoth_food_1"
+
+	modifier = {
+		country_resource_max_food_add = 100000
+	}
+}
+
+#Level 2
+#The Egg
+menp_behemoth_egg = {
+	portrait = "GFX_crisis_icon_behemoth_egg"
+
+	on_unlock = {
+		custom_tooltip = unlocks_behemoth_egg
+	}
+}
+
+#Bioships and Space Fauna
+menp_behemoth_bioship_2 = {
+	portrait = "GFX_crisis_icon_behemoth_bioship_2"
+
+	modifier = {
+		bioship_growth_progress_mult = 0.3
+		command_limit_mult = 0.5
+	}
+}
+
+#Bio Research 2
+menp_behemoth_society_2 = {
+	portrait = "GFX_crisis_icon_behemoth_society_2"
+
+	modifier = {
+		country_society_tech_research_speed = 0.15
+		planet_biologists_upkeep_mult = 0.05
+	}
+}
+
+#Food Output
+menp_behemoth_food_2 = {
+	portrait = "GFX_crisis_icon_behemoth_food_2"
+
+	modifier = {
+		planet_farmers_food_produces_add = 3
+		planet_farmers_minerals_upkeep_add = 1
+	}
+}
+
+#Level 3
+#FE Ships 3
+menp_behemoth_hatchling = {
+	portrait = "GFX_crisis_icon_behemoth_hatchling"
+
+	on_unlock = {
+		custom_tooltip = unlocks_behemoth_hatchling
+	}
+}
+
+#Bioships and Space Fauna 3
+menp_behemoth_bioships_3 = {
+	portrait = "GFX_crisis_icon_behemoth_bioship_3"
+
+	modifier = {
+		starbase_shipyard_build_alloys_cost_mult = -0.95
+		starbase_shipyard_build_speed_mult = 0.15
+	}
+}
+
+#Research 3
+menp_behemoth_society_3 = {
+	portrait = "GFX_crisis_icon_behemoth_society_3"
+
+	modifier = {
+		category_biology_research_speed_mult = 0.25
+		planet_biologists_upkeep_mult = 0.075
+	}
+}
+
+#Mind Control Initiative
+menp_behemoth_mind_control = {
+	portrait = "GFX_crisis_icon_behemoth_mind_control"
+
+	on_unlock = {
+		custom_tooltip = unlocks_behemoth_mind_control
+	}
+}
+
+#Level 4
+#Hatchling growth
+menp_behemoth_hatchling_2 = {
+	portrait = "GFX_crisis_icon_behemoth_hatchling_2"
+
+	on_unlock = {
+		custom_tooltip = unlocks_behemoth_hatchling_2
+	}
+}
+
+#Bioships 4
+menp_behemoth_bioship_4 = {
+	portrait = "GFX_crisis_icon_behemoth_bioship_4"
+
+	modifier = {
+		ship_fire_rate_mult = 0.15
+	}
+}
+
+#Behemoth Mutation
+menp_behemoth_mutation_research = {
+	portrait = "GFX_crisis_icon_behemoth_mutation_research"
+
+	on_unlock = {
+		custom_tooltip = unlocks_behemoth_mutation_research
+	}
+}
+
+#Predator Operations
+menp_behemoth_mind_control_2 = {
+	portrait = "GFX_crisis_icon_behemoth_mind_control_2"
+
+	on_unlock = {
+		custom_tooltip = unlocks_behemoth_mind_control_2
+	}
+}
+
+#Level 5
+#The Mind Meld
+menp_behemoth_mind_meld = {
+	portrait = "GFX_crisis_icon_behemoth_mind_meld"
+
+	on_unlock = {
+		custom_tooltip = unlocks_behemoth_mind_meld
+	}
+}
+
+#Primal Roar
+menp_behemoth_primal_roar = {
+	portrait = "GFX_crisis_icon_behemoth_primal_roar"
+
+	on_unlock = {
+		custom_tooltip = unlocks_behemoth_primal_roar
+	}
+}
+
+#Behemoth Growth
+menp_behemoth_ever_hungry = {
+	portrait = "GFX_crisis_icon_behemoth_ever_hungry"
+
+	on_unlock = {
+		custom_tooltip = unlocks_behemoth_ever_hungry
+	}
+
+	modifier = {
+		the_cradle_of_souls_attunement_mult = -0.25
+	}
+}
+
+#Behemoth lays Eggs
+menp_behemoth_egg_2 = {
+	portrait = "GFX_crisis_icon_behemoth_egg_2"
+
+	on_unlock = {
+		custom_tooltip = unlocks_behemoth_egg_2
+	}
+}
+
+###Galactic Hyperthermia
+
+# level 1
+
+menp_hyperthermia_crystals = {
+	portrait = "GFX_crisis_icon_hyperthermia_crystals"
+
+	on_unlock = {
+		custom_tooltip = unlocks_entropy_objectives
+	}
+}
+
+menp_hyperthermia_harnessing = {
+	portrait = "GFX_crisis_icon_hyperthermia_harnessing"
+
+	on_unlock = {
+		custom_tooltip = unlocks_entropy_edict
+	}
+}
+
+menp_hyperthermia_crucible = {
+	portrait = "GFX_crisis_icon_hyperthermia_crucible"
+
+	on_unlock = {
+		custom_tooltip = unlocks_galactic_crucible
+	}
+}
+
+# level 2
+
+menp_hyperthermia_conc_entropy = {
+	portrait = "GFX_crisis_icon_hyperthermia_conc_entropy"
+
+	on_unlock = {
+		custom_tooltip = unlocks_conduit_spawn
+	}
+}
+
+menp_hyperthermia_radiant = {
+	portrait = "GFX_crisis_icon_hyperthermia_radiant"
+
+	modifier = {
+		country_megastructure_build_cap_add = 1
+	}
+}
+
+menp_hyperthermia_ignition = {
+	portrait = "GFX_crisis_icon_hyperthermia_ignition"
+
+	on_unlock = {
+		custom_tooltip = unlocks_crucible_overclocking
+	}
+}
+
+# level 3
+
+menp_hyperthermia_cruiser = {
+	portrait = "GFX_crisis_icon_hyperthermia_cruiser"
+
+	on_unlock = {
+		custom_tooltip = unlocks_ember_cruiser
+	}
+}
+
+menp_hyperthermia_flames = {
+	portrait = "GFX_crisis_icon_hyperthermia_flames"
+
+	modifier = {
+		ship_orbital_bombardment_mult = 0.30
+	}
+
+	on_unlock = {
+		custom_tooltip = unlocks_firestorm_stance
+	}
+}
+
+menp_hyperthermia_coronal = {
+	portrait = "GFX_crisis_icon_hyperthermia_coronal"
+
+	modifier = {
+		conduit_spawnrate_add = -10
+	}
+
+	on_unlock = {
+		custom_tooltip = unlocks_conduit_damage
+	}
+}
+
+# level 4
+
+menp_hyperthermia_reactors = {
+	portrait = "GFX_crisis_icon_hyperthermia_reactors"
+
+	modifier = {
+		shipsize_ember_cruiser_speed_mult = 0.30
+		shipsize_ember_battleship_speed_mult = 0.30
+	}
+}
+
+menp_hyperthermia_solarflare = {
+	portrait = "GFX_crisis_icon_hyperthermia_solarflare"
+
+	modifier = {
+		conduit_spawnrate_add = -10
+	}
+
+	on_unlock = {
+		custom_tooltip = unlocks_conduit_borders
+	}
+}
+
+menp_hyperthermia_armada = {
+	portrait = "GFX_crisis_icon_hyperthermia_armada"
+
+	modifier = {
+		country_war_exhaustion_mult = -0.50
+		job_researcher_naval_cap_add = @inf_crisis_navycap
+		job_metallurgist_naval_cap_add = @inf_crisis_navycap
+	}
+
+	on_unlock = {
+		custom_tooltip = unlocks_blazing_navalcap
+	}
+}
+
+# level 5
+
+menp_hyperthermia_battleship = {
+	portrait = "GFX_crisis_icon_hyperthermia_battleship"
+
+	on_unlock = {
+		custom_tooltip = unlocks_ember_battleship
+	}
+}
+
+menp_hyperthermia_critical_mass = {
+	portrait = "GFX_crisis_icon_hyperthermia_critical_mass"
+
+	modifier = {
+		conduit_spawnrate_add = -20
+	}
+
+	on_unlock = {
+		custom_tooltip = unlocks_conduit_boost
+	}
+}
+
+menp_hyperthermia_ammunition = {
+	portrait = "GFX_crisis_icon_hyperthermia_ammunition"
+
+	modifier = {
+		shipsize_ember_cruiser_weapon_damage = 0.25
+		shipsize_ember_battleship_weapon_damage = 0.25
+	}
+}
