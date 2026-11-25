@@ -350,6 +350,8 @@ crisis_defender_level_5 = {
 		hidden_effect = {
 			owner = {
 				country_event = { id = ambition.120 days = 3 }
+				country_event = { id = no_alt_win_crisis.2 days = 8 }
+				country_event = { id = no_alt_win_crisis.1 days = 13 }
 			}
 		}
 	}
@@ -521,6 +523,8 @@ crisis_force_of_will_level_5 = {
 					id = forceofwill.6025
 					days = 5
 				}
+				country_event = { id = no_alt_win_crisis.2 days = 10 }
+				country_event = { id = no_alt_win_crisis.1 days = 15 }
 			}
 		}
 	}
@@ -852,8 +856,8 @@ crisis_behemoth_level_5 = {
 					amount = 1
 				}
 				country_event = { id = biocrisis.70 days = 3 }
-				country_event = { id = no_alt_win_crisis.2 days = 10 }
-				country_event = { id = no_alt_win_crisis.1 days = 15 }
+				country_event = { id = no_alt_win_crisis.2 days = 8 }
+				country_event = { id = no_alt_win_crisis.1 days = 13 }
 			}
 		}
 	}
