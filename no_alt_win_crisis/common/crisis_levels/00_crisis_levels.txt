@@ -355,6 +355,176 @@ crisis_defender_level_5 = {
 	}
 }
 
+# Force of Will
+
+crisis_force_of_will_level_1 = {
+	# REQUIREMENTS
+	required_crisis_currency = 0
+
+	# REWARDS
+	perks = {
+		menp_force_of_will_conviction
+		menp_force_of_will_propagation
+		menp_force_of_will_persuasion
+	}
+
+	on_unlock = {
+		hidden_effect = {
+			owner = {
+				country_event = { id = forceofwill.6030 }
+			}
+		}
+	}
+}
+
+crisis_force_of_will_level_2 = {
+	# REQUIREMENTS
+	allow = {
+		custom_tooltip = {
+			success_text = force_of_will_level_2_req_clear_tooltip
+			fail_text =	force_of_will_level_2_req_tooltip
+			has_country_flag = ambition_special_project_1_complete
+		}
+		custom_tooltip = {
+			fail_text = requires_absolute_ethic
+			is_absolute = yes
+		}
+	}
+	required_crisis_currency = 1000
+
+	# REWARDS
+	perks = {
+		menp_force_of_will_ethical_authority
+		menp_force_of_will_cultural_envoys
+		menp_force_of_will_galactic_awareness
+	}
+
+	on_unlock = {
+		hidden_effect = {
+			owner = {
+				set_ai_personality = utopian_missionaries
+				add_event_chain_counter = {
+					event_chain = "force_of_will_chain"
+					counter = "ambition_level_reached"
+					amount = 1
+				}
+				country_event = {
+					id = forceofwill.6035
+					days = 3
+				}
+			}
+		}
+	}
+}
+
+crisis_force_of_will_level_3 = {
+	# REQUIREMENTS
+	allow = {
+		custom_tooltip = {
+			success_text = force_of_will_level_3_req_clear_tooltip
+			fail_text =	force_of_will_level_3_req_tooltip
+			has_country_flag = ambition_special_project_2_complete
+		}
+	}
+	required_crisis_currency = 2000
+
+	# REWARDS
+	perks = {
+		menp_force_of_will_manifest_destiny
+		menp_force_of_will_golden_age
+		menp_force_of_will_preparation
+	}
+
+	on_unlock = {
+		hidden_effect = {
+			owner = {
+				add_event_chain_counter = {
+					event_chain = "force_of_will_chain"
+					counter = "ambition_level_reached"
+					amount = 1
+				}
+				country_event = {
+					id = forceofwill.6040
+					days = 3
+				}
+			}
+		}
+	}
+}
+
+crisis_force_of_will_level_4 = {
+	# REQUIREMENTS
+	allow = {
+		custom_tooltip = {
+			success_text = force_of_will_level_4_req_clear_tooltip
+			fail_text =	force_of_will_level_4_req_tooltip
+			has_country_flag = ambition_special_project_3_complete
+		}
+	}
+	required_crisis_currency = 5000
+
+	# REWARDS
+	perks = {
+		menp_force_of_will_proselytization
+		menp_force_of_will_codification
+		menp_force_of_will_negotiation
+	}
+
+	on_unlock = {
+		hidden_effect = {
+			owner = {
+				add_event_chain_counter = {
+					event_chain = "force_of_will_chain"
+					counter = "ambition_level_reached"
+					amount = 1
+				}
+				country_event = {
+					id = forceofwill.6045
+					days = 3
+				}
+			}
+		}
+	}
+}
+
+crisis_force_of_will_level_5 = {
+	# REQUIREMENTS
+	allow = {
+		custom_tooltip = {
+			success_text = force_of_will_level_5_req_clear_tooltip
+			fail_text =	force_of_will_level_5_req_tooltip
+			has_country_flag = ambition_special_project_4_complete
+		}
+		ideology? = {
+			galactic_strength >= 0.3
+		}
+	}
+	required_crisis_currency = 10000
+
+	# REWARDS
+	perks = {
+		menp_force_of_will_dominion
+		menp_force_of_will_utopian
+		menp_force_of_will_unification
+	}
+
+	on_unlock = {
+		hidden_effect = {
+			owner = {
+				add_event_chain_counter = {
+					event_chain = "force_of_will_chain"
+					counter = "ambition_level_reached"
+					amount = 1
+				}
+				end_event_chain = force_of_will_chain
+				country_event = {
+					id = forceofwill.6025
+					days = 5
+				}
+			}
+		}
+	}
+}
 
 crisis_cosmogenesis_level_1 = {
 	# REQUIREMENTS
