@@ -8,6 +8,32 @@ ap_defender_of_the_galaxy_nomads = {
 			fail_text = "requires_ascension_perks_3"
 			num_ascension_perks > 2
 		}
+		custom_tooltip = {
+			fail_text = "must_finish_crisis_path"
+			OR = {
+				has_ambition = no
+				AND = {
+					has_ascension_perk = ap_become_the_crisis
+					has_crisis_level = crisis_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_cosmogenesis
+					has_crisis_level = crisis_cosmogenesis_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_behemoths
+					has_crisis_level = crisis_behemoth_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_galactic_hyperthermia
+					has_crisis_level = crisis_hyperthermia_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_force_of_will
+					has_crisis_level = crisis_force_of_will_level_5
+				}
+			}
+		}
 		NOR = {
 			is_fanatic_xenophobe = yes
 			has_civic = civic_inwards_perfection
@@ -30,9 +56,7 @@ ap_defender_of_the_galaxy_nomads = {
 	potential = {
 		has_nomads_dlc = yes
 		NOR = {
-			has_defender_of_the_galaxy_ap = yes
-			has_ascension_perk = ap_force_of_will
-			is_player_crisis = yes
+			has_country_flag = is_player_crisis
 			has_origin = origin_endbringers # Endbringers are technically a crisis as well
 			is_unfriendly = yes
 		}
@@ -89,8 +113,7 @@ ap_force_of_will = {
 	potential = {
 		has_force_of_will_dlc = yes
 		NOR = {
-			has_ambition = yes
-			is_player_crisis = yes
+			has_country_flag = is_player_crisis
 			has_origin = origin_endbringers
 			has_ascension_perk = ap_defender_of_the_galaxy
 			has_ascension_perk = ap_defender_of_the_galaxy_nomads
@@ -101,6 +124,32 @@ ap_force_of_will = {
 		custom_tooltip = {
 			fail_text = "requires_ascension_perks_3"
 			num_ascension_perks > 2
+		}
+		custom_tooltip = {
+			fail_text = "must_finish_crisis_path"
+			OR = {
+				has_ambition = no
+				AND = {
+					has_ascension_perk = ap_defender_of_the_galaxy_nomads
+					has_crisis_level = crisis_defender_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_become_the_crisis
+					has_crisis_level = crisis_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_cosmogenesis
+					has_crisis_level = crisis_cosmogenesis_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_behemoths
+					has_crisis_level = crisis_behemoth_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_galactic_hyperthermia
+					has_crisis_level = crisis_hyperthermia_level_5
+				}
+			}
 		}
 		custom_tooltip = {
 			fail_text = requires_fanatic
@@ -269,12 +318,10 @@ ap_become_the_crisis = {
 	potential = {
 		has_nemesis = yes
 		NOR = {
-			is_player_crisis = yes
-			has_ambition = yes
+			has_country_flag = is_player_crisis
 			has_origin = origin_slavers
 			has_origin = origin_endbringers # No additional crisis for Endbringers
 		}
-		is_wilderness_empire = no
 	}
 
 	possible = {
@@ -289,6 +336,39 @@ ap_become_the_crisis = {
 		custom_tooltip = {
 			fail_text = "must_not_be_emperor"
 			is_galactic_emperor = no
+		}
+		custom_tooltip = {
+			fail_text = "must_finish_behemoths_path"
+			OR = {
+				is_wilderness_empire = no
+				has_ascension_perk = ap_behemoths
+			}
+		}
+		custom_tooltip = {
+			fail_text = "must_finish_crisis_path"
+			OR = {
+				has_ambition = no
+				AND = {
+					has_ascension_perk = ap_defender_of_the_galaxy_nomads
+					has_crisis_level = crisis_defender_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_cosmogenesis
+					has_crisis_level = crisis_cosmogenesis_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_behemoths
+					has_crisis_level = crisis_behemoth_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_galactic_hyperthermia
+					has_crisis_level = crisis_hyperthermia_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_force_of_will
+					has_crisis_level = crisis_force_of_will_level_5
+				}
+			}
 		}
 		custom_tooltip = {
 			fail_text = "must_finish_shroud_forged_situation"
@@ -405,12 +485,10 @@ ap_cosmogenesis = {
 	potential = {
 		has_machine_age_dlc = yes
 		NOR = {
-			is_player_crisis = yes
-			has_ambition = yes
+			has_country_flag = is_player_crisis
 			has_origin = origin_slavers # No crisis for MSI
 			has_origin = origin_endbringers # No additional crisis for Endbringers
 		}
-		is_wilderness_empire = no
 	}
 
 	possible = {
@@ -429,6 +507,39 @@ ap_cosmogenesis = {
 		custom_tooltip = {
 			fail_text = "must_not_be_emperor"
 			is_galactic_emperor = no
+		}
+		custom_tooltip = {
+			fail_text = "must_finish_behemoths_path"
+			OR = {
+				is_wilderness_empire = no
+				has_ascension_perk = ap_behemoths
+			}
+		}
+		custom_tooltip = {
+			fail_text = "must_finish_crisis_path"
+			OR = {
+				has_ambition = no
+				AND = {
+					has_ascension_perk = ap_defender_of_the_galaxy_nomads
+					has_crisis_level = crisis_defender_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_become_the_crisis
+					has_crisis_level = crisis_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_behemoths
+					has_crisis_level = crisis_behemoth_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_galactic_hyperthermia
+					has_crisis_level = crisis_hyperthermia_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_force_of_will
+					has_crisis_level = crisis_force_of_will_level_5
+				}
+			}
 		}
 	}
 
@@ -510,8 +621,7 @@ ap_behemoths = {
 	potential = {
 		has_biogenesis_dlc = yes
 		NOR = {
-			is_player_crisis = yes
-			has_ambition = yes
+			has_country_flag = is_player_crisis
 			has_origin = origin_slavers # No crisis for MSI
 			has_origin = origin_endbringers # No additional crisis for Endbringers
 		}
@@ -533,6 +643,32 @@ ap_behemoths = {
 		custom_tooltip = {
 			fail_text = "must_not_be_emperor"
 			is_galactic_emperor = no
+		}
+		custom_tooltip = {
+			fail_text = "must_finish_crisis_path"
+			OR = {
+				has_ambition = no
+				AND = {
+					has_ascension_perk = ap_defender_of_the_galaxy_nomads
+					has_crisis_level = crisis_defender_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_become_the_crisis
+					has_crisis_level = crisis_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_cosmogenesis
+					has_crisis_level = crisis_cosmogenesis_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_galactic_hyperthermia
+					has_crisis_level = crisis_hyperthermia_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_force_of_will
+					has_crisis_level = crisis_force_of_will_level_5
+				}
+			}
 		}
 		custom_tooltip = {
 			fail_text = "must_use_bioships"
@@ -620,11 +756,9 @@ ap_galactic_hyperthermia = {
 	potential = {
 		has_infernals = yes
 		NOR = {
-			is_player_crisis = yes
-			has_ambition = yes
+			has_country_flag = is_player_crisis
 			has_origin = origin_slavers
 			has_origin = origin_endbringers
-			is_wilderness_empire = yes
 		}
 	}
 
@@ -647,6 +781,39 @@ ap_galactic_hyperthermia = {
 		custom_tooltip = {
 			fail_text = "must_not_be_emperor"
 			is_galactic_emperor = no
+		}
+		custom_tooltip = {
+			fail_text = "must_finish_behemoths_path"
+			OR = {
+				is_wilderness_empire = no
+				has_ascension_perk = ap_behemoths
+			}
+		}
+		custom_tooltip = {
+			fail_text = "must_finish_crisis_path"
+			OR = {
+				has_ambition = no
+				AND = {
+					has_ascension_perk = ap_defender_of_the_galaxy_nomads
+					has_crisis_level = crisis_defender_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_become_the_crisis
+					has_crisis_level = crisis_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_cosmogenesis
+					has_crisis_level = crisis_cosmogenesis_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_behemoths
+					has_crisis_level = crisis_behemoth_level_5
+				}
+				AND = {
+					has_ascension_perk = ap_force_of_will
+					has_crisis_level = crisis_force_of_will_level_5
+				}
+			}
 		}
 		NOR = {
 			is_xenophile = yes
