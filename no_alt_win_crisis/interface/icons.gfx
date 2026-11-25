@@ -162,6 +162,54 @@ spriteTypes = {
 	}
 
 	spriteType = {
+		name = "GFX_faction_ideological_pacifist"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_ideological_pacifist.dds"
+		noOfFrames = 1
+	}
+
+	spriteType = {
+		name = "GFX_faction_ideological_militarist"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_ideological_militarist.dds"
+		noOfFrames = 1
+	}
+
+	spriteType = {
+		name = "GFX_faction_ideological_xenophobe"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_ideological_xenophobe.dds"
+		noOfFrames = 1
+	}
+
+	spriteType = {
+		name = "GFX_faction_ideological_xenophile"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_ideological_xenophile.dds"
+		noOfFrames = 1
+	}
+
+	spriteType = {
+		name = "GFX_faction_ideological_spiritualist"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_ideological_spiritualist.dds"
+		noOfFrames = 1
+	}
+
+	spriteType = {
+		name = "GFX_faction_ideological_materialist"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_ideological_materialist.dds"
+		noOfFrames = 1
+	}
+
+	spriteType = {
+		name = "GFX_faction_ideological_authoritarian"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_ideological_authoritarian.dds"
+		noOfFrames = 1
+	}
+
+	spriteType = {
+		name = "GFX_faction_ideological_egalitarian"
+		textureFile = "gfx/interface/icons/factions/types/faction_icons_ideological_egalitarian.dds"
+		noOfFrames = 1
+	}
+
+	spriteType = {
 		name = "GFX_army_attachment"
 		textureFile = "gfx/interface/icons/army_attachments/unknown.dds"
 		noOfFrames = 1
@@ -652,7 +700,7 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_ship_class_small"
 		textureFile = "gfx/interface/icons/ship_classes.dds"
-		noOfFrames = 67
+		noOfFrames = 70
 	}
 
 	spriteType = {
@@ -682,7 +730,7 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_ship_class_medium"
 		textureFile = "gfx/interface/icons/ship_classes_medium.dds"
-		noOfFrames = 67
+		noOfFrames = 70
 	}
 
 	spriteType = {
@@ -703,7 +751,7 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_ship_sizes"
 		textureFile = "gfx/interface/icons/ship_sizes.dds"
-		noOfFrames = 29
+		noOfFrames = 30
 	}
 
 	spriteType = {
@@ -785,6 +833,13 @@ spriteTypes = {
 		alwaystransparent = yes
 		sprite_sheet_sprite_type = "GFX_ship_class_medium"
 		default_frame = 61
+	}
+
+	spriteType = {
+		name = "GFX_galactic_hall_relocate"
+		alwaystransparent = yes
+		sprite_sheet_sprite_type = "GFX_ship_class_medium"
+		default_frame = 22
 	}
 
 	## Icons from sprite sheets
@@ -1348,6 +1403,11 @@ spriteTypes = {
 		default_frame = 29
 	}
 	spriteType = {
+		name = "GFX_ship_size_cultural_envoy"
+		sprite_sheet_sprite_type = "GFX_ship_sizes"
+		default_frame = 30
+	}
+	spriteType = {
 		name = "GFX_ship_size_civilian_arkship_tier_1_top"
 		sprite_sheet_sprite_type = "GFX_ship_sizes_arkship_top"
 		default_frame = 1
@@ -1581,6 +1641,46 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_message_diplomatic_invite"
 		texturefile = "gfx/interface/icons/message/message_diplomatic_invite.dds"
+	}
+
+	spriteType = {
+		name = "GFX_message_ethic_authoritarian"
+		texturefile = "gfx/interface/icons/message/ethic_authoritarian_notification_icon.dds"
+	}
+
+	spriteType = {
+		name = "GFX_message_ethic_egalitarian"
+		texturefile = "gfx/interface/icons/message/ethic_egalitarian_notification_icon.dds"
+	}
+
+	spriteType = {
+		name = "GFX_message_ethic_materialist"
+		texturefile = "gfx/interface/icons/message/ethic_materialist_notification_icon.dds"
+	}
+
+	spriteType = {
+		name = "GFX_message_ethic_militarist"
+		texturefile = "gfx/interface/icons/message/ethic_militarist_notification_icon.dds"
+	}
+
+	spriteType = {
+		name = "GFX_message_ethic_pacifist"
+		texturefile = "gfx/interface/icons/message/ethic_pacifist_notification_icon.dds"
+	}
+
+	spriteType = {
+		name = "GFX_message_ethic_spiritualist"
+		texturefile = "gfx/interface/icons/message/ethic_spiritualist_notification_icon.dds"
+	}
+
+	spriteType = {
+		name = "GFX_message_ethic_xenophile"
+		texturefile = "gfx/interface/icons/message/ethic_xenophile_notification_icon.dds"
+	}
+
+	spriteType = {
+		name = "GFX_message_ethic_xenophobe"
+		texturefile = "gfx/interface/icons/message/ethic_xenophobe_notification_icon.dds"
 	}
 
 	spriteType = {
@@ -4975,6 +5075,11 @@ spriteTypes = {
 		texturefile = "gfx/interface/icons/modules/arkship_grand_archive.dds"
 	}
 
+	spriteType = {
+		name = "GFX_arkship_galactic_hall"
+		texturefile = "gfx/interface/icons/modules/arkship_galactic_hall.dds"
+	}
+
 	## Starbase Buildings ##
 
 	spriteType = {
@@ -5088,8 +5193,64 @@ spriteTypes = {
 	}
 
 	spriteType = {
+		name = "GFX_starbase_immigration_bureau"
+		texturefile = "gfx/interface/icons/modules/sb_immigration_bureau.dds"
+	}
+
+	spriteType = {
 		name = "GFX_spaceport_module_growth_chamber"
 		texturefile = "gfx/interface/icons/modules/sb_growth_chamber.dds"
+	}
+
+	spriteType = {
+		name = "GFX_starbase_ideology_beacon"
+		texturefile = "gfx/interface/icons/modules/sb_ideology_beacon.dds"
+	}
+
+	# Megastructure modules
+	spriteType = {
+		name = "GFX_galactic_hall_module_information"
+		texturefile = "gfx/interface/icons/megastructure_modules/galactic_hall_module_information.dds"
+	}
+
+	spriteType = {
+		name = "GFX_galactic_hall_module_culture"
+		texturefile = "gfx/interface/icons/megastructure_modules/galactic_hall_module_culture.dds"
+	}
+
+	spriteType = {
+		name = "GFX_galactic_hall_module_defense"
+		texturefile = "gfx/interface/icons/megastructure_modules/galactic_hall_module_defense.dds"
+	}
+
+	spriteType = {
+		name = "GFX_galactic_hall_module_peace"
+		texturefile = "gfx/interface/icons/megastructure_modules/galactic_hall_module_peace.dds"
+	}
+
+	spriteType = {
+		name = "GFX_galactic_hall_module_truth"
+		texturefile = "gfx/interface/icons/megastructure_modules/galactic_hall_module_truth.dds"
+	}
+
+	spriteType = {
+		name = "GFX_galactic_hall_module_welfare"
+		texturefile = "gfx/interface/icons/megastructure_modules/galactic_hall_module_welfare.dds"
+	}
+
+	spriteType = {
+		name = "GFX_galactic_hall_module_propagation"
+		texturefile = "gfx/interface/icons/megastructure_modules/galactic_hall_module_propagation.dds"
+	}
+
+	spriteType = {
+		name = "GFX_galactic_hall_module_integration"
+		texturefile = "gfx/interface/icons/megastructure_modules/galactic_hall_module_integration.dds"
+	}
+
+	spriteType = {
+		name = "GFX_galactic_hall_module_commerce"
+		texturefile = "gfx/interface/icons/megastructure_modules/galactic_hall_module_commerce.dds"
 	}
 
 	# Sector type icons
@@ -5368,8 +5529,16 @@ spriteTypes = {
 		texturefile = "gfx/interface/icons/message/message_founder_species_put_on_market.dds"
 	}
 	spriteType = {
+		name = "GFX_message_spirit_cultivation"
+		texturefile = "gfx/interface/icons/message/message_path_of_the_self_notification_icon.dds"
+	}
+	spriteType = {
 		name = "GFX_message_refugees_arrived"
 		texturefile = "gfx/interface/icons/message/message_refugees_arrived.dds"
+	}
+	spriteType = {
+		name = "GFX_message_immigration_shutdown"
+		texturefile = "gfx/interface/icons/message/message_immigration_shutdown.dds"
 	}
 
 	### Resolutions ###
@@ -5943,6 +6112,26 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_message_star_destroyed"
 		texturefile = "gfx/interface/icons/message/message_star_destroyed.dds"
+	}
+
+	spriteType = {
+		name = "GFX_resolution_proclaim_imperial_truth"
+		texturefile = "gfx/interface/icons/resolutions/resolution_proclaim_imperial_truth.dds"
+	}
+
+	spriteType = {
+		name = "GFX_resolution_ideology_act"
+		texturefile = "gfx/interface/icons/resolutions/resolution_ideology_act.dds"
+	}
+
+	spriteType = {
+		name = "GFX_message_declare_ideological_rival"
+		texturefile = "gfx/interface/icons/message/message_declare_ideological_rival.dds"
+	}
+
+	spriteType = {
+		name = "GFX_message_end_ideological_rivalry"
+		texturefile = "gfx/interface/icons/message/message_end_ideological_rivalry.dds"
 	}
 
 	### Overlord ###
@@ -7450,5 +7639,22 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_resolution_paladins"
 		texturefile = "gfx/interface/icons/resolutions/resolution_paladins.dds"
+	}
+
+	# Force of Will
+
+	spriteType = {
+		name = "GFX_message_ideology"
+		texturefile = "gfx/interface/icons/message/message_ideology.dds"
+	}
+
+	spriteType = {
+		name = "GFX_message_peace_sown"
+		texturefile = "gfx/interface/icons/message/message_peace_sown.dds"
+	}
+
+	spriteType = {
+		name = "GFX_message_cultural_envoy_notification"
+		texturefile = "gfx/interface/icons/message/message_cultural_envoy_notification.dds"
 	}
 }
