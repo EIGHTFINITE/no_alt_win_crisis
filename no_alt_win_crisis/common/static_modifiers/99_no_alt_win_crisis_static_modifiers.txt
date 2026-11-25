@@ -1,1244 +1,557 @@
-# MENACE PERKS
-# menp_name = {
-#	swappable_data = {
-#		default = {
-#			portrait = "GFX_crisis_1_perk_1"	# Icon that will be used to display the perk
-#		}
-#		swap_type = {
-#			trigger = {
-#				# Condition to enter this swap type
-#			}
-#			portrait = "GFX_alternate_portrait"
-#		}
-#	}
-#	modifier = {						# static modifier added to the country for as long as they have the perk
-#		pop_purge_mult = 5.0
-#	}
-#	federation_modifier = {				# static modifier that is applied to the player's federation, if they have one (this stacks if multiple members have such perks)
-#		federation_research_sharing_mult = 0.25
-#	}
-#	on_unlock = {						# Effect that will be executed when the country receives perk
-#		log = "Country [This.GetName] received menace perk 'menp_name'"
-#	}
-#	resources = {						# resources for the country that has the perk. Only upkeep and produces are hooked in
-#		category = menace_perks
-#		produces = {
-#			alloys = 1
-#		}
-#		upkeep = {
-#			energy = 1
-#		}
-#	}
-# }
-
-@defender_damage_1 = 0.15
-#@defender_damage_2 = 0.15
-@defender_damage_3 = 0.25
-@defender_damage_4 = 0.35
-
 ###Become the Crisis
 menp_objectives = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_objectives"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_menace_objectives
-	}
+	icon = "GFX_crisis_icon_objectives"
+	custom_tooltip = unlocks_menace_objectives
 }
 
 menp_undertaker = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_undertaker"
-		}
-	}
-
-	modifier = {
-		pop_purge_speed = 5.0
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_purge
-	}
+	icon = "GFX_crisis_icon_undertaker"
+	pop_purge_speed = 5.0
+	show_only_custom_tooltip = no
+	custom_tooltip = unlocks_purge
 }
 
 menp_intimidation = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_intimidation"
-		}
-	}
-
-	modifier = {
-		country_subject_acceptance_add = 25
-	}
-	on_unlock = {
-		custom_tooltip = menp_intimidation_tt
-	}
+	icon = "GFX_crisis_icon_intimidation"
+	country_subject_acceptance_add = 25
+	show_only_custom_tooltip = no
+	custom_tooltip = menp_intimidation_tt
 }
 
 menp_base_breaker = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_basebreaker"
-		}
-	}
-
-	modifier = {
-		ship_damage_against_starbases_mult = 0.3
-	}
+	icon = "GFX_crisis_icon_basebreaker"
+	ship_damage_against_starbases_mult = 0.3
 }
 
 menp_relentless_aggression = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_relentlessaggression"
-		}
-	}
-
-	modifier = {
-		country_war_exhaustion_mult = -0.75
-	}
+	icon = "GFX_crisis_icon_relentlessaggression"
+	country_war_exhaustion_mult = -0.75
 }
 
 menp_easily_replaced = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_easilyreplaced"
-		}
-	}
-
-	modifier = {
-		starbase_shipyard_build_speed_mult = 0.5
-	}
+	icon = "GFX_crisis_icon_easilyreplaced"
+	starbase_shipyard_build_speed_mult = 0.5
 }
 
 menp_death_from_above = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_deathfromabove"
-		}
-	}
-
-	modifier = {
-		ship_orbital_bombardment_mult = 0.2
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_armageddon_bombardment
-	}
+	icon = "GFX_crisis_icon_deathfromabove"
+	ship_orbital_bombardment_mult = 0.2
+	show_only_custom_tooltip = no
+	custom_tooltip = unlocks_armageddon_bombardment
 }
 
 menp_ruthless_raiders = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_ruthlessraiders"
-		}
-	}
-
-	modifier = {
-		shipsize_crisis_corvette_evasion_mult = 0.15
-		shipsize_crisis_corvette_disengage_chance_mult = 0.5
-	}
+	icon = "GFX_crisis_icon_ruthlessraiders"
+	shipsize_crisis_corvette_evasion_mult = 0.15
+	shipsize_crisis_corvette_disengage_chance_mult = 0.5
 }
 
 menp_ship_chipper = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_shipchipper"
-		}
-	}
-
-	modifier = {
-		ship_weapon_damage = 0.50
-	}
+	icon = "GFX_crisis_icon_shipchipper"
+	ship_weapon_damage = 0.50
 }
 
 menp_flyswatter = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_flyswatter"
-		}
-	}
-
-	modifier = {
-		shipsize_crisis_destroyer_tracking_mult = 0.30
-	}
+	icon = "GFX_crisis_icon_flyswatter"
+	shipsize_crisis_destroyer_tracking_mult = 0.30
 }
 
 menp_mobile_bulwark = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_mobilebulwark"
-		}
-	}
-
-	modifier = {
-		shipsize_crisis_cruiser_hull_mult = 0.30
-	}
+	icon = "GFX_crisis_icon_mobilebulwark"
+	shipsize_crisis_cruiser_hull_mult = 0.30
 }
 
 menp_paid_in_ambition = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_paidinambition"
-		}
-	}
-
-	modifier = {
-		ships_upkeep_mult = -0.30
-	}
+	icon = "GFX_crisis_icon_paidinambition"
+	ships_upkeep_mult = -0.30
 }
 
 menp_crisis_corvette = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_crisiscorvettes"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_crisis_corvette
-	}
+	icon = "GFX_crisis_icon_crisiscorvettes"
+	custom_tooltip = unlocks_crisis_corvette
 }
 
 menp_crisis_destroyer = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_crisisdestroyers"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_crisis_destroyer
-	}
+	icon = "GFX_crisis_icon_crisisdestroyers"
+	custom_tooltip = unlocks_crisis_destroyer
 }
 
 menp_crisis_cruiser = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_crisiscruiser"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_crisis_cruiser
-	}
+	icon = "GFX_crisis_icon_crisiscruiser"
+	custom_tooltip = unlocks_crisis_cruiser
 }
 
 menp_star_eater = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_stareater"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_star_eater
-	}
+	icon = "GFX_crisis_icon_stareater"
+	custom_tooltip = unlocks_star_eater
 }
 
 menp_megastructure = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_megastructure"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_crisis_sphere
-	}
+	icon = "GFX_crisis_icon_megastructure"
+	custom_tooltip = unlocks_crisis_sphere
 }
 
 ### Defenders of the Galaxy
 ## Level 1
 # Selflessness
 menp_defender_objectives = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_integrity"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_defender_objectives
-	}
+	icon = "GFX_crisis_icon_integrity"
+	custom_tooltip = unlocks_defender_objectives
 }
 
 # Opinion 1
 menp_defender_opinion_1 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_opinion_1"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_defender_opinion_1
-	}
+	icon = "GFX_crisis_icon_opinion_1"
+	custom_tooltip = unlocks_defender_opinion_1
 }
 
 # Galcom 1
 menp_defender_galcom_1 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_galcom_1"
-		}
-	}
-
-	modifier = {
-		diplo_weight_mult = 0.2
-		envoys_add = 1
-	}
+	icon = "GFX_crisis_icon_galcom_1"
+	diplo_weight_mult = 0.2
+	envoys_add = 1
 }
 
 # Federation 1
 menp_defender_federation_1 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_federation_1"
-		}
-	}
-
-	modifier = {
-		ship_federation_territory_speed_mult = 0.25
-	}
-
-	federation_modifier = {
-		federation_fleet_cap_add = 50
-	}
+	icon = "GFX_crisis_icon_federation_1"
+	ship_federation_territory_speed_mult = 0.25
+	federation_fleet_cap_add = 50
 }
 
 ## Level 2
 # Crisis Damage 1
 menp_defender_crisis_damage_1 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_crisis_damage_1"
-		}
-	}
-
-	modifier = {
-		custom_tooltip = unlocks_defender_crisis_damage_1
-		damage_vs_country_type_synth_queen_mult = @defender_damage_1
-		damage_vs_country_type_awakened_synth_queen_mult = @defender_damage_1
-		damage_vs_country_type_synth_queen_convoys_mult = @defender_damage_1
-		damage_vs_country_type_synth_queen_outposts_mult = @defender_damage_1
-		damage_vs_country_type_swarm_mult = @defender_damage_1
-		damage_vs_country_type_extradimensional_mult = @defender_damage_1
-		damage_vs_country_type_extradimensional_2_mult = @defender_damage_1
-		damage_vs_country_type_extradimensional_3_mult = @defender_damage_1
-		damage_vs_country_type_ai_empire_mult = @defender_damage_1
-		damage_vs_country_type_gray_goo_mult = @defender_damage_1
-		damage_vs_player_crisis_mult = @defender_damage_1
-		damage_vs_country_type_voidworms_mult = @defender_damage_1
-		damage_vs_country_type_voidworms_crisis_mult = @defender_damage_1
-		damage_vs_country_type_voidworms_treasure_hunters_mult = @defender_damage_1
-		damage_vs_country_type_frenzied_voidworms_mult = @defender_damage_1
-		damage_vs_country_type_awakened_marauders_mult = @defender_damage_1
-	}
+	icon = "GFX_crisis_icon_crisis_damage_1"
+	damage_vs_country_type_synth_queen_mult = 0.15
+	damage_vs_country_type_awakened_synth_queen_mult = 0.15
+	damage_vs_country_type_synth_queen_convoys_mult = 0.15
+	damage_vs_country_type_synth_queen_outposts_mult = 0.15
+	damage_vs_country_type_swarm_mult = 0.15
+	damage_vs_country_type_extradimensional_mult = 0.15
+	damage_vs_country_type_extradimensional_2_mult = 0.15
+	damage_vs_country_type_extradimensional_3_mult = 0.15
+	damage_vs_country_type_ai_empire_mult = 0.15
+	damage_vs_country_type_gray_goo_mult = 0.15
+	damage_vs_player_crisis_mult = 0.15
+	damage_vs_country_type_voidworms_mult = 0.15
+	damage_vs_country_type_voidworms_crisis_mult = 0.15
+	damage_vs_country_type_voidworms_treasure_hunters_mult = 0.15
+	damage_vs_country_type_frenzied_voidworms_mult = 0.15
+	damage_vs_country_type_awakened_marauders_mult = 0.15
+	show_only_custom_tooltip = no
+	custom_tooltip = unlocks_defender_crisis_damage_1
 }
 
 # Galcom 2
 menp_defender_galcom_2 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_galcom_2"
-		}
-	}
-
-	modifier = {
-		country_influence_produces_mult = 0.2
-		emergency_measures_cooldown_mult = -0.25
-	}
-
-	on_unlock = {
-		custom_tooltip = menp_defender_galcom_2_structures
-	}
-
+	icon = "GFX_crisis_icon_galcom_2"
+	country_influence_produces_mult = 0.2
+	emergency_measures_cooldown_mult = -0.25
+	show_only_custom_tooltip = no
+	custom_tooltip = menp_defender_galcom_2_structures
 }
 
 # Federation 2
 menp_defender_federation_2 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_federation_2"
-		}
-	}
-
-	federation_modifier = {
-		federation_experience_add = 2
-		federation_fleet_cap_add = 100
-	}
-
-	modifier = {
-		ship_federation_territory_fire_rate_mult = 0.15
-	}
+	icon = "GFX_crisis_icon_federation_2"
+	federation_experience_add = 2
+	federation_fleet_cap_add = 100
+	ship_federation_territory_fire_rate_mult = 0.15
 }
 
 ## Level 3
 # Crisis Damage 2
 menp_defender_crisis_damage_2 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_crisis_damage_2"
-		}
-	}
-
-	modifier = {
-		ship_shield_mult = 0.5
-	}
+	icon = "GFX_crisis_icon_crisis_damage_2"
+	ship_shield_mult = 0.5
 }
 
 # Opinion 2
 menp_defender_opinion_2 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_opinion_2"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_defender_opinion_2
-	}
+	icon = "GFX_crisis_icon_opinion_2"
+	custom_tooltip = unlocks_defender_opinion_2
 }
 
 # Research 1
 menp_defender_research_1 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_research_1"
-		}
-	}
-
-	modifier = {
-		research_sharing_mult = 0.2
-	}
+	icon = "GFX_crisis_icon_research_1"
+	research_sharing_mult = 0.2
 }
 
 # Defense 1
 menp_defender_defense_1 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_defense_1"
-		}
-	}
-
-	modifier = {
-		custom_tooltip = menp_defender_defense_1_tt
-		defensive_stations_hull_mult = 0.15
-		defensive_stations_armor_mult = 0.10
-		defensive_stations_shield_hardening_add = 0.15
-	}
+	icon = "GFX_crisis_icon_defense_1"
+	defensive_stations_hull_mult = 0.15
+	defensive_stations_armor_mult = 0.10
+	defensive_stations_shield_hardening_add = 0.15
+	show_only_custom_tooltip = no
+	custom_tooltip = menp_defender_defense_1_tt
 }
 
 ## Level 4
 # Crisis Damage 3
 menp_defender_crisis_damage_3 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_crisis_damage_3"
-		}
-	}
-
-	modifier = {
-		custom_tooltip = unlocks_defender_crisis_damage_3
-		damage_vs_country_type_synth_queen_mult = @defender_damage_3
-		damage_vs_country_type_awakened_synth_queen_mult = @defender_damage_3
-		damage_vs_country_type_synth_queen_convoys_mult = @defender_damage_3
-		damage_vs_country_type_synth_queen_outposts_mult = @defender_damage_3
-		damage_vs_country_type_swarm_mult = @defender_damage_3
-		damage_vs_country_type_extradimensional_mult = @defender_damage_3
-		damage_vs_country_type_extradimensional_2_mult = @defender_damage_3
-		damage_vs_country_type_extradimensional_3_mult = @defender_damage_3
-		damage_vs_country_type_ai_empire_mult = @defender_damage_3
-		damage_vs_country_type_gray_goo_mult = @defender_damage_3
-		damage_vs_player_crisis_mult = @defender_damage_3
-		damage_vs_country_type_voidworms_mult = @defender_damage_3
-		damage_vs_country_type_voidworms_crisis_mult = @defender_damage_3
-		damage_vs_country_type_voidworms_treasure_hunters_mult = @defender_damage_3
-		damage_vs_country_type_frenzied_voidworms_mult = @defender_damage_3
-		damage_vs_country_type_awakened_marauders_mult = @defender_damage_3
-	}
+	icon = "GFX_crisis_icon_crisis_damage_3"
+	damage_vs_country_type_synth_queen_mult = 0.25
+	damage_vs_country_type_awakened_synth_queen_mult = 0.25
+	damage_vs_country_type_synth_queen_convoys_mult = 0.25
+	damage_vs_country_type_synth_queen_outposts_mult = 0.25
+	damage_vs_country_type_swarm_mult = 0.25
+	damage_vs_country_type_extradimensional_mult = 0.25
+	damage_vs_country_type_extradimensional_2_mult = 0.25
+	damage_vs_country_type_extradimensional_3_mult = 0.25
+	damage_vs_country_type_ai_empire_mult = 0.25
+	damage_vs_country_type_gray_goo_mult = 0.25
+	damage_vs_player_crisis_mult = 0.25
+	damage_vs_country_type_voidworms_mult = 0.25
+	damage_vs_country_type_voidworms_crisis_mult = 0.25
+	damage_vs_country_type_voidworms_treasure_hunters_mult = 0.25
+	damage_vs_country_type_frenzied_voidworms_mult = 0.25
+	damage_vs_country_type_awakened_marauders_mult = 0.25
+	show_only_custom_tooltip = no
+	custom_tooltip = unlocks_defender_crisis_damage_3
 }
 
 # Opinion 3
 menp_defender_opinion_3 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_opinion_3"
-		}
-	}
-
-	modifier = {
-
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_defender_opinion_3
-	}
+	icon = "GFX_crisis_icon_opinion_3"
+	custom_tooltip = unlocks_defender_opinion_3
 }
 
 # Custodian (only if DLC Nemesis)
 menp_defender_custodian = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_custodian"
-		}
-	}
-
-	modifier = {
-
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_defender_custodian
-	}
+	icon = "GFX_crisis_icon_custodian"
+	custom_tooltip = unlocks_defender_custodian
 }
 
 # Defense 2
 menp_defender_defense_2 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_defense_2"
-		}
-	}
-
-	modifier = {
-		ship_military_station_small_upkeep_mult = -0.15
-		shipclass_military_station_build_speed_mult = 0.3
-	}
+	icon = "GFX_crisis_icon_defense_2"
+	ship_military_station_small_upkeep_mult = -0.15
+	shipclass_military_station_build_speed_mult = 0.3
 }
 
 ## Level 5
 # Crisis Damage 4
 menp_defender_crisis_damage_4 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_crisis_damage_4"
-		}
-	}
-
-	modifier = {
-		custom_tooltip = unlocks_defender_crisis_damage_4
-		damage_vs_country_type_synth_queen_mult = @defender_damage_4
-		damage_vs_country_type_awakened_synth_queen_mult = @defender_damage_4
-		damage_vs_country_type_synth_queen_convoys_mult = @defender_damage_4
-		damage_vs_country_type_synth_queen_outposts_mult = @defender_damage_4
-		damage_vs_country_type_swarm_mult = @defender_damage_4
-		damage_vs_country_type_extradimensional_mult = @defender_damage_4
-		damage_vs_country_type_extradimensional_2_mult = @defender_damage_4
-		damage_vs_country_type_extradimensional_3_mult = @defender_damage_4
-		damage_vs_country_type_ai_empire_mult = @defender_damage_4
-		damage_vs_country_type_gray_goo_mult = @defender_damage_4
-		damage_vs_player_crisis_mult = @defender_damage_4
-		damage_vs_country_type_voidworms_mult = @defender_damage_4
-		damage_vs_country_type_voidworms_crisis_mult = @defender_damage_4
-		damage_vs_country_type_voidworms_treasure_hunters_mult = @defender_damage_4
-		damage_vs_country_type_frenzied_voidworms_mult = @defender_damage_4
-		damage_vs_country_type_awakened_marauders_mult = @defender_damage_4
-	}
+	icon = "GFX_crisis_icon_crisis_damage_4"
+	damage_vs_country_type_synth_queen_mult = 0.35
+	damage_vs_country_type_awakened_synth_queen_mult = 0.35
+	damage_vs_country_type_synth_queen_convoys_mult = 0.35
+	damage_vs_country_type_synth_queen_outposts_mult = 0.35
+	damage_vs_country_type_swarm_mult = 0.35
+	damage_vs_country_type_extradimensional_mult = 0.35
+	damage_vs_country_type_extradimensional_2_mult = 0.35
+	damage_vs_country_type_extradimensional_3_mult = 0.35
+	damage_vs_country_type_ai_empire_mult = 0.35
+	damage_vs_country_type_gray_goo_mult = 0.35
+	damage_vs_player_crisis_mult = 0.35
+	damage_vs_country_type_voidworms_mult = 0.35
+	damage_vs_country_type_voidworms_crisis_mult = 0.35
+	damage_vs_country_type_voidworms_treasure_hunters_mult = 0.35
+	damage_vs_country_type_frenzied_voidworms_mult = 0.35
+	damage_vs_country_type_awakened_marauders_mult = 0.35
+	show_only_custom_tooltip = no
+	custom_tooltip = unlocks_defender_crisis_damage_4
 }
 
 #Galcom 3
 menp_defender_galcom_3 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_custodian"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_defender_galcom_3
-	}
+	icon = "GFX_crisis_icon_custodian"
+	custom_tooltip = unlocks_defender_galcom_3
 }
 
 # Research 2
 menp_defender_research_2 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_research_2"
-		}
-	}
-
-	modifier = {
-		research_sharing_mult = 0.3
-		planet_researchers_produces_mult = 0.1
-	}
+	icon = "GFX_crisis_icon_research_2"
+	research_sharing_mult = 0.3
+	planet_researchers_produces_mult = 0.1
 }
 
 # Defense 3
 menp_defender_defense_3 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_defense_3"
-		}
-	}
-
-	modifier = {
-		ship_friendly_territory_fire_rate_mult = 0.25
-		ship_friendly_territory_evasion_mult = 0.15
-	}
+	icon = "GFX_crisis_icon_defense_3"
+	ship_friendly_territory_fire_rate_mult = 0.25
+	ship_friendly_territory_evasion_mult = 0.15
 }
 
 
 ### Force of Will
 # Level 1
 menp_force_of_will_conviction = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_conviction"
-		}
-	}
-
-	on_unlock = {
-		set_country_flag = cant_abandon_ideology_forceofwill
-		custom_tooltip = memp_force_of_will_conviction_unlock
-	}
-
-	modifier = {
-		pop_government_ethic_attraction = 0.50
-	}
+	icon = "GFX_crisis_icon_conviction"
+	pop_government_ethic_attraction = 0.50
+	show_only_custom_tooltip = no
+	custom_tooltip = memp_force_of_will_conviction_unlock
 }
 
 menp_force_of_will_propagation = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_propagation"
-		}
-	}
-
-	on_unlock = {
-		set_country_flag = unlock_doctrinal_proxy
-		custom_tooltip = memp_force_of_will_propagation_unlock
-	}
+	icon = "GFX_crisis_icon_propagation"
+	custom_tooltip = memp_force_of_will_propagation_unlock
 }
 
 menp_force_of_will_persuasion = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_persuasion"
-		}
-	}
-
-	modifier = {
-		envoys_add = 2
-		country_trust_cap_add = 25
-		envoy_improve_relations_mult = 0.25
-	}
+	icon = "GFX_crisis_icon_persuasion"
+	envoys_add = 2
+	country_trust_cap_add = 25
+	envoy_improve_relations_mult = 0.25
 }
 
 
 # Level 2
 menp_force_of_will_ethical_authority = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_ethical_authority"
-		}
-	}
-
-	on_unlock = {
-		set_country_flag = ideological_subjugation_casus_belli_unlock
-		custom_tooltip = menp_force_of_will_ethical_authority_unlock_tt
-	}
-
-	modifier = {
-		monthly_loyalty_from_subjects = 1
-	}
+	icon = "GFX_crisis_icon_ethical_authority"
+	monthly_loyalty_from_subjects = 1
+	show_only_custom_tooltip = no
+	custom_tooltip = menp_force_of_will_ethical_authority_unlock_tt
 }
 
 menp_force_of_will_cultural_envoys = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_cultural_envoys"
-		}
-	}
-
-	on_unlock = {
-		give_technology = {
-			tech = tech_cultural_envoys
-			message = no
-		}
-		hidden_effect = {
-			country_event = {
-				id = forceofwill.7055
-				days = 10
-			}
-		}
-	}
+	icon = "GFX_crisis_icon_cultural_envoys"
+	custom_tooltip = LABEL_NA
 }
 
 menp_force_of_will_galactic_awareness = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_galactic_awareness"
-		}
-	}
-
-	modifier = {
-		intel_encryption_add = 3
-		add_base_country_intel = 25
-		ship_sensor_range_add = 10
-	}
+	icon = "GFX_crisis_icon_galactic_awareness"
+	intel_encryption_add = 3
+	add_base_country_intel = 25
+	ship_sensor_range_add = 10
 }
 
 
 # Level 3
 menp_force_of_will_manifest_destiny = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_manifest_destiny"
-		}
-	}
-
-	modifier = {
-		country_base_influence_produces_add = 2
-		shipsize_cultural_envoy_ship_speed_mult = 0.25
-		ideological_push_mult = 0.25
-	}
+	icon = "GFX_crisis_icon_manifest_destiny"
+	country_base_influence_produces_add = 2
+	shipsize_cultural_envoy_ship_speed_mult = 0.25
+	ideological_push_mult = 0.25
 }
 
 menp_force_of_will_golden_age = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_golden_age"
-		}
-	}
-
-	modifier = {
-		pop_happiness = 0.25
-		country_consumer_goods_produces_mult = 0.25
-		country_physics_tech_research_speed = 0.25
-		country_society_tech_research_speed = 0.25
-		country_engineering_tech_research_speed = 0.25
-	}
+	icon = "GFX_crisis_icon_golden_age"
+	pop_happiness = 0.25
+	country_consumer_goods_produces_mult = 0.25
+	country_physics_tech_research_speed = 0.25
+	country_society_tech_research_speed = 0.25
+	country_engineering_tech_research_speed = 0.25
 }
 
 menp_force_of_will_preparation = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_preparation"
-		}
-	}
-
-	modifier = {
-		starbase_upgrade_speed_mult = 0.50
-		starbase_upgrade_cost_mult = -0.50
-		country_starbase_capacity_add = 5
-	}
+	icon = "GFX_crisis_icon_preparation"
+	starbase_upgrade_speed_mult = 0.50
+	starbase_upgrade_cost_mult = -0.50
+	country_starbase_capacity_add = 5
 }
 
 
 # Level 4
 menp_force_of_will_proselytization = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_proselytization"
-		}
-	}
-
-	modifier = {
-		cultural_envoy_conversion_rate_add = @proselytization_cultural_envoy_speed
-	}
+	icon = "GFX_crisis_icon_proselytization"
+	cultural_envoy_conversion_rate_add = 50
 }
 
 menp_force_of_will_codification = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_codification"
-		}
-	}
-
-	modifier = {
-		additional_tenet_add = 1
-		ideological_strength_bonus_mult = 0.5
-	}
+	icon = "GFX_crisis_icon_codification"
+	additional_tenet_add = 1
+	ideological_strength_bonus_mult = 0.5
 }
 
 menp_force_of_will_negotiation = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_negotiation"
-		}
-	}
-
-	on_unlock = {
-		hidden_effect = {
-			set_country_flag = force_of_will_negotiation_unlock
-		}
-		custom_tooltip = menp_force_of_will_negotiation_unlock_tt
-	}
-
-	modifier = {
-		diplomacy_influence_upkeep_mult = -0.25
-		adopted_ideology_upkeep_mult = -0.25
-		diplo_action_acceptance_add = 10
-	}
+	icon = "GFX_crisis_icon_negotiation"
+	diplomacy_influence_upkeep_mult = -0.25
+	adopted_ideology_upkeep_mult = -0.25
+	diplo_action_acceptance_add = 10
+	show_only_custom_tooltip = no
+	custom_tooltip = menp_force_of_will_negotiation_unlock_tt
 }
 
 
 # Level 5
 menp_force_of_will_dominion = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_dominion"
-		}
-	}
-
-	on_unlock = {
-		hidden_effect = {
-			add_tech_progress = {
-				tech = tech_jump_drive_1
-				progress = 0.5
-			}
-			if = {
-				limit = { has_first_contact_dlc = yes }
-				inverted_switch = {
-					trigger = has_technology
-					tech_cloaking_1 = {
-						add_tech_progress = {
-							tech = tech_cloaking_1
-							progress = 0.5
-						}
-					}
-					tech_cloaking_2 = {
-						add_tech_progress = {
-							tech = tech_cloaking_2
-							progress = 0.5
-						}
-					}
-					tech_cloaking_3 = {
-						add_tech_progress = {
-							tech = tech_cloaking_3
-							progress = 0.5
-						}
-					}
-					tech_cloaking_dark_matter = {
-						add_tech_progress = {
-							tech = tech_cloaking_dark_matter
-							progress = 0.5
-						}
-					}
-					tech_cloaking_psi = {
-						add_tech_progress = {
-							tech = tech_cloaking_psi
-							progress = 0.5
-						}
-					}
-				}
-			}
-		}
-		custom_tooltip = force_of_will_dominion_unlock_tt
-	}
-
-	modifier = {
-		empire_size_systems_mult = -0.25
-		empire_size_pops_mult = -0.25
-	}
+	icon = "GFX_crisis_icon_dominion"
+	empire_size_systems_mult = -0.25
+	empire_size_pops_mult = -0.25
+	show_only_custom_tooltip = no
+	custom_tooltip = force_of_will_dominion_unlock_tt
 }
 
-menp_force_of_will_utopian = {
-	swappable_data = {
-		swap_type = {
-			trigger = {
-				exists = ideology
-				ideology = {
-					is_egalitarian = yes
-				}
-			}
-			portrait = "GFX_crisis_icon_utopian_egalitarian"
-			modifier = {
-				planet_stability_add = 10
-				planet_jobs_specialist_produces_mult = 0.30
-			}
-		}
-		swap_type = {
-			trigger = {
-				exists = ideology
-				ideology = {
-					is_materialist = yes
-				}
-			}
-			portrait = "GFX_crisis_icon_utopian_materialist"
-			modifier = {
-				planet_stability_add = 10
-				country_physics_tech_research_speed = 0.30
-				country_society_tech_research_speed = 0.30
-				country_engineering_tech_research_speed = 0.30
-			}
-		}
-		swap_type = {
-			trigger = {
-				exists = ideology
-				ideology = {
-					is_spiritualist = yes
-				}
-			}
-			portrait = "GFX_crisis_icon_utopian_spiritualist"
-			modifier = {
-				planet_stability_add = 10
-				country_unity_produces_mult = 0.60
-			}
-		}
-		swap_type = {
-			trigger = {
-				exists = ideology
-				ideology = {
-					is_pacifist = yes
-				}
-			}
-			portrait = "GFX_crisis_icon_utopian_pacifist"
-			modifier = {
-				planet_stability_add = 40
-			}
-		}
-		swap_type = {
-			trigger = {
-				exists = ideology
-				ideology = {
-					is_xenophile = yes
-				}
-			}
-			portrait = "GFX_crisis_icon_utopian_xenophile"
-			modifier = {
-				planet_stability_add = 10
-				country_trade_produces_mult = 0.60
-			}
-		}
-	}
+menp_force_of_will_utopian_egalitarian = {
+	icon = "GFX_crisis_icon_utopian_egalitarian"
+	planet_stability_add = 10
+	planet_jobs_specialist_produces_mult = 0.30
+	show_only_custom_tooltip = no
+	custom_tooltip  = force_of_will_utopian_unlock_tt
+}
 
-	on_unlock = {
-		set_country_flag = force_of_will_utopian_unlock
-		custom_tooltip  = force_of_will_utopian_unlock_tt
-	}
+menp_force_of_will_utopian_materialist = {
+	icon = "GFX_crisis_icon_utopian_materialist"
+	planet_stability_add = 10
+	country_physics_tech_research_speed = 0.30
+	country_society_tech_research_speed = 0.30
+	country_engineering_tech_research_speed = 0.30
+	show_only_custom_tooltip = no
+	custom_tooltip  = force_of_will_utopian_unlock_tt
+}
+
+menp_force_of_will_utopian_spiritualist = {
+	icon = "GFX_crisis_icon_utopian_spiritualist"
+	planet_stability_add = 10
+	country_unity_produces_mult = 0.60
+	show_only_custom_tooltip = no
+	custom_tooltip  = force_of_will_utopian_unlock_tt
+}
+
+menp_force_of_will_utopian_pacifist = {
+	icon = "GFX_crisis_icon_utopian_pacifist"
+	planet_stability_add = 40
+	show_only_custom_tooltip = no
+	custom_tooltip  = force_of_will_utopian_unlock_tt
+}
+
+menp_force_of_will_utopian_xenophile = {
+	icon = "GFX_crisis_icon_utopian_xenophile"
+	planet_stability_add = 10
+	country_trade_produces_mult = 0.60
+	show_only_custom_tooltip = no
+	custom_tooltip  = force_of_will_utopian_unlock_tt
 }
 
 menp_force_of_will_unification = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_unification"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = force_of_will_unification_unlock_tt
-		set_country_flag = force_of_will_unification_unlock
-		hidden_effect = {
-			if = {
-				limit = {
-					count_country = {
-						count > 0
-						limit = {
-							is_fallen_empire = yes
-						}
-					}
-				}
-				country_event = {
-					id = forceofwill.6070
-				}
-			}
-		}
-	}
+	icon = "GFX_crisis_icon_unification"
+	custom_tooltip = force_of_will_unification_unlock_tt
 }
 
 ###Cosmogenesis
 #Level 1
 #Advanced Logic
 menp_cosmo_objectives = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_advanced_logic"
-		}
-	}
-
-	modifier = {
-		country_physics_research_produces_mult = 0.1
-		planet_physicists_upkeep_mult = 0.03
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_cosmo_objectives
-	}
+	icon = "GFX_crisis_icon_advanced_logic"
+	country_physics_research_produces_mult = 0.1
+	planet_physicists_upkeep_mult = 0.03
+	show_only_custom_tooltip = no
+	custom_tooltip = unlocks_cosmo_objectives
 }
 
 #FE Buildings
 menp_cosmo_buildings_1 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_fe_building_1"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_buildings_1
-	}
+	icon = "GFX_crisis_icon_fe_building_1"
+	custom_tooltip = unlocks_buildings_1
 }
 
 #FE Ship Parts
 menp_cosmo_techs_1 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_dark_matter_1"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_techs_1
-	}
+	icon = "GFX_crisis_icon_dark_matter_1"
+	custom_tooltip = unlocks_techs_1
 }
 
 #Wetware
 menp_cosmo_features_1 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_wetware"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_features_1
-	}
+	icon = "GFX_crisis_icon_wetware"
+	custom_tooltip = unlocks_features_1
 }
 
 #Level 2
 #FE Ships 1
 menp_cosmo_ship_2 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_fe_ship_1"
-		}
-	}
-
-	on_unlock = {
-		if = {
-			limit = {
-				country_uses_bio_ships = no
-			}
-			custom_tooltip = unlocks_ship_2
-		}
-		else = {
-			custom_tooltip = unlocks_ship_2_bio
-		}
-	}
+	icon = "GFX_crisis_icon_fe_ship_1"
+	custom_tooltip = unlocks_ship_2_either
 }
 
 #Dark Matter 2
 menp_cosmo_buildings_2 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_fe_building_2"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_buildings_2
-	}
+	icon = "GFX_crisis_icon_fe_building_2"
+	custom_tooltip = unlocks_buildings_2
 }
 
 #FE Buildings 2
 menp_cosmo_techs_2 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_dark_matter_2"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_techs_2
-	}
+	icon = "GFX_crisis_icon_dark_matter_2"
+	custom_tooltip = unlocks_techs_2
 }
 
 #Gravity Tools
 menp_cosmo_features_2 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_gravitational_tools"
-		}
-	}
-
-	modifier = {
-		country_society_research_produces_mult = 0.1
-		planet_biologists_upkeep_mult = 0.03
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_features_2
-	}
+	icon = "GFX_crisis_icon_gravitational_tools"
+	country_society_research_produces_mult = 0.1
+	planet_biologists_upkeep_mult = 0.03
+	show_only_custom_tooltip = no
+	custom_tooltip = unlocks_features_2
 }
 
 #Level 3
 #FE Ships 3
 menp_cosmo_ship_3 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_fe_ship_2"
-		}
-	}
-
-	on_unlock = {
-		if = {
-			limit = {
-				country_uses_bio_ships = no
-			}
-			custom_tooltip = unlocks_ship_3
-		}
-		else = {
-			custom_tooltip = unlocks_ship_3_bio
-		}
-	}
+	icon = "GFX_crisis_icon_fe_ship_2"
+	custom_tooltip = unlocks_ship_3_either
 }
 
 #FE Buildings 3
 menp_cosmo_buildings_3 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_fe_building_3"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_buildings_3
-	}
+	icon = "GFX_crisis_icon_fe_building_3"
+	custom_tooltip = unlocks_buildings_3
 }
 
 #Dark Matter 3
 menp_cosmo_techs_3 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_dark_matter_3"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_techs_3
-	}
+	icon = "GFX_crisis_icon_dark_matter_3"
+	custom_tooltip = unlocks_techs_3
 }
 
 #Eternal Expansion
 menp_cosmo_features_3 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_eternal_expansion"
-		}
-	}
-
-	modifier = {
-		country_engineering_research_produces_mult = 0.1
-		planet_engineers_upkeep_mult = 0.03
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_features_3
-	}
+	icon = "GFX_crisis_icon_eternal_expansion"
+	country_engineering_research_produces_mult = 0.1
+	planet_engineers_upkeep_mult = 0.03
+	show_only_custom_tooltip = no
+	custom_tooltip = unlocks_features_3
 }
 
 #Level 4
 #FE Ships 3
 menp_cosmo_ship_4 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_fe_ship_3"
-		}
-	}
-
-	on_unlock = {
-		if = {
-			limit = {
-				country_uses_bio_ships = no
-			}
-			custom_tooltip = unlocks_ship_4
-		}
-		else = {
-			custom_tooltip = unlocks_ship_4_bio
-		}
-	}
+	icon = "GFX_crisis_icon_fe_ship_3"
+	custom_tooltip = unlocks_ship_4_either
 }
 
 #FE Buildings 4
 menp_cosmo_buildings_4 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_fe_building_4"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_buildings_4
-	}
+	icon = "GFX_crisis_icon_fe_building_4"
+	custom_tooltip = unlocks_buildings_4
 }
 
 #Dragonscale Ship Tech
 menp_cosmo_techs_4 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_rare_components"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_techs_4
-	}
+	icon = "GFX_crisis_icon_rare_components"
+	custom_tooltip = unlocks_techs_4
 }
 
 #Reality Theses
 menp_cosmo_features_4 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_reality_theses"
-		}
-	}
-
-	modifier = {
-		country_physics_research_produces_mult = 0.1
-		planet_physicists_upkeep_mult = 0.03
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_features_4
-	}
+	icon = "GFX_crisis_icon_reality_theses"
+	country_physics_research_produces_mult = 0.1
+	planet_physicists_upkeep_mult = 0.03
+	show_only_custom_tooltip = no
+	custom_tooltip = unlocks_features_4
 }
 
 #Level 5
 #FE Buildings 5
 menp_cosmo_buildings_5 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_fe_building_5"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_buildings_5
-	}
+	icon = "GFX_crisis_icon_fe_building_5"
+	custom_tooltip = unlocks_buildings_5
 }
 
 #FE Ships 4
 menp_cosmo_techs_5 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_nanotech"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_techs_5
-	}
+	icon = "GFX_crisis_icon_nanotech"
+	custom_tooltip = unlocks_techs_5
 }
 
 #FE Nanite Parts
 menp_cosmo_features_5 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_void_voyagers"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_features_5
-	}
+	icon = "GFX_crisis_icon_void_voyagers"
+	custom_tooltip = unlocks_features_5
 }
 
 
@@ -1246,278 +559,136 @@ menp_cosmo_features_5 = {
 #Level 1
 #Feral Insight
 menp_behemoth_objectives = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_behemoth_objectives"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_behemoth_objectives
-	}
+	icon = "GFX_crisis_icon_behemoth_objectives"
+	custom_tooltip = unlocks_behemoth_objectives
 }
 
 #Bioship and Space Fauna
 menp_behemoth_bioship_1 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_behemoth_bioship_1"
-		}
-	}
-
-	modifier = {
-		shipclass_military_hull_mult = 0.1
-		ship_armor_hardening_add = 0.2
-	}
+	icon = "GFX_crisis_icon_behemoth_bioship_1"
+	shipclass_military_hull_mult = 0.1
+	ship_armor_hardening_add = 0.2
 }
 
 #Society Research
 menp_behemoth_society_1 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_behemoth_society_1"
-		}
-	}
-
-	modifier = {
-		planet_farmers_society_research_produces_add = 1.5
-		planet_farmers_energy_upkeep_add = 0.5
-		planet_farmers_minerals_upkeep_add = 0.5
-	}
+	icon = "GFX_crisis_icon_behemoth_society_1"
+	planet_farmers_society_research_produces_add = 1.5
+	planet_farmers_energy_upkeep_add = 0.5
+	planet_farmers_minerals_upkeep_add = 0.5
 }
 
 #Food Storage
 menp_behemoth_food_1 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_behemoth_food_1"
-		}
-	}
-
-	modifier = {
-		country_resource_max_food_add = 100000
-	}
+	icon = "GFX_crisis_icon_behemoth_food_1"
+	country_resource_max_food_add = 100000
 }
 
 #Level 2
 #The Egg
 menp_behemoth_egg = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_behemoth_egg"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_behemoth_egg
-	}
+	icon = "GFX_crisis_icon_behemoth_egg"
+	custom_tooltip = unlocks_behemoth_egg
 }
 
 #Bioships and Space Fauna
 menp_behemoth_bioship_2 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_behemoth_bioship_2"
-		}
-	}
-
-	modifier = {
-		bioship_growth_progress_mult = 0.3
-		command_limit_mult = 0.5
-	}
+	icon = "GFX_crisis_icon_behemoth_bioship_2"
+	bioship_growth_progress_mult = 0.3
+	command_limit_mult = 0.5
 }
 
 #Bio Research 2
 menp_behemoth_society_2 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_behemoth_society_2"
-		}
-	}
-
-	modifier = {
-		country_society_tech_research_speed = 0.15
-		planet_biologists_upkeep_mult = 0.05
-	}
+	icon = "GFX_crisis_icon_behemoth_society_2"
+	country_society_tech_research_speed = 0.15
+	planet_biologists_upkeep_mult = 0.05
 }
 
 #Food Output
 menp_behemoth_food_2 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_behemoth_food_2"
-		}
-	}
-
-	modifier = {
-		planet_farmers_food_produces_add = 3
-		planet_farmers_minerals_upkeep_add = 1
-	}
+	icon = "GFX_crisis_icon_behemoth_food_2"
+	planet_farmers_food_produces_add = 3
+	planet_farmers_minerals_upkeep_add = 1
 }
 
 #Level 3
 #FE Ships 3
 menp_behemoth_hatchling = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_behemoth_hatchling"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_behemoth_hatchling
-	}
+	icon = "GFX_crisis_icon_behemoth_hatchling"
+	custom_tooltip = unlocks_behemoth_hatchling
 }
 
 #Bioships and Space Fauna 3
 menp_behemoth_bioships_3 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_behemoth_bioship_3"
-		}
-	}
-
-	modifier = {
-		starbase_shipyard_build_alloys_cost_mult = -0.95
-		starbase_shipyard_build_speed_mult = 0.15
-	}
+	icon = "GFX_crisis_icon_behemoth_bioship_3"
+	starbase_shipyard_build_alloys_cost_mult = -0.95
+	starbase_shipyard_build_speed_mult = 0.15
 }
 
 #Research 3
 menp_behemoth_society_3 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_behemoth_society_3"
-		}
-	}
-
-	modifier = {
-		category_biology_research_speed_mult = 0.25
-		planet_biologists_upkeep_mult = 0.075
-	}
+	icon = "GFX_crisis_icon_behemoth_society_3"
+	category_biology_research_speed_mult = 0.25
+	planet_biologists_upkeep_mult = 0.075
 }
 
 #Mind Control Initiative
 menp_behemoth_mind_control = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_behemoth_mind_control"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_behemoth_mind_control
-	}
+	icon = "GFX_crisis_icon_behemoth_mind_control"
+	custom_tooltip = unlocks_behemoth_mind_control
 }
 
 #Level 4
 #Hatchling growth
 menp_behemoth_hatchling_2 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_behemoth_hatchling_2"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_behemoth_hatchling_2
-	}
+	icon = "GFX_crisis_icon_behemoth_hatchling_2"
+	custom_tooltip = unlocks_behemoth_hatchling_2
 }
 
 #Bioships 4
 menp_behemoth_bioship_4 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_behemoth_bioship_4"
-		}
-	}
-
-	modifier = {
-		ship_fire_rate_mult = 0.15
-	}
+	icon = "GFX_crisis_icon_behemoth_bioship_4"
+	ship_fire_rate_mult = 0.15
 }
 
 #Behemoth Mutation
 menp_behemoth_mutation_research = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_behemoth_mutation_research"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_behemoth_mutation_research
-	}
+	icon = "GFX_crisis_icon_behemoth_mutation_research"
+	custom_tooltip = unlocks_behemoth_mutation_research
 }
 
 #Predator Operations
 menp_behemoth_mind_control_2 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_behemoth_mind_control_2"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_behemoth_mind_control_2
-	}
+	icon = "GFX_crisis_icon_behemoth_mind_control_2"
+	custom_tooltip = unlocks_behemoth_mind_control_2
 }
 
 #Level 5
 #The Mind Meld
 menp_behemoth_mind_meld = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_behemoth_mind_meld"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_behemoth_mind_meld
-	}
+	icon = "GFX_crisis_icon_behemoth_mind_meld"
+	custom_tooltip = unlocks_behemoth_mind_meld
 }
 
 #Primal Roar
 menp_behemoth_primal_roar = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_behemoth_primal_roar"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_behemoth_primal_roar
-	}
+	icon = "GFX_crisis_icon_behemoth_primal_roar"
+	custom_tooltip = unlocks_behemoth_primal_roar
 }
 
 #Behemoth Growth
 menp_behemoth_ever_hungry = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_behemoth_ever_hungry"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_behemoth_ever_hungry
-	}
-
-	modifier = {
-		the_cradle_of_souls_attunement_mult = -0.25
-	}
+	icon = "GFX_crisis_icon_behemoth_ever_hungry"
+	the_cradle_of_souls_attunement_mult = -0.25
+	show_only_custom_tooltip = no
+	custom_tooltip = unlocks_behemoth_ever_hungry
 }
 
 #Behemoth lays Eggs
 menp_behemoth_egg_2 = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_behemoth_egg_2"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_behemoth_egg_2
-	}
+	icon = "GFX_crisis_icon_behemoth_egg_2"
+	custom_tooltip = unlocks_behemoth_egg_2
 }
 
 ###Galactic Hyperthermia
@@ -1525,213 +696,98 @@ menp_behemoth_egg_2 = {
 # level 1
 
 menp_hyperthermia_crystals = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_hyperthermia_crystals"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_entropy_objectives
-	}
+	icon = "GFX_crisis_icon_hyperthermia_crystals"
+	custom_tooltip = unlocks_entropy_objectives
 }
 
 menp_hyperthermia_harnessing = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_hyperthermia_harnessing"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_entropy_edict
-	}
+	icon = "GFX_crisis_icon_hyperthermia_harnessing"
+	custom_tooltip = unlocks_entropy_edict
 }
 
 menp_hyperthermia_crucible = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_hyperthermia_crucible"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_galactic_crucible
-	}
+	icon = "GFX_crisis_icon_hyperthermia_crucible"
+	custom_tooltip = unlocks_galactic_crucible
 }
 
 # level 2
 
 menp_hyperthermia_conc_entropy = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_hyperthermia_conc_entropy"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_conduit_spawn
-	}
+	icon = "GFX_crisis_icon_hyperthermia_conc_entropy"
+	custom_tooltip = unlocks_conduit_spawn
 }
 
 menp_hyperthermia_radiant = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_hyperthermia_radiant"
-		}
-	}
-
-	modifier = {
-		country_megastructure_build_cap_add = 1
-	}
+	icon = "GFX_crisis_icon_hyperthermia_radiant"
+	country_megastructure_build_cap_add = 1
 }
 
 menp_hyperthermia_ignition = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_hyperthermia_ignition"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_crucible_overclocking
-	}
+	icon = "GFX_crisis_icon_hyperthermia_ignition"
+	custom_tooltip = unlocks_crucible_overclocking
 }
 
 # level 3
 
 menp_hyperthermia_cruiser = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_hyperthermia_cruiser"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_ember_cruiser
-	}
+	icon = "GFX_crisis_icon_hyperthermia_cruiser"
+	custom_tooltip = unlocks_ember_cruiser
 }
 
 menp_hyperthermia_flames = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_hyperthermia_flames"
-		}
-	}
-
-	modifier = {
-		ship_orbital_bombardment_mult = 0.30
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_firestorm_stance
-	}
+	icon = "GFX_crisis_icon_hyperthermia_flames"
+	ship_orbital_bombardment_mult = 0.30
+	show_only_custom_tooltip = no
+	custom_tooltip = unlocks_firestorm_stance
 }
 
 menp_hyperthermia_coronal = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_hyperthermia_coronal"
-		}
-	}
-
-	modifier = {
-		conduit_spawnrate_add = -10
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_conduit_damage
-	}
+	icon = "GFX_crisis_icon_hyperthermia_coronal"
+	conduit_spawnrate_add = -10
+	show_only_custom_tooltip = no
+	custom_tooltip = unlocks_conduit_damage
 }
 
 # level 4
 
 menp_hyperthermia_reactors = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_hyperthermia_reactors"
-		}
-	}
-
-	modifier = {
-		shipsize_ember_cruiser_speed_mult = 0.30
-		shipsize_ember_battleship_speed_mult = 0.30
-	}
+	icon = "GFX_crisis_icon_hyperthermia_reactors"
+	shipsize_ember_cruiser_speed_mult = 0.30
+	shipsize_ember_battleship_speed_mult = 0.30
 }
 
 menp_hyperthermia_solarflare = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_hyperthermia_solarflare"
-		}
-	}
-
-	modifier = {
-		conduit_spawnrate_add = -10
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_conduit_borders
-	}
+	icon = "GFX_crisis_icon_hyperthermia_solarflare"
+	conduit_spawnrate_add = -10
+	show_only_custom_tooltip = no
+	custom_tooltip = unlocks_conduit_borders
 }
 
 menp_hyperthermia_armada = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_hyperthermia_armada"
-		}
-	}
-
-	modifier = {
-		country_war_exhaustion_mult = -0.50
-		job_researcher_naval_cap_add = @inf_crisis_navycap
-		job_metallurgist_naval_cap_add = @inf_crisis_navycap
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_blazing_navalcap
-	}
+	icon = "GFX_crisis_icon_hyperthermia_armada"
+	country_war_exhaustion_mult = -0.50
+	job_researcher_naval_cap_add = 1
+	job_metallurgist_naval_cap_add = 1
+	show_only_custom_tooltip = no
+	custom_tooltip = unlocks_blazing_navalcap
 }
 
 # level 5
 
 menp_hyperthermia_battleship = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_hyperthermia_battleship"
-		}
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_ember_battleship
-	}
+	icon = "GFX_crisis_icon_hyperthermia_battleship"
+	custom_tooltip = unlocks_ember_battleship
 }
 
 menp_hyperthermia_critical_mass = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_hyperthermia_critical_mass"
-		}
-	}
-
-	modifier = {
-		conduit_spawnrate_add = -20
-	}
-
-	on_unlock = {
-		custom_tooltip = unlocks_conduit_boost
-	}
+	icon = "GFX_crisis_icon_hyperthermia_critical_mass"
+	conduit_spawnrate_add = -20
+	show_only_custom_tooltip = no
+	custom_tooltip = unlocks_conduit_boost
 }
 
 menp_hyperthermia_ammunition = {
-	swappable_data = {
-		default = {
-			portrait = "GFX_crisis_icon_hyperthermia_ammunition"
-		}
-	}
-
-	modifier = {
-		shipsize_ember_cruiser_weapon_damage = 0.25
-		shipsize_ember_battleship_weapon_damage = 0.25
-	}
+	icon = "GFX_crisis_icon_hyperthermia_ammunition"
+	shipsize_ember_cruiser_weapon_damage = 0.25
+	shipsize_ember_battleship_weapon_damage = 0.25
 }
