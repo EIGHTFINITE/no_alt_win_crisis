@@ -2,6 +2,7 @@ wg_machine_uprising = {
 	casus_belli = cb_event
 
 	total_war = yes
+	defeat_nomad_on_all_arkships_lost = yes
 
 	forbidden_peace_offers = {
 		demand_surrender = ""
@@ -39,6 +40,7 @@ wg_war_in_heaven = {
 	war_exhaustion = 0.25
 
 	set_defender_wargoal = wg_war_in_heaven
+	defeat_nomad_on_all_arkships_lost = yes
 
 	potential = {
 		always = no # event only
@@ -124,7 +126,6 @@ wg_assert_overlordship = {
 	}
 
 	on_accept = {
-		custom_tooltip = wg_assert_overlordship_accept
 		hidden_effect = {
 			from = {
 				every_system_within_border = {
@@ -133,15 +134,26 @@ wg_assert_overlordship = {
 					}
 					remove_claims = { who = root }
 				}
-				 if = {
-                	limit = {
-                	    has_origin = origin_separatists
-                	    has_country_flag = separatist_rebel_of_@root
-                	}
-                	every_owned_starbase = { set_owner = root }
-                	every_owned_planet   = { set_owner = root }
-            	}
-				else = {
+			}
+		}
+		if = {
+			limit = {
+				from = {
+					has_country_flag = separatist_rebel_of_@root
+				}
+			}
+			custom_tooltip = wg_assert_overlordship_accept_separatist
+			hidden_effect = {
+				from = {
+					every_owned_starbase = { set_owner = root }
+					every_owned_planet = { set_owner = root }
+				}
+			}
+		}
+		else = {
+			custom_tooltip = wg_assert_overlordship_accept
+			hidden_effect = {
+				from = {
 					set_subject_of = {
 						who = root
 						preset = preset_vassal_balanced
@@ -151,6 +163,39 @@ wg_assert_overlordship = {
 						years = 5
 					}
 				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+}
+
+wg_assert_overlordship_rebellion = {
+	casus_belli = cb_event
+
+	cede_claims = occupied_only
+
+	potential = {
+		always = no # event only
+	}
+	possible = {
+		always = yes
+	}
+
+	on_accept = {
+		custom_tooltip = wg_assert_overlordship_accept_separatist
+		hidden_effect = {
+			from = {
+				every_system_within_border = {
+					limit = {
+						root = { has_claim = prev }
+					}
+					remove_claims = { who = root }
+				}
+				every_owned_starbase = { set_owner = root }
+				every_owned_planet = { set_owner = root }
 			}
 		}
 	}
@@ -370,6 +415,7 @@ wg_declared_crisis = {
 
 	total_war = yes
 	destroy_starbases = yes
+	defeat_nomad_on_all_arkships_lost = yes
 
 	forbidden_peace_offers = {
 		demand_surrender = ""
@@ -429,6 +475,7 @@ wg_fotd_really_bad_contact = {
 	casus_belli = cb_event
 	hide = no_cb
 	total_war = yes
+	defeat_nomad_on_all_arkships_lost = yes
 	set_defender_wargoal = wg_fotd_really_bad_contact
 
 	forbidden_peace_offers = {
@@ -531,6 +578,26 @@ wg_payback_force_ideology = {
 	}
 
 	on_accept = {
+		hidden_effect = {
+			from = {
+				if = {
+					limit = {
+						is_gestalt = no
+					}
+					impose_ideology_effect = yes
+				}
+
+				every_subject = {
+					limit = {
+						is_gestalt = no
+					}
+					impose_ideology_effect = yes
+				}
+
+				no_faction_management = yes
+			}
+		}
+
 		from = {
 			if = {
 				limit = {
@@ -553,6 +620,8 @@ wg_payback_force_ideology = {
 				}
 				remove_claims = { who = Root.from }
 			}
+
+			no_faction_management_tooltip = yes
 		}
 
 		if = {
@@ -563,21 +632,6 @@ wg_payback_force_ideology = {
 		}
 
 		hidden_effect = {
-			from = {
-				if = {
-					limit = {
-						is_gestalt = no
-					}
-					impose_ideology_effect = yes
-				}
-
-				every_subject = {
-					limit = {
-						is_gestalt = no
-					}
-					impose_ideology_effect = yes
-				}
-			}
 			end_rivalry = from
 			from = { end_rivalry = root }
 			every_system_within_border = {
