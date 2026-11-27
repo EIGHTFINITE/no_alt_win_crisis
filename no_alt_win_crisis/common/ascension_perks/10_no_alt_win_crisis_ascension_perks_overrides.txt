@@ -16,6 +16,10 @@ ap_defender_of_the_galaxy_nomads = {
 			fail_text = "requires_actor_not_khan"
 			NOT = { has_country_flag = heir_of_the_khan_khan }
 		}
+		custom_tooltip = {
+			fail_text = "requires_not_emperor"
+			has_galactic_emperor = no
+		}
 	}
 	#custom_tooltip = ap_defender_of_the_galaxy_modifier_desc
 
